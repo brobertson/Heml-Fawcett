@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+		<style type="text/css">
+		div.quotation {
+			font-family:"Lucida Grande","Verdana",sans-serif;
+			background: #DEECF7;
+			padding:1em;
+			width: 75%;
+			border: medium rgb(200,200,200)
+		}
+/*
+		div#borderrelated, div.quotation {
+			margin: 0 30px 10px 50px; 
+			padding: 0 5px 5px 0; 
+			background: #fff url(images/shadow.gif) no-repeat 100% 100%; 
+			height: 1%;
+		}
+*/
+		</style>
+		<!--script type="text/javascript"       src="sarissa/gr/abiss/js/sarissa/sarissa.js"> </script-->
+		<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"/>
+		<script type="text/javascript" language="javascript" src="sparql.js"/> 
+		<script type="text/javascript">
+
+		<![CDATA[
+		var endpoint="http://heml.mta.ca/joseki3/sparql/read";
+		var allQueryStart = " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX hemlRDF: <http://www.heml.org/rdf/2003-09-17/heml#> "; 
+		var refQueryStart = allQueryStart + "SELECT ?node ?label   WHERE     { ?node rdfs:subPropertyOf <http://www.heml.org/rdf/2003-09-17/heml#referredToIn> . <";
+		var refQueryEnd = "> ?node ?reference . ?node rdfs:label ?label. }"; 
+		var refTitleStart = allQueryStart + " SELECT ?evidence ?url ?xslAddress ?label WHERE {";
+		var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
+		function onHemlFailure(reply) {
+			alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:\n"+ reply);
+			// do something more interesting, like putting an x through the map. or making
+			// a popup
+		}
+
+		var successfulCallbackModel =  function(htmlNode, eventNode) {//use '' for root
+			this.htmlNode = htmlNode;
+			var me=this;
+			this.makeRefLinks = function(json) {
+				var numberOfEntries = json.results.bindings.length;
+				var a = document.createElement('div');
+				a.id = eventNode;
+				for (var i = 0; i < numberOfEntries; i++) {
+					var typeName = json.results.bindings[i].label.value;
+					var nodeName = json.results.bindings[i].node.value;
+					var x = document.createElement('div');
+					x.className = 'referenceTypeClass';
+					x.id = json.results.bindings[i].node.value;
+					var y = document.createElement('p');
+					y.id = nodeName;
+					y.appendChild(document.createTextNode(typeName));
+					x.onclick = function() {
+						getRefTitles(nodeName, eventNode, y);
+					}
+					x.appendChild(y);
+					a.appendChild(x);
+				}
+				me.htmlNode.appendChild(a);
+			}	
+		}
+
+		var successfulCallbackModelForTitles =  function(htmlNode) {//use '' for root
+			this.htmlNode = htmlNode;
+			var me=this;
+			this.makeRefTitles = function(json) {
+				var numberOfEntries = json.results.bindings.length;
+				for (var i = 0; i < numberOfEntries; i++) {
+					var refTitle= json.results.bindings[i].label.value;
+					var source = json.results.bindings[i].url.value;
+					var xslt = json.results.bindings[i].xslAddress.value;
+					var x = document.createElement('div');
+					var y = document.createElement('p');
+					y.className = 'referenceTitleClass';
+					//	y.setAttribute("onmouseup","alert('" + json.results.bindings[i].node.value + "')");
+					x.onclick = function() {
+						doXMLHttp(xslt, source, me.htmlNode);
+					}
+					y.appendChild(document.createTextNode(refTitle));
+					x.appendChild(y);
+					me.htmlNode.appendChild(x);
+				}
+			}
+		}
+
+
+		function getRefTitles(refTypeResource, eventResource, htmlNode) {
+			myTry = new successfulCallbackModelForTitles(htmlNode);
+			hq = new Heml.SparqlQuery(endpoint, refTitleStart + " <" + eventResource + "> <" + refTypeResource + "> " + refTitleEnd, onHemlFailure, myTry.makeRefTitles);
+			hq.performQuery();
+		}
+
+		function getRefTypes(htmlNode, eventNode) {
+			var theDiv = document.getElementById(eventNode);
+			if (theDiv == null) {
+				myTry = new successfulCallbackModel(htmlNode, eventNode);
+				hq = new Heml.SparqlQuery(endpoint, refQueryStart + eventNode + refQueryEnd, onHemlFailure, myTry.makeRefLinks);
+				hq.performQuery();
+			}
+			else {
+				if (theDiv.style.visibility == "hidden") {
+					theDiv.style.visibility = "visible";
+				}
+				else {
+					theDiv.style.visibility = "hidden";
+				}
+			}
+		}            
+
+		function doXMLHttp(xslURL, documentURL, parentNode)  {	
+			var xmlhttp = new XMLHttpRequest();  
+			xmlhttp.open("GET", xslURL, false);
+			xmlhttp.send(null);
+			//if (xmlhttp.status == 200)
+			//alert(xmlhttp.responseText);  
+			var xmlhttpDoc = new XMLHttpRequest();
+			xmlhttpDoc.open("Get", documentURL, false);
+			xmlhttpDoc.send(null);
+			//if (xmlhttp.status == 200) alert ("yep, we're ok");//xmlhttpDoc.responseText);
+			var processor = new XSLTProcessor();
+			processor.importStylesheet(xmlhttp.responseXML);
+			var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
+			parentNode.appendChild(newFragment);
+		}
+
+		function makeRefs(htmlNode, eventNode) {
+			alert(htmlNode);
+		}
+	
+		]]>
+		</script>
+	</head>
+	<body>
+
+		<!--
+		<body onload="getRefTypes('http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a', 'quotations');">
+		<body onload="doXMLHttp('http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl', 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5b', 'quotations')">
+'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A1999.02.0002%3Abook%3D1%3Achapter%3D1%3Asection%3D1', 'quotations')">
+		-->
+
+		<div id="quotations">
+			<p onmouseup="foo(this)">hello</p>
+		</div>
+		<p onclick="getRefTypes(this, 'http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a')" >hi there</p>
+	</body>
+</html>

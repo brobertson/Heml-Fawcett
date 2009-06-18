@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder.css"/>	
+		<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"/>
+		<script type="text/javascript" language="javascript" src="sparql.js"/> 
+		<script type="text/javascript" language="javascript" src="fragmentaryReferenceBuilder-test.js"/>
+		<script type="text/javascript" language="javascript">
+			<body onload="setup();"/>
+		</script>
+
+	</head>
+	<body>
+	<!--
+		<body onload="getRefTypes('http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a', 'quotations');">
+		<body onload="doXMLHttp('http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl', 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5b', 'quotations')">
+'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A1999.02.0002%3Abook%3D1%3Achapter%3D1%3Asection%3D1', 'quotations')">
+	-->
+	
+
+		<div id="title">
+			<h1>Heml Locations Map</h1>
+		</div>
+
+		<div class="inner">		
+			<div id="map1"/> 
+			<div id="docs">		
+				<p id="locationLabel" onmouseup="foo(this)">Location</p>
+				<div id="eventList">
+					<div class="event">			
+						<p class="linkLike" onclick="getRefTypes(this, 'http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a')">Event 1</p>
+					</div> <!--end of event div-->
+					<div class="event">
+						<p class="linkLike" onclick="getRefTypes(this, 'http://heml.mta.ca/docs/hammond_diary#Aug15-1871-a')">Event 2</p>
+					</div> <!--end of event div-->
+				</div> <!--end of eventlist div-->
+			</div> <!--end of docs div-->
+		
+			<p id="source"/>
+		</div> <!--end of container div-->
+	</body>
+</html>

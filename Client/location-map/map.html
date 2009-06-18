@@ -1,0 +1,198 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Heml Locations Map Using OpenLayers</title>
+    <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript" language="javascript" src="sparql.js"></script>
+<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"></script>
+    <script type="text/javascript">
+
+        var map = null;
+	var DEBUG = false;
+	var locationArray = new Array();
+	/*
+var kml = <kml xmlns="http://www.opengis.net/kml/2.2"><Placemark><name>Simple placemark</name><description>Attached to the ground. Intelligently places itself at the height of the underlying terrain.</description><Point><coordinates>-122.0822035425683,37.42228990140251,0</coordinates></Point></Placemark></kml>
+          */
+OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '20';
+                    /*
+             * Layer style
+             */
+            // we want opaque external graphics and non-opaque internal graphics
+            var layer_style = OpenLayers.Util.extend({}, OpenLayers.Feature.Vector.style['default']);
+            layer_style.fillOpacity = 0.4;
+            layer_style.graphicOpacity = 1;
+
+            /*
+             * Blue style
+             */
+            var style_red = OpenLayers.Util.extend({}, layer_style);
+            style_red.strokeColor = "red";
+            style_red.fillColor = "red";
+            style_red.graphicName = "star";
+            style_red.pointRadius = 2.5;
+            style_red.strokeWidth = .7;
+            style_red.rotation = 45;
+            style_red.strokeLinecap = "butt";
+
+	   // var markers = new OpenLayers.Layer.Markers( "Markers" );
+	         var polygonLayer = new OpenLayers.Layer.Vector("Heml Locations");
+     var heySuccess = function(json) { alert("did it man! " + "ho man" + json); };
+    var heyFailure = function() {alert("boo, failure");}
+    
+    var populateMapWithJson  = function(json) {
+   var numberOfEntries = json.results.bindings.length;
+     
+for (var i = 0; i < numberOfEntries; i++) {
+    
+    polygonLayer.addFeatures([new OpenLayers.Feature.Vector( new OpenLayers.Geometry.Point(json.results.bindings[i].longitude.value,json.results.bindings[i].latitude.value), {url: json.results.bindings[i].location.value, label: json.results.bindings[i].locationLabel.value}, style_red)]);
+     
+}
+    }
+
+
+function onHemlFailure() {
+alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection");
+// do something more interesting, like putting an x through the map. or making
+// a popup
+}
+function getResult() {
+    alert("I'm in get result");
+    hq = new Heml.SparqlQuery("http://heml.mta.ca/joseki/heml", "SELECT DISTINCT ?location ?locationLabel ?latitude ?longitude WHERE {?event hemlRDF:LocationRef ?location. ?location rdfs:label ?locationLabel. ?location geo:lat ?latitude. ?location geo:long ?longitude.   }", onHemlFailure, populateMapWithJson);
+    if (DEBUG) {
+    alert("query string: " + hq.getQueryString());
+    alert("endpoint: " + hq.getEndpoint());
+    alert("success function: " + hq.getSuccessFunction());
+    alert("failure function: " + hq.getFailureFunction());
+    }
+    hq.performQuery();
+}
+
+// provide a onHemlSuccess function which handles the 'success' calback for the 
+//and deals the with resulting json Object.
+
+
+
+
+        function init(){
+
+	    
+	   map = new OpenLayers.Map('map',{'maxResolution': 'auto'});
+
+            var ol_wms = new OpenLayers.Layer.WMS(
+                "OpenLayers WMS",
+                "http://labs.metacarta.com/wms/vmap0",
+                {layers: 'basic'}
+            );
+
+            var jpl_wms = new OpenLayers.Layer.WMS(
+                "NASA Global Mosaic",
+                "http://t1.hypercube.telascience.org/cgi-bin/landsat7", 
+                {layers: "landsat7"}
+            );
+	    
+    
+
+          
+            map.addLayers([ol_wms, jpl_wms]);
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+	    // create an overview map control with the default options
+            var overview1 = new OpenLayers.Control.OverviewMap();
+           map.addControl(overview1);
+
+
+              var options = {
+                hover: true,
+                onSelect: onFeatureSelect,
+		onUnselect: onFeatureUnselect
+            };
+	    // polygonLayer.addFeatures(locationArray);
+	   map.addLayer(polygonLayer);
+	    var select = new OpenLayers.Control.SelectFeature(polygonLayer, options);
+            map.addControl(select);
+            select.activate();
+	    getResult();
+            map.zoomToMaxExtent();
+	}
+/*
+popup = new OpenLayers.Popup("chicken",
+                   new OpenLayers.LonLat(5,40),
+                   new OpenLayers.Size(200,200),
+                   "example popup",
+                   true);
+
+map.addPopup(popup);
+	   */ 
+
+	        function onFeatureSelect(feature) {
+		    var popupCloseBox = false;
+            selectedFeature = feature;
+	    var locationLabel = feature.attributes.label;
+	    var locationUrl = feature.attributes.url;
+            popup = new OpenLayers.Popup.FramedCloud(feature.attributes.url, 
+                                     feature.geometry.getBounds().getCenterLonLat(),
+                                     null,
+                                     "<div style='font-size:.8em; font-family: Arial Unicode MS; font-weight: bold'>" + locationLabel +"<!--br />URL:" + locationUrl +"</div -->",
+                                     null, popupCloseBox, onPopupClose);
+            feature.popup = popup;
+            map.addPopup(popup);
+	    listEventsForLocation(locationUrl, locationLabel);
+        }
+	        function onPopupClose(evt) {
+           selectControl.unselect(selectedFeature);
+        }
+
+        function onFeatureUnselect(feature) {
+            map.removePopup(feature.popup);
+            feature.popup.destroy();
+            feature.popup = null;
+        }
+	
+function listEventsForLocation(url, label) {
+   var label = label;
+   var listEventsFromJson = function(json) {
+    var theHeader = document.getElementById("locationLabel");
+    headerText = theHeader.childNodes[0];
+    if (headerText != null) {
+    theHeader.removeChild(headerText);
+    }
+    var theNewHeaderText = document.createTextNode(label);    
+    var theDocs = document.getElementById("docs");
+    var theEventList = document.getElementById("eventList");
+    theDocs.removeChild(theEventList);
+   // var header = document.createElement("h3");
+   // header.id = 'LocationTitle';     
+       var theNewParagraph = document.createElement('p');
+	theNewParagraph.id = "eventList";
+    var eventsLength = json.results.bindings.length;
+    for (var i = 0; i < eventsLength; i++) {
+	if (i > 0) {	    
+	    theNewParagraph.appendChild(document.createElement('br'));
+	}
+	var theTextOfTheParagraph = document.createTextNode( json.results.bindings[i].eventLabel.value);
+	theNewParagraph.appendChild(theTextOfTheParagraph);
+	
+	}
+	//list.appendChild(
+	theHeader.appendChild(theNewHeaderText);
+      theDocs.appendChild(theNewParagraph);
+   }
+    var queryString = "SELECT DISTINCT ?event ?eventLabel WHERE {?event hemlRDF:LocationRef <" + url + ">. ?event rdfs:label ?eventLabel.}";
+    var eventsQuery = new Heml.SparqlQuery("http://heml.mta.ca/joseki/heml", queryString, onHemlFailure, listEventsFromJson);
+    eventsQuery.performQuery();
+}
+
+
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">Heml Locations Map Using OpenLayers</h1>
+    <div id="tags"></div>
+    <p id="shortdesc">
+        This map represents all event locations in the accessed SPARQL database. It, and other visualizations, will be wrapped in a 
+    </p>
+    <div id="map"  style="width:500px;height:250px" ></div>
+    <div style="font-family:Arial Unicode MS;" id="docs"><h3 id="locationLabel"></h3><p id="eventList"/></div>
+  </body>
+</html>

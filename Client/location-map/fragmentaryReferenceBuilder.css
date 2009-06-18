@@ -1,0 +1,142 @@
+/* Amy's CSS */
+
+body {
+	color: #222;
+    background: #fafafa;
+    font-family: Helvetica, Arial, sans-serif;
+	text-align:center;	
+	margin:0;
+	}
+
+
+#title {
+	height:100px;
+	}
+
+#docs {
+	font-weight:normal;
+	font-size:14px;
+	color:#000;
+	}
+
+
+#locationLabel {
+	color:#6495ED;
+	font-weight:bold;
+	font-size:17px;
+	}
+
+#map1 {
+	width: 520px;
+	height: 260px;
+	background-color: #d0d0d0;
+	border:1px solid rgb(0,0,0);
+	}
+
+.referenceTypeClass {
+	font-size:13px;
+	}
+
+.referenceTitleClass {
+	text-indent:20px;
+	font-size:13px;
+	color:#6495ED;
+	}
+
+div.quotation {
+	font-weight:normal;
+	background:#c5d3ed;
+	width: 510px;
+	border: medium rgb(200,200,200)
+	}
+
+.linkLike:hover, .referenceTypeClass:hover {
+	cursor:pointer;
+	color:gray;
+	}
+
+.referenceTitleClass:hover {
+	cursor:pointer;
+	text-decoration:underline;
+	}
+
+h1 {
+	font-size:40px;
+	}
+
+
+/* to do with alignment */
+
+body {
+	width: 900px; 
+	margin: 0 auto;
+	background: transparent;
+	padding:0;
+}
+
+.inner, #source {
+	position:absolute;
+	}
+
+#title {
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	width:900px;
+	color:#6495ED;
+	}
+
+.inner {
+	width:890px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding-left: 10px;
+	}
+
+#map1, #map
+	{
+	float:left;
+	top:100px;
+	border: 1px solid #ccc;
+	}
+
+#docs
+	{
+	float:right;
+	top:100px;
+	width:350px;
+	padding-left:15px;
+	margin:0;
+	text-align:left;
+	}
+
+div.quotation
+	{
+	float:left;
+	position:relative;
+	top:50px;
+	text-align:left;
+	padding:10px 5px 10px 5px;
+	font-size:14px;
+	}
+
+#source {
+	top:380px;
+	}
+
+
+/*
+div#borderrelated, div.quotation 
+	{	
+	margin: 0 30px 10px 50px; 
+	padding: 0 5px 5px 0; 
+	background: #fff url(images/shadow.gif) no-repeat 100% 100%; 
+	height: 1%;
+	}
+
+	font-family:"Lucida Grande","Verdana",sans-serif;
+	font-family:"Lucida Grande","Verdana",sans-serif;
+
+*/
+
+
+
