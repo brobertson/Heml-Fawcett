@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:hemlRDF="http://www.heml.org/rdf/2003-09-17/heml#"
+    xmlns:hammondCidoc="http://www.heml.org/2009/01/hammond_cidoc-crm.rdf#"
+  xml:base="http://www.heml.org/2009/01/hammond_cidoc-crm.rdf#"
+   xmlns:crm="http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#">
+<crm:E52.Time-Span rdf:ID="E52.1967-1970">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1967-1970</rdfs:label>
+   <hemlRDF:StartingDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+      >1967</hemlRDF:StartingDate>
+      <hemlRDF:EndingDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+      >1970</hemlRDF:EndingDate>
+  </crm:E52.Time-Span>
+  <crm:E53.Place rdf:ID="E53.Gairdner_Fine_Arts_Building">
+    <rdfs:label xml:lang="en">next door to the Owens Art Gallery</rdfs:label>
+    <crm:P89F.falls_within>
+      <crm:E53.Place rdf:ID="E53.Sackville">
+        <rdfs:label xml:lang="en">Sackville, New Brunswick, Canada</rdfs:label>
+      </crm:E53.Place>
+    </crm:P89F.falls_within>
+  </crm:E53.Place>
+  <crm:E55.Type rdf:ID="E55.permanent_display">
+    <rdfs:label xml:lang="en">permanent display</rdfs:label>
+  </crm:E55.Type>
+  <crm:E22.Man-Made_Object rdf:ID="E22.works_of_art_of_the_Owens_collection">
+    <crm:P2F.has_type>
+      <crm:E55.Type rdf:ID="E55.European">
+        <rdfs:label xml:lang="en">predominantly European</rdfs:label>
+      </crm:E55.Type>
+    </crm:P2F.has_type>
+    <rdfs:label xml:lang="en">works of art of the Owens collection</rdfs:label>
+    <crm:P43F.has_dimension>
+      <crm:E54.Dimension rdf:ID="E54.number_of_works_in_Owens_collection">
+        <rdfs:label xml:lang="en">number of works in the original Owens collection</rdfs:label>
+        <crm:P90F.has_value>
+          <rdfs:Literal rdf:ID="approx_300">
+            <rdfs:label xml:lang="en">approximately 300</rdfs:label>
+          </rdfs:Literal>
+        </crm:P90F.has_value>
+      </crm:E54.Dimension>
+    </crm:P43F.has_dimension>
+    <crm:P46F.is_composed_of>
+      <crm:E22.Man-Made_Object rdf:ID="E22.works_selected_by_Reed">
+        <crm:P43F.has_dimension>
+          <crm:E54.Dimension rdf:ID="E54.proportion_of_original_collection">
+            <rdfs:label xml:lang="en">proportion of the works of the original Owens collection</rdfs:label>
+            <crm:P90F.has_value>
+              <rdfs:Literal rdf:ID="one_third">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >at least one third</rdfs:label>
+              </rdfs:Literal>
+            </crm:P90F.has_value>
+          </crm:E54.Dimension>
+        </crm:P43F.has_dimension>
+        <rdfs:label xml:lang="en">works selected by Robert Reed</rdfs:label>
+      </crm:E22.Man-Made_Object>
+    </crm:P46F.is_composed_of>
+    <crm:P46F.is_composed_of>
+      <crm:E22.Man-Made_Object rdf:ID="E22.drawings">
+        <rdfs:label xml:lang="en">drawings</rdfs:label>
+      </crm:E22.Man-Made_Object>
+    </crm:P46F.is_composed_of>
+    <crm:P46F.is_composed_of>
+      <crm:E22.Man-Made_Object rdf:ID="E22.prints">
+        <rdfs:label xml:lang="en">prints</rdfs:label>
+      </crm:E22.Man-Made_Object>
+    </crm:P46F.is_composed_of>
+    <crm:P46F.is_composed_of>
+      <crm:E22.Man-Made_Object rdf:ID="E22.paintings">
+        <rdfs:label xml:lang="en">paintings</rdfs:label>
+      </crm:E22.Man-Made_Object>
+    </crm:P46F.is_composed_of>
+  </crm:E22.Man-Made_Object>
+  <crm:E57.Material rdf:ID="E57.paper">
+    <rdfs:label xml:lang="es">papel</rdfs:label>
+    <rdfs:label xml:lang="fr">papier</rdfs:label>
+    <rdfs:label xml:lang="de">Papier</rdfs:label>
+    <rdfs:label xml:lang="en">paper</rdfs:label>
+  </crm:E57.Material>
+  <crm:E21.Person rdf:ID="E21.Christopher_Youngs">
+    <crm:P14B.performed>
+      <crm:E7.Activity rdf:ID="E7.Youngs_directorship_of_OAG">
+        <crm:P4F.has_time-span>
+          <crm:E52.Time-Span rdf:ID="E52.1970-1976">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >1970-1976</rdfs:label>
+          </crm:E52.Time-Span>
+        </crm:P4F.has_time-span>
+        <rdfs:label xml:lang="en">Christopher Youngs' directorship of the Owens Art Gallery</rdfs:label>
+      </crm:E7.Activity>
+    </crm:P14B.performed>
+    <crm:P2F.has_type>
+      <crm:E55.Type rdf:ID="E55.Director_of_OAG">
+        <rdfs:label xml:lang="en">Director of the Owens Art Gallery</rdfs:label>
+      </crm:E55.Type>
+    </crm:P2F.has_type>
+    <crm:P109B.is_current_or_former_curator_of>
+      <crm:E78.Collection rdf:ID="E78.Owens_collection">
+        <crm:P50F.has_current_keeper>
+          <crm:E40.Legal_Body rdf:ID="E40.Owens_Art_Gallery">
+            <crm:P76F.has_contact_point>
+              <crm:E51.Contact_Point rdf:ID="E51.Owens_Phone">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Phone: +1(506)364-2574</rdfs:label>
+              </crm:E51.Contact_Point>
+            </crm:P76F.has_contact_point>
+            <crm:P76F.has_contact_point>
+              <crm:E51.Contact_Point rdf:ID="E51.Owens_email">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >owens@mta.ca</rdfs:label>
+              </crm:E51.Contact_Point>
+            </crm:P76F.has_contact_point>
+            <crm:P76F.has_contact_point>
+              <crm:E45.Address rdf:ID="E45.61_York_St">
+                <rdfs:label xml:lang="en">61 York St., Sackville, New Brunswick, Canada</rdfs:label>
+                <crm:P1B.identifies>
+                  <crm:E22.Man-Made_Object rdf:ID="E22.Owens_Art_Gallery">
+                    <crm:P2F.has_type>
+                      <crm:E55.Type rdf:ID="E55.art_gallery_and_more">
+                        <rdfs:label xml:lang="en">art gallery with expanded exhibition space and conservation laboratory</rdfs:label>
+                        <crm:P2F.has_type>
+                          <crm:E55.Type rdf:ID="E55.art_gallery">
+                            <rdfs:label xml:lang="en">art gallery</rdfs:label>
+                            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >galerie d'art</rdfs:label>
+                          </crm:E55.Type>
+                        </crm:P2F.has_type>
+                        <crm:P3F.has_note>
+                          <rdfs:Literal rdf:ID="not_art_school">
+                            <rdfs:label xml:lang="en">with the relocation of the Department of Fine Arts to the newly built Gairdner Fine Arts building, the Owens Art Gallery no longer doubled as an art school as had the Owens Art Museum and Art School</rdfs:label>
+                          </rdfs:Literal>
+                        </crm:P3F.has_note>
+                      </crm:E55.Type>
+                    </crm:P2F.has_type>
+                    <crm:P74F.has_current_or_former_residence>
+                      <crm:E53.Place rdf:ID="E53.The_Owens_Art_Gallery">
+                        <crm:P89F.falls_within rdf:resource="#E53.Sackville"/>
+                        <rdfs:label xml:lang="fr">la gallerie d'art Owens</rdfs:label>
+                        <rdfs:label xml:lang="en">The Owens Art Gallery</rdfs:label>
+                        <crm:P87F.is_identified_by rdf:resource="#E45.61_York_St"/>
+                      </crm:E53.Place>
+                    </crm:P74F.has_current_or_former_residence>
+                    <crm:P92B.was_brought_into_existence_by>
+                      <crm:E81.Transformation rdf:ID="E81.renovations_of_OAM">
+                        <crm:P124F.transformed>
+                          <crm:E40.Legal_Body rdf:ID="E40.Owens_Art_Museum">
+                            <crm:P124B.was_transformed_by rdf:resource="#E81.renovations_of_OAM"/>
+                            <rdfs:label xml:lang="en">the Owens Art Museum and Art School</rdfs:label>
+                          </crm:E40.Legal_Body>
+                        </crm:P124F.transformed>
+                        <crm:P124F.transformed>
+                          <crm:E22.Man-Made_Object rdf:ID="E22.Owens_Art_Museum">
+                            <rdfs:label xml:lang="en">the Owens Art Museum and School of Art</rdfs:label>
+                            <crm:P124B.was_transformed_by rdf:resource="#E81.renovations_of_OAM"/>
+                            <crm:P53F.has_former_or_current_location rdf:resource="#E53.The_Owens_Art_Gallery"/>
+                            <crm:P101F.had_as_general_use>
+                              <crm:E55.Type rdf:ID="E55.housing_of_Dept_of_Fine_Arts">
+                                <rdfs:label xml:lang="en">the housing of the Department of Fine Arts of Mount Allison University</rdfs:label>
+                              </crm:E55.Type>
+                            </crm:P101F.had_as_general_use>
+                            <crm:P101F.had_as_general_use>
+                              <crm:E55.Type rdf:ID="E55.use_of_OAM">
+                                <rdfs:label xml:lang="en">to accomodate the teaching of fine arts at the Mount Allison Ladies' College</rdfs:label>
+                              </crm:E55.Type>
+                            </crm:P101F.had_as_general_use>
+                          </crm:E22.Man-Made_Object>
+                        </crm:P124F.transformed>
+                        <rdfs:label xml:lang="en">extensive interior renovations and the construction of a Conservation Laboratory</rdfs:label>
+                        <crm:P7F.took_place_at rdf:resource="#E53.The_Owens_Art_Gallery"/>
+                        <crm:P11F.had_participant>
+                          <crm:E40.Legal_Body rdf:ID="E40.Gairdner_Estate">
+                            <rdfs:label xml:lang="en">the estate of Dr. J.A. Gairdner</rdfs:label>
+                          </crm:E40.Legal_Body>
+                        </crm:P11F.had_participant>
+                        <crm:P11F.had_participant>
+                          <crm:E40.Legal_Body rdf:ID="E40.Bell_Estate">
+                            <rdfs:label xml:lang="en">the estate of Marjorie Young Bell</rdfs:label>
+                          </crm:E40.Legal_Body>
+                        </crm:P11F.had_participant>
+                        <crm:P4F.has_time-span>
+                          <crm:E52.Time-Span rdf:ID="E52.1965-1972">
+                            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >1965 (unclear) - 20 October 1962</rdfs:label>
+                          </crm:E52.Time-Span>
+                        </crm:P4F.has_time-span>
+                        <crm:P92F.brought_into_existence rdf:resource="#E40.Owens_Art_Gallery"/>
+                      </crm:E81.Transformation>
+                    </crm:P92B.was_brought_into_existence_by>
+                    <rdfs:label xml:lang="fr">la Gallerie d'art Owens</rdfs:label>
+                    <rdfs:label xml:lang="en">The Owens Art Gallery</rdfs:label>
+                    <crm:P101F.had_as_general_use>
+                      <crm:E55.Type rdf:ID="E55.house_collection">
+                        <rdfs:label xml:lang="en">to house the Permanent Collection</rdfs:label>
+                      </crm:E55.Type>
+                    </crm:P101F.had_as_general_use>
+                    <crm:P101F.had_as_general_use rdf:resource="#E55.art_gallery_and_more"/>
+                    <crm:P55F.has_current_location rdf:resource="#E53.The_Owens_Art_Gallery"/>
+                  </crm:E22.Man-Made_Object>
+                </crm:P1B.identifies>
+              </crm:E45.Address>
+            </crm:P76F.has_contact_point>
+            <rdfs:label xml:lang="en">The Owens Art Gallery</rdfs:label>
+            <crm:P131F.is_identified_by>
+              <crm:E82.Actor_Appellation rdf:ID="E82.the_Owens">
+                <rdfs:label xml:lang="en">"The Owens"</rdfs:label>
+              </crm:E82.Actor_Appellation>
+            </crm:P131F.is_identified_by>
+            <crm:P3F.has_note>
+              <rdfs:Literal rdf:ID="oldest_uni_art_gallery">
+                <rdfs:label xml:lang="fr">est la gallerie d'art universitaire la plus vielle au Canada</rdfs:label>
+                <rdfs:label xml:lang="en">is the oldest university art gallery in Canada</rdfs:label>
+              </rdfs:Literal>
+            </crm:P3F.has_note>
+          </crm:E40.Legal_Body>
+        </crm:P50F.has_current_keeper>
+        <crm:P101F.had_as_general_use rdf:resource="#E55.permanent_display"/>
+        <rdfs:label xml:lang="fr">la collection Owens</rdfs:label>
+        <crm:P49F.has_former_or_current_keeper rdf:resource="#E40.Owens_Art_Museum"/>
+        <crm:P108B.was_produced_by>
+          <crm:E12.Production rdf:ID="E12.Production_of_Owens_collection">
+            <crm:P11F.had_participant>
+              <crm:E21.Person rdf:ID="E21.Robert_Reed">
+                <crm:P74F.has_current_or_former_residence>
+                  <crm:E53.Place rdf:ID="E53.Saint_John">
+                    <rdfs:label xml:lang="en">Saint John, New Brunswick, Canada</rdfs:label>
+                  </crm:E53.Place>
+                </crm:P74F.has_current_or_former_residence>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.Owens_executor">
+                    <rdfs:label xml:lang="en">Owens' executor</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Robert Reed</rdfs:label>
+              </crm:E21.Person>
+            </crm:P11F.had_participant>
+            <crm:P11F.had_participant>
+              <crm:E21.Person rdf:ID="E21.JohnHammond">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >John Hammond</rdfs:label>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.first_members_of_RCA">
+                    <rdfs:label xml:lang="en">one of the first members of the Royal Canadian Academy</rdfs:label>
+                    <rdfs:label xml:lang="fr">un des premiers membres de l'Académie royale du Canada</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Sackville"/>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.friend_of_Whistler_and_Millet">
+                    <rdfs:label xml:lang="es">amigo de Whistler y de Millet</rdfs:label>
+                    <rdfs:label xml:lang="fr">ami de Whister et de Millet</rdfs:label>
+                    <rdfs:label xml:lang="en">friend of Whistler and Millet</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.gold_miner">
+                    <rdfs:label xml:lang="en">gold miner</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.adventurer">
+                    <rdfs:label xml:lang="en">adventurer</rdfs:label>
+                    <rdfs:label xml:lang="fr">aventurier</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P98B.was_born>
+                  <crm:E67.Birth rdf:ID="E67.the_birth_of_Hammond">
+                    <rdfs:label xml:lang="en">the birth of John Hammond</rdfs:label>
+                    <crm:P11F.had_participant rdf:resource="#E21.JohnHammond"/>
+                    <crm:P4F.has_time-span>
+                      <crm:E52.Time-Span rdf:ID="E52.11_April_1843">
+                        <rdfs:label xml:lang="en">11 April 1843</rdfs:label>
+                      </crm:E52.Time-Span>
+                    </crm:P4F.has_time-span>
+                    <crm:P7F.took_place_at>
+                      <crm:E53.Place rdf:ID="E53.Montreal">
+                        <rdfs:label xml:lang="en">Montreal, Quebec, Canada</rdfs:label>
+                      </crm:E53.Place>
+                    </crm:P7F.took_place_at>
+                  </crm:E67.Birth>
+                </crm:P98B.was_born>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.Canadian_Artist">
+                    <rdfs:label xml:lang="en">Canadian artist</rdfs:label>
+                    <rdfs:label xml:lang="fr">artiste canadien</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Saint_John"/>
+                <crm:P100B.died_in>
+                  <crm:E69.Death rdf:ID="E69.death_of_Hammond">
+                     <crm:P11F.had_participant rdf:resource="#E21.JohnHammond"/>
+                    <crm:P4F.has_time-span>
+                      <crm:E52.Time-Span rdf:ID="E52.1939">
+                        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >1939</rdfs:label>
+                      </crm:E52.Time-Span>
+                    </crm:P4F.has_time-span>
+                    <rdfs:label xml:lang="en">the death of John Hammond</rdfs:label>
+                    <rdfs:label xml:lang="es">la muerte de John Hammond</rdfs:label>
+                    <rdfs:label xml:lang="fr">la mort od John Hammond</rdfs:label>
+                  </crm:E69.Death>
+                </crm:P100B.died_in>
+              </crm:E21.Person>
+            </crm:P11F.had_participant>
+            <rdfs:label xml:lang="en">John Hammond's travelling in Britain and Europe, buying of works of art and shipping them back to Saint John where Robert Reed organized them for display at the Owens Art Insitution</rdfs:label>
+            <crm:P4F.has_time-span>
+              <crm:E52.Time-Span rdf:ID="E52.May_1884_-_Sept_1885">
+                <rdfs:label xml:lang="en">May 1884 - September 1885</rdfs:label>
+              </crm:E52.Time-Span>
+            </crm:P4F.has_time-span>
+          </crm:E12.Production>
+        </crm:P108B.was_produced_by>
+        <crm:P101F.had_as_general_use>
+          <crm:E55.Type rdf:ID="E55.study_and_copy">
+            <crm:P2F.has_type>
+              <crm:E55.Type rdf:ID="E55.teaching">
+                <rdfs:label xml:lang="en">teaching purposes</rdfs:label>
+              </crm:E55.Type>
+            </crm:P2F.has_type>
+            <rdfs:label xml:lang="en">for art students to study and copy</rdfs:label>
+          </crm:E55.Type>
+        </crm:P101F.had_as_general_use>
+        <crm:P130F.shows_features_of>
+          <crm:E25.Man-Made_Feature rdf:ID="E25.brushtrokes_of_paint">
+            <crm:P103F.was_intended_for>
+              <crm:E55.Type rdf:ID="E55.matching_palettes">
+                <rdfs:label xml:lang="en">students matching their palettes with those of the original painting which they were copying.</rdfs:label>
+              </crm:E55.Type>
+            </crm:P103F.was_intended_for>
+            <rdfs:label xml:lang="en">brushstrokes of paint from students trying to match their palettes with those of the original painting which they were copying</rdfs:label>
+          </crm:E25.Man-Made_Feature>
+        </crm:P130F.shows_features_of>
+        <crm:P109F.has_current_or_former_curator rdf:resource="#E21.Robert_Reed"/>
+        <crm:P109F.has_current_or_former_curator rdf:resource="#E21.JohnHammond"/>
+        <crm:P46F.is_composed_of>
+          <crm:E22.Man-Made_Object rdf:ID="E22.I_am_Flo">
+            <crm:P102F.has_title>
+              <crm:E35.Title rdf:ID="E35.I_am_Flo">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >I am Flo</rdfs:label>
+              </crm:E35.Title>
+            </crm:P102F.has_title>
+            <crm:P51F.has_former_or_current_owner>
+              <crm:E21.Person rdf:ID="E21.James_Whistler">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >James A. M. Whistler</rdfs:label>
+              </crm:E21.Person>
+            </crm:P51F.has_former_or_current_owner>
+            <rdfs:label xml:lang="en">"I am Flo," an 1873 etching by James A. M. Whistler</rdfs:label>
+            <crm:P46F.is_composed_of>
+              <crm:E22.Man-Made_Object rdf:ID="E22.old_book_paper">
+                <crm:P45F.consists_of rdf:resource="#E57.paper"/>
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >paper from and old (18th century) book</rdfs:label>
+              </crm:E22.Man-Made_Object>
+            </crm:P46F.is_composed_of>
+            <crm:P137F.exemplifies>
+              <crm:E55.Type rdf:ID="E55.chiaroscuro_effects">
+                <rdfs:label xml:lang="en">Whistler's exploration of chiaroscuro effects using shadows rather than contours to outline objects</rdfs:label>
+              </crm:E55.Type>
+            </crm:P137F.exemplifies>
+            <crm:P2F.has_type>
+              <crm:E55.Type rdf:ID="E55.drypoint_etching">
+                <rdfs:label xml:lang="en">drypoint etching</rdfs:label>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.etching">
+                    <rdfs:label xml:lang="en">etching</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+              </crm:E55.Type>
+            </crm:P2F.has_type>
+            <crm:P55F.has_current_location rdf:resource="#E53.The_Owens_Art_Gallery"/>
+            <crm:P62F.depicts>
+              <crm:E21.Person rdf:ID="E21.Florence_Leyland">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Florence Leyland</rdfs:label>
+                <crm:P98B.was_born>
+                  <crm:E67.Birth rdf:ID="E67.birth_of_Florence">
+                    <crm:P97F.from_father>
+                      <crm:E21.Person rdf:ID="E21.F_R_Leyland">
+                        <crm:P2F.has_type>
+                          <crm:E55.Type rdf:ID="E55.patron_of_Whistler">
+                            <rdfs:label xml:lang="en">patron of James A. M. Whistler</rdfs:label>
+                          </crm:E55.Type>
+                        </crm:P2F.has_type>
+                        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >F. R. Leyland</rdfs:label>
+                      </crm:E21.Person>
+                    </crm:P97F.from_father>
+                    <rdfs:label xml:lang="en">the birth of Florence Leyland</rdfs:label>
+                    <crm:P98F.brought_into_life rdf:resource="#E21.Florence_Leyland"/>
+                  </crm:E67.Birth>
+                </crm:P98B.was_born>
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E55.youngest_daughter">
+                    <rdfs:label xml:lang="en">youngest daughter</rdfs:label>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+              </crm:E21.Person>
+            </crm:P62F.depicts>
+          </crm:E22.Man-Made_Object>
+        </crm:P46F.is_composed_of>
+        <crm:P49F.has_former_or_current_keeper>
+          <crm:E40.Legal_Body rdf:ID="E40.Owens_Art_Institution">
+            <rdfs:label xml:lang="en">the Owens Art Institution</rdfs:label>
+            <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Saint_John"/>
+          </crm:E40.Legal_Body>
+        </crm:P49F.has_former_or_current_keeper>
+        <crm:P109F.has_current_or_former_curator>
+          <crm:E21.Person rdf:ID="E21.Luke_Rombout">
+            <crm:P14B.performed>
+              <crm:E7.Activity rdf:ID="E7.directorship_of_Rombout">
+                <rdfs:label xml:lang="en">Luke Rombout's directing of the Owens Art Gallery</rdfs:label>
+                <crm:P4F.has_time-span rdf:resource="#E52.1967-1970"/>
+              </crm:E7.Activity>
+            </crm:P14B.performed>
+            <crm:P2F.has_type>
+              <crm:E55.Type rdf:ID="E55.first_director_of_OAG">
+                <crm:P3F.has_note>
+                  <rdfs:Literal rdf:ID="full-time">
+                    <rdfs:label xml:lang="en">previous directors would have worked part-time in this position and part-time in the Department of Fine Arts of Mount Allison University</rdfs:label>
+                  </rdfs:Literal>
+                </crm:P3F.has_note>
+                <rdfs:label xml:lang="en">the first full-time director of the Owens Art Gallery</rdfs:label>
+                <crm:P2F.has_type rdf:resource="#E55.Director_of_OAG"/>
+              </crm:E55.Type>
+            </crm:P2F.has_type>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Luke Rombout</rdfs:label>
+            <crm:P109B.is_current_or_former_curator_of rdf:resource="#E78.Owens_collection"/>
+            <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Sackville"/>
+          </crm:E21.Person>
+        </crm:P109F.has_current_or_former_curator>
+        <crm:P46B.forms_part_of>
+          <crm:E78.Collection rdf:ID="E78.the_OAG_collection">
+            <crm:P43F.has_dimension>
+              <crm:E54.Dimension rdf:ID="E54.number_of_works">
+                <rdfs:label xml:lang="en">number of works of art in the collection of the Owens Art Gallery</rdfs:label>
+                <crm:P90F.has_value>
+                  <rdfs:Literal rdf:ID="number-3200">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >3200</rdfs:label>
+                  </rdfs:Literal>
+                </crm:P90F.has_value>
+              </crm:E54.Dimension>
+            </crm:P43F.has_dimension>
+            <rdfs:label xml:lang="en">the collection of the Owens Art Gallery</rdfs:label>
+            <crm:P46F.is_composed_of>
+              <crm:E22.Man-Made_Object rdf:ID="E22.works_of_art_of_the_OAG">
+                <crm:P2F.has_type>
+                  <crm:E55.Type rdf:ID="E22.famous_works_of_art">
+                    <rdfs:label xml:lang="en">works of art by established Canadian and international artists</rdfs:label>
+                    <crm:P2F.has_type>
+                      <crm:E55.Type rdf:ID="E55.by_established_artists">
+                        <rdfs:label xml:lang="en">by established Canadian and international artists</rdfs:label>
+                      </crm:E55.Type>
+                    </crm:P2F.has_type>
+                    <crm:P2F.has_type>
+                      <crm:E55.Type rdf:ID="E55.works_of_art">
+                        <rdfs:label xml:lang="en">works of art</rdfs:label>
+                      </crm:E55.Type>
+                    </crm:P2F.has_type>
+                  </crm:E55.Type>
+                </crm:P2F.has_type>
+                <crm:P2F.has_type rdf:resource="#E55.by_established_artists"/>
+                <crm:P46F.is_composed_of>
+                  <crm:E22.Man-Made_Object rdf:ID="E22.mulit-media_works">
+                    <rdfs:label xml:lang="en">multi-meida works</rdfs:label>
+                  </crm:E22.Man-Made_Object>
+                </crm:P46F.is_composed_of>
+                <crm:P46F.is_composed_of rdf:resource="#E22.prints"/>
+                <crm:P46F.is_composed_of>
+                  <crm:E22.Man-Made_Object rdf:ID="E22.photographs">
+                    <rdfs:label xml:lang="en">photographs</rdfs:label>
+                  </crm:E22.Man-Made_Object>
+                </crm:P46F.is_composed_of>
+                <crm:P46F.is_composed_of rdf:resource="#E22.paintings"/>
+                <crm:P46F.is_composed_of>
+                  <crm:E22.Man-Made_Object rdf:ID="E22.sculptures">
+                    <rdfs:label xml:lang="fr">sculptures</rdfs:label>
+                    <rdfs:label xml:lang="en">sculptures</rdfs:label>
+                  </crm:E22.Man-Made_Object>
+                </crm:P46F.is_composed_of>
+                <rdfs:label xml:lang="en">famous works of art of the collection of the Owens Art Gallery by established Canadian and international artists</rdfs:label>
+              </crm:E22.Man-Made_Object>
+            </crm:P46F.is_composed_of>
+          </crm:E78.Collection>
+        </crm:P46B.forms_part_of>
+        <crm:P1F.is_identified_by>
+          <crm:E41.Appellation rdf:ID="E41.Permanent_Collection">
+            <rdfs:label xml:lang="en">The Permanent Collection</rdfs:label>
+          </crm:E41.Appellation>
+        </crm:P1F.is_identified_by>
+        <crm:P46F.is_composed_of rdf:resource="#E22.works_of_art_of_the_Owens_collection"/>
+        <rdfs:label xml:lang="en">the Owens collection</rdfs:label>
+      </crm:E78.Collection>
+    </crm:P109B.is_current_or_former_curator_of>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Christopher Youngs</rdfs:label>
+    <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Sackville"/>
+  </crm:E21.Person>
+  <crm:E52.Time-Span rdf:ID="E52.1965">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1965</rdfs:label>
+  </crm:E52.Time-Span>
+  <crm:E22.Man-Made_Object rdf:ID="E22.Owens_Art_Institution">
+    <rdfs:label xml:lang="en">the Owens Art Institution</rdfs:label>
+  </crm:E22.Man-Made_Object>
+  <crm:E73.Information_Object rdf:ID="E73.Owens_will">
+    <rdfs:label xml:lang="fr">le testament de John Owens</rdfs:label>
+    <rdfs:label xml:lang="en">John Owen's will</rdfs:label>
+    <crm:P17B.motivated rdf:resource="#E12.Production_of_Owens_collection"/>
+  </crm:E73.Information_Object>
+  <crm:E87.Curation_Activity rdf:ID="E87.development_of_OAG_collection">
+    <crm:P4F.has_time-span>
+      <crm:E52.Time-Span rdf:ID="E52.starting_in_late_1960s">
+        <rdfs:label xml:lang="en">starting in the late 1960s</rdfs:label>
+      </crm:E52.Time-Span>
+    </crm:P4F.has_time-span>
+    <crm:P147F.curated rdf:resource="#E78.the_OAG_collection"/>
+    <rdfs:label xml:lang="en">the active development of the collection of the Owens Art Gallery</rdfs:label>
+    <crm:P15F.was_influenced_by rdf:resource="#E81.renovations_of_OAM"/>
+  </crm:E87.Curation_Activity>
+  <crm:E55.Type rdf:ID="E55.Director_of_OAMAS">
+    <rdfs:label xml:lang="en">Director of the Owens Art Museum and Art School</rdfs:label>
+  </crm:E55.Type>
+  <crm:E21.Person rdf:ID="E21.Edmund_Burke">
+    <crm:P74F.has_current_or_former_residence>
+      <crm:E53.Place rdf:ID="E53.Toronto">
+        <rdfs:label xml:lang="en">Toronto, Ontario, Canada</rdfs:label>
+      </crm:E53.Place>
+    </crm:P74F.has_current_or_former_residence>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Edmund Burke</rdfs:label>
+    <crm:P2F.has_type>
+      <crm:E55.Type rdf:ID="E55.architect">
+        <rdfs:label xml:lang="fr">architecte</rdfs:label>
+        <rdfs:label xml:lang="en">architect</rdfs:label>
+      </crm:E55.Type>
+    </crm:P2F.has_type>
+    <crm:P14B.performed>
+      <crm:E7.Activity rdf:ID="E7.design_of_the_OAG">
+        <crm:P14F.carried_out_by rdf:resource="#E21.Edmund_Burke"/>
+        <rdfs:label xml:lang="en">the design of the Owens Art Gallery</rdfs:label>
+      </crm:E7.Activity>
+    </crm:P14B.performed>
+  </crm:E21.Person>
+  <crm:E10.Transfer_of_Custody rdf:ID="E10.transfer_of_Owens_collection">
+    <rdfs:label xml:lang="en">the transfer of the Owens collection from the Owens Art Institution to the Owens Art Gallery</rdfs:label>
+    <crm:P17B.motivated>
+      <crm:E63.Beginning_of_Existence rdf:ID="E63.establishment_of_OAMAS">
+        <crm:P92F.brought_into_existence rdf:resource="#E40.Owens_Art_Museum"/>
+        <rdfs:label xml:lang="en">the establishment of the Owens Art Museum and At School</rdfs:label>
+        <crm:P4F.has_time-span>
+          <crm:E52.Time-Span rdf:ID="E52.spring_1883_-_spring_1885">
+            <rdfs:label xml:lang="en">spring 1883 - late spring 1885</rdfs:label>
+          </crm:E52.Time-Span>
+        </crm:P4F.has_time-span>
+      </crm:E63.Beginning_of_Existence>
+    </crm:P17B.motivated>
+    <crm:P17B.motivated>
+      <crm:E7.Activity rdf:ID="E7.Hammond_leaves_OAI">
+        <crm:P7F.took_place_at rdf:resource="#E53.Saint_John"/>
+        <crm:P14F.carried_out_by rdf:resource="#E21.JohnHammond"/>
+        <crm:P4F.has_time-span>
+          <crm:E52.Time-Span rdf:ID="E52.1893">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >1893</rdfs:label>
+          </crm:E52.Time-Span>
+        </crm:P4F.has_time-span>
+        <rdfs:label xml:lang="en">John Hammond's cessation of employment at the Owens Art Gallery</rdfs:label>
+      </crm:E7.Activity>
+    </crm:P17B.motivated>
+    <crm:P17B.motivated>
+      <crm:E7.Activity rdf:ID="E7.Hammond_at_OAMAS">
+        <owl:disjointWith rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></owl:disjointWith>
+        <crm:P21F.had_general_purpose>
+          <crm:E55.Type rdf:ID="E55.conducting_art_classes">
+            <rdfs:label xml:lang="en">conducting art classes</rdfs:label>
+          </crm:E55.Type>
+        </crm:P21F.had_general_purpose>
+        <crm:P2F.has_type>
+          <crm:E55.Type rdf:ID="E55.Head_of_Dept">
+            <rdfs:label xml:lang="en">Head of the Fine Arts Department</rdfs:label>
+          </crm:E55.Type>
+        </crm:P2F.has_type>
+        <crm:P2F.has_type rdf:resource="#E55.Director_of_OAMAS"/>
+        <crm:P15F.was_influenced_by>
+          <crm:E21.Person rdf:ID="E21.John_Owens">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >John Owens</rdfs:label>
+            <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Saint_John"/>
+            <crm:P2F.has_type>
+              <crm:E55.Type rdf:ID="E55.wealthy_shipbuilder">
+                <rdfs:label xml:lang="en">wealthy shipbuilder</rdfs:label>
+                <rdfs:label xml:lang="fr">constructeur naval riche</rdfs:label>
+              </crm:E55.Type>
+            </crm:P2F.has_type>
+          </crm:E21.Person>
+        </crm:P15F.was_influenced_by>
+        <rdfs:label xml:lang="en">John Hammond's employment at the Owens Art Museum and Art School</rdfs:label>
+        <crm:P4F.has_time-span>
+          <crm:E52.Time-Span rdf:ID="E52.1893-1916">
+            <crm:P3F.has_note>
+              <rdfs:Literal rdf:ID="according_to_mta_website">
+                <rdfs:label xml:lang="en">according to mta.ca/owens/history/index.php</rdfs:label>
+              </rdfs:Literal>
+            </crm:P3F.has_note>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >1893-1916</rdfs:label>
+          </crm:E52.Time-Span>
+        </crm:P4F.has_time-span>
+        <crm:P4F.has_time-span>
+          <crm:E52.Time-Span rdf:ID="E52.1907-1919">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >1907-1919</rdfs:label>
+            <crm:P3F.has_note>
+              <rdfs:Literal rdf:ID="according_to_Nesbitt">
+                <rdfs:label xml:lang="en">according to /A Short Biography of Canada's Oldest Artist: John Hammond, R.C.A./ "as told to J. Aird Nesbitt"</rdfs:label>
+              </rdfs:Literal>
+            </crm:P3F.has_note>
+          </crm:E52.Time-Span>
+        </crm:P4F.has_time-span>
+      </crm:E7.Activity>
+    </crm:P17B.motivated>
+    <crm:P30F.transferred_custody_of rdf:resource="#E78.Owens_collection"/>
+    <crm:P29F.custody_received_by rdf:resource="#E40.Owens_Art_Gallery"/>
+    <crm:P28F.custody_surrendered_by rdf:resource="#E40.Owens_Art_Institution"/>
+    <crm:P4F.has_time-span rdf:resource="#E52.1893"/>
+  </crm:E10.Transfer_of_Custody>
+  <crm:E52.Time-Span rdf:ID="E52.1989-2009">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1989-2009</rdfs:label>
+  </crm:E52.Time-Span>
+  <crm:E7.Activity rdf:ID="E7.Kellys_directorship_of_OAG">
+  <crm:P11F.had_participant rdf:resource="#E21.Gemey_Kelly"/>  
+    <crm:P4F.has_time-span rdf:resource="#E52.1989-2009"/>
+    <rdfs:label xml:lang="en">Gemey Kelly's directorship of the Owens Art Gallery</rdfs:label>
+  </crm:E7.Activity>
+  <crm:E53.Place rdf:ID="E53.Burpee_Ave_Saint_John">
+    <rdfs:label xml:lang="en">Burpee Avenue, Saint John, New  Brunswick, Canada</rdfs:label>
+  </crm:E53.Place>
+  <crm:E52.Time-Span rdf:ID="E52.1940s">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1940-1949</rdfs:label>
+  </crm:E52.Time-Span>
+  <crm:E7.Activity rdf:ID="E7.operation_of_OAI">
+    <rdfs:label xml:lang="en">the operation of the Owens Art Institution</rdfs:label>
+    <crm:P4F.has_time-span>
+      <crm:E52.Time-Span rdf:ID="E52.1885-1893">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >1885-1893</rdfs:label>
+      </crm:E52.Time-Span>
+    </crm:P4F.has_time-span>
+  </crm:E7.Activity>
+  <crm:E21.Person rdf:ID="E21.Gemey_Kelly">
+    <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Sackville"/>
+    <crm:P14B.performed rdf:resource="#E7.Kellys_directorship_of_OAG"/>
+    <crm:P109B.is_current_or_former_curator_of rdf:resource="#E78.Owens_collection"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gemey Kelly</rdfs:label>
+  </crm:E21.Person>
+  <crm:E28.Conceptual_Object rdf:ID="E28.Owens_Art_Institution">
+    <rdfs:label xml:lang="en">the Owens Art Institution</rdfs:label>
+    <crm:P74F.has_current_or_former_residence rdf:resource="#E53.Saint_John"/>
+  </crm:E28.Conceptual_Object>
+  <crm:E52.Time-Span rdf:ID="E52.1885">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1885</rdfs:label>
+  </crm:E52.Time-Span>
+  <crm:E52.Time-Span rdf:ID="E52.1858">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1858</rdfs:label>
+  </crm:E52.Time-Span>
+  <crm:E63.Beginning_of_Existence rdf:ID="E63.construction_of_Gairdner_Building">
+    <crm:P118F.overlaps_in_time_with rdf:resource="#E81.renovations_of_OAM"/>
+    <rdfs:label xml:lang="en">the construction of the Gairdner Fine Arts Building</rdfs:label>
+    <crm:P92F.brought_into_existence>
+      <crm:E22.Man-Made_Object rdf:ID="E22.Gairdner_Building">
+        <crm:P55F.has_current_location rdf:resource="#E53.Gairdner_Fine_Arts_Building"/>
+        <crm:P101F.had_as_general_use rdf:resource="#E55.housing_of_Dept_of_Fine_Arts"/>
+        <rdfs:label xml:lang="en">the Gairdner Fine Arts Building</rdfs:label>
+      </crm:E22.Man-Made_Object>
+    </crm:P92F.brought_into_existence>
+    <crm:P4F.has_time-span rdf:resource="#E52.1965"/>
+    <crm:P7F.took_place_at rdf:resource="#E53.Gairdner_Fine_Arts_Building"/>
+  </crm:E63.Beginning_of_Existence>
+  <crm:E40.Legal_Body rdf:ID="E40.Zion_Methodist_Church">
+    <rdfs:label xml:lang="en">the Zion Methodist Church</rdfs:label>
+  </crm:E40.Legal_Body>
+  <crm:E63.Beginning_of_Existence rdf:ID="E63.construction_of_church">
+    <crm:P7F.took_place_at rdf:resource="#E53.Burpee_Ave_Saint_John"/>
+    <rdfs:label xml:lang="en">the construction of the Zion Methodist Church in Saint John</rdfs:label>
+    <crm:P11F.had_participant rdf:resource="#E21.John_Owens"/>
+    <crm:P4F.has_time-span rdf:resource="#E52.1858"/>
+    <crm:P92F.brought_into_existence rdf:resource="#E40.Zion_Methodist_Church"/>
+  </crm:E63.Beginning_of_Existence>
+  <crm:E81.Transformation rdf:ID="E81.transformation_of_church_into_OAI">
+    <crm:P124F.transformed rdf:resource="#E40.Zion_Methodist_Church"/>
+    <crm:P123F.resulted_in rdf:resource="#E40.Owens_Art_Institution"/>
+    <rdfs:label xml:lang="en">the conversion of the Zion Methodist Church into the Owens Art Institution</rdfs:label>
+  </crm:E81.Transformation>
+  <crm:E87.Curation_Activity rdf:ID="E87.gifts_to_Owens_collection_in_1940s">
+    <rdfs:label xml:lang="en">a few significant gifts made to the Owens collection</rdfs:label>
+    <crm:P4F.has_time-span rdf:resource="#E52.1940s"/>
+  </crm:E87.Curation_Activity>
+  <crm:E63.Beginning_of_Existence rdf:ID="E63.establishment_of_OAI">
+    <crm:P92F.brought_into_existence rdf:resource="#E40.Owens_Art_Institution"/>
+    <crm:P4F.has_time-span rdf:resource="#E52.1885"/>
+    <rdfs:label xml:lang="en">the establishment of the Owens Art Institution</rdfs:label>
+  </crm:E63.Beginning_of_Existence>
+  <crm:E55.Type rdf:ID="E55.use_of_OAI">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >art school and public gallery</rdfs:label>
+    <crm:P101F.had_as_general_use rdf:resource="#E55.use_of_OAI"/>
+  </crm:E55.Type>
+</rdf:RDF>

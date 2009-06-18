@@ -1,0 +1,1414 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hemlRDF="http://www.heml.org/rdf/2003-09-17/heml#" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+  <hemlRDF:Person rdf:about="http://heml.mta.ca/docs/hammond_diary#JHammond">
+    <hemlRDF:NameSet>
+      <rdf:Bag>
+        <rdf:li>
+          <hemlRDF:Name>
+            <hemlRDF:NameElements>
+              <rdf:Seq>
+                <rdf:li xml:lang="en">John Hammond</rdf:li>
+              </rdf:Seq>
+            </hemlRDF:NameElements>
+          </hemlRDF:Name>
+        </rdf:li>
+      </rdf:Bag>
+    </hemlRDF:NameSet>
+  </hemlRDF:Person>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#JHammond_birth">
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Birth of  John Hammond</rdfs:label>
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1843</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diaryJHammond_death">
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Death of  John Hammond</rdfs:label>
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1939</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+  </hemlRDF:Event>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Montreal">
+    <rdfs:label xml:lang="en">Montreal</rdfs:label>
+    <geo:lat>45.51236</geo:lat>
+    <geo:long>-73.5544</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Kingston">
+    <rdfs:label xml:lang="en">Kingston</rdfs:label>
+    <geo:lat>44.2315</geo:lat>
+    <geo:long>-76.47936</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Cobourg">
+    <rdfs:label xml:lang="en">Cobourg</rdfs:label>
+    <geo:lat>43.95958</geo:lat>
+    <geo:long>-78.16776</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Toronto">
+    <rdfs:label xml:lang="en">Toronto</rdfs:label>
+    <geo:lat>43.64859</geo:lat>
+    <geo:long>-79.38534</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Guelph">
+    <rdfs:label xml:lang="en">Guelph</rdfs:label>
+    <geo:lat>43.54453</geo:lat>
+    <geo:long>-80.24792</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Stratford">
+    <rdfs:label xml:lang="en">Stratford</rdfs:label>
+    <geo:lat>43.37013</geo:lat>
+    <geo:long>-80.98189</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Sarnia">
+    <rdfs:label xml:lang="en">Sarnia</rdfs:label>
+    <geo:lat>42.97878</geo:lat>
+    <geo:long>-82.40334</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#St.ClaireRiver">
+    <rdfs:label xml:lang="en">St. Claire River</rdfs:label>
+    <geo:lat>42.97713</geo:lat>
+    <geo:long>-82.41323</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#PortHuron">
+    <rdfs:label xml:lang="en">Port Huron</rdfs:label>
+    <geo:lat>42.97592</geo:lat>
+    <geo:long>-82.42843</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Detroit">
+    <rdfs:label xml:lang="en">Detroit</rdfs:label>
+    <geo:lat>42.33169</geo:lat>
+    <geo:long>-83.04779</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Chicago">
+    <rdfs:label xml:lang="en">Chicago</rdfs:label>
+    <geo:lat>41.88415</geo:lat>
+    <geo:long>-87.63245</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Mendota">
+    <rdfs:label xml:lang="en">Mendota</rdfs:label>
+    <geo:lat>41.54764</geo:lat>
+    <geo:long>-89.11689</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Burlington">
+    <rdfs:label xml:lang="en">Burlington</rdfs:label>
+    <geo:lat>40.81202</geo:lat>
+    <geo:long>-91.10082</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#CouncilBluffs">
+    <rdfs:label xml:lang="en">Council Bluffs</rdfs:label>
+    <geo:lat>41.25774</geo:lat>
+    <geo:long>-95.85121</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#MissouriRiver">
+    <rdfs:label xml:lang="en">Missouri River</rdfs:label>
+    <geo:lat>41.25799</geo:lat>
+    <geo:long>-95.92184</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Omaha">
+    <rdfs:label xml:lang="en">Omaha</rdfs:label>
+    <geo:lat>41.25861</geo:lat>
+    <geo:long>-95.93779</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Fremont">
+    <rdfs:label xml:lang="en">Fremont</rdfs:label>
+    <geo:lat>41.43439</geo:lat>
+    <geo:long>-96.49858</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Columbus">
+    <rdfs:label xml:lang="en">Columbus</rdfs:label>
+    <geo:lat>41.43095</geo:lat>
+    <geo:long>-97.37181</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Sidney">
+    <rdfs:label xml:lang="en">Sidney</rdfs:label>
+    <geo:lat>41.14484</geo:lat>
+    <geo:long>-102.97611</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Hillsdale">
+    <rdfs:label xml:lang="en">Hillsdale</rdfs:label>
+    <geo:lat>41.21268</geo:lat>
+    <geo:long>-104.47892</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Cheyenne">
+    <rdfs:label xml:lang="en">Cheyenne</rdfs:label>
+    <geo:lat>41.13333</geo:lat>
+    <geo:long>-104.81356</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Sherman">
+    <rdfs:label xml:lang="en">Sherman</rdfs:label>
+    <geo:lat>42.12393</geo:lat>
+    <geo:long>-105.30972</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Laramie">
+    <rdfs:label xml:lang="en">Laramie</rdfs:label>
+    <geo:lat>41.3109</geo:lat>
+    <geo:long>-105.59056</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Bryan">
+    <rdfs:label xml:lang="en">Bryan</rdfs:label>
+    <geo:lat>41.57095</geo:lat>
+    <geo:long>-109.68106</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Wasatch">
+    <rdfs:label xml:lang="en">Wasatch</rdfs:label>
+    <geo:lat>40.61967</geo:lat>
+    <geo:long>-111.47964</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Ogden">
+    <rdfs:label xml:lang="en">Ogden</rdfs:label>
+    <geo:lat>41.22174</geo:lat>
+    <geo:long>-111.97042</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Elko">
+    <rdfs:label xml:lang="en">Elko</rdfs:label>
+    <geo:lat>40.83566</geo:lat>
+    <geo:long>-115.76759</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#HumboldtRiver">
+    <rdfs:label xml:lang="en">Humboldt River</rdfs:label>
+    <geo:lat>39.98797</geo:lat>
+    <geo:long>-118.60098</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Colfax">
+    <rdfs:label xml:lang="en">Colfax</rdfs:label>
+    <geo:lat>39.09556</geo:lat>
+    <geo:long>-120.95072</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Sacramento">
+    <rdfs:label xml:lang="en">Sacramento</rdfs:label>
+    <geo:lat>38.57914</geo:lat>
+    <geo:long>-121.49097</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#SanFrancisco">
+    <rdfs:label xml:lang="en">San Francisco</rdfs:label>
+    <geo:lat>37.77918</geo:lat>
+    <geo:long>-122.42005</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#ColumbiaRiver">
+    <rdfs:label xml:lang="en">Columbia River</rdfs:label>
+    <geo:lat>46.24427</geo:lat>
+    <geo:long>-124.05793</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Portland">
+    <rdfs:label xml:lang="en">Portland</rdfs:label>
+    <geo:lat>45.51184</geo:lat>
+    <geo:long>-122.67563</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#MountStHelens">
+    <rdfs:label xml:lang="en">Mount St. Helens</rdfs:label>
+    <geo:lat>46.19136</geo:lat>
+    <geo:long>-122.19296</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#MountHood">
+    <rdfs:label xml:lang="en">Mount Hood</rdfs:label>
+    <geo:lat>45.37351</geo:lat>
+    <geo:long>-121.69389</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Monticello">
+    <rdfs:label xml:lang="en">Monticello</rdfs:label>
+    <rdfs:label xml:lang="en">Longview</rdfs:label>
+    <geo:lat>46.14679</geo:lat>
+    <geo:long>-122.95048</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Olympia">
+    <rdfs:label xml:lang="en">Olympia</rdfs:label>
+    <geo:lat>47.03919</geo:lat>
+    <geo:long>-122.89145</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Victoria">
+    <rdfs:label xml:lang="en">Victoria</rdfs:label>
+    <geo:lat>48.42834</geo:lat>
+    <geo:long>-123.3645</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#BeaconHillPark">
+    <rdfs:label xml:lang="en">Beacon Hill Park</rdfs:label>
+    <geo:lat>48.41417</geo:lat>
+    <geo:long>-123.36372</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#NewWestminster">
+    <rdfs:label xml:lang="en">New Westminster</rdfs:label>
+    <geo:lat>49.20644</geo:lat>
+    <geo:long>-122.90958</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#GeorgiaStriat">
+    <rdfs:label xml:lang="en">Striat of Georgia</rdfs:label>
+    <geo:lat>48.88908</geo:lat>
+    <geo:long>-122.90732</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#FraserRiver">
+    <rdfs:label xml:lang="en">Fraser River</rdfs:label>
+    <geo:lat>49.11636</geo:lat>
+    <geo:long>-123.18594</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#BritishColumbia">
+    <rdfs:label xml:lang="en">British Columbia</rdfs:label>
+    <geo:lat>53.99983</geo:lat>
+    <geo:long>-125.0032</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#FortHope">
+    <rdfs:label xml:lang="en">Fort Hope</rdfs:label>
+    <rdfs:label xml:lang="en">Hope</rdfs:label>
+    <geo:lat>49.37895</geo:lat>
+    <geo:long>-121.44448</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#FortYale">
+    <rdfs:label xml:lang="en">Fort Yale</rdfs:label>
+    <rdfs:label xml:lang="en">Yale</rdfs:label>
+    <geo:lat>49.56279</geo:lat>
+    <geo:long>-121.43006</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#AlexandraSuspensionBridge">
+    <rdfs:label xml:lang="en">Alexandra Suspension Bridge</rdfs:label>
+    <geo:lat>=49.7075</geo:lat>
+    <geo:long>-121.41667</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Lytton">
+    <rdfs:label xml:lang="en">Lytton</rdfs:label>
+    <geo:lat>50.22595</geo:lat>
+    <geo:long>-121.57731</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#CooksFerry">
+    <rdfs:label xml:lang="en">Cook's Ferry</rdfs:label>
+    <rdfs:label xml:lang="en">Spences Bridge</rdfs:label>
+    <geo:lat>50.42461</geo:lat>
+    <geo:long>-121.34276</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#CacheCreek">
+    <rdfs:label xml:lang="en">Cache Creek</rdfs:label>
+    <geo:lat>50.81322</geo:lat>
+    <geo:long>-121.32628</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Savona">
+    <rdfs:label xml:lang="en">Savona</rdfs:label>
+    <rdfs:label xml:lang="en">Savona Ferry</rdfs:label>
+    <geo:lat>50.75001</geo:lat>
+    <geo:long>-120.85029</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsLake">
+    <rdfs:label xml:lang="en">Kamloops Lake</rdfs:label>
+    <geo:lat>50.73307</geo:lat>
+    <geo:long>-120.63583</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Kamloops">
+    <rdfs:label xml:lang="en">Kamloops</rdfs:label>
+    <geo:lat>50.67612</geo:lat>
+    <geo:long>-120.33791</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Tranquille">
+    <rdfs:label xml:lang="en">Tranquille</rdfs:label>
+    <geo:lat>50.72516</geo:lat>
+    <geo:long>-120.50714</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthRiver">
+    <rdfs:label xml:lang="en">North River</rdfs:label>
+    <rdfs:label xml:lang="en">North Thompson River</rdfs:label>
+    <geo:lat>51.01145</geo:lat>
+    <geo:long>-120.23416</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthTen">
+    <geo:lat>50.80272</geo:lat>
+    <geo:long>-120.30958</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthTwentyTwo">
+    <geo:lat>50.9727</geo:lat>
+    <geo:long>-120.23072</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#LouisCreek">
+    <rdfs:label xml:lang="en">Louis Creek</rdfs:label>
+    <geo:lat>51.14262</geo:lat>
+    <geo:long>-120.12217</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#ChuChua">
+    <rdfs:label xml:lang="en">Chu Chua</rdfs:label>
+    <geo:lat>51.35</geo:lat>
+    <geo:long>-120.16667</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Boulder">
+    <rdfs:label xml:lang="en">Boulder</rdfs:label>
+    <geo:lat>51.47183</geo:lat>
+    <geo:long>-120.17845</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Kootenay">
+    <rdfs:label xml:lang="en">Kootenay</rdfs:label>
+    <geo:lat>50.94999</geo:lat>
+    <geo:long>-116.03542</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Blackpool">
+    <rdfs:label xml:lang="en">Blackpool</rdfs:label>
+    <geo:lat>51.58257</geo:lat>
+    <geo:long>-120.10521</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Clearwater1">
+    <rdfs:label xml:lang="en">Clearwater</rdfs:label>
+    <geo:lat>51.63331</geo:lat>
+    <geo:long>-120.03304</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#ThompsonRiver">
+    <rdfs:label xml:lang="en">Thompson River</rdfs:label>
+    <geo:lat>51.63924</geo:lat>
+    <geo:long>-120.0337</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#Clearwater2">
+    <rdfs:label xml:lang="en">Clearwater</rdfs:label>
+    <geo:lat>51.65095</geo:lat>
+    <geo:long>-120.03488</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Location rdf:about="http://heml.mta.ca/docs/hammond_diary#ClearwaterRiver">
+    <rdfs:label xml:lang="en">Clearwater River</rdfs:label>
+    <geo:lat>51.62857</geo:lat>
+    <geo:long>-120.07943</geo:long>
+  </hemlRDF:Location>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-26T21:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Montreal, QU by train.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Montreal"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#MontrealTrain"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T04:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives by train in Kingston, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kingston"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KingstonArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T08:30</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Cobourg, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Cobourg"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CobourgArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T11:45</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Toronto, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Toronto"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#TorontoArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-d">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T13:45</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Guelph, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Guelph"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#GuelphArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-e">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T15:30</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has dinner in Stratford, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Stratford"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#StratfordDinner"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-g">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T19:30</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Sarnia, ON.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Sarnia"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SarniaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-h">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T19:30</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T22:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond crosses the St. Clair River by ferry.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#St.ClaireRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#StClairRiverFerry"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-i">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T19:30</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T22:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Port Huron, MI by ferry.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#PortHuron"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#PortHuronArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun27-1871-j">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-27T22:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Detroit, MI by car.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Detroit"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#DetroitArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun28-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-28T08:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Chicago, IL by Pulman car, probably passing through Indiana.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Chicago"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ChicagoArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun28-1871-b">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-28T08:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-28T13:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has breakfast at the Adams Hotel in Chicago, IL.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Chicago"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#AdamsBreakfast"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun28-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-28T22:45</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Chicago, IL for Burlington, IA and Omaha, NE.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Chicago"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ChicagoDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1981-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T02:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Mendota, IL.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Mendota"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diaryMendotaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T07:45</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Burlington, IA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Burlington"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BurlingtonArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T10:50</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Council Bluffs, IA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#CouncilBluffs"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BluffsArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-d">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T10:50</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T22:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond Crosses the Missouri River, MO.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#MissouriRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#MissouriCrossing"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-e">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T10:50</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T22:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Omaha, NE.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Omaha"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#OmahaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-f">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T15:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T22:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has dinner at Fremont, NE.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Fremont"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#FremontDinner"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun29-1871-g">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-29T15:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T07:30</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Columbus, NE.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Columbus"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ColumbusArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun30-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T07:30</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives and has breakfast in Sidney, NE.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Sidney"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SidneyBreakfast"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun30-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T12:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond gets his first sight of the Rocky Mountains around Hillsdale, WY.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diaryHillsdale"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#HillsdaleRocky"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun30-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T13:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has dinner at Cheyenne, WY.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Cheyenne"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CheyenneDinner"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun30-1871-d">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T13:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T23:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Sherman, WY.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Sherman"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ShermanArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jun30-1871-e">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T13:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-06-30T23:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond enters the Laramie Planes, WY.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Laramie"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#LaramieEntrance"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul01-1871-a">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T03:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T13:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has breakfast at Bryan, WY.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Bryan"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BryanBreakfast"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul01-1871-b">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T13:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T16:50</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has dinner at Wasatch, UT.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Wasatch"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#WasatchDinner"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul01-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T16:50</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Ogden, UT.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Ogden"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#OgdenArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul01-1871-d">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-01T17:15</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond transfers to Central Pacific Railroad at Ogden, UT.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Ogden"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#OgdenTransfer"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul02-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-02T08:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has breakfast at Elko, NV.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Elko"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ElkoBreakfast"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul02-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-02</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels along the Humboldt River, NV.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#HumboldtRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#HumboldtTrain"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul03-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-03T08:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has breakfast at Colfax, CA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Colfax"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ColfaxBreakfast"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul03-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-03T11:28</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Sacramento, CA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Sacramento"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SacramentoArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul03-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-03T18:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in San Francisco, CA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#SanFrancisco"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SanFranciscoArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul06-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-06</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves San Francisco, CA by a steamboat.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#SanFrancisco"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SanFranciscoDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul10-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-10</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond heads towards Portland, OR on the Columbia River.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#ColumbiaRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#ColumbiaPortland"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul11-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-11</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Portland, OR.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Portland"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#PortlandArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul12-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-12</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has a trail at Mount St. Helens, WA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#MountStHelens"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#HelensTrail"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul12-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-12</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond has a trail at Mount Hood, OR.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#MountHood"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#HoodTrail"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul14-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-14T06:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Portland, OR on the Columbia River.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Portland"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#PortlandDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul14-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-14T12:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Monticello, WA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Monticello"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#MonticelloArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul16-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-16T17:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Olympia, WA.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Olympia"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#OlympiaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul17-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-17T21:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul18-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-18</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond prepares for the journey in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaProvisions"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul19-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-19T15:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels across the harbour for sightseeing in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaSightseeing"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul20-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-20</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes stereo photos of the town and harbour in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VcitoriaStereo"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul21-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-21</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes stereo photos at Beacon Hill Park in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#BeaconHillPark"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BeaconStereo"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul22-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-22</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes photos of a group of engineers in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaEngineers"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul22-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-22</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond packs to leave Victoria, BC in a couple days.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaPacking"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul23-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-23</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond goes to the Presbyterian Church in Victoria, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaChurch"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul24-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-24</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond writes letters home.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Victoria"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#VictoriaLetter"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul25-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-25</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in New Westminster, BC by sea.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NewWestminster"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#WestminsterArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul26-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-26T07:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves New Westminster, BC on the Fraser River.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NewWestminster"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#WestminsterDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul26-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-26T22:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Hope, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#FortHope"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#HopeArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul27-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-27T07:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Yale, BC by steamboat.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#FortYale"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#YaleArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul28-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-28</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes stereo photos of the Alexandra Suspension Bridge in BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#AlexandraSuspensionBridge"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#AlexandraStereo"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Jul31-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-07-31</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Lytton, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Lytton"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#LyttonArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug01-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-01</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes stereo photos in Lytton, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Lytton"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#LyttonStereo"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug02-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-02</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives at the Cook's Ferry First Nations community located at Spences Bridge, BC by stagecoach.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#SpencesBridge"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CooksArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug03-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-03T16:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Cache Creek, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreek"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreekArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug03-1871-b">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-03T16:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-03T23:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes stereo photos at Cache Creek, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreek"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreekStereo"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug04-1871-a">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-04T02:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-04T10:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes more stereo photos at Cache Creek, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreek"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreekStereo2"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug04-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-04T13:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Cache Creek, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#CacheCreek"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BonaparteDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug04-1871-c">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-04T18:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Savona, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Savona"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SavonaArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug05-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-05</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">A storm hits Savona, BC during Hammond's stay there.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Savona"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SavonaStorm"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug08-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-08T07:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Savona, BC for Kamloops, BC by boat.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Savona"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#SavonaDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug08-1871-b">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-08T09:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-08T23:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives at the Tranquille Mills in Tranquille, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Tranquille"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#TranquilleArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug09-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-09T10:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Kamloops, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kamloops"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KamloopsArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug09-1871-b">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-09T12:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-09T19:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond goes back to the Tranquille Mills for more photos.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Tranquille"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#TranquillePhotos"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug12-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-12T18:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond leaves Tranquille, BC for Kamloops, BC again.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Tranquille"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#TranquilleDeparture"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug12-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-12T23:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Kamloops, BC again.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kamloops"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KamloopsArrival2"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug15-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-15</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond writes to his mother.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kamloops"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KamloopsLetter"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug16-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-16</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond gets ready to leave Kamloops, BC the next day.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kamloops"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KamloopsPacking"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug17-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-17</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond gets his horse ready for the expedition.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthHorse"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug18-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-18</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">The expedition is delayed due to the loss of two horses.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Kamloops"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#KamloopsDelay"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug19-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-19</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels 10 miles north along the North River, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthTen"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthStart"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug20-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-20</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond takes a rest from the expedition for the day.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthTen"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthTenRest"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug21-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-21</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels 22.5 miles further north along the North River, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthTwentyTwo"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#NorthTenPTrain"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug22-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-22</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives in Louis Creek, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#LouisCreek"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#LouisCamp"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug23-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-23</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives at the Red Pine First Nations Reserve, which should be around present day Chu Chua, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#ChuChua"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#RPineArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug24-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-24</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels 10.5 miles further north along the North River, and arrives around present day Boulder, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Boulder"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BoulderArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug25-1871-a">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-25T04:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond goes back to the last First Nations Encampment around Boulder, BC to seek help with the travel.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Boulder"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BoulderCanoe"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug25-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-25T19:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond travels 8.25 miles further north along the North River, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Blackpool"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#BlackpoolCamp"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug26-1871-a">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-26T15:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond arrives at the Clearwater River, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Clearwater1"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CWaterArrival"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug26-1871-b">
+    <hemlRDF:SimpleDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-26T18:00</hemlRDF:SimpleDate>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond crosses the Thompson River, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#ClearwaterRiver"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CWaterCanoe"/>
+  </hemlRDF:Event>
+  <hemlRDF:Event rdf:about="http://heml.mta.ca/docs/hammond_diary#Aug26-1871-c">
+    <hemlRDF:TerminusPostQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-26T18:00</hemlRDF:TerminusPostQuem>
+    <hemlRDF:TerminusAnteQuem rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1871-08-26T23:00</hemlRDF:TerminusAnteQuem>
+    <hemlRDF:PersonRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#JHammond"/>
+    <hemlRDF:Origin rdf:resource="http://heml.mta.ca/docs/hammond_diary"/>
+    <rdfs:label xml:lang="en">Hammond camps at Clearwater, BC.</rdfs:label>
+    <hemlRDF:LocationRef rdf:resource="http://heml.mta.ca/docs/hammond_diary#Clearwater2"/>
+    <hemlRDF:Evidence rdf:resource="http://heml.mta.ca/docs/hammond_diary#CWaterCamp"/>
+  </hemlRDF:Event>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#MontrealTrain">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KingstonArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CobourgArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#TorontoArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#GuelphArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#StratfordDinner">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=2b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 2b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SarniaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#StClairRiverFerry">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#PortHuronArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#DetroitArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ChicagoArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#AdamsBreakfast">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ChicagoDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#MendotaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=3b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 3b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BurlingtonArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=4b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 4b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BluffsArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#MissouriCrossing">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#OmahaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#FremontDinner">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ColumbusArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SidneyBreakfast">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=5b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 5b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#HillsdaleRocky">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 6a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CheyenneDinner">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 6a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ShermanArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 6b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#LaramieEntrance">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 6b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BryanBreakfast">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=7a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 7a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#WasatchDinner">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=7b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 7b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#OgdenArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=8a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 8a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#OgdenTransfer">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=8b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 8b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ElkoBreakfast">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=9a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 9a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#HumboldtTrain">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=9b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 9b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ColfaxBreakfast">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=9b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 9b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SacramentoArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=10a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 10a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SanFranciscoArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=10a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 10a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SanFranciscoDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=10b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 10b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#ColumbiaPortland">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=10b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 10b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#PortlandArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=11a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 11a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#HelensTrail">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=11b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 11b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#HoodTrail">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=11b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 11b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#PortlandDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=12a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 12a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#MonticelloArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=12a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 12a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#OlympiaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=12b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 12b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=12b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 12b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaProvisions">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=13a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 13a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaSightseeing">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=13a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 13a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VcitoriaStereo">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=13b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 13b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BeaconStereo">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=13b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 13b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaEngineers">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=14a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 14a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaPacking">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=14a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 14a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaChurch">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=14a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 14a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#VictoriaLetter">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=14a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 14a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#WestminsterArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=14b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 14b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#WestminsterDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#YaleArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#HopeArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#AlexandraStereo">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#LyttonArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#LyttonStereo">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=16b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 16b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CooksArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CacheCreekArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CacheCreekStereo">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CacheCreekStereo2">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BonaparteDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SavonaArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=17b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 17b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SavonaStorm">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#SavonaDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#TranquilleArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#TranquillePhotos">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#TranquilleDeparture">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsArrival2">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsLetter">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsDiscussion">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:1999.04.0016:commline=18b</hemlRDF:url><rdfs:label xml:lang="en">Discussion of Hammond's Voyage</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsPacking">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=18b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 18b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthHorse">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=19a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 19a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#KamloopsDelay">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=19a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 19a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthStart">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=19b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 19b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthTenRest">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=19b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 19b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#NorthTenPTrain">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=19b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 19b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#LouisCamp">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=20b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 20b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#RPineArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=21a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 21a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BoulderArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=21a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 21a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BoulderCanoe">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=21b</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 21b</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#BlackpoolCamp">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=22a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 22a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CWaterArrival">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=22a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 22a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CWaterCanoe">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=22a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 22a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:WebDocumentFragment rdf:about="http://heml.mta.ca/docs/hammond_diary#CWaterCamp">
+    <hemlRDF:url>http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=22a</hemlRDF:url><rdfs:label xml:lang="en">Diary of John Hammond p. 22a</rdfs:label>
+    <hemlRDF:xhtmlRenderingXSLT rdf:resource="http://heml.mta.ca/renderer"/>
+  </hemlRDF:WebDocumentFragment>
+  <hemlRDF:XSLT rdf:about="http://heml.mta.ca/renderer">
+    <hemlRDF:uri rdf:datatype="xsd:URI">http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl</hemlRDF:uri>
+  </hemlRDF:XSLT>
+</rdf:RDF>
