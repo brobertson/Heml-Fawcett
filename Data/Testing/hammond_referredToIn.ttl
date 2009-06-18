@@ -1,0 +1,24 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix hemlRDF:    <http://www.heml.org/rdf/2003-09-17/heml#> .
+@prefix hammondDiary: <http://heml.mta.ca/docs/hammond_diary#> .
+
+hammondDiary:Aug15-1871-a hemlRDF:Discussion hammondDiary:BrokenLetterDiscussion;
+                          hemlRDF:Discussion hammondDiary:WorkingLetterDiscussion ;
+                          hemlRDF:Evidence hammondDiary:motherLetterTwo;
+                          hemlRDF:Memoir   hammondDiary:motherLetterThree.
+hammondDiary:motherLetterTwo a hemlRDF:WebDocumentFragment;
+   hemlRDF:url <http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6b>;
+   rdfs:label "Diary of John Hammond p. 6b"@en;
+   hemlRDF:xhtmlRenderingXSLT <http://heml.mta.ca/renderer>.
+
+hammondDiary:motherLetterThree a hemlRDF:WebDocumentFragment;
+   hemlRDF:url  <http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=7b>;
+   rdfs:label "Diary of John Hammond p. 7b (Should be Memoir)"@en;
+   hemlRDF:xhtmlRenderingXSLT <http://heml.mta.ca/renderer>.
+
+hammondDiary:workingLetterDiscussion a hemlRDF:WebDocumentFragment;
+   hemlRDF:url  <http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=8b>;
+   rdfs:label "Diary of John Hammond p. 8b (Should be Discussion)"@en;
+    hemlRDF:xhtmlRenderingXSLT <http://heml.mta.ca/renderer>.
+
