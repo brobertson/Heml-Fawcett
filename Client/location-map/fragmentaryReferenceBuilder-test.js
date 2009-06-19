@@ -43,6 +43,10 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 	var me = this;
 	this.makeRefLinks = function(json) {
 		var numberOfEntries = json.results.bindings.length;
+		if (numberOfEntries == 0) {
+			alert("No sources are available");
+		}
+		else {
 		var a = document.createElement('div');
 		a.id = eventNode;
 		a.style.display = "none";
@@ -116,32 +120,31 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 		var refs = getElementsByClass(a, 'referenceTypeClass', 'p');
 		for (var i=0; i<refs.length; i++) {
 			var ref = refs[i];
-			var refAtrib = ref.attributes;
-			var furthest = refAtrib.getNamedItem("furthestChild").value;
+			var furthest = ref.attributes.getNamedItem("furthestChild").value;
 			if (furthest=="true") {
 				ref.style.cursor = "pointer";
-				//ref.setAttribute("onclick", "showRefTitles("refAtrib",'"ref.parentNode.className"','"eventNode"',"ref")");
 				ref.onclick = function() {
-					var clicked = refAtrib.getNamedItem("clicked").value;
+					var clicked = this.attributes.getNamedItem("clicked").value;
 					if (clicked=="false") {
-						getRefTitles(ref.parentNode.className, eventNode, ref);
-						ref.setAttribute("clicked","true");	
+						getRefTitles(this.parentNode.className, eventNode, this);
+						this.setAttribute("clicked","true");	
 					}
 					else {
-						if (ref.nextSibling.style.display=="none") {
-							ref.nextSibling.style.display = "block";
+						if (this.nextSibling.style.display=="none") {
+							this.nextSibling.style.display = "block";
 						} else {
-							ref.nextSibling.style.display = "none";
+							this.nextSibling.style.display = "none";
 						}
 					}
 				}
 			}
 		}
 		a.style.display = "block";
+	}	
 	}
-}
-
-
+}	
+	
+	
 
 
 var successfulCallbackModelForTitles = function(htmlNode) {
@@ -150,52 +153,47 @@ var successfulCallbackModelForTitles = function(htmlNode) {
     var me = this;
     this.makeRefTitles = function(json) {
         var numberOfEntries = json.results.bindings.length;
-		var a = document.createElement('div'); 
-		a.className = 'referenceTitles';       
-		for (var i = 0; i < numberOfEntries; i++) {
-            var refTitle = json.results.bindings[i].label.value;
-            var source = json.results.bindings[i].url.value;
-            var xslt = json.results.bindings[i].xslAddress.value;
-            var x = document.createElement('div');
-			x.className = 'referenceTitle';
-            var y = document.createElement('p');
-            y.className = 'referenceTitleClass';
-			y.setAttribute("clicked", "false");
-			y.onclick = function() {
-				var yAttributes = y.attributes;
-				var clicked = yAttributes.getNamedItem("clicked").value;
-				if (clicked=="false") {
-					doXMLHttp(xslt, source, y);
-					y.setAttribute("clicked","true");	
-				}
-				else {
-					if (y.nextSibling.style.display=="none") {
-						y.nextSibling.style.display = "block";
-					} else {
-						y.nextSibling.style.display = "none";
-					}
-				}
-            }
-            y.appendChild(document.createTextNode(refTitle));
-            x.appendChild(y);
-			a.appendChild(x)
-        }
-		me.htmlNode.parentNode.appendChild(a);
-    }
-}
-
-function showRefTitles(refTypeAttributes, refTypeResource, eventResource, htmlNode) {
-	var clicked = refTypeAttributes.getNamedItem("clicked").value;
-	if (clicked=="false") {
-		getRefTitles(refTypeResource, eventResource, htmlNode);
-		htmlNode.setAttribute("clicked","true");	
-	}
-	else {
-		if (htmlNode.nextSibling.style.display=="none") {
-			htmlNode.nextSibling.style.display = "block";
-		} else {
-			htmlNode.nextSibling.style.display = "none";
+		if (numberOfEntries == 0) {
+			alert("No sources have been provided\nfor this category.");
 		}
+		else {
+			var a = document.createElement('div'); 
+			a.className = 'referenceTitles';       
+			for (var i = 0; i < numberOfEntries; i++) {
+    	        var refTitle = json.results.bindings[i].label.value;
+    	        var source = json.results.bindings[i].url.value;
+    	        var xslt = json.results.bindings[i].xslAddress.value;
+    	        var x = document.createElement('div');
+				x.className = 'referenceTitle';
+    	        var y = document.createElement('p');
+    	        y.className = 'referenceTitleClass';
+				y.setAttribute("clicked", "false");
+				y.onclick = function() {
+					var yAttributes = y.attributes;
+					var clicked = yAttributes.getNamedItem("clicked").value;
+					if (clicked=="false") {
+						doXMLHttp(xslt, source, y);
+						y.setAttribute("clicked","true");	
+					}
+					else {
+						if (y.nextSibling!=null) {
+							if (y.nextSibling.style.display=="none") {
+								y.nextSibling.style.display = "block";
+							} else {
+								y.nextSibling.style.display = "none";
+							}
+						}
+						else {
+							alert("No sources have been provided\nfor this category.");
+						}
+					}
+    	        }
+    	        y.appendChild(document.createTextNode(refTitle));
+    	        x.appendChild(y);
+				a.appendChild(x)
+    	    }
+			me.htmlNode.parentNode.appendChild(a);
+	    }
 	}
 }
 
@@ -208,7 +206,7 @@ function getRefTitles(refTypeResource, eventResource, htmlNode) {
 function getRefTypes(htmlNode, eventNode) {
 	var linkAttributes = htmlNode.attributes;
 	var clicked = linkAttributes.getNamedItem("clicked").value;	
-	if (clicked==="false"){	
+	if (clicked=="false"){	
 		htmlNode.setAttribute("clicked", "true");
 		myTry = new successfulCallbackModel(htmlNode, eventNode);
 		hq = new Heml.SparqlQuery(endpoint, refQueryStart + eventNode + "> ?child ?reference. <" + eventNode + "> ?parent ?reference." + refQueryEnd, onHemlFailure, myTry.makeRefLinks);
@@ -218,10 +216,15 @@ function getRefTypes(htmlNode, eventNode) {
 	}
 	else {
 		var theDiv = document.getElementById(eventNode);
-		if (theDiv.style.display == "none") {
-			theDiv.style.display = "block";
-		} else {
-			theDiv.style.display = "none";
+		if (theDiv!=null) {
+			if (theDiv.style.display == "none") {
+				theDiv.style.display = "block";
+			} else {
+				theDiv.style.display = "none";
+			}
+		}
+		else {
+			alert("No sources are available.");
 		}
 	}
 }
