@@ -3,10 +3,9 @@
 @prefix hemlRDF:    <http://www.heml.org/rdf/2003-09-17/heml#> .
 @prefix hammondDiary: <http://heml.mta.ca/docs/hammond_diary#> .
 
-hammondDiary:Aug15-1871-a hemlRDF:Discussion hammondDiary:BrokenLetterDiscussion;
-                          hemlRDF:Discussion hammondDiary:WorkingLetterDiscussion;
+hammondDiary:Aug15-1871-a hemlRDF:Discussion hammondDiary:motherLetterTwo;
                           hemlRDF:Evidence hammondDiary:motherLetterTwo;
-                          hemlRDF:Memoir   hammondDiary:motherLetterThree.
+                          hemlRDF:Memoir   hammondDiary:workingLetterDiscussion.
 hammondDiary:motherLetterTwo a hemlRDF:WebDocumentFragment;
    hemlRDF:url <http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus:text:2009.01.0001:page=6b>;
    rdfs:label "Diary of John Hammond p. 6b"@en;

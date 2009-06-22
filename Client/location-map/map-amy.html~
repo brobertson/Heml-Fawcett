@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Heml Locations Map Using OpenLayers</title>
+
+		<!<link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+		<!<link rel="stylesheet" href="style.css" type="text/css" />
+		<!<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
+		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
+		
+
+		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+		<script type="text/javascript" language="javascript" src="sparql.js"></script>
+		<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"></script>
+		<script type="text/javascript" language="javascript" src="fragmentaryReferenceBuilder-test.js"></script>
+		<script type="text/javascript" language="javascript" src="map-amy.js"></script>
+	</head> 
+	<body onload="init()">
+	<div id="content">		
+		<div class="inner">	
+			<h1>Heml Locations Map - Edited</h1>
+			<div id="map"  style="width:520px; height:260px;"></div>
+			<div id="docs">
+				<h3 id="locationLabel"></h3>
+				<div id="eventList"></div>
+			</div>
+			<p id="source"/>
+		</div>
+	</div>
+	</body>
+</html>
