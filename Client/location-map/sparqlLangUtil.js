@@ -36,16 +36,18 @@ function onHemlFailure()
 	{ alert("The Heml SPARQL query failed."); }
 
 /**
- * Used to find the best matching triple when the object might exist in multiple
- * languages. We pass this function an array of languge codes (as strings).
- * Triples that match the given subject and predicate are then compared to the
- * language preferences. The best match is returned. If we do not find a
- * match, we return the empty result set.
+ * <p> Used to find the best matching triple when the object might exist in
+ * multiple languages. </p>
+ *
+ * <p> We read our preferred languages from a cookie. If no language preferences
+ * can be found, we find what languages are available and have to user select
+ * one. </p>
+ *
+ * <p> If we have language preferences, we get all triples that match our search
+ * and select the best match. </p>
+ *
  * @param {string} The subject of the triple for which we are searching.
  * @param {string} The predicate of the triple for which we are searching.
- * @param {string[]} The list of language codes for languages in which we prefer
- * to get a result. Information is more likely to get returned in languages
- * near the front of this array.
  * @param {string} Service ref used for queries.
  * @param {function()} The function that gets called on query failure
  * @param {function({json})} The function that gets called on query success.
@@ -54,17 +56,33 @@ function onHemlFailure()
  * if we did not find a match, <code>json.results.binding</code> will have
  * length 0. 
  */
-function query_BestLanguageMatch(subject, predicate, userLangs, endpoint, onFail, onSuccess){
+function query_BestLanguageMatch(subject, predicate, endpoint, onFail, onSuccess){
 	if ( subject == null || predicate == null ){
 		// subject and predicate must both be specified
 		alert('Subject and predicate must be specified');
 	}
 
-	var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "' + userLangs + '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' + userLangs + '")) LIMIT 1';
-	
-	alert(queryStr);
-	var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
-	query.performQuery();
+	var langPrefs = getPreferencesFromCookie();
+	if ( langPrefs == null ){//TODO finish this thought
+		getLangs(subject, predicate, endpoint, onFail, function(json){
+				var msg = 'You have no language preferences. These are your options ';
+				for ( var i=0; i<json.results.bindings.length; i++ ){
+					msg += ' # ' + json.results.bindings[i].lang.value;
+				}
+				alert(msg);
+				});
+
+	}else{
+		//get into form that will please SPARQL
+		langPrefs = langPrefs.replace(/','/g,',');
+		langPrefs = langPrefs.substring(1, langPrefs.length-1);
+
+		var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "' + langPrefs + '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' + langPrefs + '")) LIMIT 1';
+
+		alert(queryStr);
+		var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
+		query.performQuery();
+	}
 }
 
 /**
@@ -72,12 +90,12 @@ function query_BestLanguageMatch(subject, predicate, userLangs, endpoint, onFail
  * match, return it. If we get the empty result set, we default to the original
  * language.
  */
-function query_BestLabel(subject, userLangs, endpoint, onFail, onSuccess){
+function query_BestLabel(subject, endpoint, onFail, onSuccess){
 	if ( subject == null ){
 		// subject be specified
 		alert('Subject must be specified');
 	}
-	query_BestLanguageMatch(subject, 'rdfs:label', userLangs, endpoint, onFail, function(json){
+	query_BestLanguageMatch(subject, 'rdfs:label', endpoint, onFail, function(json){
 			if( json.results.bindings.length == 1 ){
 				onSuccess(json);
 			}
@@ -87,4 +105,32 @@ function query_BestLabel(subject, userLangs, endpoint, onFail, onSuccess){
 				query.performQuery();
 			}
 		});
+}
+
+/**
+ * Retuns language preferences as stored in cookie. If none were found, returns
+ * null.
+ */
+function getPreferencesFromCookie(){
+	var cookies = document.cookie.split(';');
+	for(var i=0 ; i < cookies.length ; i++) {
+		var c = cookies[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf('languagePreferences=') == 0) return c.substring(20,c.length);
+	}
+	return null;
+}
+
+function init(){
+//	document.cookie = "languagePreferences='dd','fd','sn','se','ls'";
+
+//	getLangs(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, function(json){
+//			console.dir(json);
+//			});
+
+
+//	getLangs(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, function(json){
+//			alert('ok');
+//			console.dir(json);
+//		});
 }
