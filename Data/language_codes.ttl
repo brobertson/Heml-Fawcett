@@ -1,0 +1,1042 @@
+# included for use in processing user's language preferences. We can quickly
+# access a langage based on it ISO code
+#
+# Typical usage:
+# ----------
+# PREFIX : <http://local-language-codes#> 
+# SELECT ?langs ?code WHERE 
+# { 
+#    ?b :language ?langs.
+#    ?b :code ?code.
+#     {?b :split "eng".} 
+#        UNION
+#     {?b :split "fre". } 
+#        UNION
+#     {?b :split "lat". }
+# }
+# ----------
+# Note that the French code can be either 'fre' or 'fra'. This query would
+# return:
+# +---------+-----------+
+# | langs   |    code   |
+# +---------+-----------+
+# |"Latin"  | "lat"     |
+# |"French" | "fre/fra" |
+# |"English"| "eng"     |
+# +---------+-----------+
+
+@prefix : <http://local-language-codes#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:code rdfs:subPropertyOf :split .
+
+_:b0 :language "Afar" .
+_:b0 :code "aar" .
+_:b1 :language "Abkhazian" .
+_:b1 :code "abk" .
+_:b2 :language "Achinese" .
+_:b2 :code "ace" .
+_:b3 :language "Acoli" .
+_:b3 :code "ach" .
+_:b4 :language "Adangme" .
+_:b4 :code "ada" .
+_:b5 :language "Adyghe; Adygei" .
+_:b5 :code "ady" .
+_:b6 :language "Afro-Asiatic languages" .
+_:b6 :code "afa" .
+_:b7 :language "Afrihili" .
+_:b7 :code "afh" .
+_:b8 :language "Afrikaans" .
+_:b8 :code "afr" .
+_:b9 :language "Ainu" .
+_:b9 :code "ain" .
+_:b10 :language "Akan" .
+_:b10 :code "aka" .
+_:b11 :language "Akkadian" .
+_:b11 :code "akk" .
+_:b12 :language "Albanian" .
+_:b12 :code "alb/sqi" .
+_:b12 :split "alb" .
+_:b12 :split "sqi" .
+_:b13 :language "Aleut" .
+_:b13 :code "ale" .
+_:b14 :language "Algonquian languages" .
+_:b14 :code "alg" .
+_:b15 :language "Southern Altai" .
+_:b15 :code "alt" .
+_:b16 :language "Amharic" .
+_:b16 :code "amh" .
+_:b17 :language "English, Old (ca.450-1100)" .
+_:b17 :code "ang" .
+_:b18 :language "Angika" .
+_:b18 :code "anp" .
+_:b19 :language "Apache languages" .
+_:b19 :code "apa" .
+_:b20 :language "Arabic" .
+_:b20 :code "ara" .
+_:b21 :language "Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)" .
+_:b21 :code "arc" .
+_:b22 :language "Aragonese" .
+_:b22 :code "arg" .
+_:b23 :language "Armenian" .
+_:b23 :code "arm/hye" .
+_:b23 :split "arm" .
+_:b23 :split "hye" .
+_:b24 :language "Mapudungun; Mapuche" .
+_:b24 :code "arn" .
+_:b25 :language "Arapaho" .
+_:b25 :code "arp" .
+_:b26 :language "Artificial languages" .
+_:b26 :code "art" .
+_:b27 :language "Arawak" .
+_:b27 :code "arw" .
+_:b28 :language "Assamese" .
+_:b28 :code "asm" .
+_:b29 :language "Asturian; Bable; Leonese; Asturleonese" .
+_:b29 :code "ast" .
+_:b30 :language "Athapascan languages" .
+_:b30 :code "ath" .
+_:b31 :language "Australian languages" .
+_:b31 :code "aus" .
+_:b32 :language "Avaric" .
+_:b32 :code "ava" .
+_:b33 :language "Avestan" .
+_:b33 :code "ave" .
+_:b34 :language "Awadhi" .
+_:b34 :code "awa" .
+_:b35 :language "Aymara" .
+_:b35 :code "aym" .
+_:b36 :language "Azerbaijani" .
+_:b36 :code "aze" .
+_:b37 :language "Banda languages" .
+_:b37 :code "bad" .
+_:b38 :language "Bamileke languages" .
+_:b38 :code "bai" .
+_:b39 :language "Bashkir" .
+_:b39 :code "bak" .
+_:b40 :language "Baluchi" .
+_:b40 :code "bal" .
+_:b41 :language "Bambara" .
+_:b41 :code "bam" .
+_:b42 :language "Balinese" .
+_:b42 :code "ban" .
+_:b43 :language "Basque" .
+_:b43 :code "baq/eus" .
+_:b43 :split "baq" .
+_:b43 :split "eus" .
+_:b44 :language "Basa" .
+_:b44 :code "bas" .
+_:b45 :language "Baltic languages" .
+_:b45 :code "bat" .
+_:b46 :language "Beja; Bedawiyet" .
+_:b46 :code "bej" .
+_:b47 :language "Belarusian" .
+_:b47 :code "bel" .
+_:b48 :language "Bemba" .
+_:b48 :code "bem" .
+_:b49 :language "Bengali" .
+_:b49 :code "ben" .
+_:b50 :language "Berber languages" .
+_:b50 :code "ber" .
+_:b51 :language "Bhojpuri" .
+_:b51 :code "bho" .
+_:b52 :language "Bihari" .
+_:b52 :code "bih" .
+_:b53 :language "Bikol" .
+_:b53 :code "bik" .
+_:b54 :language "Bini; Edo" .
+_:b54 :code "bin" .
+_:b55 :language "Bislama" .
+_:b55 :code "bis" .
+_:b56 :language "Siksika" .
+_:b56 :code "bla" .
+_:b57 :language "Bantu (Other)" .
+_:b57 :code "bnt" .
+_:b58 :language "Bosnian" .
+_:b58 :code "bos" .
+_:b59 :language "Braj" .
+_:b59 :code "bra" .
+_:b60 :language "Breton" .
+_:b60 :code "bre" .
+_:b61 :language "Batak languages" .
+_:b61 :code "btk" .
+_:b62 :language "Buriat" .
+_:b62 :code "bua" .
+_:b63 :language "Buginese" .
+_:b63 :code "bug" .
+_:b64 :language "Bulgarian" .
+_:b64 :code "bul" .
+_:b65 :language "Burmese" .
+_:b65 :code "bur/mya" .
+_:b65 :split "bur" .
+_:b65 :split "mya" .
+_:b66 :language "Blin; Bilin" .
+_:b66 :code "byn" .
+_:b67 :language "Caddo" .
+_:b67 :code "cad" .
+_:b68 :language "Central American Indian languages" .
+_:b68 :code "cai" .
+_:b69 :language "Galibi Carib" .
+_:b69 :code "car" .
+_:b70 :language "Catalan; Valencian" .
+_:b70 :code "cat" .
+_:b71 :language "Caucasian languages" .
+_:b71 :code "cau" .
+_:b72 :language "Cebuano" .
+_:b72 :code "ceb" .
+_:b73 :language "Celtic languages" .
+_:b73 :code "cel" .
+_:b74 :language "Chamorro" .
+_:b74 :code "cha" .
+_:b75 :language "Chibcha" .
+_:b75 :code "chb" .
+_:b76 :language "Chechen" .
+_:b76 :code "che" .
+_:b77 :language "Chagatai" .
+_:b77 :code "chg" .
+_:b78 :language "Chinese" .
+_:b78 :code "chi/zho" .
+_:b78 :split "chi" .
+_:b78 :split "zho" .
+_:b79 :language "Chuukese" .
+_:b79 :code "chk" .
+_:b80 :language "Mari" .
+_:b80 :code "chm" .
+_:b81 :language "Chinook jargon" .
+_:b81 :code "chn" .
+_:b82 :language "Choctaw" .
+_:b82 :code "cho" .
+_:b83 :language "Chipewyan; Dene Suline" .
+_:b83 :code "chp" .
+_:b84 :language "Cherokee" .
+_:b84 :code "chr" .
+_:b85 :language "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic" .
+_:b85 :code "chu" .
+_:b86 :language "Chuvash" .
+_:b86 :code "chv" .
+_:b87 :language "Cheyenne" .
+_:b87 :code "chy" .
+_:b88 :language "Chamic languages" .
+_:b88 :code "cmc" .
+_:b89 :language "Coptic" .
+_:b89 :code "cop" .
+_:b90 :language "Cornish" .
+_:b90 :code "cor" .
+_:b91 :language "Corsican" .
+_:b91 :code "cos" .
+_:b92 :language "Creoles and pidgins, English based" .
+_:b92 :code "cpe" .
+_:b93 :language "Creoles and pidgins, French-based " .
+_:b93 :code "cpf" .
+_:b94 :language "Creoles and pidgins, Portuguese-based " .
+_:b94 :code "cpp" .
+_:b95 :language "Cree" .
+_:b95 :code "cre" .
+_:b96 :language "Crimean Tatar; Crimean Turkish" .
+_:b96 :code "crh" .
+_:b97 :language "Creoles and pidgins " .
+_:b97 :code "crp" .
+_:b98 :language "Kashubian" .
+_:b98 :code "csb" .
+_:b99 :language "Cushitic languages" .
+_:b99 :code "cus" .
+_:b100 :language "Czech" .
+_:b100 :code "cze/ces" .
+_:b100 :split "cze" .
+_:b100 :split "ces" .
+_:b101 :language "Dakota" .
+_:b101 :code "dak" .
+_:b102 :language "Danish" .
+_:b102 :code "dan" .
+_:b103 :language "Dargwa" .
+_:b103 :code "dar" .
+_:b104 :language "Land Dayak languages" .
+_:b104 :code "day" .
+_:b105 :language "Delaware" .
+_:b105 :code "del" .
+_:b106 :language "Slave (Athapascan)" .
+_:b106 :code "den" .
+_:b107 :language "Dogrib" .
+_:b107 :code "dgr" .
+_:b108 :language "Dinka" .
+_:b108 :code "din" .
+_:b109 :language "Divehi; Dhivehi; Maldivian" .
+_:b109 :code "div" .
+_:b110 :language "Dogri" .
+_:b110 :code "doi" .
+_:b111 :language "Dravidian languages" .
+_:b111 :code "dra" .
+_:b112 :language "Lower Sorbian" .
+_:b112 :code "dsb" .
+_:b113 :language "Duala" .
+_:b113 :code "dua" .
+_:b114 :language "Dutch, Middle (ca.1050-1350)" .
+_:b114 :code "dum" .
+_:b115 :language "Dutch; Flemish" .
+_:b115 :code "dut/nld" .
+_:b115 :split "dut" .
+_:b115 :split "nld" .
+_:b116 :language "Dyula" .
+_:b116 :code "dyu" .
+_:b117 :language "Dzongkha" .
+_:b117 :code "dzo" .
+_:b118 :language "Efik" .
+_:b118 :code "efi" .
+_:b119 :language "Egyptian (Ancient)" .
+_:b119 :code "egy" .
+_:b120 :language "Ekajuk" .
+_:b120 :code "eka" .
+_:b121 :language "Elamite" .
+_:b121 :code "elx" .
+_:b122 :language "English" .
+_:b122 :code "eng" .
+_:b123 :language "English, Middle (1100-1500)" .
+_:b123 :code "enm" .
+_:b124 :language "Esperanto" .
+_:b124 :code "epo" .
+_:b125 :language "Estonian" .
+_:b125 :code "est" .
+_:b126 :language "Ewe" .
+_:b126 :code "ewe" .
+_:b127 :language "Ewondo" .
+_:b127 :code "ewo" .
+_:b128 :language "Fang" .
+_:b128 :code "fan" .
+_:b129 :language "Faroese" .
+_:b129 :code "fao" .
+_:b130 :language "Fanti" .
+_:b130 :code "fat" .
+_:b131 :language "Fijian" .
+_:b131 :code "fij" .
+_:b132 :language "Filipino; Pilipino" .
+_:b132 :code "fil" .
+_:b133 :language "Finnish" .
+_:b133 :code "fin" .
+_:b134 :language "Finno-Ugrian languages" .
+_:b134 :code "fiu" .
+_:b135 :language "Fon" .
+_:b135 :code "fon" .
+_:b136 :language "French" .
+_:b136 :code "fre/fra" .
+_:b136 :split "fre" .
+_:b136 :split "fra" .
+_:b137 :language "French, Middle (ca.1400-1600)" .
+_:b137 :code "frm" .
+_:b138 :language "French, Old (842-ca.1400)" .
+_:b138 :code "fro" .
+_:b139 :language "Northern Frisian" .
+_:b139 :code "frr" .
+_:b140 :language "Eastern Frisian" .
+_:b140 :code "frs" .
+_:b141 :language "Western Frisian" .
+_:b141 :code "fry" .
+_:b142 :language "Fulah" .
+_:b142 :code "ful" .
+_:b143 :language "Friulian" .
+_:b143 :code "fur" .
+_:b144 :language "Ga" .
+_:b144 :code "gaa" .
+_:b145 :language "Gayo" .
+_:b145 :code "gay" .
+_:b146 :language "Gbaya" .
+_:b146 :code "gba" .
+_:b147 :language "Germanic languages" .
+_:b147 :code "gem" .
+_:b148 :language "Georgian" .
+_:b148 :code "geo/kat" .
+_:b148 :split "geo" .
+_:b148 :split "kat" .
+_:b149 :language "German" .
+_:b149 :code "ger/deu" .
+_:b149 :split "ger" .
+_:b149 :split "deu" .
+_:b150 :language "Geez" .
+_:b150 :code "gez" .
+_:b151 :language "Gilbertese" .
+_:b151 :code "gil" .
+_:b152 :language "Gaelic; Scottish Gaelic" .
+_:b152 :code "gla" .
+_:b153 :language "Irish" .
+_:b153 :code "gle" .
+_:b154 :language "Galician" .
+_:b154 :code "glg" .
+_:b155 :language "Manx" .
+_:b155 :code "glv" .
+_:b156 :language "German, Middle High (ca.1050-1500)" .
+_:b156 :code "gmh" .
+_:b157 :language "German, Old High (ca.750-1050)" .
+_:b157 :code "goh" .
+_:b158 :language "Gondi" .
+_:b158 :code "gon" .
+_:b159 :language "Gorontalo" .
+_:b159 :code "gor" .
+_:b160 :language "Gothic" .
+_:b160 :code "got" .
+_:b161 :language "Grebo" .
+_:b161 :code "grb" .
+_:b162 :language "Greek, Ancient (to 1453)" .
+_:b162 :code "grc" .
+_:b163 :language "Greek, Modern (1453-)" .
+_:b163 :code "gre/ell" .
+_:b163 :split "gre" .
+_:b163 :split "ell" .
+_:b164 :language "Guarani" .
+_:b164 :code "grn" .
+_:b165 :language "Swiss German; Alemannic; Alsatian" .
+_:b165 :code "gsw" .
+_:b166 :language "Gujarati" .
+_:b166 :code "guj" .
+_:b167 :language "Gwich'in" .
+_:b167 :code "gwi" .
+_:b168 :language "Haida" .
+_:b168 :code "hai" .
+_:b169 :language "Haitian; Haitian Creole" .
+_:b169 :code "hat" .
+_:b170 :language "Hausa" .
+_:b170 :code "hau" .
+_:b171 :language "Hawaiian" .
+_:b171 :code "haw" .
+_:b172 :language "Hebrew" .
+_:b172 :code "heb" .
+_:b173 :language "Herero" .
+_:b173 :code "her" .
+_:b174 :language "Hiligaynon" .
+_:b174 :code "hil" .
+_:b175 :language "Himachali" .
+_:b175 :code "him" .
+_:b176 :language "Hindi" .
+_:b176 :code "hin" .
+_:b177 :language "Hittite" .
+_:b177 :code "hit" .
+_:b178 :language "Hmong" .
+_:b178 :code "hmn" .
+_:b179 :language "Hiri Motu" .
+_:b179 :code "hmo" .
+_:b180 :language "Croatian" .
+_:b180 :code "hrv" .
+_:b181 :language "Upper Sorbian" .
+_:b181 :code "hsb" .
+_:b182 :language "Hungarian" .
+_:b182 :code "hun" .
+_:b183 :language "Hupa" .
+_:b183 :code "hup" .
+_:b184 :language "Iban" .
+_:b184 :code "iba" .
+_:b185 :language "Igbo" .
+_:b185 :code "ibo" .
+_:b186 :language "Icelandic" .
+_:b186 :code "ice/isl" .
+_:b186 :split "ice" .
+_:b186 :split "isl" .
+_:b187 :language "Ido" .
+_:b187 :code "ido" .
+_:b188 :language "Sichuan Yi; Nuosu" .
+_:b188 :code "iii" .
+_:b189 :language "Ijo languages" .
+_:b189 :code "ijo" .
+_:b190 :language "Inuktitut" .
+_:b190 :code "iku" .
+_:b191 :language "Interlingue; Occidental" .
+_:b191 :code "ile" .
+_:b192 :language "Iloko" .
+_:b192 :code "ilo" .
+_:b193 :language "Interlingua (International Auxiliary Language Association)" .
+_:b193 :code "ina" .
+_:b194 :language "Indic languages" .
+_:b194 :code "inc" .
+_:b195 :language "Indonesian" .
+_:b195 :code "ind" .
+_:b196 :language "Indo-European languages" .
+_:b196 :code "ine" .
+_:b197 :language "Ingush" .
+_:b197 :code "inh" .
+_:b198 :language "Inupiaq" .
+_:b198 :code "ipk" .
+_:b199 :language "Iranian languages" .
+_:b199 :code "ira" .
+_:b200 :language "Iroquoian languages" .
+_:b200 :code "iro" .
+_:b201 :language "Italian" .
+_:b201 :code "ita" .
+_:b202 :language "Javanese" .
+_:b202 :code "jav" .
+_:b203 :language "Lojban" .
+_:b203 :code "jbo" .
+_:b204 :language "Japanese" .
+_:b204 :code "jpn" .
+_:b205 :language "Judeo-Persian" .
+_:b205 :code "jpr" .
+_:b206 :language "Judeo-Arabic" .
+_:b206 :code "jrb" .
+_:b207 :language "Kara-Kalpak" .
+_:b207 :code "kaa" .
+_:b208 :language "Kabyle" .
+_:b208 :code "kab" .
+_:b209 :language "Kachin; Jingpho" .
+_:b209 :code "kac" .
+_:b210 :language "Kalaallisut; Greenlandic" .
+_:b210 :code "kal" .
+_:b211 :language "Kamba" .
+_:b211 :code "kam" .
+_:b212 :language "Kannada" .
+_:b212 :code "kan" .
+_:b213 :language "Karen languages" .
+_:b213 :code "kar" .
+_:b214 :language "Kashmiri" .
+_:b214 :code "kas" .
+_:b215 :language "Kanuri" .
+_:b215 :code "kau" .
+_:b216 :language "Kawi" .
+_:b216 :code "kaw" .
+_:b217 :language "Kazakh" .
+_:b217 :code "kaz" .
+_:b218 :language "Kabardian" .
+_:b218 :code "kbd" .
+_:b219 :language "Khasi" .
+_:b219 :code "kha" .
+_:b220 :language "Khoisan languages" .
+_:b220 :code "khi" .
+_:b221 :language "Central Khmer" .
+_:b221 :code "khm" .
+_:b222 :language "Khotanese; Sakan" .
+_:b222 :code "kho" .
+_:b223 :language "Kikuyu; Gikuyu" .
+_:b223 :code "kik" .
+_:b224 :language "Kinyarwanda" .
+_:b224 :code "kin" .
+_:b225 :language "Kirghiz; Kyrgyz" .
+_:b225 :code "kir" .
+_:b226 :language "Kimbundu" .
+_:b226 :code "kmb" .
+_:b227 :language "Konkani" .
+_:b227 :code "kok" .
+_:b228 :language "Komi" .
+_:b228 :code "kom" .
+_:b229 :language "Kongo" .
+_:b229 :code "kon" .
+_:b230 :language "Korean" .
+_:b230 :code "kor" .
+_:b231 :language "Kosraean" .
+_:b231 :code "kos" .
+_:b232 :language "Kpelle" .
+_:b232 :code "kpe" .
+_:b233 :language "Karachay-Balkar" .
+_:b233 :code "krc" .
+_:b234 :language "Karelian" .
+_:b234 :code "krl" .
+_:b235 :language "Kru languages" .
+_:b235 :code "kro" .
+_:b236 :language "Kurukh" .
+_:b236 :code "kru" .
+_:b237 :language "Kuanyama; Kwanyama" .
+_:b237 :code "kua" .
+_:b238 :language "Kumyk" .
+_:b238 :code "kum" .
+_:b239 :language "Kurdish" .
+_:b239 :code "kur" .
+_:b240 :language "Kutenai" .
+_:b240 :code "kut" .
+_:b241 :language "Ladino" .
+_:b241 :code "lad" .
+_:b242 :language "Lahnda" .
+_:b242 :code "lah" .
+_:b243 :language "Lamba" .
+_:b243 :code "lam" .
+_:b244 :language "Lao" .
+_:b244 :code "lao" .
+_:b245 :language "Latin" .
+_:b245 :code "lat" .
+_:b246 :language "Latvian" .
+_:b246 :code "lav" .
+_:b247 :language "Lezghian" .
+_:b247 :code "lez" .
+_:b248 :language "Limburgan; Limburger; Limburgish" .
+_:b248 :code "lim" .
+_:b249 :language "Lingala" .
+_:b249 :code "lin" .
+_:b250 :language "Lithuanian" .
+_:b250 :code "lit" .
+_:b251 :language "Mongo" .
+_:b251 :code "lol" .
+_:b252 :language "Lozi" .
+_:b252 :code "loz" .
+_:b253 :language "Luxembourgish; Letzeburgesch" .
+_:b253 :code "ltz" .
+_:b254 :language "Luba-Lulua" .
+_:b254 :code "lua" .
+_:b255 :language "Luba-Katanga" .
+_:b255 :code "lub" .
+_:b256 :language "Ganda" .
+_:b256 :code "lug" .
+_:b257 :language "Luiseno" .
+_:b257 :code "lui" .
+_:b258 :language "Lunda" .
+_:b258 :code "lun" .
+_:b259 :language "Luo (Kenya and Tanzania)" .
+_:b259 :code "luo" .
+_:b260 :language "Lushai" .
+_:b260 :code "lus" .
+_:b261 :language "Macedonian" .
+_:b261 :code "mac/mkd" .
+_:b261 :split "mac" .
+_:b261 :split "mkd" .
+_:b262 :language "Madurese" .
+_:b262 :code "mad" .
+_:b263 :language "Magahi" .
+_:b263 :code "mag" .
+_:b264 :language "Marshallese" .
+_:b264 :code "mah" .
+_:b265 :language "Maithili" .
+_:b265 :code "mai" .
+_:b266 :language "Makasar" .
+_:b266 :code "mak" .
+_:b267 :language "Malayalam" .
+_:b267 :code "mal" .
+_:b268 :language "Mandingo" .
+_:b268 :code "man" .
+_:b269 :language "Maori" .
+_:b269 :code "mao/mri" .
+_:b269 :split "mao" .
+_:b269 :split "mri" .
+_:b270 :language "Austronesian languages" .
+_:b270 :code "map" .
+_:b271 :language "Marathi" .
+_:b271 :code "mar" .
+_:b272 :language "Masai" .
+_:b272 :code "mas" .
+_:b273 :language "Malay" .
+_:b273 :code "may/msa" .
+_:b273 :split "may" .
+_:b273 :split "msa" .
+_:b274 :language "Moksha" .
+_:b274 :code "mdf" .
+_:b275 :language "Mandar" .
+_:b275 :code "mdr" .
+_:b276 :language "Mende" .
+_:b276 :code "men" .
+_:b277 :language "Irish, Middle (900-1200)" .
+_:b277 :code "mga" .
+_:b278 :language "Mi'kmaq; Micmac" .
+_:b278 :code "mic" .
+_:b279 :language "Minangkabau" .
+_:b279 :code "min" .
+_:b280 :language "Uncoded languages" .
+_:b280 :code "mis" .
+_:b281 :language "Mon-Khmer languages" .
+_:b281 :code "mkh" .
+_:b282 :language "Malagasy" .
+_:b282 :code "mlg" .
+_:b283 :language "Maltese" .
+_:b283 :code "mlt" .
+_:b284 :language "Manchu" .
+_:b284 :code "mnc" .
+_:b285 :language "Manipuri" .
+_:b285 :code "mni" .
+_:b286 :language "Manobo languages" .
+_:b286 :code "mno" .
+_:b287 :language "Mohawk" .
+_:b287 :code "moh" .
+_:b288 :language "Mongolian" .
+_:b288 :code "mon" .
+_:b289 :language "Mossi" .
+_:b289 :code "mos" .
+_:b290 :language "Multiple languages" .
+_:b290 :code "mul" .
+_:b291 :language "Munda languages" .
+_:b291 :code "mun" .
+_:b292 :language "Creek" .
+_:b292 :code "mus" .
+_:b293 :language "Mirandese" .
+_:b293 :code "mwl" .
+_:b294 :language "Marwari" .
+_:b294 :code "mwr" .
+_:b295 :language "Mayan languages" .
+_:b295 :code "myn" .
+_:b296 :language "Erzya" .
+_:b296 :code "myv" .
+_:b297 :language "Nahuatl languages" .
+_:b297 :code "nah" .
+_:b298 :language "North American Indian languages" .
+_:b298 :code "nai" .
+_:b299 :language "Neapolitan" .
+_:b299 :code "nap" .
+_:b300 :language "Nauru" .
+_:b300 :code "nau" .
+_:b301 :language "Navajo; Navaho" .
+_:b301 :code "nav" .
+_:b302 :language "Ndebele, South; South Ndebele" .
+_:b302 :code "nbl" .
+_:b303 :language "Ndebele, North; North Ndebele" .
+_:b303 :code "nde" .
+_:b304 :language "Ndonga" .
+_:b304 :code "ndo" .
+_:b305 :language "Low German; Low Saxon; German, Low; Saxon, Low" .
+_:b305 :code "nds" .
+_:b306 :language "Nepali" .
+_:b306 :code "nep" .
+_:b307 :language "Nepal Bhasa; Newari" .
+_:b307 :code "new" .
+_:b308 :language "Nias" .
+_:b308 :code "nia" .
+_:b309 :language "Niger-Kordofanian languages" .
+_:b309 :code "nic" .
+_:b310 :language "Niuean" .
+_:b310 :code "niu" .
+_:b311 :language "Norwegian Nynorsk; Nynorsk, Norwegian" .
+_:b311 :code "nno" .
+_:b312 :language "Bokmål, Norwegian; Norwegian Bokmål" .
+_:b312 :code "nob" .
+_:b313 :language "Nogai" .
+_:b313 :code "nog" .
+_:b314 :language "Norse, Old" .
+_:b314 :code "non" .
+_:b315 :language "Norwegian" .
+_:b315 :code "nor" .
+_:b316 :language "N'Ko" .
+_:b316 :code "nqo" .
+_:b317 :language "Pedi; Sepedi; Northern Sotho" .
+_:b317 :code "nso" .
+_:b318 :language "Nubian languages" .
+_:b318 :code "nub" .
+_:b319 :language "Classical Newari; Old Newari; Classical Nepal Bhasa" .
+_:b319 :code "nwc" .
+_:b320 :language "Chichewa; Chewa; Nyanja" .
+_:b320 :code "nya" .
+_:b321 :language "Nyamwezi" .
+_:b321 :code "nym" .
+_:b322 :language "Nyankole" .
+_:b322 :code "nyn" .
+_:b323 :language "Nyoro" .
+_:b323 :code "nyo" .
+_:b324 :language "Nzima" .
+_:b324 :code "nzi" .
+_:b325 :language "Occitan (post 1500); Provençal" .
+_:b325 :code "oci" .
+_:b326 :language "Ojibwa" .
+_:b326 :code "oji" .
+_:b327 :language "Oriya" .
+_:b327 :code "ori" .
+_:b328 :language "Oromo" .
+_:b328 :code "orm" .
+_:b329 :language "Osage" .
+_:b329 :code "osa" .
+_:b330 :language "Ossetian; Ossetic" .
+_:b330 :code "oss" .
+_:b331 :language "Turkish, Ottoman (1500-1928)" .
+_:b331 :code "ota" .
+_:b332 :language "Otomian languages" .
+_:b332 :code "oto" .
+_:b333 :language "Papuan languages" .
+_:b333 :code "paa" .
+_:b334 :language "Pangasinan" .
+_:b334 :code "pag" .
+_:b335 :language "Pahlavi" .
+_:b335 :code "pal" .
+_:b336 :language "Pampanga; Kapampangan" .
+_:b336 :code "pam" .
+_:b337 :language "Panjabi; Punjabi" .
+_:b337 :code "pan" .
+_:b338 :language "Papiamento" .
+_:b338 :code "pap" .
+_:b339 :language "Palauan" .
+_:b339 :code "pau" .
+_:b340 :language "Persian, Old (ca.600-400 B.C.)" .
+_:b340 :code "peo" .
+_:b341 :language "Persian" .
+_:b341 :code "per/fas" .
+_:b341 :split "per" .
+_:b341 :split "fas" .
+_:b342 :language "Philippine languages" .
+_:b342 :code "phi" .
+_:b343 :language "Phoenician" .
+_:b343 :code "phn" .
+_:b344 :language "Pali" .
+_:b344 :code "pli" .
+_:b345 :language "Polish" .
+_:b345 :code "pol" .
+_:b346 :language "Pohnpeian" .
+_:b346 :code "pon" .
+_:b347 :language "Portuguese" .
+_:b347 :code "por" .
+_:b348 :language "Prakrit languages" .
+_:b348 :code "pra" .
+_:b349 :language "Provençal, Old (to 1500)" .
+_:b349 :code "pro" .
+_:b350 :language "Pushto; Pashto" .
+_:b350 :code "pus" .
+_:b351 :language "Reserved for local use" .
+_:b351 :code "qaa-qtz" .
+_:b352 :language "Quechua" .
+_:b352 :code "que" .
+_:b353 :language "Rajasthani" .
+_:b353 :code "raj" .
+_:b354 :language "Rapanui" .
+_:b354 :code "rap" .
+_:b355 :language "Rarotongan; Cook Islands Maori" .
+_:b355 :code "rar" .
+_:b356 :language "Romance languages" .
+_:b356 :code "roa" .
+_:b357 :language "Romansh" .
+_:b357 :code "roh" .
+_:b358 :language "Romany" .
+_:b358 :code "rom" .
+_:b359 :language "Romanian; Moldavian; Moldovan" .
+_:b359 :code "rum/ron" .
+_:b359 :split "rum" .
+_:b359 :split "ron" .
+_:b360 :language "Rundi" .
+_:b360 :code "run" .
+_:b361 :language "Aromanian; Arumanian; Macedo-Romanian" .
+_:b361 :code "rup" .
+_:b362 :language "Russian" .
+_:b362 :code "rus" .
+_:b363 :language "Sandawe" .
+_:b363 :code "sad" .
+_:b364 :language "Sango" .
+_:b364 :code "sag" .
+_:b365 :language "Yakut" .
+_:b365 :code "sah" .
+_:b366 :language "South American Indian (Other)" .
+_:b366 :code "sai" .
+_:b367 :language "Salishan languages" .
+_:b367 :code "sal" .
+_:b368 :language "Samaritan Aramaic" .
+_:b368 :code "sam" .
+_:b369 :language "Sanskrit" .
+_:b369 :code "san" .
+_:b370 :language "Sasak" .
+_:b370 :code "sas" .
+_:b371 :language "Santali" .
+_:b371 :code "sat" .
+_:b372 :language "Sicilian" .
+_:b372 :code "scn" .
+_:b373 :language "Scots" .
+_:b373 :code "sco" .
+_:b374 :language "Selkup" .
+_:b374 :code "sel" .
+_:b375 :language "Semitic languages" .
+_:b375 :code "sem" .
+_:b376 :language "Irish, Old (to 900)" .
+_:b376 :code "sga" .
+_:b377 :language "Sign Languages" .
+_:b377 :code "sgn" .
+_:b378 :language "Shan" .
+_:b378 :code "shn" .
+_:b379 :language "Sidamo" .
+_:b379 :code "sid" .
+_:b380 :language "Sinhala; Sinhalese" .
+_:b380 :code "sin" .
+_:b381 :language "Siouan languages" .
+_:b381 :code "sio" .
+_:b382 :language "Sino-Tibetan languages" .
+_:b382 :code "sit" .
+_:b383 :language "Slavic languages" .
+_:b383 :code "sla" .
+_:b384 :language "Slovak" .
+_:b384 :code "slo/slk" .
+_:b384 :split "slo" .
+_:b384 :split "slk" .
+_:b385 :language "Slovenian" .
+_:b385 :code "slv" .
+_:b386 :language "Southern Sami" .
+_:b386 :code "sma" .
+_:b387 :language "Northern Sami" .
+_:b387 :code "sme" .
+_:b388 :language "Sami languages" .
+_:b388 :code "smi" .
+_:b389 :language "Lule Sami" .
+_:b389 :code "smj" .
+_:b390 :language "Inari Sami" .
+_:b390 :code "smn" .
+_:b391 :language "Samoan" .
+_:b391 :code "smo" .
+_:b392 :language "Skolt Sami" .
+_:b392 :code "sms" .
+_:b393 :language "Shona" .
+_:b393 :code "sna" .
+_:b394 :language "Sindhi" .
+_:b394 :code "snd" .
+_:b395 :language "Soninke" .
+_:b395 :code "snk" .
+_:b396 :language "Sogdian" .
+_:b396 :code "sog" .
+_:b397 :language "Somali" .
+_:b397 :code "som" .
+_:b398 :language "Songhai languages" .
+_:b398 :code "son" .
+_:b399 :language "Sotho, Southern" .
+_:b399 :code "sot" .
+_:b400 :language "Spanish; Castilian" .
+_:b400 :code "spa" .
+_:b401 :language "Sardinian" .
+_:b401 :code "srd" .
+_:b402 :language "Sranan Tongo" .
+_:b402 :code "srn" .
+_:b403 :language "Serbian" .
+_:b403 :code "srp" .
+_:b404 :language "Serer" .
+_:b404 :code "srr" .
+_:b405 :language "Nilo-Saharan languages" .
+_:b405 :code "ssa" .
+_:b406 :language "Swati" .
+_:b406 :code "ssw" .
+_:b407 :language "Sukuma" .
+_:b407 :code "suk" .
+_:b408 :language "Sundanese" .
+_:b408 :code "sun" .
+_:b409 :language "Susu" .
+_:b409 :code "sus" .
+_:b410 :language "Sumerian" .
+_:b410 :code "sux" .
+_:b411 :language "Swahili" .
+_:b411 :code "swa" .
+_:b412 :language "Swedish" .
+_:b412 :code "swe" .
+_:b413 :language "Classical Syriac" .
+_:b413 :code "syc" .
+_:b414 :language "Syriac" .
+_:b414 :code "syr" .
+_:b415 :language "Tahitian" .
+_:b415 :code "tah" .
+_:b416 :language "Tai languages" .
+_:b416 :code "tai" .
+_:b417 :language "Tamil" .
+_:b417 :code "tam" .
+_:b418 :language "Tatar" .
+_:b418 :code "tat" .
+_:b419 :language "Telugu" .
+_:b419 :code "tel" .
+_:b420 :language "Timne" .
+_:b420 :code "tem" .
+_:b421 :language "Tereno" .
+_:b421 :code "ter" .
+_:b422 :language "Tetum" .
+_:b422 :code "tet" .
+_:b423 :language "Tajik" .
+_:b423 :code "tgk" .
+_:b424 :language "Tagalog" .
+_:b424 :code "tgl" .
+_:b425 :language "Thai" .
+_:b425 :code "tha" .
+_:b426 :language "Tibetan" .
+_:b426 :code "tib/bod" .
+_:b426 :split "tib" .
+_:b426 :split "bod" .
+_:b427 :language "Tigre" .
+_:b427 :code "tig" .
+_:b428 :language "Tigrinya" .
+_:b428 :code "tir" .
+_:b429 :language "Tiv" .
+_:b429 :code "tiv" .
+_:b430 :language "Tokelau" .
+_:b430 :code "tkl" .
+_:b431 :language "Klingon; tlhIngan-Hol" .
+_:b431 :code "tlh" .
+_:b432 :language "Tlingit" .
+_:b432 :code "tli" .
+_:b433 :language "Tamashek" .
+_:b433 :code "tmh" .
+_:b434 :language "Tonga (Nyasa)" .
+_:b434 :code "tog" .
+_:b435 :language "Tonga (Tonga Islands)" .
+_:b435 :code "ton" .
+_:b436 :language "Tok Pisin" .
+_:b436 :code "tpi" .
+_:b437 :language "Tsimshian" .
+_:b437 :code "tsi" .
+_:b438 :language "Tswana" .
+_:b438 :code "tsn" .
+_:b439 :language "Tsonga" .
+_:b439 :code "tso" .
+_:b440 :language "Turkmen" .
+_:b440 :code "tuk" .
+_:b441 :language "Tumbuka" .
+_:b441 :code "tum" .
+_:b442 :language "Tupi languages" .
+_:b442 :code "tup" .
+_:b443 :language "Turkish" .
+_:b443 :code "tur" .
+_:b444 :language "Altaic languages" .
+_:b444 :code "tut" .
+_:b445 :language "Tuvalu" .
+_:b445 :code "tvl" .
+_:b446 :language "Twi" .
+_:b446 :code "twi" .
+_:b447 :language "Tuvinian" .
+_:b447 :code "tyv" .
+_:b448 :language "Udmurt" .
+_:b448 :code "udm" .
+_:b449 :language "Ugaritic" .
+_:b449 :code "uga" .
+_:b450 :language "Uighur; Uyghur" .
+_:b450 :code "uig" .
+_:b451 :language "Ukrainian" .
+_:b451 :code "ukr" .
+_:b452 :language "Umbundu" .
+_:b452 :code "umb" .
+_:b453 :language "Undetermined" .
+_:b453 :code "und" .
+_:b454 :language "Urdu" .
+_:b454 :code "urd" .
+_:b455 :language "Uzbek" .
+_:b455 :code "uzb" .
+_:b456 :language "Vai" .
+_:b456 :code "vai" .
+_:b457 :language "Venda" .
+_:b457 :code "ven" .
+_:b458 :language "Vietnamese" .
+_:b458 :code "vie" .
+_:b459 :language "Volapük" .
+_:b459 :code "vol" .
+_:b460 :language "Votic" .
+_:b460 :code "vot" .
+_:b461 :language "Wakashan languages" .
+_:b461 :code "wak" .
+_:b462 :language "Walamo" .
+_:b462 :code "wal" .
+_:b463 :language "Waray" .
+_:b463 :code "war" .
+_:b464 :language "Washo" .
+_:b464 :code "was" .
+_:b465 :language "Welsh" .
+_:b465 :code "wel/cym" .
+_:b465 :split "wel" .
+_:b465 :split "cym" .
+_:b466 :language "Sorbian languages" .
+_:b466 :code "wen" .
+_:b467 :language "Walloon" .
+_:b467 :code "wln" .
+_:b468 :language "Wolof" .
+_:b468 :code "wol" .
+_:b469 :language "Kalmyk; Oirat" .
+_:b469 :code "xal" .
+_:b470 :language "Xhosa" .
+_:b470 :code "xho" .
+_:b471 :language "Yao" .
+_:b471 :code "yao" .
+_:b472 :language "Yapese" .
+_:b472 :code "yap" .
+_:b473 :language "Yiddish" .
+_:b473 :code "yid" .
+_:b474 :language "Yoruba" .
+_:b474 :code "yor" .
+_:b475 :language "Yupik languages" .
+_:b475 :code "ypk" .
+_:b476 :language "Zapotec" .
+_:b476 :code "zap" .
+_:b477 :language "Blissymbols; Blissymbolics; Bliss" .
+_:b477 :code "zbl" .
+_:b478 :language "Zenaga" .
+_:b478 :code "zen" .
+_:b479 :language "Zhuang; Chuang" .
+_:b479 :code "zha" .
+_:b480 :language "Zande languages" .
+_:b480 :code "znd" .
+_:b481 :language "Zulu" .
+_:b481 :code "zul" .
+_:b482 :language "Zuni" .
+_:b482 :code "zun" .
+_:b483 :language "No linguistic content; Not applicable" .
+_:b483 :code "zxx" .
+_:b484 :language "Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki" .
+_:b484 :code "zza" .

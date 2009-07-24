@@ -40,6 +40,9 @@
     <rdfs:range rdf:resource="#DateRange"/>
     <owl:sameAs rdf:resource="http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#P4F.has_time-span"/>
   </rdfs:Property>
+   <rdfs:Property rdf:ID="originalLanguage">
+		<rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+   </rdfs:Property>
   <rdfs:Property rdf:ID="SimpleDate">
     <rdfs:domain rdf:resource="#Event"/>
   </rdfs:Property>
