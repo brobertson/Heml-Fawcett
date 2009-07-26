@@ -8,12 +8,12 @@
 
 /**
  * An interface for the user to select language preferences. We store
- * preferences in ISO 639-2. 
+ * preferences in ISO 639-1. 
  *
  * Note that a language can exist multiple times in the list. This is to allow
- * languages to be defined with different extensions (e.g. eng-us and ang-uk).
- * We let the empty extension match any extension. For example, 'eng-uk' will
- * not match 'eng-us', while both 'eng-us' and 'eng' will. If the user feels
+ * languages to be defined with different extensions (e.g. en-us and en-uk).
+ * We let the empty extension match any extension. For example, 'en-uk' will
+ * not match 'en-us', while both 'en-us' and 'en' will. If the user feels
  * it important to restrict their matching with a language extension, we trust
  * that they are aware of the standard extensions for their language. The only
  * varification we provide is that they have enter only alphabetic characters.
@@ -29,500 +29,197 @@ Ext.onReady(function(){
 		text: "Edit Preferred Languages",
 		renderTo: 'popupTrigger',
 		handler: function(){
-			generatePopup1();
+			generatePopup();
 		}
 	});
-	//generatePopup1();
 });
 
-		//2D array with ISO 639-2 codes and languages
+//2D array with ISO 639-1 codes, ISO 639-2 codes, and languages
 var ds = [
-	['abk', 'Abkhazian'],
-	['ace', 'Achinese'],
-	['ach', 'Acoli'],
-	['ada', 'Adangme'],
-	['ady', 'Adyghe; Adygei'],
-	['aar', 'Afar'],
-	['afh', 'Afrihili'],
-	['afr', 'Afrikaans'],
-	['afa', 'Afro-Asiatic languages'],
-	['ain', 'Ainu'],
-	['aka', 'Akan'],
-	['akk', 'Akkadian'],
-	['alb/sqi', 'Albanian'],
-	['ale', 'Aleut'],
-	['alg', 'Algonquian languages'],
-	['tut', 'Altaic languages'],
-	['amh', 'Amharic'],
-	['anp', 'Angika'],
-	['apa', 'Apache languages'],
-	['ara', 'Arabic'],
-	['arg', 'Aragonese'],
-	['arp', 'Arapaho'],
-	['arw', 'Arawak'],
-	['arm/hye', 'Armenian'],
-	['rup', 'Aromanian; Arumanian; Macedo-Romanian'],
-	['art', 'Artificial languages'],
-	['asm', 'Assamese'],
-	['ast', 'Asturian; Bable; Leonese; Asturleonese'],
-	['ath', 'Athapascan languages'],
-	['aus', 'Australian languages'],
-	['map', 'Austronesian languages'],
-	['ava', 'Avaric'],
-	['ave', 'Avestan'],
-	['awa', 'Awadhi'],
-	['aym', 'Aymara'],
-	['aze', 'Azerbaijani'],
-	['ban', 'Balinese'],
-	['bat', 'Baltic languages'],
-	['bal', 'Baluchi'],
-	['bam', 'Bambara'],
-	['bai', 'Bamileke languages'],
-	['bad', 'Banda languages'],
-	['bnt', 'Bantu (Other)'],
-	['bas', 'Basa'],
-	['bak', 'Bashkir'],
-	['baq/eus', 'Basque'],
-	['btk', 'Batak languages'],
-	['bej', 'Beja; Bedawiyet'],
-	['bel', 'Belarusian'],
-	['bem', 'Bemba'],
-	['ben', 'Bengali'],
-	['ber', 'Berber languages'],
-	['bho', 'Bhojpuri'],
-	['bih', 'Bihari'],
-	['bik', 'Bikol'],
-	['bin', 'Bini; Edo'],
-	['bis', 'Bislama'],
-	['byn', 'Blin; Bilin'],
-	['zbl', 'Blissymbols; Blissymbolics; Bliss'],
-	['nob', 'Bokmål, Norwegian; Norwegian Bokmål'],
-	['bos', 'Bosnian'],
-	['bra', 'Braj'],
-	['bre', 'Breton'],
-	['bug', 'Buginese'],
-	['bul', 'Bulgarian'],
-	['bua', 'Buriat'],
-	['bur/mya', 'Burmese'],
-	['cad', 'Caddo'],
-	['cat', 'Catalan; Valencian'],
-	['cau', 'Caucasian languages'],
-	['ceb', 'Cebuano'],
-	['cel', 'Celtic languages'],
-	['cai', 'Central American Indian languages'],
-	['khm', 'Central Khmer'],
-	['chg', 'Chagatai'],
-	['cmc', 'Chamic languages'],
-	['cha', 'Chamorro'],
-	['che', 'Chechen'],
-	['chr', 'Cherokee'],
-	['chy', 'Cheyenne'],
-	['chb', 'Chibcha'],
-	['nya', 'Chichewa; Chewa; Nyanja'],
-	['chi/zho', 'Chinese'],
-	['chn', 'Chinook jargon'],
-	['chp', 'Chipewyan; Dene Suline'],
-	['cho', 'Choctaw'],
-	['chu', 'Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic'],
-	['chk', 'Chuukese'],
-	['chv', 'Chuvash'],
-	['nwc', 'Classical Newari; Old Newari; Classical Nepal Bhasa'],
-	['syc', 'Classical Syriac'],
-	['cop', 'Coptic'],
-	['cor', 'Cornish'],
-	['cos', 'Corsican'],
-	['cre', 'Cree'],
-	['mus', 'Creek'],
-	['crp', 'Creoles and pidgins '],
-	['cpe', 'Creoles and pidgins, English based'],
-	['cpf', 'Creoles and pidgins, French-based '],
-	['cpp', 'Creoles and pidgins, Portuguese-based '],
-	['crh', 'Crimean Tatar; Crimean Turkish'],
-	['hrv', 'Croatian'],
-	['cus', 'Cushitic languages'],
-	['cze/ces', 'Czech'],
-	['dak', 'Dakota'],
-	['dan', 'Danish'],
-	['dar', 'Dargwa'],
-	['del', 'Delaware'],
-	['din', 'Dinka'],
-	['div', 'Divehi; Dhivehi; Maldivian'],
-	['dgr', 'Dogrib'],
-	['doi', 'Dogri'],
-	['dra', 'Dravidian languages'],
-	['dua', 'Duala'],
-	['dut/nld', 'Dutch; Flemish'],
-	['dum', 'Dutch, Middle (ca.1050-1350)'],
-	['dyu', 'Dyula'],
-	['dzo', 'Dzongkha'],
-	['frs', 'Eastern Frisian'],
-	['efi', 'Efik'],
-	['egy', 'Egyptian (Ancient)'],
-	['eka', 'Ekajuk'],
-	['elx', 'Elamite'],
-	['eng', 'English'],
-	['enm', 'English, Middle (1100-1500)'],
-	['ang', 'English, Old (ca.450-1100)'],
-	['myv', 'Erzya'],
-	['epo', 'Esperanto'],
-	['est', 'Estonian'],
-	['ewe', 'Ewe'],
-	['ewo', 'Ewondo'],
-	['fan', 'Fang'],
-	['fat', 'Fanti'],
-	['fao', 'Faroese'],
-	['fij', 'Fijian'],
-	['fil', 'Filipino; Pilipino'],
-	['fin', 'Finnish'],
-	['fiu', 'Finno-Ugrian languages'],
-	['fon', 'Fon'],
-	['fre/fra', 'French'],
-	['frm', 'French, Middle (ca.1400-1600)'],
-	['fro', 'French, Old (842-ca.1400)'],
-	['fur', 'Friulian'],
-	['ful', 'Fulah'],
-	['gla', 'Gaelic; Scottish Gaelic'],
-	['gaa', 'Ga'],
-	['car', 'Galibi Carib'],
-	['glg', 'Galician'],
-	['lug', 'Ganda'],
-	['gay', 'Gayo'],
-	['gba', 'Gbaya'],
-	['gez', 'Geez'],
-	['geo/kat', 'Georgian'],
-	['ger/deu', 'German'],
-	['gem', 'Germanic languages'],
-	['gmh', 'German, Middle High (ca.1050-1500)'],
-	['goh', 'German, Old High (ca.750-1050)'],
-	['gil', 'Gilbertese'],
-	['gon', 'Gondi'],
-	['gor', 'Gorontalo'],
-	['got', 'Gothic'],
-	['grb', 'Grebo'],
-	['grc', 'Greek, Ancient (to 1453)'],
-	['gre/ell', 'Greek, Modern (1453-)'],
-	['grn', 'Guarani'],
-	['guj', 'Gujarati'],
-	['gwi', 'Gwich\'in'],
-	['hai', 'Haida'],
-	['hat', 'Haitian; Haitian Creole'],
-	['hau', 'Hausa'],
-	['haw', 'Hawaiian'],
-	['heb', 'Hebrew'],
-	['her', 'Herero'],
-	['hil', 'Hiligaynon'],
-	['him', 'Himachali'],
-	['hin', 'Hindi'],
-	['hmo', 'Hiri Motu'],
-	['hit', 'Hittite'],
-	['hmn', 'Hmong'],
-	['hun', 'Hungarian'],
-	['hup', 'Hupa'],
-	['iba', 'Iban'],
-	['ice/isl', 'Icelandic'],
-	['ido', 'Ido'],
-	['ibo', 'Igbo'],
-	['ijo', 'Ijo languages'],
-	['ilo', 'Iloko'],
-	['smn', 'Inari Sami'],
-	['inc', 'Indic languages'],
-	['ine', 'Indo-European languages'],
-	['ind', 'Indonesian'],
-	['inh', 'Ingush'],
-	['ina', 'Interlingua (International Auxiliary Language Association)'],
-	['ile', 'Interlingue; Occidental'],
-	['iku', 'Inuktitut'],
-	['ipk', 'Inupiaq'],
-	['ira', 'Iranian languages'],
-	['gle', 'Irish'],
-	['mga', 'Irish, Middle (900-1200)'],
-	['sga', 'Irish, Old (to 900)'],
-	['iro', 'Iroquoian languages'],
-	['ita', 'Italian'],
-	['jpn', 'Japanese'],
-	['jav', 'Javanese'],
-	['jrb', 'Judeo-Arabic'],
-	['jpr', 'Judeo-Persian'],
-	['kbd', 'Kabardian'],
-	['kab', 'Kabyle'],
-	['kac', 'Kachin; Jingpho'],
-	['kal', 'Kalaallisut; Greenlandic'],
-	['xal', 'Kalmyk; Oirat'],
-	['kam', 'Kamba'],
-	['kan', 'Kannada'],
-	['kau', 'Kanuri'],
-	['krc', 'Karachay-Balkar'],
-	['kaa', 'Kara-Kalpak'],
-	['krl', 'Karelian'],
-	['kar', 'Karen languages'],
-	['kas', 'Kashmiri'],
-	['csb', 'Kashubian'],
-	['kaw', 'Kawi'],
-	['kaz', 'Kazakh'],
-	['kha', 'Khasi'],
-	['khi', 'Khoisan languages'],
-	['kho', 'Khotanese; Sakan'],
-	['kik', 'Kikuyu; Gikuyu'],
-	['kmb', 'Kimbundu'],
-	['kin', 'Kinyarwanda'],
-	['kir', 'Kirghiz; Kyrgyz'],
-	['tlh', 'Klingon; tlhIngan-Hol'],
-	['kom', 'Komi'],
-	['kon', 'Kongo'],
-	['kok', 'Konkani'],
-	['kor', 'Korean'],
-	['kos', 'Kosraean'],
-	['kpe', 'Kpelle'],
-	['kro', 'Kru languages'],
-	['kua', 'Kuanyama; Kwanyama'],
-	['kum', 'Kumyk'],
-	['kur', 'Kurdish'],
-	['kru', 'Kurukh'],
-	['kut', 'Kutenai'],
-	['lad', 'Ladino'],
-	['lah', 'Lahnda'],
-	['lam', 'Lamba'],
-	['day', 'Land Dayak languages'],
-	['lao', 'Lao'],
-	['lat', 'Latin'],
-	['lav', 'Latvian'],
-	['lez', 'Lezghian'],
-	['lim', 'Limburgan; Limburger; Limburgish'],
-	['lin', 'Lingala'],
-	['lit', 'Lithuanian'],
-	['jbo', 'Lojban'],
-	['dsb', 'Lower Sorbian'],
-	['nds', 'Low German; Low Saxon; German, Low; Saxon, Low'],
-	['loz', 'Lozi'],
-	['lub', 'Luba-Katanga'],
-	['lua', 'Luba-Lulua'],
-	['lui', 'Luiseno'],
-	['smj', 'Lule Sami'],
-	['lun', 'Lunda'],
-	['luo', 'Luo (Kenya and Tanzania)'],
-	['lus', 'Lushai'],
-	['ltz', 'Luxembourgish; Letzeburgesch'],
-	['mac/mkd', 'Macedonian'],
-	['mad', 'Madurese'],
-	['mag', 'Magahi'],
-	['mai', 'Maithili'],
-	['mak', 'Makasar'],
-	['mlg', 'Malagasy'],
-	['mal', 'Malayalam'],
-	['may/msa', 'Malay'],
-	['mlt', 'Maltese'],
-	['mnc', 'Manchu'],
-	['mdr', 'Mandar'],
-	['man', 'Mandingo'],
-	['mni', 'Manipuri'],
-	['mno', 'Manobo languages'],
-	['glv', 'Manx'],
-	['mao/mri', 'Maori'],
-	['arn', 'Mapudungun; Mapuche'],
-	['mar', 'Marathi'],
-	['chm', 'Mari'],
-	['mah', 'Marshallese'],
-	['mwr', 'Marwari'],
-	['mas', 'Masai'],
-	['myn', 'Mayan languages'],
-	['men', 'Mende'],
-	['mic', 'Mi\'kmaq; Micmac'],
-	['min', 'Minangkabau'],
-	['mwl', 'Mirandese'],
-	['moh', 'Mohawk'],
-	['mdf', 'Moksha'],
-	['mon', 'Mongolian'],
-	['lol', 'Mongo'],
-	['mkh', 'Mon-Khmer languages'],
-	['mos', 'Mossi'],
-	['mul', 'Multiple languages'],
-	['mun', 'Munda languages'],
-	['nah', 'Nahuatl languages'],
-	['nau', 'Nauru'],
-	['nav', 'Navajo; Navaho'],
-	['nde', 'Ndebele, North; North Ndebele'],
-	['nbl', 'Ndebele, South; South Ndebele'],
-	['ndo', 'Ndonga'],
-	['nap', 'Neapolitan'],
-	['new', 'Nepal Bhasa; Newari'],
-	['nep', 'Nepali'],
-	['nia', 'Nias'],
-	['nic', 'Niger-Kordofanian languages'],
-	['ssa', 'Nilo-Saharan languages'],
-	['niu', 'Niuean'],
-	['nqo', 'N\'Ko'],
-	['nog', 'Nogai'],
-	['zxx', 'No linguistic content; Not applicable'],
-	['non', 'Norse, Old'],
-	['nai', 'North American Indian languages'],
-	['frr', 'Northern Frisian'],
-	['sme', 'Northern Sami'],
-	['nor', 'Norwegian'],
-	['nno', 'Norwegian Nynorsk; Nynorsk, Norwegian'],
-	['nub', 'Nubian languages'],
-	['nym', 'Nyamwezi'],
-	['nyn', 'Nyankole'],
-	['nyo', 'Nyoro'],
-	['nzi', 'Nzima'],
-	['oci', 'Occitan (post 1500); Provençal'],
-	['arc', 'Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)'],
-	['oji', 'Ojibwa'],
-	['ori', 'Oriya'],
-	['orm', 'Oromo'],
-	['osa', 'Osage'],
-	['oss', 'Ossetian; Ossetic'],
-	['oto', 'Otomian languages'],
-	['pal', 'Pahlavi'],
-	['pau', 'Palauan'],
-	['pli', 'Pali'],
-	['pam', 'Pampanga; Kapampangan'],
-	['pag', 'Pangasinan'],
-	['pan', 'Panjabi; Punjabi'],
-	['pap', 'Papiamento'],
-	['paa', 'Papuan languages'],
-	['nso', 'Pedi; Sepedi; Northern Sotho'],
-	['peo', 'Persian, Old (ca.600-400 B.C.)'],
-	['per/fas', 'Persian'],
-	['phi', 'Philippine languages'],
-	['phn', 'Phoenician'],
-	['pon', 'Pohnpeian'],
-	['pol', 'Polish'],
-	['por', 'Portuguese'],
-	['pra', 'Prakrit languages'],
-	['pro', 'Provençal, Old (to 1500)'],
-	['pus', 'Pushto; Pashto'],
-	['que', 'Quechua'],
-	['raj', 'Rajasthani'],
-	['rap', 'Rapanui'],
-	['rar', 'Rarotongan; Cook Islands Maori'],
-	['qtz', 'Reserved for local use qaa'],
-	['roa', 'Romance languages'],
-	['rum/ron', 'Romanian; Moldavian; Moldovan'],
-	['roh', 'Romansh'],
-	['rom', 'Romany'],
-	['run', 'Rundi'],
-	['rus', 'Russian'],
-	['sal', 'Salishan languages'],
-	['sam', 'Samaritan Aramaic'],
-	['smi', 'Sami languages'],
-	['smo', 'Samoan'],
-	['sad', 'Sandawe'],
-	['sag', 'Sango'],
-	['san', 'Sanskrit'],
-	['sat', 'Santali'],
-	['srd', 'Sardinian'],
-	['sas', 'Sasak'],
-	['sco', 'Scots'],
-	['sel', 'Selkup'],
-	['sem', 'Semitic languages'],
-	['srp', 'Serbian'],
-	['srr', 'Serer'],
-	['shn', 'Shan'],
-	['sna', 'Shona'],
-	['iii', 'Sichuan Yi; Nuosu'],
-	['scn', 'Sicilian'],
-	['sid', 'Sidamo'],
-	['sgn', 'Sign Languages'],
-	['bla', 'Siksika'],
-	['snd', 'Sindhi'],
-	['sin', 'Sinhala; Sinhalese'],
-	['sit', 'Sino-Tibetan languages'],
-	['sio', 'Siouan languages'],
-	['sms', 'Skolt Sami'],
-	['den', 'Slave (Athapascan)'],
-	['sla', 'Slavic languages'],
-	['slo/slk', 'Slovak'],
-	['slv', 'Slovenian'],
-	['sog', 'Sogdian'],
-	['som', 'Somali'],
-	['son', 'Songhai languages'],
-	['snk', 'Soninke'],
-	['wen', 'Sorbian languages'],
-	['sot', 'Sotho, Southern'],
-	['sai', 'South American Indian (Other)'],
-	['alt', 'Southern Altai'],
-	['sma', 'Southern Sami'],
-	['spa', 'Spanish; Castilian'],
-	['srn', 'Sranan Tongo'],
-	['suk', 'Sukuma'],
-	['sux', 'Sumerian'],
-	['sun', 'Sundanese'],
-	['sus', 'Susu'],
-	['swa', 'Swahili'],
-	['ssw', 'Swati'],
-	['swe', 'Swedish'],
-	['gsw', 'Swiss German; Alemannic; Alsatian'],
-	['syr', 'Syriac'],
-	['tgl', 'Tagalog'],
-	['tah', 'Tahitian'],
-	['tai', 'Tai languages'],
-	['tgk', 'Tajik'],
-	['tmh', 'Tamashek'],
-	['tam', 'Tamil'],
-	['tat', 'Tatar'],
-	['tel', 'Telugu'],
-	['ter', 'Tereno'],
-	['tet', 'Tetum'],
-	['tha', 'Thai'],
-	['tib/bod', 'Tibetan'],
-	['tig', 'Tigre'],
-	['tir', 'Tigrinya'],
-	['tem', 'Timne'],
-	['tiv', 'Tiv'],
-	['tli', 'Tlingit'],
-	['tkl', 'Tokelau'],
-	['tpi', 'Tok Pisin'],
-	['tog', 'Tonga (Nyasa)'],
-	['ton', 'Tonga (Tonga Islands)'],
-	['tsi', 'Tsimshian'],
-	['tso', 'Tsonga'],
-	['tsn', 'Tswana'],
-	['tum', 'Tumbuka'],
-	['tup', 'Tupi languages'],
-	['ota', 'Turkish, Ottoman (1500-1928)'],
-	['tur', 'Turkish'],
-	['tuk', 'Turkmen'],
-	['tvl', 'Tuvalu'],
-	['tyv', 'Tuvinian'],
-	['twi', 'Twi'],
-	['udm', 'Udmurt'],
-	['uga', 'Ugaritic'],
-	['uig', 'Uighur; Uyghur'],
-	['ukr', 'Ukrainian'],
-	['umb', 'Umbundu'],
-	['mis', 'Uncoded languages'],
-	['und', 'Undetermined'],
-	['hsb', 'Upper Sorbian'],
-	['urd', 'Urdu'],
-	['uzb', 'Uzbek'],
-	['vai', 'Vai'],
-	['ven', 'Venda'],
-	['vie', 'Vietnamese'],
-	['vol', 'Volapük'],
-	['vot', 'Votic'],
-	['wak', 'Wakashan languages'],
-	['wal', 'Walamo'],
-	['wln', 'Walloon'],
-	['war', 'Waray'],
-	['was', 'Washo'],
-	['wel/cym', 'Welsh'],
-	['fry', 'Western Frisian'],
-	['wol', 'Wolof'],
-	['xho', 'Xhosa'],
-	['sah', 'Yakut'],
-	['yao', 'Yao'],
-	['yap', 'Yapese'],
-	['yid', 'Yiddish'],
-	['yor', 'Yoruba'],
-	['ypk', 'Yupik languages'],
-	['znd', 'Zande languages'],
-	['zap', 'Zapotec'],
-	['zza', 'Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki'],
-	['zen', 'Zenaga'],
-	['zha', 'Zhuang; Chuang'],
-	['zul', 'Zulu'],
-	['zun', 'Zuni'] ]
-
+	['aa', 'aar', 'Afar'],
+	['ab', 'abk', 'Abkhazian'],
+	['af', 'afr', 'Afrikaans'],
+	['ak', 'aka', 'Akan'],
+	['sq', 'alb/sqi', 'Albanian'],
+	['am', 'amh', 'Amharic'],
+	['ar', 'ara', 'Arabic'],
+	['an', 'arg', 'Aragonese'],
+	['hy', 'arm/hye', 'Armenian'],
+	['as', 'asm', 'Assamese'],
+	['av', 'ava', 'Avaric'],
+	['ae', 'ave', 'Avestan'],
+	['ay', 'aym', 'Aymara'],
+	['az', 'aze', 'Azerbaijani'],
+	['ba', 'bak', 'Bashkir'],
+	['bm', 'bam', 'Bambara'],
+	['eu', 'baq/eus', 'Basque'],
+	['be', 'bel', 'Belarusian'],
+	['bn', 'ben', 'Bengali'],
+	['bh', 'bih', 'Bihari'],
+	['bi', 'bis', 'Bislama'],
+	['bs', 'bos', 'Bosnian'],
+	['br', 'bre', 'Breton'],
+	['bg', 'bul', 'Bulgarian'],
+	['my', 'bur/mya', 'Burmese'],
+	['ca', 'cat', 'Catalan; Valencian'],
+	['ch', 'cha', 'Chamorro'],
+	['ce', 'che', 'Chechen'],
+	['zh', 'chi/zho', 'Chinese'],
+	['cu', 'chu', 'Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic'],
+	['cv', 'chv', 'Chuvash'],
+	['kw', 'cor', 'Cornish'],
+	['co', 'cos', 'Corsican'],
+	['cr', 'cre', 'Cree'],
+	['cs', 'cze/ces', 'Czech'],
+	['da', 'dan', 'Danish'],
+	['dv', 'div', 'Divehi; Dhivehi; Maldivian'],
+	['nl', 'dut/nld', 'Dutch; Flemish'],
+	['dz', 'dzo', 'Dzongkha'],
+	['en', 'eng', 'English'],
+	['eo', 'epo', 'Esperanto'],
+	['et', 'est', 'Estonian'],
+	['ee', 'ewe', 'Ewe'],
+	['fo', 'fao', 'Faroese'],
+	['fj', 'fij', 'Fijian'],
+	['fi', 'fin', 'Finnish'],
+	['fr', 'fre/fra', 'French'],
+	['fy', 'fry', 'Western Frisian'],
+	['ff', 'ful', 'Fulah'],
+	['ka', 'geo/kat', 'Georgian'],
+	['de', 'ger/deu', 'German'],
+	['gd', 'gla', 'Gaelic; Scottish Gaelic'],
+	['ga', 'gle', 'Irish'],
+	['gl', 'glg', 'Galician'],
+	['gv', 'glv', 'Manx'],
+	['el', 'gre/ell', 'Greek, Modern (1453-)'],
+	['gn', 'grn', 'Guarani'],
+	['gu', 'guj', 'Gujarati'],
+	['ht', 'hat', 'Haitian; Haitian Creole'],
+	['ha', 'hau', 'Hausa'],
+	['he', 'heb', 'Hebrew'],
+	['hz', 'her', 'Herero'],
+	['hi', 'hin', 'Hindi'],
+	['ho', 'hmo', 'Hiri Motu'],
+	['hr', 'hrv', 'Croatian'],
+	['hu', 'hun', 'Hungarian'],
+	['ig', 'ibo', 'Igbo'],
+	['is', 'ice/isl', 'Icelandic'],
+	['io', 'ido', 'Ido'],
+	['ii', 'iii', 'Sichuan Yi; Nuosu'],
+	['iu', 'iku', 'Inuktitut'],
+	['ie', 'ile', 'Interlingue; Occidental'],
+	['ia', 'ina', 'Interlingua (International Auxiliary Language Association)'],
+	['id', 'ind', 'Indonesian'],
+	['ik', 'ipk', 'Inupiaq'],
+	['it', 'ita', 'Italian'],
+	['jv', 'jav', 'Javanese'],
+	['ja', 'jpn', 'Japanese'],
+	['kl', 'kal', 'Kalaallisut; Greenlandic'],
+	['kn', 'kan', 'Kannada'],
+	['ks', 'kas', 'Kashmiri'],
+	['kr', 'kau', 'Kanuri'],
+	['kk', 'kaz', 'Kazakh'],
+	['km', 'khm', 'Central Khmer'],
+	['ki', 'kik', 'Kikuyu; Gikuyu'],
+	['rw', 'kin', 'Kinyarwanda'],
+	['ky', 'kir', 'Kirghiz; Kyrgyz'],
+	['kv', 'kom', 'Komi'],
+	['kg', 'kon', 'Kongo'],
+	['ko', 'kor', 'Korean'],
+	['kj', 'kua', 'Kuanyama; Kwanyama'],
+	['ku', 'kur', 'Kurdish'],
+	['lo', 'lao', 'Lao'],
+	['la', 'lat', 'Latin'],
+	['lv', 'lav', 'Latvian'],
+	['li', 'lim', 'Limburgan; Limburger; Limburgish'],
+	['ln', 'lin', 'Lingala'],
+	['lt', 'lit', 'Lithuanian'],
+	['lb', 'ltz', 'Luxembourgish; Letzeburgesch'],
+	['lu', 'lub', 'Luba-Katanga'],
+	['lg', 'lug', 'Ganda'],
+	['mk', 'mac/mkd', 'Macedonian'],
+	['mh', 'mah', 'Marshallese'],
+	['ml', 'mal', 'Malayalam'],
+	['mi', 'mao/mri', 'Maori'],
+	['mr', 'mar', 'Marathi'],
+	['ms', 'may/msa', 'Malay'],
+	['mg', 'mlg', 'Malagasy'],
+	['mt', 'mlt', 'Maltese'],
+	['mn', 'mon', 'Mongolian'],
+	['na', 'nau', 'Nauru'],
+	['nv', 'nav', 'Navajo; Navaho'],
+	['nr', 'nbl', 'Ndebele, South; South Ndebele'],
+	['nd', 'nde', 'Ndebele, North; North Ndebele'],
+	['ng', 'ndo', 'Ndonga'],
+	['ne', 'nep', 'Nepali'],
+	['nn', 'nno', 'Norwegian Nynorsk; Nynorsk, Norwegian'],
+	['nb', 'nob', 'Bokmål, Norwegian; Norwegian Bokmål'],
+	['no', 'nor', 'Norwegian'],
+	['ny', 'nya', 'Chichewa; Chewa; Nyanja'],
+	['oc', 'oci', 'Occitan (post 1500); Provençal'],
+	['oj', 'oji', 'Ojibwa'],
+	['or', 'ori', 'Oriya'],
+	['om', 'orm', 'Oromo'],
+	['os', 'oss', 'Ossetian; Ossetic'],
+	['pa', 'pan', 'Panjabi; Punjabi'],
+	['fa', 'per/fas', 'Persian'],
+	['pi', 'pli', 'Pali'],
+	['pl', 'pol', 'Polish'],
+	['pt', 'por', 'Portuguese'],
+	['ps', 'pus', 'Pushto; Pashto'],
+	['qu', 'que', 'Quechua'],
+	['rm', 'roh', 'Romansh'],
+	['ro', 'rum/ron', 'Romanian; Moldavian; Moldovan'],
+	['rn', 'run', 'Rundi'],
+	['ru', 'rus', 'Russian'],
+	['sg', 'sag', 'Sango'],
+	['sa', 'san', 'Sanskrit'],
+	['si', 'sin', 'Sinhala; Sinhalese'],
+	['sk', 'slo/slk', 'Slovak'],
+	['sl', 'slv', 'Slovenian'],
+	['se', 'sme', 'Northern Sami'],
+	['sm', 'smo', 'Samoan'],
+	['sn', 'sna', 'Shona'],
+	['sd', 'snd', 'Sindhi'],
+	['so', 'som', 'Somali'],
+	['st', 'sot', 'Sotho, Southern'],
+	['es', 'spa', 'Spanish; Castilian'],
+	['sc', 'srd', 'Sardinian'],
+	['sr', 'srp', 'Serbian'],
+	['ss', 'ssw', 'Swati'],
+	['su', 'sun', 'Sundanese'],
+	['sw', 'swa', 'Swahili'],
+	['sv', 'swe', 'Swedish'],
+	['ty', 'tah', 'Tahitian'],
+	['ta', 'tam', 'Tamil'],
+	['tt', 'tat', 'Tatar'],
+	['te', 'tel', 'Telugu'],
+	['tg', 'tgk', 'Tajik'],
+	['tl', 'tgl', 'Tagalog'],
+	['th', 'tha', 'Thai'],
+	['bo', 'tib/bod', 'Tibetan'],
+	['ti', 'tir', 'Tigrinya'],
+	['to', 'ton', 'Tonga (Tonga Islands)'],
+	['tn', 'tsn', 'Tswana'],
+	['ts', 'tso', 'Tsonga'],
+	['tk', 'tuk', 'Turkmen'],
+	['tr', 'tur', 'Turkish'],
+	['tw', 'twi', 'Twi'],
+	['ug', 'uig', 'Uighur; Uyghur'],
+	['uk', 'ukr', 'Ukrainian'],
+	['ur', 'urd', 'Urdu'],
+	['uz', 'uzb', 'Uzbek'],
+	['ve', 'ven', 'Venda'],
+	['vi', 'vie', 'Vietnamese'],
+	['vo', 'vol', 'Volapük'],
+	['cy', 'wel/cym', 'Welsh'],
+	['wa', 'wln', 'Walloon'],
+	['wo', 'wol', 'Wolof'],
+	['xh', 'xho', 'Xhosa'],
+	['yi', 'yid', 'Yiddish'],
+	['yo', 'yor', 'Yoruba'],
+	['za', 'zha', 'Zhuang; Chuang'],
+	['zu', 'zul', 'Zulu'] ]
 
 /*
  * actions triggered by buttons in col2
@@ -576,7 +273,7 @@ var fromTo = function(){
 		var item = document.createElement('option');
 		item.value = from.options[i].value;
 		item.label = from.options[i].label;
-		item.id = from.options[i].id;
+		item.threeCode = from.options[i].threeCode;
 		item.appendChild(document.createTextNode(item.label));
 		to.appendChild(item);
 	}
@@ -617,9 +314,11 @@ var editLanguage = function(){
 				if ( validCode(field.value) ){
 					newOption.value = stripExtension(stripQuotes(toChange.value)) + '-' + field.value;
 					newOption.label = stripExtension(stripQuotes(toChange.label)) + '-' + field.value;
+					newOption.threeCode = stripExtension(stripQuotes(toChange.threeCode)) + '-' + field.value;
 				}else{
 					newOption.value = stripTrailingDash(stripExtension(stripQuotes(toChange.value)));
 					newOption.label = stripTrailingDash(stripExtension(stripQuotes(toChange.label)));
+					newOption.threeCode = stripTrailingDash(stripExtension(stripQuotes(toChange.threeCode)));
 				}
 
 				newOption.id = newOption.value;
@@ -651,23 +350,9 @@ var editLanguage = function(){
 	popup.show();
 }
 
-/*
- * My roots are too deep in procedural programming... generatePopup#() was the
- * best way I could think to handle only getting results from SPARQL queries
- * through callbacks
- */
-function generatePopup1(){
+function generatePopup(){
 	var userLangs = getPreferencesFromCookie();
-	if ( userLangs != null ) {
-		findLanguagesFromCodes(userLangs, 
-				function(){Ext.Msg.alert('Error', 'We were unable to retrieve language information. Another means should be implemented.');}, 
-				generatePopup2);
-	}else{
-		generatePopup2(null);
-	}
-}
 
-function generatePopup2(defaultLanguages){
 
 	// Create side-by-side lists of languages
 	var table = document.createElement('table');
@@ -693,8 +378,8 @@ function generatePopup2(defaultLanguages){
 	for ( var i=0; i<ds.length; i++ ){
 		var item = document.createElement('option');
 		item.value = ds[i][0];
-		item.label = ds[i][1];
-		item.id = item.value;
+		item.threeCode = ds[i][1];
+		item.label = ds[i][2];
 		item.appendChild(document.createTextNode(item.label));
 		fromList.appendChild(item);
 	}
@@ -743,53 +428,26 @@ function generatePopup2(defaultLanguages){
 	removeIcon.onclick = remove;
 	
 	// Right list - user choices
-
-	// first, convert defaultLanguages from json -> 2D-array
-	defaultsAsArray = new Array();
-	if ( defaultLanguages != null && defaultLanguages.results.bindings.length > 0 ){
-		for ( var i=0 ; i<defaultLanguages.results.bindings.length ; i++ ){
-			defaultsAsArray[i] = [defaultLanguages.results.bindings[i].code.value, defaultLanguages.results.bindings[i].lang.value];
-		}
-		// used for getting toList in the proper order
-		var cookie = getPreferencesFromCookie(); 
-		userLangsFromCookie = cookie.split(',');
-	}
-	else{
-		// we had no preferences stored in cookie
-		userLangsFromCookie = '';
-	}
-
-
 	var toList = document.createElement('select');
 	toList.size = '10';
 	toList.id = 'toList';
 	toList.ondblclick = editLanguage;
 
-	// In getting the full language names, we lost the user's order preference
-	// iterate over their preferences and compare with the code/language pairs
-	// that we have.
-	ordered_iteration:
-	for ( var i=0; i<userLangsFromCookie.length; i++ ){
-		var code = stripExtension(stripQuotes(userLangsFromCookie[i]));
-		var extension = getExtension(stripQuotes(userLangsFromCookie[i]));
-		for ( var j=0; j<defaultsAsArray.length; j++){
+	for ( var i=0; i<userLangs.length; i++ ){
+		var code = stripExtension(stripQuotes(userLangs[i][0]));
+		//var extension = getExtension(stripQuotes(userLangs[i][0]));
 
-			if ( defaultsAsArray[j][0] == code ){
-				var item = document.createElement('option');
-				item.value = defaultsAsArray[j][0];
-				item.label = defaultsAsArray[j][1];
-				if ( extension != '' ){
-					item.value += '-'+extension;
-					item.label += '-'+extension;
-				}
-				item.id = item.label;
-				item.appendChild(document.createTextNode(item.label));
-				toList.appendChild(item);
-
-				continue ordered_iteration;
-			}
-		}
-		Ext.Msg.alert('Error: Couldn\'t find code \'' + code + "'");
+		var item = document.createElement('option');
+		item.value = stripQuotes(userLangs[i][1]);
+		item.threeCode = stripQuotes(userLangs[i][0]);
+		item.label = stripQuotes(userLangs[i][2]);
+	//	if ( extension != '' ){
+//			item.value += '-'+extension;
+	//		item.threeCode += '-'+extension;
+//			item.label += '-'+extension;
+	//	}
+		item.appendChild(document.createTextNode(item.label));
+		toList.appendChild(item);
 	}
 
 	col3.appendChild(toList);
@@ -802,18 +460,35 @@ function generatePopup2(defaultLanguages){
         buttons: [{
             text: 'Save',
             handler: function(){
-						var cookieDeclare = 'languagePreferences='
+						var codesCookie = 'languagePreferences_codes=';
 						for( var i=0; i<toList.options.length; i++){
-							cookieDeclare += "'" + toList.options[i].value + "',";
+							codesCookie += "'" + stripQuotes(toList.options[i].value) + "',";
 						}
-						cookieDeclare = cookieDeclare.substring(0, cookieDeclare.length - 1);
+						codesCookie = codesCookie.substring(0, codesCookie.length - 1);
+
+						var langsCookie = 'languagePreferences_langs=';
+						for( var i=0; i<toList.options.length; i++){
+							langsCookie += "'" + stripQuotes(toList.options[i].label) + "',";
+						}
+						langsCookie = langsCookie.substring(0, langsCookie.length - 1);
+
+						var threeCodesCookie = 'languagePreferences_threeCodes=';
+						for( var i=0; i<toList.options.length; i++){
+							threeCodesCookie += "'" + stripQuotes(toList.options[i].threeCode) + "',";
+						}
+						threeCodesCookie = threeCodesCookie.substring(0, threeCodesCookie.length - 1);
 
 						var cookieDate = new Date();
-						// we will give this cookie a year
+						// we will give the cookies a year
 						cookieDate.setTime(cookieDate.getTime()+(365*24*60*60*1000));
-						cookieDeclare += '; expires=' + cookieDate.toGMTString();
+						codesCookie += '; expires=' + cookieDate.toGMTString();
+						langsCookie += '; expires=' + cookieDate.toGMTString();
+						threeCodesCookie += '; expires=' + cookieDate.toGMTString();
 
-						document.cookie = cookieDeclare;
+						document.cookie = codesCookie;
+						document.cookie = langsCookie;
+						document.cookie = threeCodesCookie;
+
 						popup.close();
             }
         }, {
@@ -841,9 +516,25 @@ function generatePopup2(defaultLanguages){
 }
 
 /**
- * finds the languages for a given array language code - <code>values</code>
+ * finds the languages for a given array of alpha-2 language codes
  */
-function findLanguagesFromCodes(codes, onFail, onSuccess){
+function findLanguagesFrom2Codes(codes, onFail, onSuccess){
+	asArray = codes.split(',');
+
+	queryStr = 'PREFIX : <http://local-language-codes#> SELECT ?lang ?code WHERE {?b :language ?lang. ?b :code ?code.';
+	for ( var i=0; i<asArray.length; i++){
+		queryStr += '{?b :2code "' + stripExtension(stripQuotes(asArray[i])) + '".} UNION ';
+	}
+	queryStr = queryStr.substring(0, queryStr.length - 7) + '}';
+
+	query = new Heml.SparqlQuery('http://localhost:2030/sparql/read', queryStr, onFail, onSuccess);
+	query.performQuery();
+}
+
+/**
+ * finds the languages for a given array of alpha-3 language codes
+ */
+function findLanguagesFrom3Codes(codes, onFail, onSuccess){
 	asArray = codes.split(',');
 
 	queryStr = 'PREFIX : <http://local-language-codes#> SELECT ?lang ?code WHERE {?b :language ?lang. ?b :code ?code.';

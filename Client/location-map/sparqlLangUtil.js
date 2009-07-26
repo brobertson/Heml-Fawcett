@@ -113,12 +113,23 @@ function query_BestLabel(subject, endpoint, onFail, onSuccess){
  */
 function getPreferencesFromCookie(){
 	var cookies = document.cookie.split(';');
+	var codes, langs, threeCodes;
 	for(var i=0 ; i < cookies.length ; i++) {
 		var c = cookies[i];
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf('languagePreferences=') == 0) return c.substring(20,c.length);
+		if (c.indexOf('languagePreferences_codes=') == 0) {codes = c.substring(26,c.length).split(',') };
+		if (c.indexOf('languagePreferences_langs=') == 0) {langs = c.substring(26,c.length).split(',') };
+		if (c.indexOf('languagePreferences_threeCodes=') == 0) {threeCodes = c.substring(31,c.length).split(',') };
 	}
-	return null;
+	// We treat missing any of the three cookies as not having any cookie at all
+	if ( codes == null || langs == null || threeCodes == null )
+		return [];
+
+	var returnArray = new Array();
+	for ( var i=0; i<codes.length; i++ ){
+		returnArray[i] = [codes[i], threeCodes[i], langs[i]];
+	}
+	return returnArray;
 }
 
 function init(){
