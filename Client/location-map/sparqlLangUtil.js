@@ -117,13 +117,23 @@ function getPreferencesFromCookie(){
 	for(var i=0 ; i < cookies.length ; i++) {
 		var c = cookies[i];
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf('languagePreferences_codes=') == 0) {codes = c.substring(26,c.length).split(',') };
-		if (c.indexOf('languagePreferences_langs=') == 0) {langs = c.substring(26,c.length).split(',') };
-		if (c.indexOf('languagePreferences_threeCodes=') == 0) {threeCodes = c.substring(31,c.length).split(',') };
+		if (c.indexOf('languagePreferences_codes=') == 0) {codes = c.substring(26,c.length).split("','") };
+		if (c.indexOf('languagePreferences_langs=') == 0) {langs = c.substring(26,c.length).split("','") };
+		if (c.indexOf('languagePreferences_threeCodes=') == 0) {threeCodes = c.substring(31,c.length).split("','") };
 	}
 	// We treat missing any of the three cookies as not having any cookie at all
 	if ( codes == null || langs == null || threeCodes == null )
 		return [];
+
+	// our first entries will have a leading "'"
+	codes[0] = codes[0].substring(1);
+	langs[0] = langs[0].substring(1);
+	threeCodes[0] = threeCodes[0].substring(1);
+
+	codes[codes.length-1] = codes[codes.length-1].substring(0, codes.length);
+	langs[langs.length-1] = langs[langs.length-1].substring(0, langs.length);
+	threeCodes[threeCodes.length-1] = threeCodes[threeCodes.length-1].substring(0, threeCodes.length);
+
 
 	var returnArray = new Array();
 	for ( var i=0; i<codes.length; i++ ){

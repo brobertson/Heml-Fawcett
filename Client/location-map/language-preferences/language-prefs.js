@@ -595,7 +595,7 @@ function getExtension(s){
  * empty string.
  */
 function validCode(code){
-	return /[a-zA-Z]+/.test(code);
+	return /^[a-zA-Z]+$/.test(code);
 }
 
 function stripTrailingDash(s){

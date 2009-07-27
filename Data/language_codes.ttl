@@ -1,5 +1,8 @@
-# included for use in processing user's language preferences. We can quickly
-# access a langage based on its ISO code
+# !!!!---- This file is no longer needed to process language preferences. All
+# required information is available locally on clients machine. -----!!!!
+#
+# Included for use in processing user's language preferences. We can quickly
+# access a langage based on its ISO code.
 #
 # Typical usage:
 # ----------
