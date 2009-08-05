@@ -113,32 +113,43 @@ function query_BestLabel(subject, endpoint, onFail, onSuccess){
  */
 function getPreferencesFromCookie(){
 	var cookies = document.cookie.split(';');
-	var codes, langs, threeCodes;
+	var codes, langs, twoCodes;
 	for(var i=0 ; i < cookies.length ; i++) {
-		var c = cookies[i];
+		//var c = decodeURIComponent(cookies[i]);
+		var c = encodeFromCookie(cookies[i]);
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf('languagePreferences_codes=') == 0) {codes = c.substring(26,c.length).split("','") };
-		if (c.indexOf('languagePreferences_langs=') == 0) {langs = c.substring(26,c.length).split("','") };
-		if (c.indexOf('languagePreferences_threeCodes=') == 0) {threeCodes = c.substring(31,c.length).split("','") };
+		if (c.indexOf('HEML_languagePreferences_codes=') == 0) {
+			codes = c.substring(31,c.length).split("','") 
+		};
+		if (c.indexOf('HEML_languagePreferences_langs=') == 0) {
+			langs = c.substring(31,c.length).split("','") 
+		};
+		// We might have an empty alpha-2 code
+		if (c.indexOf('HEML_languagePreferences_twoCodes=') == 0) {
+			twoCodes = c.substring(34,c.length).split("','") 
+		};
 	}
-	// We treat missing any of the three cookies as not having any cookie at all
-	if ( codes == null || langs == null || threeCodes == null )
+
+	
+	// We treat missing any of the three crumbs as not having any cookie at all
+	if ( codes == null || langs == null || twoCodes == null )
 		return [];
-
-	// our first entries will have a leading "'"
-	codes[0] = codes[0].substring(1);
-	langs[0] = langs[0].substring(1);
-	threeCodes[0] = threeCodes[0].substring(1);
-
-	codes[codes.length-1] = codes[codes.length-1].substring(0, codes.length);
-	langs[langs.length-1] = langs[langs.length-1].substring(0, langs.length);
-	threeCodes[threeCodes.length-1] = threeCodes[threeCodes.length-1].substring(0, threeCodes.length);
-
 
 	var returnArray = new Array();
 	for ( var i=0; i<codes.length; i++ ){
-		returnArray[i] = [codes[i], threeCodes[i], langs[i]];
+		returnArray[i] = [codes[i], twoCodes[i], langs[i]];
 	}
+	// fist elements have a leading "'"
+	returnArray[0][0] = returnArray[0][0].substring(1);
+	returnArray[0][1] = returnArray[0][1].substring(1);
+	returnArray[0][2] = returnArray[0][2].substring(1);
+
+	// last elements have a trailing "'"
+	var last = returnArray.length - 1; 
+	returnArray[last][0] = returnArray[last][0].substring(0,returnArray[last][0].length - 1);
+	returnArray[last][1] = returnArray[last][1].substring(0,returnArray[last][1].length - 1);
+	returnArray[last][2] = returnArray[last][2].substring(0,returnArray[last][2].length - 1);
+
 	return returnArray;
 }
 
