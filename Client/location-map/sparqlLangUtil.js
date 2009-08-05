@@ -63,26 +63,15 @@ function query_BestLanguageMatch(subject, predicate, endpoint, onFail, onSuccess
 	}
 
 	var langPrefs = getPreferencesFromCookie();
-	if ( langPrefs == null ){//TODO finish this thought
-		getLangs(subject, predicate, endpoint, onFail, function(json){
-				var msg = 'You have no language preferences. These are your options ';
-				for ( var i=0; i<json.results.bindings.length; i++ ){
-					msg += ' # ' + json.results.bindings[i].lang.value;
-				}
-				alert(msg);
-				});
-
-	}else{
-		//get into form that will please SPARQL
-		langPrefs = langPrefs.replace(/','/g,',');
-		langPrefs = langPrefs.substring(1, langPrefs.length-1);
-
-		var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "' + langPrefs + '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' + langPrefs + '")) LIMIT 1';
-
-		alert(queryStr);
-		var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
-		query.performQuery();
+	if ( langPrefs == null ){
+		Ext.Msg.alert('Warning!', 'You have no language preferences. Using default list of some common lanugages.');
+		langPrefs = defaultLanguages();
 	}
+
+	var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "' + langPrefs + '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' + langPrefs + '")) LIMIT 1';
+
+	var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
+	query.performQuery();
 }
 
 /**
@@ -153,16 +142,29 @@ function getPreferencesFromCookie(){
 	return returnArray;
 }
 
+function mySuccess(json){
+	console.dir(json);
+}
+
+/**
+ * The semi-colon is a pain
+ */
+function encodeToCookie(s){ return s.replace( /;/g, '%3B' ); }
+function encodeFromCookie(s){ return s.replace( /%3B/g, ';' ); }
+
+function defaultLanguages(){
+	return new Array([
+			['eng', 'en', 'English'],
+			['fre/fra', 'fr', 'French'],
+			['spa', 'es', 'Spanish%3B Castilian'],
+			['ger/deu', 'de', 'German'],
+			['ita', 'it', 'Italian']
+			]);
+}
+
 function init(){
-//	document.cookie = "languagePreferences='dd','fd','sn','se','ls'";
-
-//	getLangs(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, function(json){
-//			console.dir(json);
-//			});
-
-
-//	getLangs(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, function(json){
-//			alert('ok');
-//			console.dir(json);
-//		});
+	document.cookie="HEML_languagePreferences_codes='eng-us','lat','fre/fra'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
+	document.cookie="HEML_languagePreferences_langs='English-us','Latin','French'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
+	document.cookie="HEML_languagePreferences_twoCodes='en-us','la','fr'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
+	query_BestLabel(':s3', 'http://localhost:2030/sparql/read', onHemlFailure, mySuccess);
 }
