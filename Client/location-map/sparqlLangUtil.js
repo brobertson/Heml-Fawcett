@@ -161,10 +161,10 @@ function defaultLanguages(){
 			['ita', 'it', 'Italian']
 			]);
 }
-
+/*
 function init(){
 	document.cookie="HEML_languagePreferences_codes='eng-us','lat','fre/fra'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
 	document.cookie="HEML_languagePreferences_langs='English-us','Latin','French'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
 	document.cookie="HEML_languagePreferences_twoCodes='en-us','la','fr'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
 	query_BestLabel(':s3', 'http://localhost:2030/sparql/read', onHemlFailure, mySuccess);
-}
+}*/

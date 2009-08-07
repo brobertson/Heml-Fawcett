@@ -27,7 +27,7 @@ Ext.onReady(function(){
 
 	var displayButton = new Ext.Button({
 		text: "Edit Preferred Languages",
-		renderTo: 'popupTrigger',
+		renderTo: 'languagePreferences',
 		handler: function(){
 			generatePopup();
 		}
@@ -785,7 +785,11 @@ function generatePopup(){
 						document.cookie = codesCookie;
 						document.cookie = langsCookie;
 						document.cookie = twoCodesCookie;
-
+/*
+						console.info(codesCookie);
+						console.info(langsCookie);
+						console.info(twoCodesCookie);
+*/
 						popup.close();
             }
         }, {
@@ -810,38 +814,6 @@ function generatePopup(){
 
 	popup.show();
 
-}
-
-/**
- * finds the languages for a given array of alpha-2 language codes
- */
-function findLanguagesFrom2Codes(codes, onFail, onSuccess){
-	asArray = codes.split(',');
-
-	queryStr = 'PREFIX : <http://local-language-codes#> SELECT ?lang ?code WHERE {?b :language ?lang. ?b :code ?code.';
-	for ( var i=0; i<asArray.length; i++){
-		queryStr += '{?b :2code "' + stripExtension(stripQuotes(asArray[i])) + '".} UNION ';
-	}
-	queryStr = queryStr.substring(0, queryStr.length - 7) + '}';
-
-	query = new Heml.SparqlQuery('http://localhost:2030/sparql/read', queryStr, onFail, onSuccess);
-	query.performQuery();
-}
-
-/**
- * finds the languages for a given array of alpha-3 language codes
- */
-function findLanguagesFrom3Codes(codes, onFail, onSuccess){
-	asArray = codes.split(',');
-
-	queryStr = 'PREFIX : <http://local-language-codes#> SELECT ?lang ?code WHERE {?b :language ?lang. ?b :code ?code.';
-	for ( var i=0; i<asArray.length; i++){
-		queryStr += '{?b :split "' + stripExtension(stripQuotes(asArray[i])) + '".} UNION ';
-	}
-	queryStr = queryStr.substring(0, queryStr.length - 7) + '}';
-
-	query = new Heml.SparqlQuery('http://localhost:2030/sparql/read', queryStr, onFail, onSuccess);
-	query.performQuery();
 }
 
 /**
@@ -901,9 +873,3 @@ function stripTrailingDash(s){
 	if ( s.charAt(s.length-1) == '-' ) { return s.substring(0, s.length-1); }
 	else { return s; }
 }
-
-/**
- * The semi-colon is a pain
- */
-function encodeToCookie(s){ return s.replace(';','%3B'); }
-function encodeFromCookie(s){ return s.replace('%3B', ';'); }
