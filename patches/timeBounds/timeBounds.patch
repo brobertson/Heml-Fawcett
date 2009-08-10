@@ -340,7 +340,7 @@ diff -ruN /home/ajwood/Desktop/Jena-2.5.7/src/com/hp/hpl/jena/graph/impl/HemlDat
 +     */
 +    public void notifyAddGraph( Graph g, Graph added ){
 +		Log log = LogFactory.getLog(HemlDateListener.class);
-+		log.warn("notifyAddGraph( Graph g, Grapg added ) not implemented - "
++		log.warn("notifyAddGraph( Graph g, Graph added ) not implemented - "
 +				+ "earliest and latest times not added.");
 +	}
 +    
