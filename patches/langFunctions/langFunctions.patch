@@ -34,8 +34,8 @@ Instructions to apply this patch:
 The new ARQ jar file will now be in ARQ's lib folder.
 diff -ruN src-original/org/heml/sparql/LangPrefsFilter.java src/org/heml/sparql/LangPrefsFilter.java
 --- src-original/org/heml/sparql/LangPrefsFilter.java	1969-12-31 20:00:00.000000000 -0400
-+++ src/org/heml/sparql/LangPrefsFilter.java	2009-07-24 14:41:23.000000000 -0300
-@@ -0,0 +1,51 @@
++++ src/org/heml/sparql/LangPrefsFilter.java	2009-08-10 12:41:04.000000000 -0300
+@@ -0,0 +1,61 @@
 +package org.heml.sparql;
 +
 +import com.hp.hpl.jena.sparql.expr.ExprEvalException;
@@ -56,30 +56,40 @@ diff -ruN src-original/org/heml/sparql/LangPrefsFilter.java src/org/heml/sparql/
 +
 +	/**
 +	 * @param v A literal node with a language tag.
-+	 * @param langs String representing preference of language. This must be a
-+	 * string of language codes separated by a comma and 0 or more whitespace
-+	 * characters. 
++	 * @param langs String representing preference of language. We must get
++	 * langs as a string of alpha-3 and alpha-2 language codes. An entry in the
++	 * string is of the following form:
++	 *    "&lt;alpha-3 code&gt;[/&lt;alpha-3 code&lt;];&lt;alpha-2 code&lt;"
++	 * Entries are comma-separated.
 +	 */
 +	public NodeValue exec(NodeValue v, NodeValue langs) {
 +
-+		String[] langPrefs = langs.asString().split("\\s*,\\s*");
-+		String[] splitCode;
++		String[] preferenceElements = langs.asString().split("\\s*,\\s*");
++
++		// [*][]: preference of language (lower index -> higher preference)
++		// [][*]: 0 -> 3-code
++		//        1 -> alternative 3-code (if exists)
++		//        2 -> 2-code
++		//        3 -> extension (if exists)
++		String[][] splitPreferences = new String[preferenceElements.length][4];
 +
 +		// split codes
-+		String[][] splitPreferences = new String[langPrefs.length][2];
-+		for ( int i=0; i<langPrefs.length; i++){
-+			splitCode = Util.splitCode(langPrefs[i]);
-+			splitPreferences[i][0] = splitCode[0];
-+			splitPreferences[i][1] = splitCode[1];
++		for ( int i=0; i<splitPreferences.length; i++){
++			splitPreferences[i] = Util.splitPreferenceElement(preferenceElements[i]);
 +		}
 +
-+		// get code to match
-+		String code = NodeValue.toNode(v).getLiteralLanguage();
-+		splitCode = Util.splitCode(code);
++		// get code we are trying to match
++		String match = NodeValue.toNode(v).getLiteralLanguage();
++		String[] splitMatch = Util.splitCode(match);
 +
-+		for ( int i=0; i<langPrefs.length; i++){
-+			if ( splitPreferences[i][0].equals(splitCode[0]) && 
-+					( splitPreferences[i][1].equals("") || splitPreferences[i][1].equals(splitCode[1]) )){
++		for ( int i=0; i<splitPreferences.length; i++){
++			// if ( (our preference's base matches the base of out to-match code)
++			//    AND (we have no extenstion OR the extensions match) )
++			if ( ( splitPreferences[i][0].equals(splitMatch[0]) ||
++				   splitPreferences[i][1].equals(splitMatch[0]) ||
++				   splitPreferences[i][2].equals(splitMatch[0]) ) && 
++				 ( splitPreferences[i][3].equals("") || 
++				   splitPreferences[i][3].equals(splitMatch[1]) )){
 +				return NodeValue.makeBoolean(true);
 +					}
 +		}
@@ -90,8 +100,8 @@ diff -ruN src-original/org/heml/sparql/LangPrefsFilter.java src/org/heml/sparql/
 Binary files src-original/org/heml/sparql/.LangPrefsFilter.java.swp and src/org/heml/sparql/.LangPrefsFilter.java.swp differ
 diff -ruN src-original/org/heml/sparql/LangPrefsOrder.java src/org/heml/sparql/LangPrefsOrder.java
 --- src-original/org/heml/sparql/LangPrefsOrder.java	1969-12-31 20:00:00.000000000 -0400
-+++ src/org/heml/sparql/LangPrefsOrder.java	2009-07-24 14:41:24.000000000 -0300
-@@ -0,0 +1,49 @@
++++ src/org/heml/sparql/LangPrefsOrder.java	2009-08-10 11:42:04.000000000 -0300
+@@ -0,0 +1,57 @@
 +package org.heml.sparql;
 +
 +import com.hp.hpl.jena.sparql.expr.ExprEvalException;
@@ -115,57 +125,126 @@ diff -ruN src-original/org/heml/sparql/LangPrefsOrder.java src/org/heml/sparql/L
 +	 * characters. 
 +	 */
 +	public NodeValue exec(NodeValue v, NodeValue langs) {
-+		
-+		String[] langPrefs = langs.asString().split("\\s*,\\s*");
-+		String[] splitCode;
++
++		String[] preferenceElements = langs.asString().split("\\s*,\\s*");
++
++		// [*][]: preference of language (lower index -> higher preference)
++		// [][*]: 0 -> 3-code
++		//        1 -> alternative 3-code (if exists)
++		//        2 -> 2-code
++		//        3 -> extension (if exists)
++		String[][] splitPreferences = new String[preferenceElements.length][4];
 +
 +		// split codes
-+		String[][] splitPreferences = new String[langPrefs.length][2];
-+		for ( int i=0; i<langPrefs.length; i++){
-+			splitCode = Util.splitCode(langPrefs[i]);
-+			splitPreferences[i][0] = splitCode[0];
-+			splitPreferences[i][1] = splitCode[1];
++		for ( int i=0; i<splitPreferences.length; i++){
++			splitPreferences[i] = Util.splitPreferenceElement(preferenceElements[i]);
 +		}
 +
-+		Node literal = NodeValue.toNode(v);
-+		String code = NodeValue.toNode(v).getLiteralLanguage();
-+		splitCode = Util.splitCode(code);
++		// get code we are trying to match
++		String match = NodeValue.toNode(v).getLiteralLanguage();
++		String[] splitMatch = Util.splitCode(match);
 +
-+		for ( int i=0; i<langPrefs.length; i++){
-+			if ( splitPreferences[i][0].equals(splitCode[0]) && 
-+					( splitPreferences[i][1].equals("") || splitPreferences[i][1].equals(splitCode[1]) )){
++		for ( int i=0; i<splitPreferences[0].length; i++){
++			// if ( (our preference's base matches the base of out to-match code)
++			//    AND (we have no extenstion OR the extensions match) )
++			if ( ( splitPreferences[i][0].equals(splitMatch[0]) ||
++				   splitPreferences[i][1].equals(splitMatch[0]) ||
++				   splitPreferences[i][2].equals(splitMatch[0]) ) && 
++				 ( splitPreferences[i][3].equals("") || 
++				   splitPreferences[i][3].equals(splitMatch[1]) )){
 +				return NodeValue.makeInteger(i);
 +					}
 +		}
-+		return NodeValue.makeInteger(langPrefs.length);
++		return NodeValue.makeInteger(splitPreferences.length);
 +	}
 +}
 +
 Binary files src-original/org/heml/sparql/.LangPrefsOrder.java.swp and src/org/heml/sparql/.LangPrefsOrder.java.swp differ
 diff -ruN src-original/org/heml/sparql/Util.java src/org/heml/sparql/Util.java
 --- src-original/org/heml/sparql/Util.java	1969-12-31 20:00:00.000000000 -0400
-+++ src/org/heml/sparql/Util.java	2009-07-24 14:41:01.000000000 -0300
-@@ -0,0 +1,22 @@
++++ src/org/heml/sparql/Util.java	2009-08-10 12:43:55.000000000 -0300
+@@ -0,0 +1,84 @@
 +package org.heml.sparql;
 +
 +public class Util{
++
 +	/**
-+	 * Splits a code into a base/extension pair. Will use the empty string if
-+	 * there is no extension.
++	 * Splits a code into a base/extension pair. If no extension exists, we
++	 * use empty string.
 +	 */
 +	public static String[] splitCode(String code){
-+		String[] returnArray = new String[2];
++		if ( code.indexOf('-') > 0 ) return code.split("-");
 +
-+		int dashIndex = code.indexOf('-');
-+		if ( dashIndex >= 0 ) {
-+			returnArray[0] = code.substring(0, dashIndex);
-+			returnArray[1] = code.substring(dashIndex + 1);
++		else return new String[] {code, ""};
++	}
++
++	/**
++	 * Splits a code into a base/extension pairs. Will use the empty string if
++	 * there is no extension.
++	 * @param code A language preference entry of the following form:
++	 *    "&lt;alpha-3 code&gt;[/&lt;alpha-3 code&lt;];&lt;alpha-2 code&lt;"
++	 * @return The above information split a length-3 array of length-2 string
++	 * arrays, making it easier to work with. The returned array is of the following form:
++	 * [0] - The alpha-3 code
++	 * [1] - The alternative alpha-3 code (if exists)
++	 * [2] - The alpha-2 code
++	 * [3] - The extension (if exists)
++	 * Note that there is little sanity checking - all dialect extensions should
++	 * be the same.
++	 */
++	public static String[] splitPreferenceElement(String codes){
++		String[] returnArray = new String[4];
++
++		// get alpha-3(s) in own slot, and alpha-2 in own slot
++		String[] lengthSplit = codes.split(";");
++
++		// ====== handle alpha-3s ======
++		String [] alpha3 = new String[2];
++		if ( lengthSplit[0].indexOf('/') > 0 ){
++			String[] alpha3s = lengthSplit[0].split("/");
++			alpha3[0] = alpha3s[0];
++			alpha3[1] = alpha3s[1];
 +		}
 +		else{
-+			returnArray[0] = code;
-+			returnArray[1] = "";
++			alpha3[0] = lengthSplit[0];
++			alpha3[1] = "";
 +		}
++
++		// strip and store extension
++		int dashIndex = alpha3[0].indexOf('-');
++		if ( dashIndex > 0 ){
++			returnArray[0] = alpha3[0].substring(0, dashIndex);
++			returnArray[3] = alpha3[0].substring(dashIndex + 1);
++		}
++		else{
++			returnArray[0] = alpha3[0];
++			returnArray[3] = "";
++		}
++
++		// TODO figure out what to do when extensions don't match
++		dashIndex = alpha3[1].indexOf('-');
++		if ( dashIndex > 0 ){
++			returnArray[1] = alpha3[1].substring(0, dashIndex);
++		}
++		else{
++			returnArray[1] = alpha3[1];
++		}
++
++		// ====== handle alpha-2 ======
++		if ( lengthSplit[1].equals("") ){
++			returnArray[2] = "";
++		}
++		else{
++			// TODO figure out what to do when extensions don't match
++			dashIndex = lengthSplit[1].indexOf('-');
++			if ( dashIndex > 0 ){
++				returnArray[2] = lengthSplit[1].substring(0, dashIndex);
++			}
++			else{
++				returnArray[2] = lengthSplit[1];
++			}
++		}
++
 +		return returnArray;
 +	}
 +}
-Binary files src-original/org/heml/sparql/.Util.java.swp and src/org/heml/sparql/.Util.java.swp differ
