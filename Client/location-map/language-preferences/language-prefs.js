@@ -32,6 +32,22 @@ Ext.onReady(function(){
 			generatePopup();
 		}
 	});
+
+	var testButton = new Ext.Button({
+		text: 'Perform test',
+		renderTo: 'languagePreferences',
+		handler: function(){
+			query_BestLanguageMatch(':subject', ':predicate',
+				'http://heml.mta.ca/joseki3/sparql/read', 
+				function(){
+					alert('filed!!');
+				}, 
+				function(json){
+					console.dir(json);
+				}
+			); 
+		}
+	});
 });
 
 //2D array with ISO 639-1 codes, ISO 639-2 codes, and languages
@@ -686,7 +702,7 @@ function generatePopup(){
 
 	// Center column of control buttons
 	// ICON HELL!!! 
-	var imagePath = './images/';
+	var imagePath = './language-preferences/images/';
 	var iconUp = imagePath + 'up2.gif';
 	var iconDown = imagePath + 'down2.gif';
 	var iconLeft = imagePath + 'left2.gif';
@@ -736,8 +752,8 @@ function generatePopup(){
 	for ( var i=0; i<userLangs.length; i++ ){
 		var item = document.createElement('option');
 
-		item.value = stripQuotes(userLangs[i][1]);
-		item.twoCode = stripQuotes(userLangs[i][0]);
+		item.value = stripQuotes(userLangs[i][0]);
+		item.twoCode = stripQuotes(userLangs[i][1]);
 		item.label = stripQuotes(userLangs[i][2]);
 
 		item.appendChild(document.createTextNode(item.label));
@@ -781,6 +797,8 @@ function generatePopup(){
 						codesCookie += '; expires=' + cookieDate.toGMTString();
 						langsCookie += '; expires=' + cookieDate.toGMTString();
 						twoCodesCookie += '; expires=' + cookieDate.toGMTString();
+
+						alert(twoCodesCookie);
 
 						document.cookie = codesCookie;
 						document.cookie = langsCookie;

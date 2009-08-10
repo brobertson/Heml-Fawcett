@@ -68,7 +68,27 @@ function query_BestLanguageMatch(subject, predicate, endpoint, onFail, onSuccess
 		langPrefs = defaultLanguages();
 	}
 
-	var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "' + langPrefs + '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' + langPrefs + '")) LIMIT 1';
+	var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlFunc: <java:org.heml.sparql.> SELECT ?aa WHERE { '+subject+' '+predicate+' ?aa . FILTER(hemlFunc:LangPrefsFilter(?aa, "';
+
+	for ( var i=0; i<langPrefs.length; i++ ){
+		queryStr += langPrefs[i][0] + ';' + langPrefs[i][1] + ',';
+	}
+	// get rid of trailing comma
+	queryStr = queryStr.substring(0, queryStr.length - 1);
+
+	queryStr += '"))}ORDER BY(hemlFunc:LangPrefsOrder(?aa, "' 
+
+	for ( var i=0; i<langPrefs.length; i++ ){
+		queryStr += langPrefs[i][0] + ';' + langPrefs[i][1] + ',';
+	}
+	// get rid of trailing comma
+	queryStr = queryStr.substring(0, queryStr.length - 1);
+		
+	queryStr += '")) LIMIT 1';
+
+	console.info(queryStr);
+
+	alert(queryStr);
 
 	var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
 	query.performQuery();
@@ -90,7 +110,14 @@ function query_BestLabel(subject, endpoint, onFail, onSuccess){
 			}
 			else{
 				var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlRDF: <http://www.heml.org/rdf/2003-09-17/heml#> SELECT ?aa WHERE { :s3 hemlRDF:originalLanguage ?aa }';
-				var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
+				var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, function(json){
+					if ( json.results.bindings.length == 1 ){
+						onSuccess(json);
+					}
+					else{
+						Ext.msg.alert("Could not find a result matching language preferences.");
+					}
+					});
 				query.performQuery();
 			}
 		});
@@ -98,7 +125,11 @@ function query_BestLabel(subject, endpoint, onFail, onSuccess){
 
 /**
  * Retuns language preferences as stored in cookie. If none were found, returns
- * null.
+ * null.<br/>
+ * We get preferences in the form of an array. Languages are more preferred as
+ * they approach the front of the array. Each element of the array is of the
+ * form "<alpha-3 code>[/<alpha-2 code>], <alpha-2 code>, <English name for
+ * language>"
  */
 function getPreferencesFromCookie(){
 	var cookies = document.cookie.split(';');
@@ -161,10 +192,10 @@ function defaultLanguages(){
 			['ita', 'it', 'Italian']
 			]);
 }
-/*
+
 function init(){
 	document.cookie="HEML_languagePreferences_codes='eng-us','lat','fre/fra'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
 	document.cookie="HEML_languagePreferences_langs='English-us','Latin','French'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
 	document.cookie="HEML_languagePreferences_twoCodes='en-us','la','fr'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
-	query_BestLabel(':s3', 'http://localhost:2030/sparql/read', onHemlFailure, mySuccess);
-}*/
+	query_BestLanguageMatch(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, mySuccess);
+}
