@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XPATH Demo</title>
+
+<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
+<script type="text/javascript" language="javascript" src="xpather.js"></script>
+
+<script type="text/javascript" language="javascript">
+
+// since we always want our xpath to be relative to be absolute, this will
+// do us just fine. The functions call ones in xpather.js
+function simpleGenerateXPath(aNode) {
+    prepareKwds();
+    return generateXPath(aNode, null, null, prepareKwds());
+}
+
+function getResult(event) {
+    //netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect'); 
+    //var kwds;
+    //prepareKwds();
+    var path = simpleGenerateXPath(event.target);
+    alert("my you're alert: " + path);
+}
+
+function getRange(event) {
+    var userSelection;
+    if (window.getSelection) {
+	userSelection = window.getSelection();
+        }
+     else if (document.selection) { // should come last; Opera!
+	userSelection = document.selection.createRange();
+     }
+     var startPath = simpleGenerateXPath(userSelection.anchorNode);
+     var endPath = simpleGenerateXPath(userSelection.focusNode);
+     alert("start: " + startPath + " and end: " + endPath);
+}
+
+
+</script>
+</head>
+<body>
+<h1>The Heml Project's 'Libenter': A Social Tagging Experiment For Ancient History</h1>
+<h2>Introduction to 'Libenter'</h2>
+<p>'Libenter' is a social tagging webclient tool for ancient history. It will simplify and widely distribute the task of associating online primary and secondary sources with the ancient historical events for which they provide evidence, discuss, refute and corroborate.</p>
+<p>Using the Heml/RDF schema and a wiki environment, the Heml Project is  building a database of widely-accepted historical events in ancient Greek and Roman history. Of greater use to the larger scholarly community, however, would be if the ever-growing online secondary and primary materials were to be associated with the events encoded in this database. This would provide an historical linking between documents and authors discussing the same event in disparate materials.
+<p>Because the sheer amount of materials is daunting, this task cannot be undertaken by a small team of scholars; it requires two approaches. The solution to this problem is to data-mine the events: the automated harvesting of references to cannonical events.</p>
+<p>However, a more simple solution, and one which will, in any case, aid a data-mining effort, is to make this a task any user can do, through the 'social tagging' paradigm of information gathering. It is this second approach that 'Libenter' applies.</p>
+<h2>Technical Details</h2>
+<h3>Demonstration of XPath Component</h3>
+<p>Libenter requires the ability to make reference to a small portion of a webpage, since many events could be referred to in a single page. Recent work on the Firefox browser makes it easy to uniquly identify the beginning and end of a range of text in a language called 'xpath', which makes unique reference to the elements within a webpage. This means that, as long as that text is generously marked up (which is the case in texts served by digital libraries and the xhtml created by Orcopus), the resolution of our reference should be acceptable.</p>
+<p>The following button will create a alertbox that indicates the xpath references for the beginning and ending elements of the browser's selected text. To use it, select some range of text in the browser window, as if you were selecting text in word processing; then click on the button.</p>
+<button onmouseup="getRange()">Get Range</button>
+<h2>The Complete System</h2>
+
+<h3>Refinements</h3>
+<p>There are other refinements that could be applied to this system. For instance, to ensure that the xpath references remain secure, a hash could be taken of the web page to which reference is being made. This hash value would be used to validate future readings of the referred-to webpage.</p>
+<h3>Uses</h3>
+<p>The information gathered by Libenter could be presented in the following new ways:</p>
+<ul>
+<li>A 'clippings' page, which aggregates all of the referred-to page fragments along with a specified amount of context. This latter function is fairly easily accomplished because of the xpath basis of the technology</li>
+<li>An historically-savvy browsing experience. Because the browser could identify those pages and ranges that had been tagged by other users, it could:<ul><li> provide a useful historical visualization tools to summarize the material in the page</li><li>a list of web resources that pertain to the same event</li><li>a more refined list of related resources, such as a 'contrary view' list</li></ul></li>
+</ul>
+<h2>Why Ancient History?</h2>
+<p>There is nothing inherent in this approach that precludes its use in other fields of history, in fact Libenter is based on the Heml project's schemas, which are meant to be as all-encompassing as possible. ...
+</p>
+
+</body>
+</heml>
