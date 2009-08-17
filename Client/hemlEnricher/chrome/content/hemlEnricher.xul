@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css"  type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://hemlEnricher/locale/hemlEnricher.dtd">
+<window id="sidebar"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script src="chrome://hemlEnricher/content/submit.js"/>
+
+	<iframe src="http://heml.mta.ca/crossmantest/tree-yui.html" flex="2" id="event_yui"/>
+	<iframe src="chrome://hemlEnricher/content/sample.html" flex="2" id="event_yui"/>
+
+	<splitter/>
+	
+	<button label="&submit.label;" oncommand="submitClicked()"/>
+
+</window>
