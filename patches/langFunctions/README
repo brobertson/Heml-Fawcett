@@ -18,9 +18,16 @@ PREFIX langPrefs: <java:org.heml.sparql.>
 PREFIX :          <http://example.com/ns#>
 SELECT ?label WHERE{
    :event1 rdfs:label ?label .
-   FILTER ( langPrefs:LangPrefsFilter ( ?label, "en, ge, ru, la, ja" ) )
-}ORDER BY ( langPrefs:LangPrefsOrder ( ?label, "en, ge, ru, la, ja" ) )
+   FILTER ( langPrefs:LangPrefsFilter ( ?label, "eng;en, fre/fra-ca;fr-ca" ) )
+}ORDER BY ( langPrefs:LangPrefsOrder ( ?label, "eng;en, fre/fra-ca;fr-ca" ) )
 LIMIT 1
+
+Note that languages in the preferences list can contain language extensions
+(e.g. en-us). A language preference with no extension will match *any* language
+with the same base, regarless of the dialect extension.
+
+Javascript utility functions to build language-based queries can be found in
+sparqlLangUtil.js
 
 Instructions to apply this patch:
   * Copy this patch file into ARQ's src directory
