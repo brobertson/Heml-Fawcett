@@ -5,6 +5,7 @@
 
 /**
  * Retrieves the language for which we have tags on the specified triple data.
+ * TODO - we may wish to add the ability to specify prefixes
  * @param {string} The subject of triples in which we are interested. If null,
  * will match any subject.
  * @param {string} The predicate of triples in which we are interested. If null,
@@ -32,9 +33,6 @@ function getLangs(subject, predicate, endpoint, onFail, onSuccess){
 function getLabelLangs(subject, endpoint, onFail, onSuccess)
 	{ getLangs(subject, 'rdfs:label', endpoint, onFail, onSuccess); }
 
-function onHemlFailure() 
-	{ alert("The Heml SPARQL query failed."); }
-
 /**
  * <p> Used to find the best matching triple when the object might exist in
  * multiple languages. </p>
@@ -52,13 +50,13 @@ function onHemlFailure()
  * @param {function()} The function that gets called on query failure
  * @param {function({json})} The function that gets called on query success.
  * The json object will have a single value stored in 
- * <code>json.results.bindings[0].aa.value</code> if a match is found. (Remember
- * if we did not find a match, <code>json.results.binding</code> will have
- * length 0. 
+ * <code>json.results.bindings[0].aa.value</code>. If a match is not found, this
+ * will be "No language match!", otherwise it will be the object of the matching triple.
  */
 function query_BestLanguageMatch(subject, predicate, endpoint, onFail, onSuccess){
 	if ( subject == null || predicate == null ){
 		// subject and predicate must both be specified
+		// TODO implement oher tests, such as not allowing a leading '?'
 		alert('Subject and predicate must be specified');
 	}
 
@@ -86,11 +84,19 @@ function query_BestLanguageMatch(subject, predicate, endpoint, onFail, onSuccess
 		
 	queryStr += '")) LIMIT 1';
 
-	console.info(queryStr);
-
-	alert(queryStr);
-
-	var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, onSuccess);
+	var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, function(json){
+			// successful run, but no matching language
+			// TODO change to hold the first object, ordered alphabetically
+				if ( json.results.bindings.length == 0 ){
+					var emptyJSON = {results:{bindings:
+					new Array({aa:{value:"No language match!"}})
+					}}
+					onSuccess(emptyJSON);
+				}
+				else{
+					onSuccess(json);
+				}
+			});
 	query.performQuery();
 }
 
@@ -109,7 +115,7 @@ function query_BestLabel(subject, endpoint, onFail, onSuccess){
 				onSuccess(json);
 			}
 			else{
-				var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlRDF: <http://www.heml.org/rdf/2003-09-17/heml#> SELECT ?aa WHERE { :s3 hemlRDF:originalLanguage ?aa }';
+				var queryStr = 'PREFIX : <http://example/ns#> PREFIX hemlRDF: <http://www.heml.org/rdf/2003-09-17/heml#> SELECT ?aa WHERE { ' + subject + ' hemlRDF:originalLanguage ?aa }';
 				var query = new Heml.SparqlQuery(endpoint, queryStr, onFail, function(json){
 					if ( json.results.bindings.length == 1 ){
 						onSuccess(json);
@@ -193,9 +199,3 @@ function defaultLanguages(){
 			]);
 }
 
-function init(){
-	document.cookie="HEML_languagePreferences_codes='eng-us','lat','fre/fra'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
-	document.cookie="HEML_languagePreferences_langs='English-us','Latin','French'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
-	document.cookie="HEML_languagePreferences_twoCodes='en-us','la','fr'; expires=Thu, 05 Aug 2010 19:04:12 GMT";
-	query_BestLanguageMatch(':s3', 'rdfs:label', 'http://localhost:2030/sparql/read', onHemlFailure, mySuccess);
-}
