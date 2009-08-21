@@ -111,7 +111,6 @@ var successfulCallbackModel =  function(node, finishedCallbackFunction) {//use '
 
        // Trees with TextNodes will fire an event for when the label is clicked:
        tree.subscribe("labelClick", function(node) {
-			   alert(node.data);
              // console.log(node.index + " label was clicked", node.data, "example");
            });
        	tree.draw();
@@ -184,7 +183,7 @@ appropriateQuery = theModelChildQuery.replace(/\?outer/,"<" + nodeURL + ">");
 
 <style>
     #treeDiv1 {background: #fff; padding:1em;}
-</style></head><div FirebugVersion="1.4.2" style="display: none;" id="_firebugConsole"></div><body class="yui-skin-sam"><div id="content"></div>
+</style></head><body class="yui-skin-sam"><div id="content"></div>
 
 <!-- 
 Consider adding modal dialogue during loading
