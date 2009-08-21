@@ -3,12 +3,25 @@
 <!DOCTYPE overlay SYSTEM "chrome://hemlEnricher/locale/hemlEnricher.dtd">
 <window id="sidebar"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script src="chrome://hemlEnricher/content/submit.js"/>
+	<script src="chrome://hemlEnricher/content/submit.js"></script>
+	
+	<script type="text/javascript" src="event-yui_files/yahoo-min.js"></script>
+	<script src="event-yui_files/event-min.js"></script>
+	<script type="text/javascript" src="event-yui_files/treeview-min.js"></script>
+	<script type="text/javascript" src="event-yui_files/connection-min.js"></script>
 
-	<iframe src="http://heml.mta.ca/crossmantest/tree-yui.html" flex="2" id="event_yui"/>
-	<iframe src="chrome://hemlEnricher/content/sample.html" flex="2" id="event_yui"/>
+	<script type="text/javascript" language="javascript" src="event-yui_files/hemlJsonQuery.js"></script>
+	<script type="text/javascript" language="javascript" src="event-yui_files/sparql.js"></script>
+	<script type="text/javascript" language="javascript" src="event-yui_files/event-yui.js"></script>
+
+	<script type="text/javascript" language="javascript" src="../../../javascript/xpather.js"></script>
+	<script type="text/javascript" language="javascript" src="xpatherHelper.js"></script>
+
+	<!-- FIXME take header stuff out of this file -->
+	<iframe src="http://heml.mta.ca/crossmangit/Client/hemlEnricher/chrome/content/tree-yui.html" flex="4" id="event_yui"/> 
 
 	<splitter/>
+	<iframe src="chrome://hemlEnricher/content/temp_ref_panel.xul" flex="1" id="ref_yui"/>
 	
 	<button label="&submit.label;" oncommand="submitClicked()"/>
 
