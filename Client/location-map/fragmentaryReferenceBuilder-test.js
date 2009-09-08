@@ -30,8 +30,11 @@ var refQueryStart = allQueryStart + "SELECT ?parent ?parentlabel ?child ?childla
 var refQueryEnd = " ?child rdfs:label ?childlabel. ?parent rdfs:label ?parentlabel. }";
 /*var refQueryEnd = "> ?node ?reference . ?node rdfs:label ?label. }";*/
 
-var refTitleStart = allQueryStart + " SELECT ?evidence ?url ?xslAddress ?label WHERE {";
-var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
+var refTitleStart = allQueryStart + " SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?siteUrl WHERE {";
+var refTitleEnd = "?evidence . OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?siteUrl} } . }";
+
+//var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
+
 function onHemlFailure(reply) {
     alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:\n" + reply);
     // do something more interesting, like putting an x through the map. or making
@@ -68,25 +71,13 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 			var x = getElementsByClass(a, parent, '*')[0];
 			var y = getElementsByClass(a, child, '*')[0];
 			if (x==null) {
-				x = document.createElement('div');
-				x.className = parent;
-				var xText = document.createElement('p');
-				xText.className = 'referenceTypeClass';
-				xText.setAttribute("clicked", "false");
-				xText.setAttribute("furthestChild", "false");
-				xText.appendChild(document.createTextNode(entryArray[i+1]));
-				x.appendChild(xText);
+				var xAttributes = new Array("clicked", "false", "furthestChild", "false");
+				x = createRefNode('div', parent, 'p', 'referenceTypeClass', xAttributes, entryArray[i+1]);
 				if (y==null) {
+					yAttributes = new Array("clicked", "false", "furthestChild", "true");
+					y = createRefNode('div', child, 'p', 'referenceTypeClass', yAttributes, entryArray[i+3]);
 					x.style.textIndent = 10;
-					y = document.createElement('div');
-					y.className = child;
 					y.style.textIndent = 20;
-					var yText = document.createElement('p');
-					yText.className = 'referenceTypeClass';
-					yText.setAttribute("clicked", "false");
-					yText.setAttribute("furthestChild", "true");
-					yText.appendChild(document.createTextNode(entryArray[i+3]));				
-					y.appendChild(yText);
 				}
 				else {
 					var yParentIndent = y.parentNode.style.textIndent;
@@ -101,18 +92,12 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 				}
 			}
 			else if ((x!=null) && (y==null)) { 
-				y = document.createElement('div');
-				y.className = child;
+				x.firstChild.setAttribute("furthestChild", "false");
+				yAttributes = new Array("clicked", "false", "furthestChild", "true");				
+				y = createRefNode('div', child, 'p', 'referenceTypeClass', yAttributes, entryArray[i+3]);
 				var xIndent = x.style.textIndent;
 				xIndent = parseInt(xIndent);
-				x.firstChild.setAttribute("furthestChild", "false");
 				y.style.textIndent = xIndent + 10;
-				var yText = document.createElement('p');
-				yText.className = 'referenceTypeClass';
-				yText.setAttribute("clicked", "false");
-				yText.setAttribute("furthestChild", "true");
-				yText.appendChild(document.createTextNode(entryArray[i+3]));
-				y.appendChild(yText);
 			}
 			x.appendChild(y);
 			a.appendChild(x);
@@ -130,13 +115,13 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 						this.setAttribute("clicked","true");	
 					}
 					else {
-						if (this.nextSibling.style.display=="none") {
-							this.nextSibling.style.display = "block";
-						} else {
-							this.nextSibling.style.display = "none";
-						}
+						var theDiv = this.nextSibling;
+						displayBlock(theDiv, "No sources have been provided for this category.");
 					}
 				}
+			}
+			else {
+				ref.removeAttribute("clicked");
 			}
 		}
 		a.style.display = "block";
@@ -145,6 +130,18 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 }	
 	
 	
+function createRefNode(nodeType, nodeClassName, textNodeType, textNodeClassName, attributes, textNodeText) {
+	var node = document.createElement(nodeType);
+	node.className = nodeClassName;
+	var textNode = document.createElement('p');
+	textNode.className = textNodeClassName;
+	for (var n=0; n<attributes.length; n=n+2) {
+		textNode.setAttribute(attributes[n], attributes[n+1]);
+	}
+	textNode.appendChild(document.createTextNode(textNodeText));
+	node.appendChild(textNode);
+	return node;
+}
 
 
 var successfulCallbackModelForTitles = function(htmlNode) {
@@ -154,40 +151,44 @@ var successfulCallbackModelForTitles = function(htmlNode) {
     this.makeRefTitles = function(json) {
         var numberOfEntries = json.results.bindings.length;
 		if (numberOfEntries == 0) {
-			alert("No sources have been provided\nfor this category.");
+			alert("No sources have been provided for this category.");
 		}
 		else {
 			var a = document.createElement('div'); 
 			a.className = 'referenceTitles';       
 			for (var i = 0; i < numberOfEntries; i++) {
-    	        var refTitle = json.results.bindings[i].label.value;
-    	        var source = json.results.bindings[i].url.value;
-    	        var xslt = json.results.bindings[i].xslAddress.value;
-    	        var x = document.createElement('div');
-				x.className = 'referenceTitle';
-    	        var y = document.createElement('p');
-    	        y.className = 'referenceTitleClass';
-				y.setAttribute("clicked", "false");
-				y.onclick = function() {
-					var yAttributes = y.attributes;
-					var clicked = yAttributes.getNamedItem("clicked").value;
-					if (clicked=="false") {
-						doXMLHttp(xslt, source, y);
-						y.setAttribute("clicked","true");	
-					}
-					else {
-						if (y.nextSibling!=null) {
-							if (y.nextSibling.style.display=="none") {
-								y.nextSibling.style.display = "block";
-							} else {
-								y.nextSibling.style.display = "none";
-							}
+				if(json.results.bindings[i].fragmentUrl) {
+	    	        var refTitle = json.results.bindings[i].label.value;
+    	        	var source1 = json.results.bindings[i].fragmentUrl.value;
+	    	        var xslt = json.results.bindings[i].xslAddress.value;
+	    	        var x = document.createElement('div');
+					x.className = 'referenceTitle';
+	    	        var y = document.createElement('p');
+	    	        y.className = 'referenceTitleClass';
+					y.setAttribute("clicked", "false");
+					y.onclick = function() {
+						var yAttributes = y.attributes;
+						var clicked = yAttributes.getNamedItem("clicked").value;
+						if (clicked=="false") {
+							doXMLHttp(xslt, source1, y);
+							y.setAttribute("clicked","true");	
 						}
 						else {
-							alert("No sources have been provided\nfor this category.");
+							var theDiv = y.nextSibling;
+							displayBlock(theDiv, "The quotation cannot be rendered.");						
 						}
-					}
-    	        }
+	    	        }
+				}
+				else if (json.results.bindings[i].siteUrl) {
+					var refTitle = json.results.bindings[i].siteUrl.value;
+					var source1 = refTitle;
+					var x = document.createElement('div');
+					x.className = 'referenceTitle';
+					var y = document.createElement('a');
+					y.target = '_blank';
+					y.href = source1;
+					alert("The reference is located at another site.")
+				}
     	        y.appendChild(document.createTextNode(refTitle));
     	        x.appendChild(y);
 				a.appendChild(x)
@@ -211,21 +212,24 @@ function getRefTypes(htmlNode, eventNode) {
 		myTry = new successfulCallbackModel(htmlNode, eventNode);
 		hq = new Heml.SparqlQuery(endpoint, refQueryStart + eventNode + "> ?child ?reference. <" + eventNode + "> ?parent ?reference." + refQueryEnd, onHemlFailure, myTry.makeRefLinks);
 		hq.performQuery();
-		var theDiv = document.getElementById(eventNode);
-		theDiv.style.display = "block";		
 	}
 	else {
-		var theDiv = document.getElementById(eventNode);
-		if (theDiv!=null) {
-			if (theDiv.style.display == "none") {
-				theDiv.style.display = "block";
-			} else {
-				theDiv.style.display = "none";
-			}
+		var theDiv = document.getElementById(eventNode);		
+		displayBlock(theDiv, "No sources are available.");
+	}
+}
+
+function displayBlock(theDiv, message){
+	if (theDiv!=null) {
+		if (theDiv.style.display == "none") {
+			theDiv.style.display = "block";
 		}
 		else {
-			alert("No sources are available.");
+			theDiv.style.display = "none";
 		}
+	}
+	else {
+		alert(message);
 	}
 }
 
@@ -233,50 +237,24 @@ function doXMLHttp(xslURL, documentURL, parentNode) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", xslURL, false);
     xmlhttp.send(null);
-    //if (xmlhttp.status == 200)
-    //alert(xmlhttp.responseText);  
-    var xmlhttpDoc = new XMLHttpRequest();
-    xmlhttpDoc.open("Get", documentURL, false);
-    xmlhttpDoc.send(null);
-    //if (xmlhttp.status == 200) alert ("yep, we're ok");//xmlhttpDoc.responseText);
-    var processor = new XSLTProcessor();
-    processor.importStylesheet(xmlhttp.responseXML);
-    var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
-	parentNode.parentNode.appendChild(newFragment);
+    if (xmlhttp.status == 200) {
+        var xmlhttpDoc = new XMLHttpRequest();
+        xmlhttpDoc.open("Get", documentURL, false);
+        xmlhttpDoc.send(null);
+        
+        if (xmlhttpDoc.status == 200) {
+            alert (xmlhttpDoc.responseText);
+            var processor = new XSLTProcessor();
+            processor.importStylesheet(xmlhttp.responseXML);
+            var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
+	        parentNode.parentNode.appendChild(newFragment);
+	    } else {
+	        alert ("Error retrieving "+documentURL);
+	    }
+	} else {
+	    alert("Error retrieving "+xslURL);
+	}
 }
-
-/*function doXMLHttp(xslURL, documentURL, parentNode) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", xslURL, false);
-    xmlhttp.send(null);
-    //if (xmlhttp.status == 200)
-    //alert(xmlhttp.responseText);  
-    var xmlhttpDoc = new XMLHttpRequest();
-    xmlhttpDoc.open("Get", documentURL, false);
-    xmlhttpDoc.send(null);
-    //if (xmlhttp.status == 200) alert ("yep, we're ok");//xmlhttpDoc.responseText);
-    var processor = new XSLTProcessor();
-    processor.importStylesheet(xmlhttp.responseXML);
-    var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
-	var quotation = getElementsByClass(document, "quotation", "*");
-	var innerArray = getElementsByClass(document, "inner", "*");
-	var inner = innerArray[0];	
-	if (quotation[0]!=null) {
-		inner.removeChild(quotation[0]);
-		var sourceNode = document.getElementById("source");
-		inner.removeChild(sourceNode);
-		var newSourceNode = document.createElement('p');
-		newSourceNode.id = "source";
-		inner.appendChild(newSourceNode);
-		var sourceTitle = parentNode.firstChild.cloneNode(true);
-		newSourceNode.appendChild(sourceTitle);
-	}
-	else {
-		var sourceTitle = parentNode.firstChild.cloneNode(true);
-		document.getElementById("source").appendChild(sourceTitle);
-	}
-	inner.appendChild(newFragment);
-}*/
 
 function setup() {
 	var clickEls = getElementsByClass(document, "linkLike", '*');
