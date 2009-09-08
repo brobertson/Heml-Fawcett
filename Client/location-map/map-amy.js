@@ -23,6 +23,9 @@
 **********************************************************/
 
 var map = null;
+var maxBounds = new OpenLayers.Bounds(-180, -90, 180, 90);
+var maxView = new OpenLayers.Bounds(-180, -90, 180, 90);
+
 var DEBUG = false;
 var endpoint = "http://heml.mta.ca/joseki3/sparql/read";
 var locationArray = new Array();
@@ -45,7 +48,7 @@ var style_red = OpenLayers.Util.extend({}, layer_style);
 style_red.strokeColor = "red";
 style_red.fillColor = "red";
 style_red.graphicName = "circle";
-style_red.pointRadius = 2.5;
+style_red.pointRadius = 5;
 style_red.strokeWidth = .7;
 style_red.rotation = 45;
 style_red.strokeLinecap = "butt";
@@ -58,7 +61,7 @@ var style_blue = OpenLayers.Util.extend({}, layer_style);
 style_blue.strokeColor = "blue";
 style_blue.fillColor = "blue";
 style_blue.graphicName = "circle";
-style_blue.pointRadius = 2.5;
+style_blue.pointRadius = 5;
 style_blue.strokeWidth = .7;
 style_blue.rotation = 45;
 style_blue.strokeLinecap = "butt";
@@ -107,17 +110,31 @@ function getResult() {
 //and deals the with resulting json Object.
 
 function init() {
-	map = new OpenLayers.Map('map', {'maxResolution': 'auto'});
-	var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS", "http://labs.metacarta.com/wms/vmap0", {layers: 'basic'});
-	var jpl_wms = new OpenLayers.Layer.WMS("NASA Global Mosaic", "http://t1.hypercube.telascience.org/cgi-bin/landsat7", {layers: "landsat7"});
+	var mapOptions = {
+		maxResolution: 'auto',
+		maxExtent: maxView,
+		restrictedExtent: maxBounds
+	}
+	map = new OpenLayers.Map('map', mapOptions);
+	var ol_wms = new OpenLayers.Layer.WMS(
+		"OpenLayers WMS", 
+		"http://labs.metacarta.com/wms/vmap0", 
+		{layers: 'basic'}
+	);
+	var jpl_wms = new OpenLayers.Layer.WMS(
+		"NASA Global Mosaic", 
+		"http://t1.hypercube.telascience.org/cgi-bin/landsat7", 
+		{layers: "landsat7"}
+	);
 	map.addLayers([ol_wms, jpl_wms]);
 	map.addControl(new OpenLayers.Control.LayerSwitcher());
+
 	// create an overview map control with the default options
 	var overview1 = new OpenLayers.Control.OverviewMap();
 	map.addControl(overview1);
 	var options = {
 		hover: false,
-		clickout: true,
+		clickout: false,
 		toggle: false,
 		onSelect: onFeatureSelect,
 		onUnselect: onFeatureUnselect
@@ -128,20 +145,12 @@ function init() {
 	map.addControl(select);
 	select.activate();
 	getResult();
-	map.zoomToMaxExtent();
+	//map.zoomToMaxExtent();
+	map.zoomToExtent(new OpenLayers.Bounds(-130,-10,35,70)); 
 }
 
-/*
-popup = new OpenLayers.Popup("chicken",
-	new OpenLayers.LonLat(5,40),
-	new OpenLayers.Size(200,200),
-	"example popup",
-	true);
-	map.addPopup(popup);
-*/
-
 function onFeatureSelect(feature) {
-	var popupCloseBox = false;
+	//var popupCloseBox = false;
 	selectedFeature = feature;
 	var locationLabel = feature.attributes.label;
 	var locationUrl = feature.attributes.url;
@@ -150,14 +159,14 @@ function onFeatureSelect(feature) {
 	feature.popup = popup;
 	map.addPopup(popup);
 	feature.autoDestroy = window.setTimeout(function() {
-		if (map && map.popups && map.popups.length > 0) map.popups[0].destroy();
-	}, 2000);
+		map.removePopup(feature.popup);			
+		}, 2000);
 	listEventsForLocation(locationUrl, locationLabel);
 }
 
-function onPopupClose(evt) {
-	selectControl.unselect(selectedFeature);
-}
+//function onPopupClose(evt) {
+//	selectControl.unselect(selectedFeature);
+//}
 
 function onFeatureUnselect(feature) {
 	map.removePopup(feature.popup);
@@ -187,9 +196,7 @@ function listEventsForLocation(url, label) {
 		var newEventList = document.createElement('div');
 		newEventList.id = "eventList";
 		var eventsLength = json.results.bindings.length;
-		//alert("events length " + eventsLength);
 		for (var i = 0; i < eventsLength; i++) {
-			// alert("Loop: " + i);
 			try {
 				if (json.results.bindings[i].startDate.value != null) {
 					var prettyDate = formatDate(json.results.bindings[i].startDate.value);
@@ -202,7 +209,6 @@ function listEventsForLocation(url, label) {
 			catch(anError) {
 				alert(anError);
 			}
-			//alert("new node: " + theTextOfTheParagraph);	
 			if (i > 0) {
 				newEventList.appendChild(document.createElement('br'));
 			}
@@ -216,7 +222,6 @@ function listEventsForLocation(url, label) {
 			eventDiv.appendChild(para);
 			newEventList.appendChild(eventDiv);
 	}	
-	//alert("appending: " + theNewHeaderText);
 	theHeader.appendChild(theNewHeaderText);
 	theDocs.appendChild(newEventList);
 }
