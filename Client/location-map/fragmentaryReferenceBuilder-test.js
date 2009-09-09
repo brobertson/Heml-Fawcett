@@ -30,8 +30,8 @@ var refQueryStart = allQueryStart + "SELECT ?parent ?parentlabel ?child ?childla
 var refQueryEnd = " ?child rdfs:label ?childlabel. ?parent rdfs:label ?parentlabel. }";
 /*var refQueryEnd = "> ?node ?reference . ?node rdfs:label ?label. }";*/
 
-var refTitleStart = allQueryStart + " SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?siteUrl WHERE {";
-var refTitleEnd = "?evidence . OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?siteUrl} } . }";
+var refTitleStart = allQueryStart + " SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?externalResource WHERE {";
+var refTitleEnd = "?evidence . OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?externalResource} } . }";
 
 //var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
 
@@ -108,7 +108,8 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 			var furthest = ref.attributes.getNamedItem("furthestChild").value;
 			if (furthest=="true") {
 				ref.style.cursor = "pointer";
-				ref.onclick = function() {
+				ref.onclick = function() {					
+					cursor_wait();
 					var clicked = this.attributes.getNamedItem("clicked").value;
 					if (clicked=="false") {
 						getRefTitles(this.parentNode.className, eventNode, this);
@@ -149,24 +150,25 @@ var successfulCallbackModelForTitles = function(htmlNode) {
     this.htmlNode = htmlNode;
     var me = this;
     this.makeRefTitles = function(json) {
-        var numberOfEntries = json.results.bindings.length;
+		var numberOfEntries = json.results.bindings.length;
 		if (numberOfEntries == 0) {
 			alert("No sources have been provided for this category.");
-		}
-		else {
+		} else {
 			var a = document.createElement('div'); 
 			a.className = 'referenceTitles';       
 			for (var i = 0; i < numberOfEntries; i++) {
+				var resource = null;
 				if(json.results.bindings[i].fragmentUrl) {
-	    	        var refTitle = json.results.bindings[i].label.value;
-    	        	var source1 = json.results.bindings[i].fragmentUrl.value;
-	    	        var xslt = json.results.bindings[i].xslAddress.value;
-	    	        var x = document.createElement('div');
+					resource = json.results.bindings[i].label.value;
+					var source1 = json.results.bindings[i].fragmentUrl.value;
+					var xslt = json.results.bindings[i].xslAddress.value;
+					var x = document.createElement('div');
 					x.className = 'referenceTitle';
-	    	        var y = document.createElement('p');
-	    	        y.className = 'referenceTitleClass';
+					var y = document.createElement('p');
+					y.className = 'referenceTitleClass';
 					y.setAttribute("clicked", "false");
 					y.onclick = function() {
+						cursor_wait();
 						var yAttributes = y.attributes;
 						var clicked = yAttributes.getNamedItem("clicked").value;
 						if (clicked=="false") {
@@ -178,30 +180,48 @@ var successfulCallbackModelForTitles = function(htmlNode) {
 							displayBlock(theDiv, "The quotation cannot be rendered.");						
 						}
 	    	        }
+				} else if (json.results.bindings[i].externalResource) {
+					resource = json.results.bindings[i].externalResource.value;
+					if (resource.indexOf("<db:bibliomixed")!=-1) {
+					    /**
+					    cursor_wait();
+						var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.open("GET", json.results.bindings[i].xslAddress.value, false);
+                        xmlhttp.send(null);
+                        if (xmlhttp.status == 200) {
+	                        var processor = new XSLTProcessor();
+	                        processor.importStylesheet(xmlhttp.responseXML);
+	                        resource = processor.transformToFragment(resource, document);
+                        } else {
+	                        cursor_default();
+	                        alert("Error retrieving "+json.results.bindings[i].xslAddress.value);
+                        }*/
+                        resource = null;
+					} else {
+						var x = document.createElement('div');
+						x.className = 'referenceTitle';
+						var y = document.createElement('a');
+						y.target = '_blank';
+						y.href = resource;
+						checkLink(y);
+					}
 				}
-				else if (json.results.bindings[i].siteUrl) {
-					var refTitle = json.results.bindings[i].siteUrl.value;
-					var source1 = refTitle;
-					var x = document.createElement('div');
-					x.className = 'referenceTitle';
-					var y = document.createElement('a');
-					y.target = '_blank';
-					y.href = source1;
-					alert("The reference is located at another site.")
+				if(resource!=null) {
+					y.appendChild(document.createTextNode(resource));
+		 	        x.appendChild(y);
+					a.appendChild(x);
 				}
-    	        y.appendChild(document.createTextNode(refTitle));
-    	        x.appendChild(y);
-				a.appendChild(x)
-    	    }
+			}
 			me.htmlNode.parentNode.appendChild(a);
-	    }
+		}
 	}
 }
 
 function getRefTitles(refTypeResource, eventResource, htmlNode) {
-    myTry = new successfulCallbackModelForTitles(htmlNode);
-    hq = new Heml.SparqlQuery(endpoint, refTitleStart + " <" + eventResource + "> <" + refTypeResource + "> " + refTitleEnd, onHemlFailure, myTry.makeRefTitles);
-    hq.performQuery();
+	myTry = new successfulCallbackModelForTitles(htmlNode);
+	hq = new Heml.SparqlQuery(endpoint, refTitleStart + " <" + eventResource + "> <" + refTypeResource + "> " + refTitleEnd, onHemlFailure, myTry.makeRefTitles);
+	hq.performQuery();
+	cursor_default();	
 }
 
 function getRefTypes(htmlNode, eventNode) {
@@ -234,25 +254,26 @@ function displayBlock(theDiv, message){
 }
 
 function doXMLHttp(xslURL, documentURL, parentNode) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", xslURL, false);
-    xmlhttp.send(null);
-    if (xmlhttp.status == 200) {
-        var xmlhttpDoc = new XMLHttpRequest();
-        xmlhttpDoc.open("Get", documentURL, false);
-        xmlhttpDoc.send(null);
-        
-        if (xmlhttpDoc.status == 200) {
-            alert (xmlhttpDoc.responseText);
-            var processor = new XSLTProcessor();
-            processor.importStylesheet(xmlhttp.responseXML);
-            var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
-	        parentNode.parentNode.appendChild(newFragment);
-	    } else {
-	        alert ("Error retrieving "+documentURL);
-	    }
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", xslURL, false);
+	xmlhttp.send(null);
+	if (xmlhttp.status == 200) {
+		var xmlhttpDoc = new XMLHttpRequest();
+		xmlhttpDoc.open("Get", documentURL, false);
+		xmlhttpDoc.send(null);
+		cursor_default();
+		if (xmlhttpDoc.status == 200) {
+			alert (xmlhttpDoc.responseText);
+			var processor = new XSLTProcessor();
+			processor.importStylesheet(xmlhttp.responseXML);
+			var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
+			parentNode.parentNode.appendChild(newFragment);
+		} else {
+			alert ("Error retrieving "+documentURL);
+		}
 	} else {
-	    alert("Error retrieving "+xslURL);
+		cursor_default();
+		alert("Error retrieving "+xslURL);
 	}
 }
 
@@ -275,6 +296,30 @@ function getElementsByClass(node, searchClass, tag) {
 		}
 	}
 	return classElements;
+}
+
+function cursor_wait() {
+	document.body.style.cursor = 'wait';
+}
+
+function cursor_default() {
+	document.body.style.cursor = 'default';
+}
+
+function checkLink(link) {
+    uri = link.href;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('get', 'check.php?uri=' + encodeURIComponent(uri), true);
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.responseText=="GOOD") {
+			    link.className = "goodlink"
+            } else {
+                link.className = "badlink"
+            }
+		}
+	}
+	xmlhttp.send(null);
 }
 
 
