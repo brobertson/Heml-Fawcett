@@ -4,10 +4,10 @@
 		<!<link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
 		<!<link rel="stylesheet" href="style.css" type="text/css" />
 		<!<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
-		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
 		
 		<link rel="stylesheet" type="text/css" href="language-preferences/ext-all.css" />
 		<link rel="stylesheet" type="text/css" href="language-preferences/ext-heml.css" />
+		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
 
 		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 		<script type="text/javascript" language="javascript" src="../javascript/sparql.js"></script>
@@ -23,15 +23,16 @@
 
 	</head> 
 	<body onload="init()">
-	<div id="content">		
-		<h1>Heml Locations Map</h1>
-		<div id="map"></div>
-		<div id="docs">
-			<h3 id="locationLabel"></h3>
-			<div id="eventList"></div>
-		</div>
+	<div id="positioner">
+	    <div id="container">		
+		    <h1>Heml Locations Map</h1>
+		    <div id="map"></div>
+		    <div id="docs">
+			    <h3 id="locationLabel"></h3>
+			    <div id="eventList"></div>
+		    </div>
+		    <div id="languagePreferences"></div>
+	    </div>
 	</div>
-	<br/>
-	<div id="languagePreferences"></div>
 	</body>
 </html>

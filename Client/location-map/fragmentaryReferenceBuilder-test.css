@@ -4,30 +4,52 @@ body {
     font-size: 100%;
     font-family: Helvetica, Arial, sans-serif;
     color: #222;
-    background: #fafafa;
+    background: #eaeaea;
     margin: auto 8em;
     padding: 0;
 }
 
-#content {
-	margin: 10px auto;
-	text-align: left;
-	width:800px;
-	padding:10px;
+#positioner{
+	width:690px; 
+	margin: 0 auto;
+	padding:0;
+}
+
+#container {
+	width:650px;
+	float:left;
+	overflow:hidden;
+	margin:10px 0 10px 0;
+	padding:20px;
 	background:#fff;
 	border:#ccc 1px solid;
-} 
+}
 
 h1 {
 	text-align: center;
 }
 
 #map {
-	position: relative;
+    display:block;
+    float:center;
 	border: 1px solid #ccc;
 	width:100%;
 	height:400px;
-	top:10px;
+}
+
+#docs {
+    display:block;
+    width:100%;
+    float:left;
+    margin:20px 0 0 0;
+    text-align:left;
+}
+
+#languagePreferences {
+    display:block;
+    float:left;
+    margin:20px 0 0 0;
+    text-align:left;
 }
 
 div.quotation {
@@ -71,7 +93,7 @@ p.referenceTitleClass:hover {
 
 .goodlink {
     text-decoration:none;
-    color:green;
+    color:blue;
 }
 
 .badlink {
