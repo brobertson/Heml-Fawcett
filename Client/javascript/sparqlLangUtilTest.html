@@ -1,0 +1,79 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../location-map/language-preferences/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="../location-map/language-preferences/ext-heml.css" />
+
+    <script type="text/javascript" src="../location-map/language-preferences/ext-base.js"> </script>
+    <script type="text/javascript" src="../location-map/language-preferences/ext-all.js"> </script>
+
+	<script type="text/javascript" src="../location-map/language-preferences/language-prefs.js"></script>
+
+	<script type="text/javascript" src="sparql.js"> </script>
+	<script type="text/javascript" src="hemlJsonQuery.js"> </script>
+	<script type="text/javascript" src="sparqlLangUtil.js"> </script>
+	<script type="text/javascript" src="sparqlLangUtilTest.js"> </script>
+</head>
+<body onload="initTEST()">
+<h1>SPARQL Language Utilities Test Page</h1>
+<p>
+This page tests the SPARQL utility functions found in sparqlLangUtil.js.
+The default language preferences for this page are the following:
+<ol>
+	<li>English-us</li>
+	<li>French-ca</li>
+	<li>German</li>
+	<li>English-uk</li>
+	<li>French</li>
+	<li>English</li>
+</ol>
+<button
+	onclick="generatePreferencesPopup()"> Set custom test language
+	preferences</button><br/>
+<button onclick="initTEST()">Revert to default test preferences</button>
+</p>
+<p>
+Recall that we let a language with no extension match the first language found
+with the same base. (i.e. &lt;English-us does not match English-uk&gt;, but
+&lt;English matches English-uk&gt; and &lt;English matches English-us&gt;) The
+"empty-extension rule" only applies to the preferences list - not the data. That
+is, vanilla English in the preferences will match any English in the data, but
+vanilla English in the data will only be matched by vanilla English in the
+preferences.
+</p>
+<h2>Get Available Languages</h2>
+<p> We can get the set of laguage tags that are found on triples matching a
+specified pattern. <br/><!-- TODO indent code -->
+<code>getLangs(':s3',<br/>
+	'rdfs:label',<br/>
+	'http://localhost:2030/sparql/read',<br/> <!-- FIXME http://heml.org/... -->
+	function(){ alert('failure function') }, <br/>
+	function(json){<br/>
+		var returnString = '';<br/>
+		for ( var i=0; i&lt;json.results.bindings.length; i++ ){<br/>
+			returnString += json.results.bindings[i].lang.value + ', ';
+			}<br/>
+			returnString = returnString.substring(0, returnString.length - 1);<br/>
+		});</code></p>
+<button onclick="getLangsTEST()">Execute</button> <br/>
+
+<h2>Find the Best Object According to Language Preferences</h2>
+<p>
+This function filters out bad triples, leaving the programmer with the best
+triple as specified in the language preferences. The programmer specifies a
+subject and a predicate and is returned the object of the best matching triple.
+</p>
+<code>
+	query_BestLanguageMatch(':s3', 
+		'rdfs:label', 
+		'http://localhost:2030/sparql/read',
+		function(){ alert('failure function') },
+		function(json){
+			if ( json.length == 0 ) { alert('No available langauges match your
+			preferences'); }
+			else{
+				alert( json.results.bindings[0].aa.value );
+			}
+</code>
+<button onclick="query_BestLanguageMatchTEST()">Execute</button>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Tree View on Heml Events</title>
+
+    <style type="text/css">
+        /*margin and padding on body element
+          can introduce errors in determining
+          element position and are not recommended;
+          we turn them off as a foundation for YUI
+          CSS treatments. */
+        body {
+            margin:0;
+        	padding:0;
+        }
+</style>
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/treeview/assets/skins/sam/treeview.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css" />
+    <link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
+
+
+<!-- Needed to keep Firebug Logger from breaking on non-firebug contexts -->
+<!-- 
+<script language="javascript" type="text/javascript" 
+        src="/path/to/firebug/firebugx.js"></script>
+-->
+<!-- Needed for YUI Treeview -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo/yahoo-min.js"></script>
+
+<script src="http://yui.yahooapis.com/2.5.2/build/event/event-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/treeview/treeview-min.js"></script>
+
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/connection/connection-min.js"></script>
+
+
+
+
+<!-- Needed for Heml Query and Construction -->
+<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"></script>
+  <script type="text/javascript" language="javascript" src="sparql.js"></script>
+<script type="text/javascript">
+
+
+//global variable to allow console inspection of tree:
+var tree;
+var DEBUG = false;
+var theModelChildQuery = "SELECT DISTINCT  ?event ?eventLabel ?comprises  ?et WHERE { ?event a hemlRDF:Event. ?event rdfs:label ?eventLabel. ?event hemlRDF:EarliestTime ?et. OPTIONAL {?event  hemlRDF:Origin ?origin.}  ?outer hemlRDF:comprisesEvent ?event.  OPTIONAL {?event hemlRDF:comprisesEvent ?inner. LET (?comprises := true)} } ORDER BY ?et"
+
+
+var theRootQuery = "SELECT DISTINCT  ?event ?eventLabel ?comprises  ?et WHERE { ?event a hemlRDF:Event. ?event rdfs:label ?eventLabel. ?event hemlRDF:EarliestTime ?et. OPTIONAL {?event  hemlRDF:Origin ?origin.} OPTIONAL { ?outer hemlRDF:comprisesEvent ?event}  OPTIONAL {?event hemlRDF:comprisesEvent ?inner. LET (?comprises := true)} FILTER(!bound(?outer)) } ORDER BY ?et"
+
+var theQueryPreamble =  "SELECT DISTINCT  ?event ?eventLabel ?comprises  WHERE { ?event a hemlRDF:Event. ?event rdfs:label ?eventLabel. OPTIONAL {?event  hemlRDF:Origin ?origin.";
+
+var theTopLevelQueryMiddle = "OPTIONAL { ?outer hemlRDF:comprisesEvent ?event} "
+    
+var theQueryConclusion = "OPTIONAL {?event hemlRDF:comprisesEvent ?inner. LET (?comprises := true)} FILTER(!bound(?outer)) }"
+
+//var theQuery = theNewQuery;
+
+//anonymous function wraps the remainder of the logic:
+
+var successfulCallbackModel =  function(node, finishedCallbackFunction) {//use '' for root
+    this.node = node;
+    this.atRoot = false;
+    if (this.node === '') {this.atRoot = true;}
+    //this.completedCallbackFunction = completedCallbackFunction;
+    //this.nodeURL = node.data;
+    this.finishedCallbackFunction = finishedCallbackFunction;
+    var me=this;
+   //console.log("building a scm with node " + node);
+    this.populateNodeWithJson = function(json){
+	
+	//alert("nodeURL is: " + me.nodeURL);
+	if (me.node === '') {//empty string is the magic value for root
+	    me.node = tree.getRoot();
+	}
+	
+	//console.log("calling pnwj");
+	 for (var i = 0; i < json.results.bindings.length; i++) {
+	text = json.results.bindings[i].eventLabel.value;
+        url = json.results.bindings[i].event.value;	
+	//Determine if the OPTIONAL field 'comprises' is set to 'true'
+	//If it is, we record this in the boolean 'hasChildren'
+	//Because it is OPTIONAL, it might not exist at all
+	var hasChildren = false;
+    if (json.results.bindings[i].comprises == undefined) 
+	{hasChildren = false;}
+	else if (json.results.bindings[i].comprises.value == "true") {
+	//console.log(url, "has children");
+	hasChildren = true;}
+	
+    treeNodeMaker(text, hasChildren, url, me.node);
+    
+    }
+    if (me.atRoot) {//These functions need to be called the first time
+	//The tree is drawn, but not later.
+           // Expand and collapse happen prior to the actual expand/collapse,
+       // and can be used to cancel the operation
+       tree.subscribe("expand", function(node) {
+         //     console.log(node.index + " was expanded", "info", "example");
+              // return false; // return false to cancel the expand
+           });
+
+       tree.subscribe("collapse", function(node) {
+           //   console.log(node.index + " was collapsed", "info", "example");
+           });
+
+       // Trees with TextNodes will fire an event for when the label is clicked:
+       tree.subscribe("labelClick", function(node) {
+             // console.log(node.index + " label was clicked", node.data, "example");
+           });
+       	tree.draw();
+    }
+    else {//this ensures that the 'wait' spinner continues spinning until the  last minute.
+	finishedCallbackFunction();
+    }
+
+    }
+    }
+
+
+
+
+var onHemlFailure = function(message) {
+alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection" + message);
+}
+
+
+function getResult(node, loadComplete) {
+    var nodeURL = '';
+    var appropriateQuery = theRootQuery;
+    if (!(node === '')) {
+	nodeURL = node.data;
+appropriateQuery = theModelChildQuery.replace(/\?outer/,"<" + nodeURL + ">");
+    }
+    var myTry = new successfulCallbackModel(node, loadComplete);
+// console.log("new query: " + appropriateQuery);
+    hq = new Heml.SparqlQuery("http://heml.mta.ca/joseki3/sparql/read", appropriateQuery, onHemlFailure, myTry.populateNodeWithJson);
+   if (DEBUG) {
+    alert("query string: " + hq.getQueryString());
+    alert("endpoint: " + hq.getEndpoint());
+    alert("success function: " + hq.getSuccessFunction());
+    alert("failure function: " + hq.getFailureFunction());
+    }
+    hq.performQuery();
+}
+	//function to initialize the tree:
+    function treeInit() {
+        buildTopTextNodeTree();
+    }
+    
+    function treeNodeMaker(text, hasChildren, url, parent) {
+	//alert(tree);
+	var tmpNode = new YAHOO.widget.TextNode(text, parent, false);
+	tmpNode.isLeaf = !hasChildren;
+	tmpNode.data = url;
+    }
+	//Function  creates the tree and 
+	//builds between 3 and 7 children of the root node:
+    function buildTopTextNodeTree() {
+		tree = new YAHOO.widget.TreeView("treeDiv1");
+		tree.setDynamicLoad(loadNodeData, 0);
+
+       getResult('');//empty string is magic code for root of tree
+
+ 
+	}
+
+	function loadNodeData(node, fnLoadComplete) {
+	    getResult(node, fnLoadComplete);
+	}
+
+
+	//Add an onDOMReady handler to build the tree when the document is ready
+    YAHOO.util.Event.onDOMReady(treeInit);
+
+
+</script>
+
+<div id="content"></div>
+
+<!-- 
+Consider adding modal dialogue during loading
+<script type="text/javascript">
+
+    YAHOO.namespace("example.container");
+
+    function init() {
+
+        var content = document.getElementById("content");
+        
+        content.innerHTML = "";
+
+        if (!YAHOO.example.container.wait) {
+
+            // Initialize the temporary Panel to display while waiting for external content to load
+
+            YAHOO.example.container.wait = 
+                    new YAHOO.widget.Panel("wait",  
+                                                    { width: "240px", 
+                                                      fixedcenter: true, 
+                                                      close: false, 
+                                                      draggable: false, 
+                                                      zindex:4,
+                                                      modal: true,
+                                                      visible: false
+                                                    } 
+                                                );
+    
+            YAHOO.example.container.wait.setHeader("Loading, please wait...");
+            YAHOO.example.container.wait.setBody("<img src=\"http://us.i1.yimg.com/us.yimg.com/i/us/per/gr/gp/rel_interstitial_loading.gif\"/>");
+            YAHOO.example.container.wait.render(document.body);
+
+        }
+
+        // Define the callback object for Connection Manager that will set the body of our content area when the content has loaded
+
+
+
+        var callback = {
+            success : function(o) {
+                content.innerHTML = o.responseText;
+                content.style.visibility = "visible";
+                YAHOO.example.container.wait.hide();
+            },
+            failure : function(o) {
+                content.innerHTML = o.responseText;
+                content.style.visibility = "visible";
+                content.innerHTML = "CONNECTION FAILED!";
+                YAHOO.example.container.wait.hide();
+            }
+        }
+    
+        // Show the Panel
+        YAHOO.example.container.wait.show();
+        
+        // Connect to our data source and load the data
+        var conn = YAHOO.util.Connect.asyncRequest("GET", "assets/somedata.php?r=" + new Date().getTime(), callback);
+    }
+    
+</script>
+
+-->
+<!--begin custom header content for this example-->
+<style>
+    #treeDiv1 {background: #fff; padding:1em;}
+</style>
+<!--end custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+
+
+<h1>Tree View on Nested Heml Events</h1>
+<h3>version $Rev: 1857 $</h3>
+
+<div class="infoBlock">
+	<p>This page experiments with a <a href="http://developer.yahoo.com/yui/treeview/">TreeView</a> of nested events. It uses lazy loading to retrieve the events within a parent event, thereby allowing us to store and visualize a highly-nested set of events.  </p>
+			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+<div id="myLogger"></div>
+<div id="treeDiv1"></div>
+
+
+
+
+</body>
+</html>
+

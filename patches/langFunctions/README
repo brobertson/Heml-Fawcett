@@ -1,0 +1,39 @@
+-- The following README is also located at the start of langFunctions.patch --
+
+This patch extends ARQ to support language matching in specialized queries. The
+functions are useful when a desired resource is available in multiple languages.
+
+The functions take a string of language codes as one of their arguments, which
+is then used for matching throughout the query's execution. Languages not found
+on this list can first be filtered out of the result set. Matching resources can
+then be ordered based on their language's position in the language tags string.
+
+To include these functions in a query, add 
+'PREFIX myPrefix: <java:org.heml.sparql.>' to the prefixes at the start of the
+query.
+
+An example of typical usage:
+PREFIX rdfs:      <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX langPrefs: <java:org.heml.sparql.>
+PREFIX :          <http://example.com/ns#>
+SELECT ?label WHERE{
+   :event1 rdfs:label ?label .
+   FILTER ( langPrefs:LangPrefsFilter ( ?label, "eng;en, fre/fra-ca;fr-ca" ) )
+}ORDER BY ( langPrefs:LangPrefsOrder ( ?label, "eng;en, fre/fra-ca;fr-ca" ) )
+LIMIT 1
+
+Note that languages in the preferences list can contain language extensions
+(e.g. en-us). A language preference with no extension will match *any* language
+with the same base, regarless of the dialect extension.
+
+Javascript utility functions to build language-based queries can be found in
+sparqlLangUtil.js
+
+Instructions to apply this patch:
+  * Copy this patch file into ARQ's src directory
+  * cd into ARQ's src directory
+  * run 'patch -p1 -i langFunctions.patch'
+  * Remove this patch file
+  * cd into ARQ's root directory and build ARQ (run 'ant')
+
+The new ARQ jar file will now be in ARQ's lib folder.

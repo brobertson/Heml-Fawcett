@@ -1,0 +1,548 @@
+ /*
+ ************************************************************** 
+ * $RCSfile: heml.css,v $                                     *
+ *                                                            *
+ * $Revision: 1.13 $                                     
+ *                                                            *
+ * $Date: 2006-04-21 16:20:55 -0300 (Fri, 21 Apr 2006) $                               *
+ *                                                            *
+ * Copyright (C) 2000 Bruce G. Robertson                      *
+ *                                                            *
+ **************************************************************
+ * This package is free software; you can redistribute        *
+ * it and/or modify it under the terms of the GNU Lesser      *
+ * General Public License as published by the Free Software   *
+ * Foundation; either version 2.1 of the License, or (at      *
+ * your option) any later version.                            *
+ *                                                            * 
+ * This package is distributed in the hope that it will be    *
+ * useful, but WITHOUT ANY WARRANTY; without even the implied *
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR    *
+ * PURPOSE.  See the GNU Lesser General Public License for    *
+ * more details.                                              *
+ *                                                            *
+ * You should have received a copy of the GNU Lesser General  *
+ * Public License along with this package; if not, write      *
+ * to the Free Software Foundation, Inc., 59 Temple Place,    *
+ * Suite 330, Boston, MA  02111-1307  USA                     *
+ *                                                            *
+ **************************************************************
+ * Author:                                                    *
+ *     Bruce Robertson brobertson@mta.ca                      *
+ *                                                            *
+ * Contributors:                                              *
+ *                                                            *
+ *                                                            *
+ ************************************************************* 
+ */
+
+/* Stylesheet for HEML HTML code. */
+BODY {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    background: white;
+    color: black;
+    font-size: 14px;
+    font-family: Georgia, Times New Roman, Times, serif;
+  }
+
+div.note 
+{
+       border: 2px solid #FF1493;
+       margin-top: 20px;
+       margin-left: 10px;
+       margin-right: 70px;
+       padding-top: 21px;
+       padding-left: 24px;
+       padding-right: 25px;
+       padding-bottom: 5pt;
+       font-style: italic;
+       font-size: 11px;
+}
+
+a:link, A:link {
+  color: rgb(58, 95, 205); text-decoration: none
+ }
+
+a:visited, A:visited {
+  color: rgb(104,34,139); text-decoration: none
+ }
+
+a:hover, A:hover {
+   background-color: #FFFFE0;
+}
+
+a#titleLink:hover {
+}
+/*
+a :link {
+  text-decoration: underline;
+  }
+*/
+H1, H2, H3, H4, H5, H6, h1, h2, h3, h4, h5, h6, fieldset {
+    color: #6495ED;
+    /* HEML blue :-) */
+    font-family:  Trebuchet MS, sans-serif;
+}
+H1, h1 {  font-size: 17px;}
+H2, h2 { font-size: 16px;}
+H3, h3 { font-size: 15px;}
+H4, h4 { margin-left: 0pt; }
+/*
+H1.inframe, h1.inframe {
+    margin-left: 20px;
+    }
+
+H3.inframe, h3.inframe {
+    margin-left: 20px;
+    }
+*/
+ADDRESS, address {
+	text-align: right;
+	text-indent: 0;
+	margin-top: 5.000000pt;
+	margin-bottom: 5.000000pt;
+	margin-right: 0.000000pt;
+	margin-left: 10pt;
+	font-size: 12.000000pt;
+	font-weight: normal;
+	font-style: Italic;
+	color: #000000;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+}
+
+
+/* NAV SIDEBAR RELATED ITEMS */
+
+div#sidebar {
+  position: absolute;
+  left: 5px;
+  padding: 0px;
+  width: 150px;
+  background-color: #F0F0F0 ; /* grey84 */
+  color: #777777;
+  border: 1px solid #5080C8 ; 
+ }
+
+img#title {
+ border: 0px;
+}
+
+div.navheading {
+  font-family: Arial, Tahoma, Times, sans-serif;
+  color: #4F4F4F;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 5px;
+  margin-top: 7px;
+  }
+
+span.navheading a {
+	text-decoration: none;
+}
+
+div.navitem {
+  font-family: Arial, Tahoma, Times, sans-serif;
+  font-size: 12px;
+  text-align: left;  
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-top:  4px;
+ }
+
+div.navitem :link {
+  color:  #5074B8 ; 
+  text-decoration: none;
+}
+
+div.navitem :visited {
+  color: #5074B8 ;
+  text-decoration: none;
+}
+
+div.navitem :active {
+  color: #6495ED;
+/*  text-decoration: underline;
+*/
+}
+
+div.navitem :hover  {
+  color: #5074B8;
+ }
+
+
+/*MAIN BODY OF TEXT IE, NOT SIDEBAR */
+/* NS4 seems to refuse to render tables with elements that declare their
+   own margins or padding. So we're using cellpadding declarations in the
+   HTML
+*/
+
+/*
+#wrap {
+    margin:0 auto;
+    width:800px;
+    }
+*/
+#mainman {
+  margin-left: 155px;
+  padding: 0px;
+  margin-right: 15px;
+ /* position: absolute;*/
+}
+
+div#header {
+    margin-bottom: 10pt;
+    border: 0pt;
+   }
+/*
+div#finePrint {
+    clear:both; 
+    margin-bottom: 30pt;
+    margin-top:    20pt;
+}
+*/
+span.left {
+  float: left;
+}
+span.right {
+float: right;
+}
+.address {
+  font-size: 10px;
+  font-style: italic;
+}
+
+/* FAQ 
+
+  
+
+
+P.FAQ	 {
+
+	text-align: left;
+	text-indent: 0;
+	margin-top: 5.000000pt;
+	margin-bottom: 5.000000pt;
+	margin-right: 0.000000pt;
+	margin-left: 00%;
+	font-size: 12.000000pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+	font-family: NewCenturySchlbk; 
+}
+
+*/
+
+.intro { margin-left: -20pt;
+	 font-style: italic;
+	  }
+
+i.intro { font-style: normal;}
+
+
+P.EditorNote, p.EditorNote {
+	background-color: #FFF8DC;
+	font-style: Italic;
+}
+
+.tableOfEvents {
+	font-size: 80%
+	}
+td.framed {
+  border: 1px solid #6495ED;
+  text-align: center;
+  background-color: #FFF8DC;
+  font-family: Trebuchet MS, sans-serif;
+}
+
+td.framedSelected {
+    border: 1px solid #6495ED;
+  text-align: center;
+  background-color: #CDC8B1;
+  font-family: Trebuchet MS, sans-serif;
+  font-style: Italic;
+}
+div.infoBlock, table.infoBlock {
+            /*margin-left: -2pt;*/
+            color: #777777;
+            /*padding: 0.2em;*/
+             font-size: 10px; 
+        font-family: Trebuchet MS, sans-serif;
+        border: 1px solid #6495ED;
+        padding-left: 10px;
+  /*      width: 65%;*/
+        /*font-style: Italic;*/
+}
+
+div.warningBlock {
+                 background-color: white;
+                color: #ff6eb4;
+}
+
+.beforeBrowser {
+   background-color: #f0f0f0;
+   padding: 10px;
+   margin-top: 5px;
+}
+
+.svgimage {
+ display: inline;
+  margin-top: 10px;
+  border: 1px solid #6495ED;
+  background: white;
+}
+
+/*
+ UL, OL {
+	text-align: left;	text-indent: 0;	margin-top: 5.000000pt;	margin-bottom: 5.000000pt;	margin-right: 0.000000pt;	
+	font-size: 12.000000pt;	font-weight: medium;	font-style: Regular;	color: #000000;	text-decoration: none;	vertical-align: baseline;	text-transform: none;	font-family: NewCenturySchlbk;}
+*/
+
+
+ CODE, PRE, SAMP, TT {
+    font-size: 10pt;
+    font-style: normal;
+    font-family: monospace;
+  }
+
+
+pre.programlisting, pre.FAQ {
+        font-size: 12px;
+        padding-top: 10px;
+        padding-left: 15px;
+        margin-right: 30px;
+        margin-left: 20px;
+        border: 4px solid #FFF8DC;             /* patch for Nav 4 */
+        border-top: 4px solid #FFF8DC;
+        border-bottom: 4px solid #FFF8DC;      /* patch for Nav 4 */
+        border-left: 4px solid #FFF8DC;        /* patch for Nav 4 */
+        border-right: 4px solid #FFF8DC;       /* patch for Nav 4 */
+
+        /*white-space: pre;*/
+	background-color: #F5F5F5;
+        /* #FF8DC 
+	right-margin: 20pt;
+	border:  none;
+	margin: 0px;
+        */
+  }
+
+h3.FAQ {
+       background-color: gray;
+}
+
+/* POPUP STUFF */
+.itemSynopsis {
+  /* the color also known as cornsilk
+     color name not given because it
+     breaks under opera browser
+*/
+  background-color: #fff8dc;
+  font-family: sans-serif;
+  border: 1px  solid #6495ED;
+  }
+
+.popupInfo {
+  position:absolute;
+  visibility:hidden;
+  }
+
+/* DOCBOOK STUFF 
+these two dont' work with ns4
+div.epigraph {
+	margin-left: 50px;
+	margin-right: 50px;
+  }
+
+div.abstract {
+       margin-left: 25px;
+       margin-right: 25px;
+       font-style: italic;
+}
+
+div.note {
+   border: 1px solid yellow;
+*/
+div.toc {
+      font-family: Trebuchet;
+}
+
+div.question {
+	font-style: italic;
+	font-family: Trebuchet;
+  }
+div.example, div.figure {
+  margin-top: 20px;
+  padding-left: 10px;
+  margin-right: 0px;
+  border: 1px solid gray;
+  }        
+div.caption {
+         font-style: italic;
+ }
+div.mediaobject {
+  }
+
+.title {
+          font-style: italic;
+      }
+
+/*Heml Browser stuff */
+fieldset {border: 1px solid #6495ED;
+}
+
+.label, label {
+	text-align: right;
+	width: 75px;
+	margin-right: 20px;
+        float: left;
+        display: block;
+        
+}
+
+.submit, input {
+     margin-left: 95px;
+}
+br {
+}
+/*
+input#submit {
+       text-align: left;
+       width: 50px;
+       padding-right: 20px;
+       float: left;
+ }
+
+*/
+
+/* Tables */
+
+.tableHeader {
+background: #d0d0d0;
+}
+.firstRow {
+background: #f0f0f0;
+}
+
+td.secondRow {
+background: white;
+}
+
+
+/*styles for events in popup and list view */
+h1.popup, H1.popup { 
+  background-color: rgb(220,220,220);  color: rgb(16,78,139);  
+  font-size: 14px; font-weight: bold;  margin-left: 0pt;  font-family: 'Arial';
+}
+
+.event { color: rgb(16, 78, 139); 
+             font-weight: normal; 
+             font-size: 12px;  
+             font-family: 'Arial'; 
+             text-align: right;
+             width: 75px;
+             margin-right: 15px;
+             float: left;
+}
+
+h1.list, H1.list { 
+  color: rgb(16,78,139); font-size: 16px; font-weight: bold; margin-left: 0pt;
+  font-family: 'Arial';
+ }
+/* event text all have this common style*/
+.eventtext { 
+font-size: 12px; 
+width: 400px;
+float: left;
+/*margin-left: 5px;*/
+
+} 
+
+p.bibitem {
+margin-top: 0px;
+margin-bottom: 0px;
+margin-left: 10px;
+text-indent: -10px;
+}
+
+br {
+clear: both;
+}
+  /* language listing */
+  .langformat { font-variant: small-caps; }
+  /* format for participant's primary name */
+  /* :TODO: make part of common stylesheet */
+  .primaryName { font-variant: small-caps; }  
+
+
+
+/* Slides Stuff*/
+span.slidenavigation {
+         font-family: Trebuchet MS, sans-serif;
+	 }
+.slideNavigation {
+  font-family: Trebuchet MS, sans-serif;
+    font-weight: bold;
+      font-size: 7px;
+        text-align: left;
+	  /*margin-left: 5pt;
+	    text-indent: -3pt;
+	    */
+	      }
+div.done {
+      background: white;
+      color: gray;
+      text-decoration: line-through;
+}
+div.slide {
+         border: 1px solid black;
+	 font-family: Trebuchet MS;
+	  background: white;
+	  color: black;
+	  font-size: 30px;
+		  
+	          }
+
+ .listti { color: teal; 
+           font-family:  Trebuchet MS, sans-serif; 
+           font-weight: bold; }
+
+div.xhtmlmain {
+  width: 80%;
+  text-align: left;
+  }
+
+span.xhtmlsideevent {
+  position:absolute;
+  left: 415px;
+  text-align: left;
+  width:200px; 
+  font-style:italic;
+  font-family: Trebuchet, Arial;
+  font-size: 7px;
+}
+span.eventMarker {
+   font-family: Trebuchet, Verdana;
+   color: #6495ED;  
+   font-weight: 600;
+   font-style: italic;
+   background-color: #F0F0F0;
+   border: 1px solid #6495ED;
+   margin-left: 3px;
+   margin-right: 3px;
+   padding-left: 1px;
+   padding-right: 1px;
+}
+/* Content from international_names.css here */
+
+/* Dealing with Latin names */
+.contentinla .primaryname {font-variant: small-caps;}

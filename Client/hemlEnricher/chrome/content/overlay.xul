@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css"  type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://hemlEnricher/locale/overlay.dtd">
+<overlay id="hemlEnricher"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <menupopup id="viewSidebarMenu">
+    <menuitem key="key_openHemlEnricher" observes="viewHemlEnricher"  />
+  </menupopup>
+  
+  <keyset id="mainKeyset">
+    <key id="key_openHemlEnricher" command="viewHemlEnricher"
+         key="&openEnricher.commandkey;" 
+         modifiers="&openEnricher.modifierskey;" />
+  </keyset>
+  
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewHemlEnricher" 
+                 label="&enricher.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://hemlEnricher/content/hemlEnricher.xul"
+                 sidebartitle="&enricher.title;"
+				 oncommand="toggleSidebar('viewHemlEnricher');" />
+  </broadcasterset>
+</overlay>

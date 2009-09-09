@@ -1,0 +1,25 @@
+-- The following README is also located at the start of timeBounds.patch --
+
+This patch sets up Jena to automatically generate earliest time and latest time
+properties for hemlRdf:SimpleDate, hemlRDF:DateRange, hemlRDF:TerminusAnteQuem
+and hemlRDF:TerminusPostQuem properties as they are inserted into a graph. This
+feature can be enabled and dissabled by calling timeBoundsGeneration( boolean
+enabled ) on your graph object. The default enabledness can be set in
+com.hp.hpl.jena.HemlConstants.
+
+Note that this feature depends on your graph being an extension of the
+GraphBase object, which is true for all graphs already in Jena.
+
+Note also that this depends on an external jar file which handles the parsing of
+these dates (cocoon-heml-block.jar) which must be placed in Jena's lib
+directory.
+
+Instructions to apply this patch:
+  * Copy cocoon-heml-block.jar into Jena's lib directory
+  * Copy this patch file into Jena's src directory
+  * cd into Jena's src directory
+  * run 'patch -p1 -i timeBounds.patch
+  * Remove the patch file
+  * cd into Jena's root directory and build jena (run 'ant')
+
+The new Jena jar file will now be in Jena's lib folder.

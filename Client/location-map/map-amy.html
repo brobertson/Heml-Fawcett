@@ -5,11 +5,22 @@
 		<!<link rel="stylesheet" href="style.css" type="text/css" />
 		<!<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
 		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="language-preferences/ext-all.css" />
+		<link rel="stylesheet" type="text/css" href="language-preferences/ext-heml.css" />
+
 		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 		<script type="text/javascript" language="javascript" src="sparql.js"></script>
 		<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"></script>
+		<script type="text/javascript" language="javascript" src="sparqlLangUtil.js"></script>
 		<script type="text/javascript" language="javascript" src="fragmentaryReferenceBuilder-test.js"></script>
 		<script type="text/javascript" language="javascript" src="map-amy.js"></script>
+
+		<!--import language preferences -->
+		<script type="text/javascript" language="javascript" src="language-preferences/ext-base.js"> </script>
+		<script type="text/javascript" language="javascript" src="language-preferences/ext-all.js"> </script>
+		<script type="text/javascript" language="javascript" src="language-preferences/language-prefs.js"></script>
+
 	</head> 
 	<body onload="init()">
 	<div id="content">		
@@ -20,5 +31,7 @@
 			<div id="eventList"></div>
 		</div>
 	</div>
+	<br/>
+	<div id="languagePreferences"></div>
 	</body>
 </html>

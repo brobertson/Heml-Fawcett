@@ -1,0 +1,4 @@
+content hemlEnricher chrome/content/
+overlay chrome://browser/content/browser.xul chrome://hemlEnricher/content/overlay.xul
+
+locale hemlEnricher en-US chrome/locale/en-US/
