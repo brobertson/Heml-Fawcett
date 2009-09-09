@@ -68,3 +68,13 @@ p.referenceTitleClass:hover {
 	cursor: pointer;
 	color: gray;
 }
+
+.goodlink {
+    text-decoration:none;
+    color:green;
+}
+
+.badlink {
+    text-decoration:line-through;
+    color:red;
+}
