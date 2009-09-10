@@ -240,6 +240,7 @@ function getRefTypes(htmlNode, eventNode) {
 }
 
 function displayBlock(theDiv, message){
+    cursor_default();
 	if (theDiv!=null) {
 		if (theDiv.style.display == "none") {
 			theDiv.style.display = "block";
@@ -299,11 +300,13 @@ function getElementsByClass(node, searchClass, tag) {
 }
 
 function cursor_wait() {
-	document.body.style.cursor = 'wait';
+	var loader = document.getElementById("loading");
+	loader.style.visibility="visible";
 }
 
 function cursor_default() {
-	document.body.style.cursor = 'default';
+	var loader = document.getElementById("loading");
+	loader.style.visibility="hidden";
 }
 
 function checkLink(link) {
