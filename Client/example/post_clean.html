@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Connection Manager POST Transaction</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="post_clean_files/fonts-min.css">
+<script type="text/javascript" src="post_clean_files/yahoo-min.js"></script>
+<script type="text/javascript" src="post_clean_files/event-min.js"></script>
+<script type="text/javascript" src="post_clean_files/connection-min.js"></script>
+
+
+<!--begin custom header content for this example-->
+<style>
+#container li {margin-left:2em;}
+</style>
+
+
+<!--end custom header content for this example-->
+
+</head><body class="yui-skin-sam">
+
+
+<h1>Connection Manager POST Transaction</h1>
+
+<div class="exampleIntro">
+	<p>To create a POST transaction using <a href="http://developer.yahoo.com/yui/connection/">Connection Manager</a>,
+you will need to construct a data string as the POST message. The
+following code example provides a step-by-step approach to creating a
+simple POST transaction.</p>
+
+<p>Click "Send a POST Request" below to try it out, then read the
+description below to learn how to send POST data to the server using
+Connection Manager.</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<div id="container"></div>
+
+<script>
+var div = document.getElementById('container');
+
+var handleSuccess = function(o){
+	YAHOO.log("The success handler was called.  tId: " + o.tId + ".", "info", "example");
+	if(o.responseText !== undefined){
+		div.innerHTML = "<li>Transaction id: " + o.tId + "</li>";
+		div.innerHTML += "<li>HTTP status: " + o.status + "</li>";
+		div.innerHTML += "<li>Status code message: " + o.statusText + "</li>";
+		div.innerHTML += "<li>HTTP headers received: <ul>" + o.getAllResponseHeaders + "</ul></li>";
+		div.innerHTML += "<li>PHP response: " + o.responseText + "</li>";
+		div.innerHTML += "<li>Argument object: Array ([0] => " + o.argument[0] +
+						 " [1] => " + o.argument[1] + " )</li>";
+	}
+};
+
+var handleFailure = function(o){
+		YAHOO.log("The failure handler was called.  tId: " + o.tId + ".", "info", "example");
+
+	if(o.responseText !== undefined){
+		div.innerHTML = "<li>Transaction id: " + o.tId + "</li>";
+		div.innerHTML += "<li>HTTP status: " + o.status + "</li>";
+		div.innerHTML += "<li>Status code message: " + o.statusText + "</li>";
+	}
+};
+
+var callback =
+{
+  success:handleSuccess,
+  failure:handleFailure,
+  argument:['foo','bar']
+};
+
+var sUrl = "assets/post.php";
+var postData = "username=anonymous&userid=0";
+
+function makeRequest(){
+
+	var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, postData);
+	
+	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
+
+}
+
+YAHOO.log("As you interact with this example, relevant steps in the process will be logged here.", "info", "example");
+</script>
+<form><input value="Send a POST Request" onclick="makeRequest();" type="button"></form>
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+
+<!--MyBlogLog instrumentation-->
+<script type="text/javascript" src="post_clean_files/jsserv.html"></script>
+
+<script type="text/javascript" src="post_clean_files/rto1_78.js"></script><script>var rt_page="792403941:FRTMA"; var
+rt_ip="138.73.190.247";
+if ("function" == typeof(rt_AddVar) ){ rt_AddVar("ys", escape("F44C9345")); rt_AddVar("cr", escape("KMCBF/Fm3a3"));
+rt_AddVar("sg", escape("/SIG=13nab335l0e6l2rl4eeod4&b=4&d=QAdX9ttpYFQphSObXNWaL4N1NfBZ3TE1BNFR&s=2e&i=IkRPTvaDn.09vSr3LPQJ/1262958298/138.73.190.247/F44C9345")); rt_AddVar("yd", escape("278403535"));
+}</script><noscript><img src="http://rtb.pclick.yahoo.com/images/nojs.gif?p=792403941:FRTMA"></noscript>
+<!-- SpaceID=792403941 loc=FSRVY noad -->
+<script language="javascript">
+if(window.yzq_d==null)window.yzq_d=new Object();
+window.yzq_d['JU10AEWTSS4-']='&U=12ds1lgod%2fN%3dJU10AEWTSS4-%2fC%3d-1%2fD%3dFSRVY%2fB%3d-1%2fV%3d0';
+</script><noscript><img width=1 height=1 alt=""
+src="http://us.bc.yahoo.com/b?P=LBXuQkWTTNIHGqLdSOdhpBwDikm.90tHNtoABP4h&T=1422a1jpn%2fX%3d1262958298%2fE%3d792403941%2fR%3ddev_net%2fK%3d5%2fV%3d2.1%2fW%3dH%2fY%3dYAHOO%2fF%3d4122348490%2fQ%3d-1%2fS%3d1%2fJ%3dF44C9345&U=12ds1lgod%2fN%3dJU10AEWTSS4-%2fC%3d-1%2fD%3dFSRVY%2fB%3d-1%2fV%3d0"></noscript><script language="javascript">
+if(window.yzq_d==null)window.yzq_d=new Object();
+window.yzq_d['I010AEWTSS4-']='&U=13eksgg3c%2fN%3dI010AEWTSS4-%2fC%3d289534.9603437.10326224.9298098%2fD%3dFOOT%2fB%3d4123617%2fV%3d1';
+</script><noscript><img width=1 height=1 alt=""
+src="http://us.bc.yahoo.com/b?P=LBXuQkWTTNIHGqLdSOdhpBwDikm.90tHNtoABP4h&T=142a908f1%2fX%3d1262958298%2fE%3d792403941%2fR%3ddev_net%2fK%3d5%2fV%3d2.1%2fW%3dH%2fY%3dYAHOO%2fF%3d2536032817%2fQ%3d-1%2fS%3d1%2fJ%3dF44C9345&U=13eksgg3c%2fN%3dI010AEWTSS4-%2fC%3d289534.9603437.10326224.9298098%2fD%3dFOOT%2fB%3d4123617%2fV%3d1"></noscript>
+<!-- VER-735 -->
+<script language="javascript">
+if(window.yzq_p==null)document.write("<scr"+"ipt language=javascript src=http://l.yimg.com/d/lib/bc/bc_2.0.4.js></scr"+"ipt>");
+</script><script language="javascript" src="post_clean_files/bc_2.js"></script><script language="javascript">
+if(window.yzq_p)yzq_p('P=LBXuQkWTTNIHGqLdSOdhpBwDikm.90tHNtoABP4h&T=13ttvl5k7%2fX%3d1262958298%2fE%3d792403941%2fR%3ddev_net%2fK%3d5%2fV%3d1.1%2fW%3dJ%2fY%3dYAHOO%2fF%3d3873250915%2fS%3d1%2fJ%3dF44C9345');
+if(window.yzq_s)yzq_s();
+</script><noscript><img width=1 height=1 alt=""
+src="http://us.bc.yahoo.com/b?P=LBXuQkWTTNIHGqLdSOdhpBwDikm.90tHNtoABP4h&T=142ekn08k%2fX%3d1262958298%2fE%3d792403941%2fR%3ddev_net%2fK%3d5%2fV%3d3.1%2fW%3dJ%2fY%3dYAHOO%2fF%3d3004713460%2fQ%3d-1%2fS%3d1%2fJ%3dF44C9345"></noscript>
+<!-- p5.ydn.re1.yahoo.com compressed/chunked Fri Jan  8 05:44:58 PST 2010 -->
+</body></html>
