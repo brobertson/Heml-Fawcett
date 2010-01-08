@@ -4,23 +4,6 @@
 		<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"></script>
 		<script type="text/javascript" language="javascript" src="../javascript/sparqlLangUtil.js"></script>
  <script language="javascript" type="text/javascript">
-function getHemlQuery(service, sparqlQueryString) {
- sparqler = new SPARQL.Service(service);
-sparqler.setPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-sparqler.setPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-sparqler.setPrefix("hemlRDF", "http://www.heml.org/rdf/2003-09-17/heml/");
-sparqler.setPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
-sparqler.setPrefix("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
-sparqler.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//sparqler.wantOutputAs("application/json"); // for now we only do JSON
-//I'm not sure why, but 'POST' hangs when called from third-party machines
-//It believes the content-type is not properly encoded
-sparqler.setMethod("GET");
-var query = sparqler.createQuery();
-query.query(sparqlQueryString,
-{failure: onHemlFailure, success:  onHemlSuccess(json)}
-		);
-}
 
 function onHemlFailure() {
 alert("The Heml SPARQL query failed");
@@ -29,6 +12,14 @@ alert("The Heml SPARQL query failed");
 function onHemlSuccess(json) {
     alert ("The Heml SPARQL query succeeded");
 }
+queryString = "SELECT DISTINCT ?label \
+WHERE { ?event a hemlRDF:Event.\
+      ?event rdfs:label ?label\
+\
+}"
+var endpoint = "http://heml.mta.ca/joseki3/sparql/read"
+var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, onHemlSuccess);
+eventsQuery.performQuery();
 </script>
 </head>
 <body>
