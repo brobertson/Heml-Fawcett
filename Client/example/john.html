@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://dev.jquery.com/~john/xdomain/test.php", true);
+xhr.onreadystatechange = function(){
+  if ( xhr.readyState == 4 ) {
+    if ( xhr.status == 200 ) {
+      document.body.innerHTML = "My Name is: " + xhr.responseText;
+    } else {
+      document.body.innerHTML = "ERROR";
+    }
+  }
+};
+xhr.send(null);
+</script>
+
+</head>
+<body>
+	<h1>Hi there</h1>
+	<p>
+		<div id ="innerHTML"/>
+		</p>
+	</body>
+	</html>
