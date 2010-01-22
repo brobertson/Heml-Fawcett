@@ -1,5 +1,5 @@
 /**********************************************************
-  Copyright (c) 2008
+  Copyright (c) 2008-2010
     Bruce Robertson brobertson@mta.ca
   All rights reserved.
 
@@ -77,6 +77,67 @@ query.query(_queryString,
 	
 	
 }
+
+Heml.SparqlUpdate = function(endpoint, failureFunction, successFunction) {
+
+//private variables 
+var _prefixes = {};
+var _triples = [];
+var _endpoint = endpoint;
+//accessors
+this.prefixes = function() { return _prefixes;};
+this.endpoint = function() {return _endpoint;};
+//mutators
+this.setPrefix = function(p, u) { this.prefixes()[p] = u; };
+this.addTriple = function(a, b, c) {
+       var aTriple = new Array();
+       aTriple[0] = a;
+       aTriple[1] = b;
+       aTriple[2] = c;
+       _triples.push(aTriple);
+    };
+    /**
+     * Returns the SPARQL query represented by this object. The parameter, which can
+     * be omitted, determines whether or not auto-generated PREFIX clauses are included
+     * in the returned query string.
+     */
+        this.queryString = function() {
+                var preamble = '';
+                        for (var prefix in this.prefixes()) {
+                                if(typeof(this.prefixes()[prefix]) != 'string') continue;
+                                preamble += 'PREFIX ' + prefix + ': <' + this.prefixes()[prefix] + '> \n';
+                        }
+                 var triplesToUpdate = '';
+                 var length = _triples.length;
+                 for(var i=0; i< length; i++) {
+                     triplesToUpdate += _triples[i][0] + " " + _triples[i][1] + " "  + _triples[i][2] + " .\n"
+                 }
+                return preamble + "MODIFY DELETE {} INSERT {\n" + triplesToUpdate + "\n}";
+
+        };
+this.doUpdate = function() {
+  var statement = "request=" + this.queryString();
+
+  var xhr = new XMLHttpRequest();
+  //alert(this.endpoint());
+  //alert(statement);
+  xhr.open("POST", this.endpoint(), true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Content-length", statement.length);
+  xhr.setRequestHeader("Connection", "close");
+xhr.onreadystatechange = function(){
+  if ( xhr.readyState == 4 ) {
+    //alert("status: " + xhr.statusText);
+    if ( xhr.status == 200 ) {;
+      successFunction(xhr.statusText);
+    } else {
+       failureFunction(xhr.statusText);
+    }
+  }
+};
+xhr.send(statement);
+};
+};
 /*
 function getHemlQuery(service, sparqlQueryString) {
  sparqler = new SPARQL.Service(service);

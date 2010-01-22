@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <script type="text/javascript" language="javascript" src="../javascript/sparql.js"></script>
+                <script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"></script>
+<script type="text/javascript">
+
+//We're just wrapping the meat of the update in this so that we can run it with a click
+function makeSampleUpdate() {
+
+//This function is stored in the hemlJsonQuery.js file referenced above
+su = new Heml.SparqlUpdate('http://heml.mta.ca/joseki3/update/service',  onHemlFailure, onHemlSuccess);
+//Let's assign some prefixes for convenience's sake
+su.setPrefix("biffle", "http://biffle.com#");
+su.setPrefix("sot", "http://sot.com#");
+
+//Now we add a single triple
+//notice that quotation marks are required for strings
+//this value is not a valid time string in XSD or SPARQL
+su.addTriple("biffle:foo", "sot:time", '"' + getDateTimeString() + '"');
+//you can add more triples after this so that multiple updates happen with one transaction
+
+alert("The update statement will be: \n" + su.queryString()+ "\n and it will be sent to:\n" + su.endpoint());
+su.doUpdate();
+//That's it!
+
+function onHemlFailure(reply) {
+        alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:\n" + reply);
+        // do something more interesting, like putting an x through the map. or making
+        // a popup
+}
+
+function onHemlSuccess(reply) {
+alert("It worked\n" + reply);
+}
+}//end makeSampleUpdate()
+
+/* Supporting Functions */
+
+
+function getDateTimeString() {
+var currentTime = new Date();
+var month = currentTime.getMonth() + 1;
+var day = currentTime.getDate();
+var year = currentTime.getFullYear();
+var hour = currentTime.getHours();
+var minute = currentTime.getMinutes();
+var second = currentTime.getSeconds();
+return year + "-" + month  + "-" + day + " " + hour + ":" + minute + ":" + second;
+
+}
+/* End supporting functions */
+
+</script>
+
+</head>
+<body>
+	<h1>Testing Heml.SparqlUpdate</h1>
+        <!-- strange but true: if the below reads 'href=""', a race condition occurs on the
+             call to the server.
+        -->
+        <p>Click <a href="#" onmouseup="makeSampleUpdate();">here</a> to do a test update.</p>
+        <p>This <a href="http://heml.mta.ca/joseki3/sparql/read?query=SELECT+%3Ftime+%0D%0AWHERE+{%0D%0A%3Chttp%3A%2F%2Fbiffle.com%23foo%3E++%3Chttp%3A%2F%2Fsot.com%23time%3E+%3Ftime+.%0D%0A}&default-graph-uri=&stylesheet=..%2Fxml-to-html.xsl">query</a> should include your date string.</p>
+	</body>
+	</html>
