@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt); ChangeWords(evt)" onmouseup="Drop(evt)">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)">
 
  <title>Drag And Drop</title>
 
@@ -38,7 +38,7 @@
    Left = SVGDocument.getElementById('ChangeL');
    Right = SVGDocument.getElementById('ChangeR');
    newText = SVGDocument.createTextNode("Well hey there!");
-   Right.replaceChild(newText, Right.getFirstChild());
+   Right.replaceChild(newText, Right.firstChild);
   }
 
 
@@ -67,6 +67,7 @@
     //    and the new location
     var transMatrix = DragTarget.getCTM();
     GrabPoint.x = TrueCoords.x - Number(transMatrix.e);
+    
    }
   };
 
@@ -116,7 +117,9 @@
 
   function ChangeWords(xVal){
    Changeable = SVGDocument.getElementById('ChangeL');
-  };
+     newText = SVGDocument.createTextNode(xVal);
+   Changeable.replaceChild(newText, Changeable.firstChild);  
+};
 
  ]]></script>
 
