@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html 
+
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <style>
+  ul { font-size:18px; margin:0; }
+  span { color:blue; text-decoration:underline; cursor:pointer; }
+  .example { font-style:italic; }
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<p>Happy.</p>
+	<p class="ctsurn">urn://tlg0100/tlg001/1</p>
+	To do list: <span>(click here to change)</span>
+  <ul>
+    <li>Eat</li>
+    <li>Sleep</li>
+
+    <li>Be merry</li>
+  </ul>
+ <p class="ctsurn">Unhappy.</p>
+<script>
+
+	 $(document).ready(function () {
+	  $(".ctsurn").each(function(index) {
+		urn = $(this).text();
+		alert(urn);
+		myregexp =  /(\w+:\/\/[A-Z]{3}\d{4}\/[A-Z]{3}\d{3})\/(\d+)/i
+		//myregexp=/urn:\/\/(\w\w\w)(\d\d\d\d\)/
+		mymatch = myregexp.exec(urn);
+		alert(mymatch);
+		//$(this).text($(this).text );
+	});
+	});
+
+</script>
+</body>
+</html>
