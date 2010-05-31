@@ -1,0 +1,33 @@
+PREFIX heml_cidoc_texts: <http://heml.mta.ca/cidoc_crm_texts#>
+PREFIX crm: <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#>
+PREFIX dbpedia: <http://dbpedia.org/resource/>
+
+#do these declarations only once for the whole document
+dbpedia:Ancient_greek a crm:E56.Language.
+dbpedia:English_language a crm:E56.Language.
+
+#Here's an example with just one text
+#Thucydides _Peloponneisan War_
+
+#describe the text
+urn://tlg0003/tlg001 a crm:E33.Linguistic_Object.
+urn://tlg0003/tlg001 crm:P72F.has_language dbpedia:Ancient_greek
+#Here provide links into the textual representations, i.e. the Perseus documents
+
+#Note that it has a translation
+urn://tlg003/tlg001 p73.has_translation urn://tlg0003/tlg001en.
+urn://tlg0003/tlg001en p72.has_language dbpedia:English.
+#Here provide links into textual representations, like the Perseus document
+
+#Identify the author in dbpedia terms
+urn://tlg0003 owl:sameAs dbpedia:Thucydides.
+urn://tlg0003 a E39.Actor.
+
+#Identify the text in dbpedia terms
+urn://tlg0003/tlg001 owl:sameAs dbpedia:Peloponnesian_War.
+
+#State the relationship between author and text in cidoc-crm
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 a E65.Creation.
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 p14.carried_out_by urn://tlg0003.
+#E65.Creation P94.has_created E28.Conceptual_Object
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 p94.has_created urn://tlg0003/tlg001
