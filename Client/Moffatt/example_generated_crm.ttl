@@ -3,34 +3,39 @@
 @prefix dbpedia: <http://dbpedia.org/resource/> .
 @prefix heml_text: <http://heml.mta.ca/text/urn/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 #do these declarations only once for the whole document
-dbpedia:Ancient_greek a crm:E56.Language.
-dbpedia:English_language a crm:E56.Language.
+dbpedia:Ancient_greek a crm:E56.
+dbpedia:English_language a crm:E56.
 
 
 #Here's an example with just one text
 #Thucydides _Peloponneisan War_
 
 #describe the text
-<http://heml.mta.ca/text/urn/tlg0003/tlg001> a crm:E33.Linguistic_Object.
-<http://heml.mta.ca/text/urn/tlg0003/tlg001> crm:P72F.has_language dbpedia:Ancient_greek.
+<http://heml.mta.ca/text/urn/tlg0003/tlg001> a crm:E33.
+<http://heml.mta.ca/text/urn/tlg0003/tlg001> crm:P72F dbpedia:Ancient_greek.
 #Here provide links into the textual representations, i.e. the Perseus documents
 
 #Note that it has a translation
-<http://heml.mta.ca/text/urn/tlg003/tlg001> crm:P73.has_translation <http://heml.mta.ca/text/urn/tlg0003/tlg001en>.
-<http://heml.mta.ca/text/urn/tlg0003/tlg001en> crm:P72F.has_language dbpedia:English_language.
+<http://heml.mta.ca/text/urn/tlg003/tlg001> crm:P73 <http://heml.mta.ca/text/urn/tlg0003/tlg001en>.
+<http://heml.mta.ca/text/urn/tlg0003/tlg001en> crm:P72F dbpedia:English_language.
 #Here provide links into textual representations, like the Perseus document
 
 #Identify the author in dbpedia terms
 <http://heml.mta.ca/text/urn/tlg0003> owl:sameAs dbpedia:Thucydides.
-<http://heml.mta.ca/text/urn/tlg0003> a crm:E39.Actor.
+<http://heml.mta.ca/text/urn/tlg0003> a crm:E39.
 
 #Identify the text in dbpedia terms
 <http://heml.mta.ca/text/urn/tlg0003/tlg001> owl:sameAs dbpedia:Peloponnesian_War.
 
 #State the relationship between author and text in cidoc-crm
-heml_cidoc_texts:creation_of_tlg0003_tlg_0001 a crm:E65.Creation.
-heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P14.carried_out_by <http://heml.mta.ca/text/urn/tlg0003>.
-#E65.Creation P94.has_created crm:E28.Conceptual_Object.
-heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P94.has_created <http://heml.mta.ca/text/urn/tlg0003/tlg001>.
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 a crm:E65.
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P14 <http://heml.mta.ca/text/urn/tlg0003>.
+#E65.Creation P94.has_created crm:E28.
+heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P94 <http://heml.mta.ca/text/urn/tlg0003/tlg001>.
+
+
+#test data
+<http://dbpedia.org/resource/Thucydides> rdfs:label "Thucydides"@en.
+dbpedia:Peloponnesian_War rdfs:label "PW"@en.
