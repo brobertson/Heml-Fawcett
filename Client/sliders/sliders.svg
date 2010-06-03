@@ -4,10 +4,8 @@
 
  <title>Drag And Drop</title>
 
- <desc>
-  A nice little demo of drag-and-drop functionality in SVG,
-  written by Doug Schepers on February 16, 2004.
-  Use or misuse this code however you wish.
+ <desc>Sliders to indicate location on a timeline
+  Sarah Bell-Etkin for Heml-Fawcett, 2010
  </desc>
 
  <script><![CDATA[ 
@@ -21,10 +19,19 @@
   var DragTarget = null;
   var Left;
   var Right;
+  var OldBound;
+  var NowBound;
+  var OldLine;
+  var NowLine;
 
   var xLeft;
   var xRight;
-
+  
+  var lowBound = -1500;
+  var highBound = 2010;
+  var scale;
+  var ratio;
+  var time;
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
@@ -39,12 +46,17 @@
    Right = SVGDocument.getElementById('RightSlider');
    TLeft = SVGDocument.getElementById('ChangeL');
    TRight = SVGDocument.getElementById('ChangeR');
+   OldBound = SVGDocument.getElementById('LeftBound');
+   NowBound = SVGDocument.getElementById('RightBound');
+   OldLine = SVGDocument.getElementById('LPath');
+   NowLine = SVGDocument.getElementById('RPath');
+   lowBound = LPath.getAttribute("x1");
+   highBound = RPath.getAttribute("x1");
   }
-
 
   function Grab(evt){
    var targetElement = evt.target;
-   if ((BackDrop != targetElement) && (TextBox != targetElement) && (TRight != targetElement) && (TLeft != targetElement)){
+   if((BackDrop != targetElement) && (TextBox != targetElement) && (TRight != targetElement) && (TLeft != targetElement) && (OldBound != targetElement) && (NowBound != targetElement) && (OldLine != targetElement) && (NowLine != targetElement)){
     DragTarget = targetElement;
     DragTarget.parentNode.appendChild( DragTarget );
     DragTarget.setAttributeNS(null, 'pointer-events', 'none');
@@ -54,34 +66,33 @@
    }
   };
 
-
   function Drag(evt){
    GetTrueCoords(evt);
-   
-   if (DragTarget){
+   if(DragTarget){
     var newX = TrueCoords.x - GrabPoint.x;
+    var canDo = CheckBound(newX);
 
     if(DragTarget == Left){
-     xLeft = newX;
+     xLeft = canDo;
      ChangeWords(xLeft, 'L');
+     TLeft.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
     }
     else if(DragTarget == Right){
-     xRight = 2000 + newX;
+     xRight = 2000 + canDo;
      ChangeWords(xRight, 'R');
+     TRight.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
     }
-    DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + 0 + ')');   
+   DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
    }
   };
-
  
   function Drop(evt){
-   if ( DragTarget ){
+   if(DragTarget){
     var targetElement = evt.target;
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
     DragTarget = null;
    }
   };
-
 
   function GetTrueCoords(evt){
    var newScale = SVGRoot.currentScale;
@@ -89,29 +100,56 @@
    TrueCoords.x = (evt.clientX - translation.x)/newScale;
   };
 
-
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
    newText = SVGDocument.createTextNode(xVal);
    Changeable.replaceChild(newText, Changeable.firstChild);  
   };
 
+  function Scale(pixPoint){
+   scale = highBound - lowBound;
+   ratio = pixPoint / scale;
+   return ratio;
+  };
+
+  function CheckBound(pixPoint){
+   if(pixPoint <= -292){
+    alert("There is no information beyond this point.");
+    return -292;
+   }
+   else if(pixPoint >= 877){
+    alert("There is no information beyond this point.");
+    return 877;
+   }
+   return pixPoint;
+  };
+
  ]]></script>
 
- <rect id="BackDrop" x="-10%" y="-10%" width="110%" height="110%" fill="none" pointer-events="all"/>
+ <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
 
  <g id = "Left">
-  <circle id = "LeftSlider" cx="25%" cy="25%" r="15" style="fill: blue;" stroke="black" stroke-width="1"/>
-  <text id = "ChangeL" x = "25%" y = "35%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left Tracer</text>
+  <circle id = "LeftSlider" cx="343" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="1"/>
+  <text id = "ChangeL" x = "343" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left Tracer</text>
  </g>
 
  <g id = "Right">
-  <circle id="RightSlider" cx="75%" cy="25%" r="15" style="fill: red;" stroke="black" stoke-width="2"/>
-  <text id = "ChangeR" x = "75%" y = "35%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
+  <circle id="RightSlider" cx="927" cy="20%" r="10" style="fill: red;" stroke="black" stoke-width="2"/>
+  <text id = "ChangeR" x = "927" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
  </g> 
-  
- <g style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
-  <text id = "TextBox" x = "50%" y = "60">Centre</text>
+ 
+ <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+  <text id = "LeftBound" x = "5%" y = "60" text-anchor = "middle">1500 BCE</text>
+  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
+ </g>
+
+ <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt"> >
+  <text id = "RightBound" x = "95%" y = "60" text-anchor = "middle">2010 CE</text>
+  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
+ </g>
+
+ <g style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+  <text id = "TextBox" x = "50%" y = "60" text-anchor = "middle">Centre</text>
  </g>
 
 </svg>
