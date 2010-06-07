@@ -23,15 +23,18 @@
   var NowBound;
   var OldLine;
   var NowLine;
+  var MidLine;
 
   var xLeft;
   var xRight;
   
   var lowBound = -1500;
   var highBound = 2010;
+  var pixDistance;
   var scale;
   var ratio;
   var time;
+  
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
@@ -50,13 +53,14 @@
    NowBound = SVGDocument.getElementById('RightBound');
    OldLine = SVGDocument.getElementById('LPath');
    NowLine = SVGDocument.getElementById('RPath');
+   MidLine = SVGDocument.getElementById('MiddlePath');
    lowBound = LPath.getAttribute("x1");
    highBound = RPath.getAttribute("x1");
   }
 
   function Grab(evt){
    var targetElement = evt.target;
-   if((BackDrop != targetElement) && (TextBox != targetElement) && (TRight != targetElement) && (TLeft != targetElement) && (OldBound != targetElement) && (NowBound != targetElement) && (OldLine != targetElement) && (NowLine != targetElement)){
+   if((BackDrop != targetElement) && (TextBox != targetElement) && (TRight != targetElement) && (TLeft != targetElement) && (OldBound != targetElement) && (NowBound != targetElement) && (OldLine != targetElement) && (NowLine != targetElement) && (MidLine != targetElement)){
     DragTarget = targetElement;
     DragTarget.parentNode.appendChild( DragTarget );
     DragTarget.setAttributeNS(null, 'pointer-events', 'none');
@@ -71,14 +75,14 @@
    if(DragTarget){
     var newX = TrueCoords.x - GrabPoint.x;
     var canDo = CheckBound(newX);
-
+   
     if(DragTarget == Left){
      xLeft = canDo;
      ChangeWords(xLeft, 'L');
      TLeft.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
     }
     else if(DragTarget == Right){
-     xRight = 2000 + canDo;
+     xRight = canDo;
      ChangeWords(xRight, 'R');
      TRight.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
     }
@@ -102,24 +106,25 @@
 
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
-   newText = SVGDocument.createTextNode(xVal);
+   newVal = Scale(xVal);
+   newText = SVGDocument.createTextNode(newVal);
    Changeable.replaceChild(newText, Changeable.firstChild);  
   };
 
   function Scale(pixPoint){
    scale = highBound - lowBound;
-   ratio = pixPoint / scale;
-   return ratio;
+   pixDistance = 1220 - 50;
+   ratio = pixPoint / pixDistance;
+   time = Math.round(ratio * scale);
+   return time;
   };
 
   function CheckBound(pixPoint){
-   if(pixPoint <= -292){
-    alert("There is no information beyond this point.");
-    return -292;
+   if(pixPoint <= -500){
+    return -500;
    }
-   else if(pixPoint >= 877){
-    alert("There is no information beyond this point.");
-    return 877;
+   else if(pixPoint >= 670){
+    return 670;
    }
    return pixPoint;
   };
@@ -129,12 +134,12 @@
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
 
  <g id = "Left">
-  <circle id = "LeftSlider" cx="343" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="1"/>
-  <text id = "ChangeL" x = "343" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left Tracer</text>
+  <circle id = "LeftSlider" cx="550" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="2"/>
+  <text id = "ChangeL" x = "550" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left Tracer</text>
  </g>
 
  <g id = "Right">
-  <circle id="RightSlider" cx="927" cy="20%" r="10" style="fill: red;" stroke="black" stoke-width="2"/>
+  <circle id="RightSlider" cx="927" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
   <text id = "ChangeR" x = "927" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
  </g> 
  
@@ -148,8 +153,9 @@
   <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
  </g>
 
- <g style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
-  <text id = "TextBox" x = "50%" y = "60" text-anchor = "middle">Centre</text>
+ <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+  <text id = "TextBox" x = "550" y = "60" text-anchor = "middle">1 CE</text>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "550" y1 = "15%" x2 = "550" y2 = "25%"/>
  </g>
 
 </svg>
