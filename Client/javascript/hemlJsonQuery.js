@@ -49,7 +49,9 @@ sparqler.setPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
 sparqler.setPrefix("hemlRDF", "http://www.heml.org/rdf/2003-09-17/heml#");
 sparqler.setPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
 sparqler.setPrefix("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
+sparqler.setPrefix("hemlFunc", "java:org.heml.sparql.");
 sparqler.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+sparqler.setRequestHeader('Accept', 'application/sparql-results+json');
 sparqler.setMethod("GET");
 var query = sparqler.createQuery();
 
