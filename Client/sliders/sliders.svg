@@ -117,7 +117,13 @@
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
    newVal = Scale(xVal, slider);
-   newText = SVGDocument.createTextNode(newVal);
+   if(newVal < 0){
+    newVal = newVal * -1;   
+    newText = SVGDocument.createTextNode(newVal + ' BCE');
+   }
+   else{
+    newText = SVGDocument.createTextNode(newVal + ' CE');
+   }
    Changeable.replaceChild(newText, Changeable.firstChild);  
   };
 
