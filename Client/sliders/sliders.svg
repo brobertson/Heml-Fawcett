@@ -27,6 +27,8 @@
 
   var xLeft;
   var xRight;
+  var checkLeft;
+  var checkRight;
   
   var lowBound = -1500;
   var highBound = 2010;
@@ -54,8 +56,6 @@
    OldLine = SVGDocument.getElementById('LPath');
    NowLine = SVGDocument.getElementById('RPath');
    MidLine = SVGDocument.getElementById('MiddlePath');
-   lowBound = LPath.getAttribute("x1");
-   highBound = RPath.getAttribute("x1");
   }
 
   function Grab(evt){
@@ -74,17 +74,27 @@
    GetTrueCoords(evt);
    if(DragTarget){
     var newX = TrueCoords.x - GrabPoint.x;
-    var canDo = CheckBound(newX);
-   
+    var canDo;
+
     if(DragTarget == Left){
+     canDo = CheckBound(newX, 'L');
      xLeft = canDo;
+//     checkLeft = xLeft;
      ChangeWords(xLeft, 'L');
-     TLeft.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
+     TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
     }
     else if(DragTarget == Right){
+     canDo = CheckBound(newX, 'R');
      xRight = canDo;
-     ChangeWords(xRight, 'R');
-     TRight.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
+//     checkRight = xRight;
+//     overlap = CheckLocation(xRight, 'R');
+//     if(overlap){
+//      return;
+//     }
+//     else{
+      ChangeWords(xRight, 'R');
+      TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
+//     }
     }
    DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
    }
@@ -106,27 +116,63 @@
 
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
-   newVal = Scale(xVal);
-   newText = SVGDocument.createTextNode(newVal);
+   newVal = Scale(xVal, slider);
+   if(newVal < 0){
+    newVal = newVal * -1;   
+    newText = SVGDocument.createTextNode(newVal + ' BCE');
+   }
+   else{
+    newText = SVGDocument.createTextNode(newVal + ' CE');
+   }
    Changeable.replaceChild(newText, Changeable.firstChild);  
   };
 
-  function Scale(pixPoint){
+  function Scale(pixPoint, slider){
    scale = highBound - lowBound;
    pixDistance = 1220 - 50;
-   ratio = pixPoint / pixDistance;
+   if(slider == 'R'){
+    var temp = pixPoint + 380;
+    ratio = temp / pixDistance;
+   }
+   else{
+    ratio = pixPoint / pixDistance;
+   }
    time = Math.round(ratio * scale);
    return time;
   };
 
-  function CheckBound(pixPoint){
-   if(pixPoint <= -500){
-    return -500;
+  function CheckBound(pixPoint, slider){
+   if(slider == 'L'){
+    if(pixPoint <= -500){
+     return -500;
+    }
+    else if(pixPoint >= 670){
+     return 670;
+    }
    }
-   else if(pixPoint >= 670){
-    return 670;
+   else if(slider == 'R'){
+    if(pixPoint <= -880){
+     return -880;
+    }
+    else if(pixPoint >= 290){
+     return 290;
+    }
    }
    return pixPoint;
+  };
+
+  function CheckLocation(pixPoint, slider){
+   if(slider == 'L'){
+    if(checkLeft >= checkRight){
+     return true;
+    }
+   }
+   else if(slider == 'R'){
+    if(checkRight <= checkLeft){
+     return true;
+    }
+   }
+   return false;
   };
 
  ]]></script>
@@ -139,8 +185,8 @@
  </g>
 
  <g id = "Right">
-  <circle id="RightSlider" cx="927" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeR" x = "927" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
+  <circle id="RightSlider" cx="930" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
+  <text id = "ChangeR" x = "930" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
  </g> 
  
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
@@ -155,7 +201,7 @@
 
  <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
   <text id = "TextBox" x = "550" y = "60" text-anchor = "middle">1 CE</text>
-  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "550" y1 = "15%" x2 = "550" y2 = "25%"/>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "550" y1 = "16%" x2 = "550" y2 = "24%"/>
  </g>
 
 </svg>
