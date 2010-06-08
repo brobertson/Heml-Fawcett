@@ -15,29 +15,44 @@
   .example { font-style:italic; }
   </style>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"/>
+	<script type="text/javascript" language="javascript" src="../javascript/sparql.js"/>
+  <script>
+function onHemlFailure(reply) {
+    alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:\n" + reply);
+    // do something more interesting, like putting an x through the map. or making
+    // a popup
+}
+function onHemlSuccess(reply) {
+	alert("You succeeded, and got " + reply.results.bindings[0].label.value);
+}
+
+     var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
+     var queryString = "select ?label where {&lt;http://dbpedia.org/resource/Aristotle> rdfs:label ?label. FILTER(lang(?label) = 'ja')}LIMIT 1"
+     //This is a sparql query that runs at the opening of this page. Set up with the variables and
+    // functions above, right now all it does is grab the japanese for 'Aristotle' and pop an alert with the info.
+    // It would be better if we got all the labels and then negotiated the right display in the client.
+     hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, onHemlSuccess);
+    hq.performQuery();
+  </script>
 </head>
 <body>
-	<p>Happy.</p>
+	<p>This is just a paragraph that does nothing.</p>
+	<p>the following is an actionable ctsurn (well, ok, it isn't, but it should be):</p>
 	<p class="ctsurn">urn://tlg0100/tlg001/1</p>
-	To do list: <span>(click here to change)</span>
-  <ul>
-    <li>Eat</li>
-    <li>Sleep</li>
-
-    <li>Be merry</li>
-  </ul>
- <p class="ctsurn">Unhappy.</p>
+ <p class="ctsurn">This is given 'ctsurn' class, but it cannot be acted upon.</p>
 <script>
-
+//This script iterates through all the elements of the 'ctsurn' class
+//then tries to parse their contents with the regex. The ideas is that the regex
+// splits out the needed bits to make the query to the rdf label server.
 	 $(document).ready(function () {
 	  $(".ctsurn").each(function(index) {
 		urn = $(this).text();
-		alert(urn);
 		myregexp =  /(\w+:\/\/[A-Z]{3}\d{4}\/[A-Z]{3}\d{3})\/(\d+)/i
-		//myregexp=/urn:\/\/(\w\w\w)(\d\d\d\d\)/
+		
 		mymatch = myregexp.exec(urn);
 		alert(mymatch);
-		//$(this).text($(this).text );
+		
 	});
 	});
 
