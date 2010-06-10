@@ -79,22 +79,15 @@
     if(DragTarget == Left){
      canDo = CheckBound(newX, 'L');
      xLeft = canDo;
-//     checkLeft = xLeft;
      ChangeWords(xLeft, 'L');
      TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
     }
     else if(DragTarget == Right){
      canDo = CheckBound(newX, 'R');
      xRight = canDo;
-//     checkRight = xRight;
-//     overlap = CheckLocation(xRight, 'R');
-//     if(overlap){
-//      return;
-//     }
-//     else{
-      ChangeWords(xRight, 'R');
-      TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
-//     }
+     overlap = CheckLocation(xRight, 'R');
+     ChangeWords(xRight, 'R');
+     TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
     }
    DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
    }
@@ -117,6 +110,12 @@
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
    newVal = Scale(xVal, slider);
+   if(slider == 'L'){
+    checkLeft = newVal;
+   }
+   else if(slider == 'R'){
+    checkRight = newVal;
+   }
    if(newVal < 0){
     newVal = newVal * -1;   
     newText = SVGDocument.createTextNode(newVal + ' BCE');
@@ -181,12 +180,12 @@
 
  <g id = "Left">
   <circle id = "LeftSlider" cx="550" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeL" x = "550" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left Tracer</text>
+  <text id = "ChangeL" x = "550" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1 CE</text>
  </g>
 
  <g id = "Right">
   <circle id="RightSlider" cx="930" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeR" x = "930" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right Tracer</text>
+  <text id = "ChangeR" x = "930" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1140 CE</text>
  </g> 
  
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
