@@ -25,23 +25,32 @@ function onHemlFailure(reply) {
 }
 function onHemlSuccess(reply) {
 	console.warn("You succeeded, and got " + reply.results.bindings[0].label.value);
-	alert("You succeeded, and got " + reply.results.bindings[0].label.value);
 }
-
+	var x = 0; var y; var z = 0;
+	var addA = true; var addW = true;
+	var authArr = new Array();
+	var workArr = new Array();
+	var langArr = ['en','fr','it','ru','ja','zh','ar','de'];;
      var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
-     var queryString = "select ?label where {&lt;http://heml.mta.ca/text/urn/tlg0321> rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
+ //*    var queryString = "select ?label where {&lt;http://heml.mta.ca/text/urn/tlg0532/tlg001> rdfs:label ?label. FILTER(lang(?label) = 'fr')}LIMIT 1"
      //This is a sparql query that runs at the opening of this page. Set up with the variables and
     // functions above, right now all it does is grab the japanese for 'Aristotle' and pop an alert with the info.
     // It would be better if we got all the labels and then negotiated the right display in the client.
-     hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, onHemlSuccess);
-    hq.performQuery();
+  //*   hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, onHemlSuccess);
+  //*  hq.performQuery();
   </script>
 </head>
 <body>
 	<p>This is just a paragraph that does nothing.</p>
 	<p>the following is an actionable ctsurn (well, ok, it isn't, but it should be):</p>
-	<p class="ctsurn">urn://tlg0100/tlg001/1</p>
- <p class="ctsurn">This is given 'ctsurn' class, but it cannot be acted upon.</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0532.tlg001</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0003.tlg001</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0003.tlg001</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0007.tlg063</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0007.tlg028</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0007.tlg025</p>
+	<p class="ctsurn">urn:cts:greekLit:tlg0006.tlg011</p>
+	<p class="ctsurn">This is given 'ctsurn' class, but it cannot be acted upon.</p>
 <script>
 //This script iterates through all the elements of the 'ctsurn' class
 //then tries to parse their contents with the regex. The ideas is that the regex
@@ -49,12 +58,42 @@ function onHemlSuccess(reply) {
 	 $(document).ready(function () {
 	  $(".ctsurn").each(function(index) {
 		urn = $(this).text();
-		myregexp =  /(\w+:\/\/[A-Z]{3}\d{4}\/[A-Z]{3}\d{3})\/(\d+)/i
-		
+		myregexp =  /(\w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4})\.([A-Z]{3}\d{3}))/i
 		mymatch = myregexp.exec(urn);
-		alert(mymatch);
-		console.warn(mymatch);
+		if(mymatch!=null){
+		var author ="&lt;http://heml.mta.ca/text/urn/"+mymatch[2]+">"; // author URL
+		var work = "&lt;http://heml.mta.ca/text/urn/"+mymatch[2]+"/"+mymatch[3]+">"; // work URL
+
+	
+	// sucessfully adds the URLs to the appropriate arrays
+	//check to see if author's already there, if so do not add author to array 
+		for(y in authArr){
+		if(authArr[y] == author)
+		{addA = false
+		}}
+		if(addA){
+		authArr[x]=author;
+		var queryString2 = "select ?label where {"+authArr[x]+" rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
+		hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, onHemlSuccess);
+		hq2.performQuery();
+		x++;
+		}
+		add = true;
+	//check to see if work's already there, if so do not add work to array 
+		for(y in workArr){
+		if(workArr[y] == work)
+		{addW = false
+		}}
+		if(addW){
+		workArr[z]=work;
+		var queryString = "select ?label where {"+workArr[z]+" rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
+		hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, onHemlSuccess);
+		hq.performQuery();
+		z++;
+		}
+		addA = addW = true;
 		
+	}	
 	});
 	});
 
