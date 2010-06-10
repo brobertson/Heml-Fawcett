@@ -24,11 +24,12 @@ function onHemlFailure(reply) {
     // a popup
 }
 function onHemlSuccess(reply) {
+	console.warn("You succeeded, and got " + reply.results.bindings[0].label.value);
 	alert("You succeeded, and got " + reply.results.bindings[0].label.value);
 }
 
      var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
-     var queryString = "select ?label where {&lt;http://dbpedia.org/resource/Aristotle> rdfs:label ?label. FILTER(lang(?label) = 'ja')}LIMIT 1"
+     var queryString = "select ?label where {&lt;http://heml.mta.ca/text/urn/tlg0321> rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
      //This is a sparql query that runs at the opening of this page. Set up with the variables and
     // functions above, right now all it does is grab the japanese for 'Aristotle' and pop an alert with the info.
     // It would be better if we got all the labels and then negotiated the right display in the client.
@@ -52,6 +53,7 @@ function onHemlSuccess(reply) {
 		
 		mymatch = myregexp.exec(urn);
 		alert(mymatch);
+		console.warn(mymatch);
 		
 	});
 	});
