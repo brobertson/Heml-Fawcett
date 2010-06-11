@@ -23,7 +23,7 @@
 **********************************************************/
 
 
-var langArr = ['en','fr','it','ru','ja','zh','ar','de'];;
+
 var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
 
 function onHemlFailure(reply) {
@@ -32,6 +32,13 @@ function onHemlFailure(reply) {
     // a popup
 }
 
+labelFromJson(json, lang) {
+	for each row in json.results.bindings {
+		if (row["xml:lang"] == lang) return row["value"];
+	}
+	return null;
+}
+	
 var successfulCallbackModelForTitles = function(className, htmlNode) {
     //use '' for root
     this.htmlNode = htmlNode;
@@ -48,12 +55,12 @@ var successfulCallbackModelForTitles = function(className, htmlNode) {
 }
 
  $(document).ready(function () {
-
-	  $(".ctsurn").each(function(index) {
-		urn = $(this).text();
+				   console.warn($("[data-ctsurn]"));
+	  $("[data-ctsurn]").each(function(index) {
+		urn = $(this).attr("data-ctsurn");
 		myregexp =  /(\w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4})\.([A-Z]{3}\d{3}))/i
 		mymatch = myregexp.exec(urn);
-
+							  console.warn(mymatch);
 		if(mymatch!=null){
 		var author ="<http://heml.mta.ca/text/urn/"+mymatch[2]+">"; // author URL
 		var work = "<http://heml.mta.ca/text/urn/"+mymatch[2]+"/"+mymatch[3]+">"; // work URL
