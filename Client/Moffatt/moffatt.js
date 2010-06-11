@@ -32,9 +32,10 @@ function onHemlFailure(reply) {
     // a popup
 }
 
-labelFromJson(json, lang) {
-	for each row in json.results.bindings {
-		if (row["xml:lang"] == lang) return row["value"];
+function labelFromJson(json, lang) {
+	for (row in json.results.bindings) {
+		//console.warn(json.results.bindings[row]);
+		if (json.results.bindings[row].label["xml:lang"] == lang) return json.results.bindings[row].label["value"];
 	}
 	return null;
 }
@@ -48,7 +49,7 @@ var successfulCallbackModelForTitles = function(className, htmlNode) {
 		if (numberOfEntries == 0) {
 			alert("No labels have been provided for this entry.");
 		} else {
-			htmlNode.append(json.results.bindings[0].label.value);
+			htmlNode.appendChild(document.createTextNode(labelFromJson(json, 'es')));
 			
 		}
 	}
@@ -62,15 +63,26 @@ var successfulCallbackModelForTitles = function(className, htmlNode) {
 		mymatch = myregexp.exec(urn);
 							  console.warn(mymatch);
 		if(mymatch!=null){
+							  var x = document.createElement('span');
+							  x.className = 'ctsurn_author';
+							  var y = document.createElement('span');
+							  y.className = 'ctsurn_title';
+							  
+							  $(this).val('');
+							  $(this).append(x);
+							  $(this).append(' ');
+							  $(this).append(y);
+							 // x.appendChild(document.createTextNode("fooooo"));
+							  
 		var author ="<http://heml.mta.ca/text/urn/"+mymatch[2]+">"; // author URL
 		var work = "<http://heml.mta.ca/text/urn/"+mymatch[2]+"/"+mymatch[3]+">"; // work URL
-		var queryString2 = "select ?label where {"+author+" rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
-		myTry = new successfulCallbackModelForTitles("author", $(this));
+		var queryString2 = "select ?label where {"+author+" rdfs:label ?label. }"
+		myTry = new successfulCallbackModelForTitles("author", x);
 		hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, myTry.makeRefTitles);
 						
 		hq2.performQuery();
-        myTry = new successfulCallbackModelForTitles("title", $(this));
-		var queryString = "select ?label where {"+work+" rdfs:label ?label. FILTER(lang(?label) = 'en')}LIMIT 1"
+        myTry = new successfulCallbackModelForTitles("title", y);
+		var queryString = "select ?label where {"+work+" rdfs:label ?label. }"
 		hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
 						hq.performQuery();
 	}	
