@@ -49,8 +49,7 @@ var successfulCallbackModelForTitles = function(className, htmlNode) {
 		if (numberOfEntries == 0) {
 			alert("No labels have been provided for this entry.");
 		} else {
-			htmlNode.appendChild(document.createTextNode(labelFromJson(json, 'es')));
-			
+			htmlNode.appendChild(document.createTextNode(labelFromJson(json, 'it')));
 		}
 	}
 }
@@ -59,20 +58,32 @@ var successfulCallbackModelForTitles = function(className, htmlNode) {
 				   console.warn($("[data-ctsurn]"));
 	  $("[data-ctsurn]").each(function(index) {
 		urn = $(this).attr("data-ctsurn");
-		myregexp =  /(\w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4})\.([A-Z]{3}\d{3}))/i
+	//	myregexp =  /(\w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4})\.([A-Z]{3}\d{3}))/i
+			myregexp =  /(\w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4})\.([A-Z]{3}\d{3}))(.*)/i
 		mymatch = myregexp.exec(urn);
 							  console.warn(mymatch);
 		if(mymatch!=null){
+				              bookLine1 = mymatch[4];
+							console.warn("bookLine1: " + bookLine1);
+							  bookline2 = bookLine1.replace(/:/g,'.').substring(1);
+							  console.warn("bookline2: " + bookline2);
 							  var x = document.createElement('span');
 							  x.className = 'ctsurn_author';
 							  var y = document.createElement('span');
 							  y.className = 'ctsurn_title';
-							  
+
 							  $(this).val('');
 							  $(this).append(x);
 							  $(this).append(' ');
-							  $(this).append(y);
-							 // x.appendChild(document.createTextNode("fooooo"));
+							$(this).append(y);
+							  if (bookline2 != '') {
+							  var z = document.createElement('span');
+							  z.className = 'ctsurn_ref';
+								z.appendChild(document.createTextNode(bookline2));
+							  
+							  $(this).append(' ');
+							  $(this).append(z);
+							  }
 							  
 		var author ="<http://heml.mta.ca/text/urn/"+mymatch[2]+">"; // author URL
 		var work = "<http://heml.mta.ca/text/urn/"+mymatch[2]+"/"+mymatch[3]+">"; // work URL
