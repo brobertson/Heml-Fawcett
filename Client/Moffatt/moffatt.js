@@ -26,16 +26,32 @@
 
 var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
 
+function toConsole(text) {
+	var DEBUG = false;
+	if (DEBUG) {
+		console.log(text);
+	}
+}
+
 function onHemlFailure(reply) {
     alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:n" + reply);
     // do something more interesting, like putting an x through the map. or making
     // a popup
 }
 
-function labelFromJson(json, lang) {
-    for (row in json.results.bindings) {
-        //console.warn(json.results.bindings[row]);
-        if (json.results.bindings[row].label["xml:lang"] == lang) return json.results.bindings[row].label["value"];
+function labelFromJson(bindings, langPrefs) {
+	toConsole(langPrefs);
+	var lang;
+	for (languageArrayRow in langPrefs) {
+		toConsole(langPrefs[languageArrayRow]);
+		lang = langPrefs[languageArrayRow][1]; 
+		toConsole("trying " + lang);
+        for (row in bindings) {
+	        if (row != 'remove') {
+            //toConsole(json.results.bindings[row]);
+            if (bindings[row].label["xml:lang"] == lang) return bindings[row].label["value"];
+}
+        }
     }
     return null;
 }
@@ -46,30 +62,32 @@ var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) 
     this.langPrefs = langPrefs;
     var me = this;
     this.makeRefTitles = function(json) {
+	    var bindings = new Array();
+	    bindings = json.results.bindings;
+	    toConsole(bindings);
         var numberOfEntries = json.results.bindings.length;
         if (numberOfEntries == 0) {
             alert("No labels have been provided for this entry.");
         } else {
-            htmlNode.appendChild(document.createTextNode(labelFromJson(json, 'it')));
+            htmlNode.appendChild(document.createTextNode(labelFromJson(bindings, langPrefs)));
         }
     }
 }
 
 $(document).ready(function() {
-    console.warn($("[data-ctsurn]"));
+    toConsole($("[data-ctsurn]"));
     $("[data-ctsurn]").each(function(index) {
         urn = $(this).attr("data-ctsurn");
-        console.warn(urn);
-        //  myregexp =  /(w+:cts:[A-Z]{4,}:([A-Z]{3}d{4}).([A-Z]{3}d{3}))/i
+        toConsole(urn);
+
          myregexp = /cts:greekLit:([A-Z]*\d*):([A-Z]*\d*)(.*)/i
-       // myregexp = /(w+:cts:[A-Z]{4,}:([A-Z]{3}\d{4}).([A-Z]{3}\d{3}))/i
         mymatch = myregexp.exec(urn);
-        console.warn(mymatch);
+        toConsole(mymatch);
         if (mymatch != null) {
             bookLine1 = mymatch[3];
-            console.warn("bookLine1: " + bookLine1);
+            toConsole("bookLine1: " + bookLine1);
             bookline2 = bookLine1.replace(/:/g, '.').substring(1);
-            console.warn("bookline2: " + bookline2);
+            toConsole("bookline2: " + bookline2);
             var x = document.createElement('span');
             x.className = 'ctsurn_author';
             var y = document.createElement('span');
