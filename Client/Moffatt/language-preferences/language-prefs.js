@@ -702,7 +702,7 @@ function generatePopup(){
 
 	// Center column of control buttons
 	// ICON HELL!!! 
-	var imagePath = './language-preferences/images/';
+	var imagePath = 'language-preferences/images/';
 	var iconUp = imagePath + 'up2.gif';
 	var iconDown = imagePath + 'down2.gif';
 	var iconLeft = imagePath + 'left2.gif';
