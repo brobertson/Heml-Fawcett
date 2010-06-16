@@ -27,8 +27,8 @@
 
   var xLeft;
   var xRight;
-  var checkLeft;
-  var checkRight;
+  var checkLeft = 0;
+  var checkRight = 1140;
   
   var lowBound = -1500;
   var highBound = 2010;
@@ -79,17 +79,23 @@
     if(DragTarget == Left){
      canDo = CheckBound(newX, 'L');
      xLeft = canDo;
-     ChangeWords(xLeft, 'L');
-     TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
+     overlap = CheckLocation(xLeft);
+     if(overlap != checkRight){
+      ChangeWords(xLeft, 'L');
+      TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
+      DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
+     }
     }
     else if(DragTarget == Right){
      canDo = CheckBound(newX, 'R');
      xRight = canDo;
-     overlap = CheckLocation(xRight, 'R');
-     ChangeWords(xRight, 'R');
-     TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
+     overlap = CheckLocation(xRight);
+     if(overlap != checkLeft){
+      ChangeWords(xRight, 'R');
+      TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
+      DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
+     }
     }
-   DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
    }
   };
  
@@ -99,6 +105,8 @@
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
     DragTarget = null;
    }
+   alert(checkRight);
+   alert(checkLeft);
   };
 
   function GetTrueCoords(evt){
@@ -160,18 +168,14 @@
    return pixPoint;
   };
 
-  function CheckLocation(pixPoint, slider){
-   if(slider == 'L'){
-    if(checkLeft >= checkRight){
-     return true;
-    }
+  function CheckLocation(pixPoint){
+   if(checkLeft >= checkRight){
+    return checkRight;
    }
-   else if(slider == 'R'){
-    if(checkRight <= checkLeft){
-     return true;
-    }
+   else if(checkRight <= checkLeft){
+    return checkLeft;
    }
-   return false;
+   return pixPoint;
   };
 
  ]]></script>
