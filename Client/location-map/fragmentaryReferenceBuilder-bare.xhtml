@@ -2,15 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder.css"/>	
-		<script type="text/javascript" language="javascript" src="hemlJsonQuery.js"/>
-		<script type="text/javascript" language="javascript" src="sparql.js"/> 
+		<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"/>
+		<script type="text/javascript" language="javascript" src="../javascript/sparql.js"/> 
 		<script type="text/javascript" language="javascript" src="fragmentaryReferenceBuilder-test.js"/>
-		<script type="text/javascript" language="javascript">
-			<body onload="setup();"/>
-		</script>
+
 
 	</head>
-	<body>
+	<body  onload="setup();">
 	<!--
 		<body onload="getRefTypes('http://heml.mta.ca/docs/hammond_diary#Jun26-1871-a', 'quotations');">
 		<body onload="doXMLHttp('http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl', 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5b', 'quotations')">
@@ -38,5 +36,6 @@
 		
 			<p id="source"/>
 		</div> <!--end of container div-->
+		<div id="loading"><p>I should be loader</p></div>
 	</body>
 </html>
