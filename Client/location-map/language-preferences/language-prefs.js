@@ -37,8 +37,8 @@ Ext.onReady(function(){
 		text: 'Perform test',
 		renderTo: 'languagePreferences',
 		handler: function(){
-			query_BestLanguageMatch(':subject', ':predicate',
-				'http://heml.mta.ca/joseki3/sparql/read', 
+			query_BestLanguageMatch('<http://www.heml.org/docs/samples/heml/2002-05-29/hellenistic.xml#alexandria>', 'rdfs:label',
+				'http://localhost:2020/sparql/read', 
 				function(){
 					alert('filed!!');
 				}, 
