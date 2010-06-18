@@ -1,0 +1,6 @@
+javac org/heml/Moffatt/CsvToRdfAuthor.java 
+java org/heml/Moffatt/CsvToRdfAuthor > data.nt
+
+javac org/heml/Moffatt/CsvToRdfEvent.java
+java org/heml/Moffatt/CsvToRdfEvent > eventData.nt
+
