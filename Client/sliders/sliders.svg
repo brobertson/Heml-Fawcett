@@ -27,7 +27,7 @@
 
   var xLeft;
   var xRight;
-  var checkLeft = 0;
+  var checkLeft = 1;
   var checkRight = 1140;
   
   var lowBound = -1500;
@@ -80,7 +80,7 @@
      canDo = CheckBound(newX, 'L');
      xLeft = canDo;
      overlap = CheckLocation(xLeft);
-     if(overlap != checkRight){
+     if(overlap != checkLeft){
       ChangeWords(xLeft, 'L');
       TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
       DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
@@ -90,7 +90,7 @@
      canDo = CheckBound(newX, 'R');
      xRight = canDo;
      overlap = CheckLocation(xRight);
-     if(overlap != checkLeft){
+     if(overlap != checkRight){
       ChangeWords(xRight, 'R');
       TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
       DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
@@ -105,8 +105,6 @@
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
     DragTarget = null;
    }
-   alert(checkRight);
-   alert(checkLeft);
   };
 
   function GetTrueCoords(evt){
