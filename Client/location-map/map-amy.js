@@ -95,9 +95,9 @@ function onHemlFailure(reply) {
 	// a popup
 }
 
-function getResult() {
-	hq = new Heml.SparqlQuery(endpoint, "SELECT DISTINCT ?location ?locationLabel ?latitude ?longitude ?keyedLocation WHERE {?event hemlRDF:LocationRef ?location. ?location rdfs:label ?locationLabel. ?location geo:lat ?latitude. ?location geo:long ?longitude.  OPTIONAL { ?event hemlRDF:Origin <http://heml.mta.ca/docs/hammond_diary>. LET (?keyedLocation := 'true')} FILTER (lang(?locationLabel) = 'en')}", onHemlFailure, populateMapWithJson);
-	if (DEBUG) {
+function getNewOriginDocument(originUri) {
+	hq = new Heml.SparqlQuery(endpoint, "SELECT DISTINCT ?location ?locationLabel ?latitude ?longitude ?keyedLocation WHERE {?event hemlRDF:LocationRef ?location. ?location rdfs:label ?locationLabel. ?location geo:lat ?latitude. ?location geo:long ?longitude.  OPTIONAL { ?event hemlRDF:Origin " + originUri + ". LET (?keyedLocation := 'true')} FILTER (hemlFunc:LangPrefsFilter(?locationLabel, 'jpn;ja,fre/fra;fr,eng;en'))}ORDER BY (hemlFunc:LangPrefsOrder(?locationLabel, 'jpn;ja,fre/fra;fr,eng;en'))", onHemlFailure, populateMapWithJson);
+	if (true) {
 		alert("query string: " + hq.getQueryString());
 		alert("endpoint: " + hq.getEndpoint());
 		alert("success function: " + hq.getSuccessFunction());
@@ -144,7 +144,7 @@ function init() {
 	var select = new OpenLayers.Control.SelectFeature(polygonLayer, options);
 	map.addControl(select);
 	select.activate();
-	getResult();
+	getNewOriginDocument("<http://www.heml.org/docs/samples/heml/2002-05-29/late_repub.xml>");
 	//map.zoomToMaxExtent();
 	map.zoomToExtent(new OpenLayers.Bounds(-130,-10,35,70)); 
 }
@@ -226,7 +226,7 @@ function listEventsForLocation(url, label) {
 	theDocs.appendChild(newEventList);
 }
 
-var queryString = "SELECT DISTINCT ?event ?eventLabel ?startDate ?keyed ?url ?refURI WHERE {?event hemlRDF:LocationRef <" + url + ">. ?event rdfs:label ?eventLabel. {?event hemlRDF:SimpleDate ?startDate. ?event hemlRDF:EarliestTime  ?et.} UNION {?event hemlRDF:DateRange ?dr. ?dr hemlRDF:StartingDate ?startDate. ?event hemlRDF:EarliestTime ?et.}  OPTIONAL { ?event hemlRDF:Origin <lccn://77484448#>. LET (?keyed := 'true')}  OPTIONAL {?event hemlRDF:Origin <lccn://77484448#>. ?event hemlRDF:Evidence ?refURI.} FILTER (lang(?eventLabel) = 'en')} ORDER BY ?et";
+var queryString = "SELECT DISTINCT ?event ?eventLabel ?startDate ?keyed ?url ?refURI WHERE {?event hemlRDF:LocationRef <" + url + ">. ?event rdfs:label ?eventLabel. {?event hemlRDF:SimpleDate ?startDate. ?event hemlRDF:EarliestTime  ?et.} UNION {?event hemlRDF:DateRange ?dr. ?dr hemlRDF:StartingDate ?startDate. ?event hemlRDF:EarliestTime ?et.}  OPTIONAL { ?event hemlRDF:Origin <lccn://77484448#>. LET (?keyed := 'true')}  OPTIONAL {?event hemlRDF:Origin <lccn://77484448#>. ?event hemlRDF:Evidence ?refURI.} FILTER (hemlFunc:LangPrefsFilter(?eventLabel, 'jpn;ja,fre/fra;fr'))} ORDER BY ?et";
 var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, listEventsFromJson);
 
 function formatDate(dateIn) {
