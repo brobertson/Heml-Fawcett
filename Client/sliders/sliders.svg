@@ -60,7 +60,7 @@
 
   function Grab(evt){
    var targetElement = evt.target;
-   if((BackDrop != targetElement) && (TextBox != targetElement) && (TRight != targetElement) && (TLeft != targetElement) && (OldBound != targetElement) && (NowBound != targetElement) && (OldLine != targetElement) && (NowLine != targetElement) && (MidLine != targetElement)){
+   if(targetElement == Left || targetElement == Right){
     DragTarget = targetElement;
     DragTarget.parentNode.appendChild( DragTarget );
     DragTarget.setAttributeNS(null, 'pointer-events', 'none');
@@ -71,34 +71,21 @@
   };
 
   function Drag(evt){
-   GetTrueCoords(evt);
-   if(DragTarget){
-    var newX = TrueCoords.x - GrabPoint.x;
-    var canDo;
 
-    if(DragTarget == Left){
-     canDo = CheckBound(newX, 'L');
-     xLeft = canDo;
-     overlap = CheckLocation(xLeft);
-     if(overlap != checkLeft){
-      ChangeWords(xLeft, 'L');
-      TLeft.setAttributeNS(null, 'transform', 'translate(' + xLeft + ',' + 0 + ')');
-      DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
-     }
-    }
-    else if(DragTarget == Right){
-     canDo = CheckBound(newX, 'R');
-     xRight = canDo;
-     overlap = CheckLocation(xRight);
-     if(overlap != checkRight){
-      ChangeWords(xRight, 'R');
-      TRight.setAttributeNS(null, 'transform', 'translate(' + xRight + ',' + 0 + ')');
-      DragTarget.setAttributeNS(null, 'transform', 'translate(' + canDo + ',' + 0 + ')');
-     }
-    }
+   if(DragTarget){
+       DragTarget.setAttributeNS(null, 'cx', evt.clientX);
    }
-  };
- 
+  if (DragTarget == Left) {
+    TLeft.setAttributeNS(null, 'x', evt.clientX);
+    ChangeWords(evt.clientX, 'L');
+}
+else if (DragTarget == Right) {
+   TRight.setAttributeNS(null, 'x', evt.clientX);
+   ChangeWords(evt.clientX, 'R');
+}
+    }
+
+
   function Drop(evt){
    if(DragTarget){
     var targetElement = evt.target;
@@ -107,21 +94,11 @@
    }
   };
 
-  function GetTrueCoords(evt){
-   var newScale = SVGRoot.currentScale;
-   var translation = SVGRoot.currentTranslate;
-   TrueCoords.x = (evt.clientX - translation.x)/newScale;
-  };
+
 
   function ChangeWords(xVal, slider){
    Changeable = SVGDocument.getElementById('Change' + slider);
    newVal = Scale(xVal, slider);
-   if(slider == 'L'){
-    checkLeft = newVal;
-   }
-   else if(slider == 'R'){
-    checkRight = newVal;
-   }
    if(newVal < 0){
     newVal = newVal * -1;   
     newText = SVGDocument.createTextNode(newVal + ' BCE');
@@ -132,49 +109,17 @@
    Changeable.replaceChild(newText, Changeable.firstChild);  
   };
 
-  function Scale(pixPoint, slider){
-   scale = highBound - lowBound;
-   pixDistance = 1220 - 50;
-   if(slider == 'R'){
-    var temp = pixPoint + 380;
-    ratio = temp / pixDistance;
-   }
-   else{
-    ratio = pixPoint / pixDistance;
-   }
-   time = Math.round(ratio * scale);
+  function Scale(x, slider){
+   scale = highBound - lowBound; // time bounds
+   RIGHT_X = 1220;//pixels
+   LEFT_X = 50;//pixels
+   pixDistance = RIGHT_X - LEFT_X;
+   ratio = (x - LEFT_X) / pixDistance;
+   time = Math.round(ratio * scale) + lowBound;
    return time;
   };
 
-  function CheckBound(pixPoint, slider){
-   if(slider == 'L'){
-    if(pixPoint <= -500){
-     return -500;
-    }
-    else if(pixPoint >= 670){
-     return 670;
-    }
-   }
-   else if(slider == 'R'){
-    if(pixPoint <= -880){
-     return -880;
-    }
-    else if(pixPoint >= 290){
-     return 290;
-    }
-   }
-   return pixPoint;
-  };
 
-  function CheckLocation(pixPoint){
-   if(checkLeft >= checkRight){
-    return checkRight;
-   }
-   else if(checkRight <= checkLeft){
-    return checkLeft;
-   }
-   return pixPoint;
-  };
 
  ]]></script>
 
