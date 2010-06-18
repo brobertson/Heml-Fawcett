@@ -72,6 +72,8 @@ public class CsvToRdfAuthor {
 		String first = null, end = null; // variables to represent beginning and end of tlg number
 		//Default if there is no provided Preferred language
 		String lang = "Not Specified";
+		String authors[] = new String[numrows];
+		Boolean newauthor = true;
 
 		data = parseFile(numrows, numcols, pathname);// parse csv into a 2d array
 		//Print out the header data in the file
@@ -92,6 +94,14 @@ public class CsvToRdfAuthor {
 			if(data[i][0] != null){
 				//break the tlg numbers into two different numbers
 				first = data[i][0].substring(0, 7);
+				authors[i] = first;
+				for(int k = 1; k<i; k++)
+				{
+					if (authors[k].equals(authors[i])){
+						newauthor=false;
+					}
+						
+				}
 				if(data[i][0].length()> 8)
 				{
 					end = data[i][0].substring(8,14);
@@ -119,16 +129,18 @@ public class CsvToRdfAuthor {
 			}
 			if(data[i][0]!=null){
 				//code to print <http://heml.mta.ca/text/urn/tlg0003> owl:sameAs dbpedia:Thucydides.
-				//If author field contains "(" symbol
-				if(data[i][3].contains("(")){
-					System.out.println("<http://heml.mta.ca/text/urn/"+first+"> owl:sameAs <http://dbpedia.org/resource/"+data[i][3].substring(0,data[i][3].indexOf('('))+ "%28"+data[i][3].substring((data[i][3].indexOf('(')+1),data[i][3].indexOf(')'))+data[i][3].substring((data[i][3].indexOf(')'))+1)+"%29> .");
+				if(newauthor){// checks to make sure author hasn't already been printed
+					//If author field contains "(" symbol
+					if(data[i][3].contains("(")){
+						System.out.println("<http://heml.mta.ca/text/urn/"+first+"> owl:sameAs <http://dbpedia.org/resource/"+data[i][3].substring(0,data[i][3].indexOf('('))+ "%28"+data[i][3].substring((data[i][3].indexOf('(')+1),data[i][3].indexOf(')'))+data[i][3].substring((data[i][3].indexOf(')'))+1)+"%29> .");
+					}
+					else{
+						System.out.println("<http://heml.mta.ca/text/urn/"+first+"> owl:sameAs dbpedia:"+data[i][3]+" .");
+					}
+					//code to print <http://heml.mta.ca/text/urn/tlg0003> a crm:E39.
+					System.out.println("<http://heml.mta.ca/text/urn/"+first+"> a crm:E39 .");
 				}
-				else{
-					System.out.println("<http://heml.mta.ca/text/urn/"+first+"> owl:sameAs dbpedia:"+data[i][3]+" .");
-				}
-				//code to print <http://heml.mta.ca/text/urn/tlg0003> a crm:E39.
-				System.out.println("<http://heml.mta.ca/text/urn/"+first+"> a crm:E39 .");
-				
+				newauthor = true;
 				//code to print <http://heml.mta.ca/text/urn/tlg0003/tlg001> owl:sameAs dbpedia:Peloponnesian_War.
 				if(data[i][1]!=null && !data[i][1].equals("-") && data[i][0].length()>8){
 					//If work contains "#" or "(" symbol print out entire URL.
