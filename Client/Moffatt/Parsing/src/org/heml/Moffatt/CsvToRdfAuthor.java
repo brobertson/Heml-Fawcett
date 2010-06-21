@@ -147,7 +147,7 @@ public class CsvToRdfAuthor {
 					if(data[i][1].contains("(")){
 						System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> owl:sameAs <http://dbpedia.org/resource/"+data[i][1].substring(0,data[i][1].indexOf('('))+ "%28"+data[i][1].substring((data[i][1].indexOf('(')+1),data[i][1].indexOf(')'))+data[i][1].substring((data[i][1].indexOf(')'))+1)+"%29> .");
 					}
-					else if(data[i][1].contains("#"))
+					else if(data[i][1].contains("#")||data[i][1].contains(".")|| data[i][1].contains("%"))
 					{
 						System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> owl:sameAs <http://dbpedia.org/resource/"+data[i][1]+"> .");
 					}
