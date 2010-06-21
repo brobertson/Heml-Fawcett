@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+/Users/ewilson/Documents/Heml-Fawcett/Client/Moffatt/Parsing/.metadata/.plugins/org.eclipse.jdt.core

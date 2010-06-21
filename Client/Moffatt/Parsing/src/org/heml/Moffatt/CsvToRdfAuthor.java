@@ -82,7 +82,7 @@ public class CsvToRdfAuthor {
 		System.out.println("@prefix dbpedia: <http://dbpedia.org/resource/> .");
 		System.out.println("@prefix heml_text: <http://heml.mta.ca/text/urn/> .");
 		System.out.println("@prefix owl: <http://www.w3.org/2002/07/owl#> .");
-		System.out.println("@prefix xsd: <http://www.w3.org/2001/XMLSchema#>");
+		System.out.println("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .");
 		System.out.println();
 		System.out.println("dbpedia:Ancient_greek a crm:E56 .");
 		System.out.println("dbpedia:English_language a crm:E56 .");
@@ -99,8 +99,7 @@ public class CsvToRdfAuthor {
 				{
 					if (authors[k].equals(authors[i])){
 						newauthor=false;
-					}
-						
+					}// if author has already been printed do not print again	
 				}
 				if(data[i][0].length()> 8)
 				{
@@ -140,7 +139,8 @@ public class CsvToRdfAuthor {
 					//code to print <http://heml.mta.ca/text/urn/tlg0003> a crm:E39.
 					System.out.println("<http://heml.mta.ca/text/urn/"+first+"> a crm:E39 .");
 				}
-				newauthor = true;
+				newauthor = true;// resets the status of whether the next author should be printed 
+				
 				//code to print <http://heml.mta.ca/text/urn/tlg0003/tlg001> owl:sameAs dbpedia:Peloponnesian_War.
 				if(data[i][1]!=null && !data[i][1].equals("-") && data[i][0].length()>8){
 					//If work contains "#" or "(" symbol print out entire URL.
@@ -153,40 +153,37 @@ public class CsvToRdfAuthor {
 					}
 					else{
 						System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> owl:sameAs dbpedia:"+data[i][1]+" .");
-					}
-					
+					}	
 				}
 			}
+			
 			//code to print heml_cidoc_texts:creation_of_tlg0003_tlg_0001 a crm:E65 .
 			if(data[i][0] != null && data[i][0].length()>8){
 				System.out.println("heml_cidoc_texts:creation_of_"+first+"_"+end.substring(0,3)+"_"+end.substring(3)+" a crm:E65 .");
-				//code to print heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P14 <http://heml.mta.ca/text/urn/tlg0003>.
+				//code to print heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P14 <http://heml.mta.ca/text/urn/tlg0003> .
 				System.out.println("heml_cidoc_texts:creation_of_"+first+"_"+end.substring(0,3)+"_"+end.substring(3)+" crm:P14 <http://heml.mta.ca/text/urn/"+first+"> .");
-				//code to print heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P94 <http://heml.mta.ca/text/urn/tlg0003/tlg001>.
+				//code to print heml_cidoc_texts:creation_of_tlg0003_tlg_0001 crm:P94 <http://heml.mta.ca/text/urn/tlg0003/tlg001> .
 				System.out.println("heml_cidoc_texts:creation_of_"+first+"_"+end.substring(0,3)+"_"+end.substring(3)+" crm:P94 <http://heml.mta.ca/text/urn/"+first+"/"+end+"> .");
 			}
 			
-			//Code to print the perseus stuff
+			//Code to print Perseus
 			if(data[i][4] != null && !data[i][4].equals("-")){
-				System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_text:PerseusText \""+data[i][4]+"\"^^xsd:string");
-			}
+				System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_texts:PerseusText \""+data[i][4]+"\"^^xsd:string .");
+			}// checks to make sure there is Perseus associated with the work
 			if(data[i][5]!=null && !data[i][5].equals("-")){
-				System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"en> heml_cidoc_text:PerseusText \""+data[i][5]+"\"^^xsd:string");
-
+				//English Perseus
+				System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"en> heml_cidoc_texts:PerseusText \""+data[i][5]+"\"^^xsd:string .");
 			}
 			if(data[i][7]!=null && !data[i][7].equals("-")){
-					System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_text:firstChunk \""+data[i][7]+"\"^^xsd:string");
+					System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_texts:firstChunk \""+data[i][7]+"\"^^xsd:string .");
 					if(data[i][8]!=null&&!data[i][8].equals("-")){
-						System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_text:secondChunk \""+data[i][8]+"\"^^xsd:string");
+						System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_texts:secondChunk \""+data[i][8]+"\"^^xsd:string .");
 						if(data[i][9]!=null&&!data[i][9].equals("-")){
-							System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_text:thirdChunk \""+data[i][9]+"\"^^xsd:string");
+							System.out.println("<http://heml.mta.ca/text/urn/"+first+"/"+end+"> heml_cidoc_texts:thirdChunk \""+data[i][9]+"\"^^xsd:string .");
 						}
 					}
-				}
-			
+				}// get first chunk, second chunk, and third chunk if they exist
 			System.out.println();
 		}
-
 	}
-
 }
