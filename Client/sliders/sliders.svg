@@ -13,78 +13,94 @@
   var SVGRoot = null;
 
   var TrueCoords = null;
-  var GrabPoint = null;
 
-  var BackDrop = null;
   var DragTarget = null;
   var Left;
   var Right;
+  var TLeft;
+  var TRight;
   var OldBound;
   var NowBound;
-  var OldLine;
-  var NowLine;
-  var MidLine;
-
-  var xLeft;
-  var xRight;
-  var checkLeft = 1;
-  var checkRight = 1140;
   
-  var lowBound = -1500;
-  var highBound = 2010;
+  var lowBound;
+  var highBound;
   var pixDistance;
   var scale;
   var ratio;
   var time;
   
+  var LEFT_X = 50;     // pixels
+  var RIGHT_X = 1220;  // pixels
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
+   StartTimeLine(-300, 1000);
+  };
 
+  function StartTimeLine(low, high){
    TrueCoords = SVGRoot.createSVGPoint();
-   GrabPoint = SVGRoot.createSVGPoint();
-
-   BackDrop = SVGDocument.getElementById('BackDrop');
-   TextBox = SVGDocument.getElementById('TextBox');
    Left = SVGDocument.getElementById('LeftSlider');
    Right = SVGDocument.getElementById('RightSlider');
    TLeft = SVGDocument.getElementById('ChangeL');
    TRight = SVGDocument.getElementById('ChangeR');
-   OldBound = SVGDocument.getElementById('LeftBound');
-   NowBound = SVGDocument.getElementById('RightBound');
-   OldLine = SVGDocument.getElementById('LPath');
-   NowLine = SVGDocument.getElementById('RPath');
-   MidLine = SVGDocument.getElementById('MiddlePath');
-  }
+   OldBound = SVGDocument.getElementById('LBound');
+   NowBound = SVGDocument.getElementById('RBound');
+   
+   lowBound = low;
+   highBound = high;
+   
+   FindPoints();
+
+   ChangeOld = SVGDocument.getElementById('LeftBound');
+   if(lowBound < 0){
+    lower = lowBound * -1;
+    newTextL = SVGDocument.createTextNode(lower + ' BCE');
+   }
+   else{
+    newTextL = SVGDocument.createTextNode(lowBound + ' CE');
+   }
+   ChangeOld.replaceChild(newTextL, ChangeOld.firstChild);
+
+   ChangeNow = SVGDocument.getElementById('RightBound');
+   if(highBound < 0){
+    higher = highBound * -1;
+    newTextR = SVGDocument.createTextNode(higher + ' BCE');
+   }
+   else{
+    newTextR = SVGDocument.createTextNode(highBound + ' CE');
+   }
+   ChangeNow.replaceChild(newTextR, ChangeNow.firstChild);
+  };
+
+  function FindPoints(){
+   var length = highBound - lowBound;
+   
+  };
 
   function Grab(evt){
    var targetElement = evt.target;
    if(targetElement == Left || targetElement == Right){
     DragTarget = targetElement;
-    DragTarget.parentNode.appendChild( DragTarget );
+    DragTarget.parentNode.appendChild(DragTarget); // if this is gone, behaviour is different on the 2nd drag
     DragTarget.setAttributeNS(null, 'pointer-events', 'none');
-    
-    var transMatrix = DragTarget.getCTM();
-    GrabPoint.x = TrueCoords.x - Number(transMatrix.e);
    }
   };
 
   function Drag(evt){
-
    if(DragTarget){
-       DragTarget.setAttributeNS(null, 'cx', evt.clientX);
-   }
-  if (DragTarget == Left) {
-    TLeft.setAttributeNS(null, 'x', evt.clientX);
-    ChangeWords(evt.clientX, 'L');
-}
-else if (DragTarget == Right) {
-   TRight.setAttributeNS(null, 'x', evt.clientX);
-   ChangeWords(evt.clientX, 'R');
-}
+    newX = CheckBounds(evt.clientX);
+    DragTarget.setAttributeNS(null, 'cx', newX);
+    if(DragTarget == Left){
+     TLeft.setAttributeNS(null, 'x', newX);
+     ChangeWords(evt.clientX, 'L');
     }
-
+    else if(DragTarget == Right){
+     TRight.setAttributeNS(null, 'x', newX);
+     ChangeWords(evt.clientX, 'R');
+    }
+   }
+  };
 
   function Drop(evt){
    if(DragTarget){
@@ -94,11 +110,17 @@ else if (DragTarget == Right) {
    }
   };
 
-
-
   function ChangeWords(xVal, slider){
-   Changeable = SVGDocument.getElementById('Change' + slider);
+   if(slider == 'L' || slider == 'R'){
+    Changeable = SVGDocument.getElementById('Change' + slider);
+   }
    newVal = Scale(xVal, slider);
+   if(newVal < lowBound){	
+    newVal = lowBound;
+   }
+   else if(newVal > highBound){
+    newVal = highBound;
+   }
    if(newVal < 0){
     newVal = newVal * -1;   
     newText = SVGDocument.createTextNode(newVal + ' BCE');
@@ -110,44 +132,50 @@ else if (DragTarget == Right) {
   };
 
   function Scale(x, slider){
-   scale = highBound - lowBound; // time bounds
-   RIGHT_X = 1220;//pixels
-   LEFT_X = 50;//pixels
+   scale = highBound - lowBound;
    pixDistance = RIGHT_X - LEFT_X;
    ratio = (x - LEFT_X) / pixDistance;
    time = Math.round(ratio * scale) + lowBound;
    return time;
   };
 
-
+  function CheckBounds(x){
+   if(x <= LEFT_X){
+    return LEFT_X;
+   }
+   else if(x >= RIGHT_X){
+    return RIGHT_X;
+   }
+   return x;
+  }
 
  ]]></script>
 
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
 
  <g id = "Left">
-  <circle id = "LeftSlider" cx="550" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeL" x = "550" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1 CE</text>
+  <circle id = "LeftSlider" cx="440" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="2"/>
+  <text id = "ChangeL" x = "440" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1 CE</text>
  </g>
 
  <g id = "Right">
-  <circle id="RightSlider" cx="930" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeR" x = "930" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1140 CE</text>
+  <circle id="RightSlider" cx="830" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
+  <text id = "ChangeR" x = "830" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">1140 CE</text>
  </g> 
  
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
-  <text id = "LeftBound" x = "5%" y = "60" text-anchor = "middle">1500 BCE</text>
+  <text id = "LeftBound" x = "5%" y = "60" text-anchor = "middle">Low Bound</text>
   <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
  </g>
 
  <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt"> >
-  <text id = "RightBound" x = "95%" y = "60" text-anchor = "middle">2010 CE</text>
+  <text id = "RightBound" x = "95%" y = "60" text-anchor = "middle">Top Bound</text>
   <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
  </g>
 
  <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
-  <text id = "TextBox" x = "550" y = "60" text-anchor = "middle">1 CE</text>
-  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "550" y1 = "16%" x2 = "550" y2 = "24%"/>
+  <text id = "TextBox" x = "635" y = "60" text-anchor = "middle">Centre</text>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "16%" x2 = "635" y2 = "24%"/>
  </g>
 
 </svg>
