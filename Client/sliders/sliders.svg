@@ -108,17 +108,21 @@
   function Drag(evt){
    if(DragTarget){
     newX = CheckBounds(evt.clientX);
- //   DragTarget.setAttributeNS(null, 'cx', newX);
     if(DragTarget == Left){
-     if(newX <= checkRight){
+     if(newX <= (checkRight - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
       ChangeWords(evt.clientX, TLeft);
+      checkLeft = newX;
      }
     }
     else if(DragTarget == Right){
-     TRight.setAttributeNS(null, 'x', newX);
-     ChangeWords(evt.clientX, TRight);
+     if(newX >= (checkLeft + 10)){
+      DragTarget.setAttributeNS(null, 'cx', newX);
+      TRight.setAttributeNS(null, 'x', newX);
+      ChangeWords(evt.clientX, TRight);
+      checkRight = newX;
+     }
     }
    }
   };
@@ -138,8 +142,7 @@
    }
    else if(newVal > highBound){
     newVal = highBound;
-   } 
-   // put x-left/right check in here
+   }
    ChangeThing(newVal, slider);
   };
 
