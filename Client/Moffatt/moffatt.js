@@ -144,7 +144,7 @@ $(document).ready(function() {
             queryString3 = "select ?perseusText  ?firstChunking ?secondChunking ?thirdChunking where {" + work + " \
                             <http://heml.mta.ca/cidoc_crm_texts#PerseusText> ?perseusText;\
                             <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
-                   OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }
+                   OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }\
                    OPTIONAL {" + work + "       <http://heml.mta.ca/cidoc_crm_texts#thirdChunk> ?thirdChunking. } }";
             myTry = new callbackModelForTextLink(a);
             hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
