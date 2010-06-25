@@ -161,24 +161,7 @@ function doXMLHttp(xslURL, documentURL, parentNode) {
     var processor = new XSLTProcessor();
     processor.importStylesheet(xmlhttp.responseXML);
     var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
-	var quotation = getElementsByClass(document, "quotation", "*");
-	var innerArray = getElementsByClass(document, "inner", "*");
-	var inner = innerArray[0];	
-	if (quotation[0]!=null) {
-		inner.removeChild(quotation[0]);
-		var sourceNode = document.getElementById("source");
-		inner.removeChild(sourceNode);
-		var newSourceNode = document.createElement('p');
-		newSourceNode.id = "source";
-		inner.appendChild(newSourceNode);
-		var sourceTitle = parentNode.firstChild.cloneNode(true);
-		newSourceNode.appendChild(sourceTitle);
-	}
-	else {
-		var sourceTitle = parentNode.firstChild.cloneNode(true);
-		document.getElementById("source").appendChild(sourceTitle);
-	}
-	inner.appendChild(newFragment);
+	parentNode.appendChild(newFragment);
 }
 
 
