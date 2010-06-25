@@ -24,7 +24,7 @@
 
 
 
-var endpoint = "http://heml.mta.ca/sesame/openrdf-sesame/repositories/labels";
+var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels-horst";
 
 function toConsole(text) {
 	var DEBUG = false;
@@ -74,6 +74,24 @@ var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) 
     }
 }
 
+var callbackModelForTextLink = function(htmlNode) {
+    //use '' for root
+    this.htmlNode = htmlNode;
+    var me = this;
+    this.makeTextLink = function(json) {
+	//give me 1) Perseus text 2) first Chunk, etc.
+           // var urlBase = json.results.bindings[i].label.value;
+            var source = 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5a';
+            var xslt = 'http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl';//json.results.bindings[i].xslAddress.value;
+            htmlNode.className = 'referenceTitleClass';
+          //  alert("mode it here");
+			htmlNode.onclick = function() {
+				doXMLHttp(xslt, source, htmlNode);
+            }
+       
+    }
+}
+
 $(document).ready(function() {
     toConsole($("[data-ctsurn]"));
     $("[data-ctsurn]").each(function(index) {
@@ -92,17 +110,21 @@ $(document).ready(function() {
             x.className = 'ctsurn_author';
             var y = document.createElement('span');
             y.className = 'ctsurn_title';
-
+            var a = document.createElement('span');
+         //   a.className = 'klink';
             $(this).val('');
-            $(this).append(x);
-            $(this).append(' ');
-            $(this).append(y);
+            $(this).append(a);
+            a.appendChild(x);
+            a.appendChild(document.createTextNode(' '));
+            a.appendChild(y);
+            
             if (bookline2 != '') {
                 var z = document.createElement('span');
                 z.className = 'ctsurn_ref';
                 z.appendChild(document.createTextNode(bookline2));
-                $(this).append(' ');
-                $(this).append(z);
+               a.appendChild(document.createTextNode(' '));
+                a.appendChild(z);
+               
             }
             var author = "<http://heml.mta.ca/text/urn/" + mymatch[1] + ">";
             // author URL
@@ -110,6 +132,7 @@ $(document).ready(function() {
             // work URL
             var queryString2 = "select ?label where {" + author + " rdfs:label ?label. }"
             var langPrefs = getPreferencesFromCookie();
+
             myTry = new successfulCallbackModelForTitles("author", x, langPrefs);
             hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, myTry.makeRefTitles);
             hq2.performQuery();
@@ -117,10 +140,45 @@ $(document).ready(function() {
             var queryString = "select ?label where {" + work + " rdfs:label ?label. }"
             hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
             hq.performQuery();
+            queryString3 = "select ?perseusText  where {" + work + " rdfs:label ?perseusText. }";
+            myTry = new callbackModelForTextLink(a);
+            hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
+            hq3.performQuery();
         }
     });
 });
 
-
+function doXMLHttp(xslURL, documentURL, parentNode) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", xslURL, false);
+    xmlhttp.send(null);
+    if (xmlhttp.status == 200)
+    alert(xmlhttp.responseText);  
+    var xmlhttpDoc = new XMLHttpRequest();
+    xmlhttpDoc.open("Get", documentURL, false);
+    xmlhttpDoc.send(null);
+    //if (xmlhttp.status == 200) alert ("yep, we're ok");//xmlhttpDoc.responseText);
+    var processor = new XSLTProcessor();
+    processor.importStylesheet(xmlhttp.responseXML);
+    var newFragment = processor.transformToFragment(xmlhttpDoc.responseXML, document);
+	var quotation = getElementsByClass(document, "quotation", "*");
+	var innerArray = getElementsByClass(document, "inner", "*");
+	var inner = innerArray[0];	
+	if (quotation[0]!=null) {
+		inner.removeChild(quotation[0]);
+		var sourceNode = document.getElementById("source");
+		inner.removeChild(sourceNode);
+		var newSourceNode = document.createElement('p');
+		newSourceNode.id = "source";
+		inner.appendChild(newSourceNode);
+		var sourceTitle = parentNode.firstChild.cloneNode(true);
+		newSourceNode.appendChild(sourceTitle);
+	}
+	else {
+		var sourceTitle = parentNode.firstChild.cloneNode(true);
+		document.getElementById("source").appendChild(sourceTitle);
+	}
+	inner.appendChild(newFragment);
+}
 
 
