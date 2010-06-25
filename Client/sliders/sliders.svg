@@ -30,13 +30,16 @@
   var ratio;
   var time;
   
+  var checkLeft = 440;
+  var checkRight = 830;
+
   var LEFT_X = 50;     // pixels
   var RIGHT_X = 1220;  // pixels
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-100, 150);
+   StartTimeLine(-350, 100);  // user input
   };
 
   function StartTimeLine(low, high){
@@ -46,8 +49,8 @@
    TLeft = SVGDocument.getElementById('ChangeL');
    TRight = SVGDocument.getElementById('ChangeR');
    Centre = SVGDocument.getElementById('TextBox');
-   OldBound = SVGDocument.getElementById('LBound');
-   NowBound = SVGDocument.getElementById('RBound');
+   OldBound = SVGDocument.getElementById('LeftBound');
+   NowBound = SVGDocument.getElementById('RightBound');
    
    if(low <= high){
     lowBound = low;
@@ -63,63 +66,34 @@
   };
 
   function SetBounds(){
-   ChangeOld = SVGDocument.getElementById('LeftBound');
-   if(lowBound < 0){
-    lower = lowBound * -1;
-    newTextL = SVGDocument.createTextNode(lower + ' BCE');
-   }
-   else{
-    newTextL = SVGDocument.createTextNode(lowBound + ' CE');
-   }
-   ChangeOld.replaceChild(newTextL, ChangeOld.firstChild);
-
-   ChangeNow = SVGDocument.getElementById('RightBound');
-   if(highBound < 0){
-    higher = highBound * -1;
-    newTextR = SVGDocument.createTextNode(higher + ' BCE');
-   }
-   else{
-    newTextR = SVGDocument.createTextNode(highBound + ' CE');
-   }
-   ChangeNow.replaceChild(newTextR, ChangeNow.firstChild);
+   ChangeThing(lowBound, OldBound);
+   ChangeThing(highBound, NowBound);
   };
 
   function FindPoints(){
    length = highBound - lowBound;
    temp = length / 3;
    startLeft = Math.round(lowBound + temp);
-   if(startLeft < 0){
-    startLeft = startLeft * -1;
-    newStartL = SVGDocument.createTextNode(startLeft + ' BCE');
-   }
-   else{
-    newStartL = SVGDocument.createTextNode(startLeft + ' CE');
-   }
-   TLeft.replaceChild(newStartL, TLeft.firstChild);
-
    startRight = Math.round(highBound - temp);
-   if(startRight < 0){
-    startRight = startRight * -1;
-    newStartR = SVGDocument.createTextNode(startRight + ' BCE');
-   }
-   else{
-    newStartR = SVGDocument.createTextNode(startRight + ' CE');
-   }
-   TRight.replaceChild(newStartR, TRight.firstChild);
-
    mid = length / 2;
    midPoint = Math.round(highBound - mid);
    if(midPoint == 0){
     midPoint = 1;
    }
-   if(midPoint < 0){
-    midPoint = midPoint * -1;
-    newMid = SVGDocument.createTextNode(midPoint + ' BCE');
+   ChangeThing(midPoint, Centre);
+   ChangeThing(startLeft, TLeft);
+   ChangeThing(startRight, TRight);
+  };
+
+  function ChangeThing(xVal, thing){
+   if(xVal < 0){
+    xVal = xVal * -1;
+    newText = SVGDocument.createTextNode(xVal + ' BCE');
    }
    else{
-    newMid = SVGDocument.createTextNode(midPoint + ' CE');
+    newText = SVGDocument.createTextNode(xVal + ' CE');
    }
-   Centre.replaceChild(newMid, Centre.firstChild);
+   thing.replaceChild(newText, thing.firstChild);
   };
 
   function Grab(evt){
@@ -134,14 +108,21 @@
   function Drag(evt){
    if(DragTarget){
     newX = CheckBounds(evt.clientX);
-    DragTarget.setAttributeNS(null, 'cx', newX);
     if(DragTarget == Left){
-     TLeft.setAttributeNS(null, 'x', newX);
-     ChangeWords(evt.clientX, 'L');
+     if(newX <= (checkRight - 10)){
+      DragTarget.setAttributeNS(null, 'cx', newX);
+      TLeft.setAttributeNS(null, 'x', newX);
+      ChangeWords(evt.clientX, TLeft);
+      checkLeft = newX;
+     }
     }
     else if(DragTarget == Right){
-     TRight.setAttributeNS(null, 'x', newX);
-     ChangeWords(evt.clientX, 'R');
+     if(newX >= (checkLeft + 10)){
+      DragTarget.setAttributeNS(null, 'cx', newX);
+      TRight.setAttributeNS(null, 'x', newX);
+      ChangeWords(evt.clientX, TRight);
+      checkRight = newX;
+     }
     }
    }
   };
@@ -155,27 +136,17 @@
   };
 
   function ChangeWords(xVal, slider){
-   if(slider == 'L' || slider == 'R'){
-    Changeable = SVGDocument.getElementById('Change' + slider);
-   }
-   newVal = Scale(xVal, slider);
+   newVal = Scale(xVal);
    if(newVal < lowBound){	
     newVal = lowBound;
    }
    else if(newVal > highBound){
     newVal = highBound;
    }
-   if(newVal < 0){
-    newVal = newVal * -1;   
-    newText = SVGDocument.createTextNode(newVal + ' BCE');
-   }
-   else{
-    newText = SVGDocument.createTextNode(newVal + ' CE');
-   }
-   Changeable.replaceChild(newText, Changeable.firstChild);  
+   ChangeThing(newVal, slider);
   };
 
-  function Scale(x, slider){
+  function Scale(x){
    scale = highBound - lowBound;
    pixDistance = RIGHT_X - LEFT_X;
    ratio = (x - LEFT_X) / pixDistance;
