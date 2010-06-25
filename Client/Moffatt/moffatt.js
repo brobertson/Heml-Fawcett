@@ -79,6 +79,7 @@ var callbackModelForTextLink = function(htmlNode) {
     this.htmlNode = htmlNode;
     var me = this;
     this.makeTextLink = function(json) {
+	console.log(json);
 	//give me 1) Perseus text 2) first Chunk, etc.
            // var urlBase = json.results.bindings[i].label.value;
             var source = 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5a';
@@ -140,7 +141,11 @@ $(document).ready(function() {
             var queryString = "select ?label where {" + work + " rdfs:label ?label. }"
             hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
             hq.performQuery();
-            queryString3 = "select ?perseusText  where {" + work + " rdfs:label ?perseusText. }";
+            queryString3 = "select ?perseusText  ?firstChunking ?secondChunking ?thirdChunking where {" + work + " \
+                            <http://heml.mta.ca/cidoc_crm_texts#PerseusText> ?perseusText;\
+                            <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
+                   OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }
+                   OPTIONAL {" + work + "       <http://heml.mta.ca/cidoc_crm_texts#thirdChunk> ?thirdChunking. } }";
             myTry = new callbackModelForTextLink(a);
             hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
             hq3.performQuery();
