@@ -42,7 +42,7 @@
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 50, 1220);  // user input
+   StartTimeLine(-1500, 2010, 300, 1000);  // user input
   };
 
   function StartTimeLine(low, high, l, r){
@@ -55,9 +55,19 @@
    OldBound = SVGDocument.getElementById('LeftBound');
    NowBound = SVGDocument.getElementById('RightBound');
    BackDrop = SVGDocument.getElementById('BackDrop');
-   
+   RPath = SVGDocument.getElementById('RPath');
+   LPath = SVGDocument.getElementById('LPath');
+
    LEFT_X = l;
    RIGHT_X = r;
+
+   LPath.setAttributeNS(null, 'x1', LEFT_X);
+   LPath.setAttributeNS(null, 'x2', LEFT_X);
+   OldBound.setAttributeNS(null, 'x', LEFT_X);
+
+   RPath.setAttributeNS(null, 'x1', RIGHT_X);
+   RPath.setAttributeNS(null, 'x2', RIGHT_X);
+   NowBound.setAttributeNS(null, 'x', RIGHT_X);
 
    if(low <= high){
     lowBound = low;
@@ -200,12 +210,12 @@
  </g> 
  
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
-  <text id = "LeftBound" x = "5%" y = "60" text-anchor = "middle">Low Bound</text>
+  <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
   <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
  </g>
 
  <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt"> >
-  <text id = "RightBound" x = "95%" y = "60" text-anchor = "middle">Top Bound</text>
+  <text id = "RightBound" x = "1220" y = "60" text-anchor = "middle">Top Bound</text>
   <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
  </g>
 
@@ -215,7 +225,7 @@
  </g>
 
  <g id = "DB" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
-  <rect id = "Done" x = "47%" y = "60%" width = "55" height = "20" fill = "aqua" stroke = "black" stroke-width = "2"/>
+  <rect id = "Done" x = "46%" y = "59%" width = "80" height = "40" fill = "aqua" stroke = "black" stroke-width = "2"/>
   <text id = "DoneText" x = "49%" y = "63%">Done</text>
  </g>
 
