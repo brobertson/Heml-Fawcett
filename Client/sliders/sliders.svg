@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Done(evt)">
 
  <title>Drag And Drop</title>
 
@@ -22,6 +22,7 @@
   var Centre;
   var OldBound;
   var NowBound;
+  var BackDrop;
   
   var lowBound;
   var highBound;
@@ -30,19 +31,21 @@
   var ratio;
   var time;
   
-  var checkLeft = 440;
-  var checkRight = 830;
+  var leftVal = 440;
+  var rightVal = 830;
+  var leftie = 330;
+  var rightie = 840;
 
-  var LEFT_X = 50;     // pixels
+  var LEFT_X = 50;     // pixels, need to figure out a way of moving bounds
   var RIGHT_X = 1220;  // pixels
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-350, 100);  // user input
+   StartTimeLine(-1500, 2010, 50, 1220);  // user input
   };
 
-  function StartTimeLine(low, high){
+  function StartTimeLine(low, high, l, r){
    TrueCoords = SVGRoot.createSVGPoint();
    Left = SVGDocument.getElementById('LeftSlider');
    Right = SVGDocument.getElementById('RightSlider');
@@ -51,7 +54,11 @@
    Centre = SVGDocument.getElementById('TextBox');
    OldBound = SVGDocument.getElementById('LeftBound');
    NowBound = SVGDocument.getElementById('RightBound');
+   BackDrop = SVGDocument.getElementById('BackDrop');
    
+   LEFT_X = l;
+   RIGHT_X = r;
+
    if(low <= high){
     lowBound = low;
     highBound = high;
@@ -109,19 +116,19 @@
    if(DragTarget){
     newX = CheckBounds(evt.clientX);
     if(DragTarget == Left){
-     if(newX <= (checkRight - 10)){
+     if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
       ChangeWords(evt.clientX, TLeft);
-      checkLeft = newX;
+      leftVal = newX;
      }
     }
     else if(DragTarget == Right){
-     if(newX >= (checkLeft + 10)){
+     if(newX >= (leftVal + 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TRight.setAttributeNS(null, 'x', newX);
       ChangeWords(evt.clientX, TRight);
-      checkRight = newX;
+      rightVal = newX;
      }
     }
    }
@@ -144,6 +151,12 @@
     newVal = highBound;
    }
    ChangeThing(newVal, slider);
+   if(slider == TRight){
+    rightie = newVal;
+   }
+   else if(slider == TLeft){
+    leftie = newVal;
+   }
   };
 
   function Scale(x){
@@ -162,6 +175,14 @@
     return RIGHT_X;
    }
    return x;
+  };
+
+  function Done(evt){
+   var targetElem = evt.target;
+   DoneButton = SVGDocument.getElementById('Done');
+   if(targetElem == DoneButton){
+    StartTimeLine(leftie, rightie, LEFT_X, RIGHT_X);
+   }
   };
 
  ]]></script>
@@ -191,6 +212,11 @@
  <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
   <text id = "TextBox" x = "635" y = "60" text-anchor = "middle">Centre</text>
   <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "16%" x2 = "635" y2 = "24%"/>
+ </g>
+
+ <g id = "DB" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
+  <rect id = "Done" x = "47%" y = "60%" width = "55" height = "20" fill = "aqua" stroke = "black" stroke-width = "2"/>
+  <text id = "DoneText" x = "49%" y = "63%">Done</text>
  </g>
 
 </svg>
