@@ -24,10 +24,10 @@
 
 
 
-var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels-horst";
+var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels";
 
 function toConsole(text) {
-	var DEBUG = false;
+	var DEBUG = true;
 	if (DEBUG) {
 		console.log(text);
 	}
@@ -74,15 +74,26 @@ var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) 
     }
 }
 
-var callbackModelForTextLink = function(htmlNode) {
-    //use '' for root
+var callbackModelForTextLink = function(htmlNode, citationArray) {
+    var perseusTextServer = 'http://heml.mta.ca/hopper/xmlchunk.jsp';
     this.htmlNode = htmlNode;
     var me = this;
+    console.log("citation array: " + citationArray); 
     this.makeTextLink = function(json) {
-	console.log(json);
+	console.warn(json);
+        var textLink = json.results.bindings[0].perseusText.value;
+        textLink += ":" + json.results.bindings[0].firstChunking.value + "=";
+        textLink += citationArray[0];
+        if (citationArray.length > 1) {
+          textLink += ":" + json.results.bindings[0].secondChunking.value + "=";
+          textLink += citationArray[1];
+        }
+        console.log("textLink so far: " + textLink);
+        console.log("textlink escaped: " + escape(textLink));
 	//give me 1) Perseus text 2) first Chunk, etc.
            // var urlBase = json.results.bindings[i].label.value;
-            var source = 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5a';
+            var source = perseusTextServer + "?doc=" + escape(textLink)+"&encoding=UnicodeC"; 
+//var source = 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5a';
             var xslt = 'http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl';//json.results.bindings[i].xslAddress.value;
             htmlNode.className = 'referenceTitleClass';
           //  alert("mode it here");
@@ -107,6 +118,9 @@ $(document).ready(function() {
             toConsole("bookLine1: " + bookLine1);
             bookline2 = bookLine1.replace(/:/g, '.').substring(1);
             toConsole("bookline2: " + bookline2);
+            splitBookline = bookline2.split('.');
+            toConsole("booklineSplit: " + splitBookline);
+            toConsole("bls length: " + splitBookline.length);
             var x = document.createElement('span');
             x.className = 'ctsurn_author';
             var y = document.createElement('span');
@@ -146,7 +160,7 @@ $(document).ready(function() {
                             <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
                    OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }\
                    OPTIONAL {" + work + "       <http://heml.mta.ca/cidoc_crm_texts#thirdChunk> ?thirdChunking. } }";
-            myTry = new callbackModelForTextLink(a);
+            myTry = new callbackModelForTextLink(a,splitBookline);
             hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
             hq3.performQuery();
         }
@@ -157,8 +171,7 @@ function doXMLHttp(xslURL, documentURL, parentNode) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", xslURL, false);
     xmlhttp.send(null);
-    if (xmlhttp.status == 200)
-    alert(xmlhttp.responseText);  
+    if (xmlhttp.status == 200) {toConsole("xsl file retrieved.");}
     var xmlhttpDoc = new XMLHttpRequest();
     xmlhttpDoc.open("Get", documentURL, false);
     xmlhttpDoc.send(null);
