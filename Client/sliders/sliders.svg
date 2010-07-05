@@ -23,6 +23,11 @@
   var OldBound;
   var NowBound;
   var BackDrop;
+  var FirstQuart;
+  var FirstLabel;  
+  var ThirdQuart;
+  var ThirdLabel;
+  var Line;
   
   var lowBound;
   var highBound;
@@ -30,33 +35,52 @@
   var scale;
   var ratio;
   var time;
+  var q1;
+  var q3;
+  var midPoint;
   
   var leftVal = 440;
   var rightVal = 830;
   var leftie = 330;
   var rightie = 840;
+  var alreadyThereL = false;
+  var alreadyThereR = false;
 
-  var LEFT_X = 50;     // pixels, need to figure out a way of moving bounds
+  var LEFT_X = 50;     // pixels
   var RIGHT_X = 1220;  // pixels
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 50, 1220);  // user input
+   StartTimeLine(-1500, 2010, 50, 500);  // user input
   };
 
   function StartTimeLine(low, high, l, r){
+
+   if(low <= high){
+    lowBound = low;
+    highBound = high;
+   }
+   else{
+    lowBound = high;
+    highBound = low;
+   }
+
    TrueCoords = SVGRoot.createSVGPoint();
    Left = SVGDocument.getElementById('LeftSlider');
    Right = SVGDocument.getElementById('RightSlider');
    TLeft = SVGDocument.getElementById('ChangeL');
    TRight = SVGDocument.getElementById('ChangeR');
    Centre = SVGDocument.getElementById('TextBox');
+   CentreLine = SVGDocument.getElementById('MiddlePath');
    OldBound = SVGDocument.getElementById('LeftBound');
    NowBound = SVGDocument.getElementById('RightBound');
+   FirstQuart = SVGDocument.getElementById('Quarter1');
+   ThirdQuart = SVGDocument.getElementById('Quarter3');
    BackDrop = SVGDocument.getElementById('BackDrop');
    RPath = SVGDocument.getElementById('RPath');
    LPath = SVGDocument.getElementById('LPath');
+   Line = SVGDocument.getElementById('TimeLine');
 
    LEFT_X = l;
    RIGHT_X = r;
@@ -69,14 +93,29 @@
    RPath.setAttributeNS(null, 'x2', RIGHT_X);
    NowBound.setAttributeNS(null, 'x', RIGHT_X);
 
-   if(low <= high){
-    lowBound = low;
-    highBound = high;
-   }
-   else{
-    lowBound = high;
-    highBound = low;
-   }
+   Line.setAttributeNS(null, 'x1', LEFT_X);
+   Line.setAttributeNS(null, 'x2', RIGHT_X);
+
+   q1 = Math.round(((RIGHT_X - LEFT_X) / 4) + LEFT_X);	// pixels
+   q3 = Math.round(RIGHT_X - ((RIGHT_X - LEFT_X) / 4));	// pixels
+
+   FirstQuart.setAttributeNS(null, 'x1', q1);
+   FirstQuart.setAttributeNS(null, 'x2', q1);
+
+   ThirdQuart.setAttributeNS(null, 'x1', q3);
+   ThirdQuart.setAttributeNS(null, 'x2', q3);
+
+   mid = Math.round(((RIGHT_X - LEFT_X) / 2) + LEFT_X);	// pixels
+   
+   CentreLine.setAttributeNS(null, 'x1', mid);
+   CentreLine.setAttributeNS(null, 'x2', mid);
+   Centre.setAttributeNS(null, 'x', mid);
+
+   third = (RIGHT_X - LEFT_X) / 3; // pixels
+   oneThird = third + LEFT_X;
+   twoThird = RIGHT_X - third;
+
+   Left.setAttributeNS(null, 'x', oneThird);
 
    SetBounds();
    FindPoints();
@@ -88,15 +127,18 @@
   };
 
   function FindPoints(){
-   length = highBound - lowBound;
+   length = RIGHT_X - LEFT_X;
    temp = length / 3;
    startLeft = Math.round(lowBound + temp);
    startRight = Math.round(highBound - temp);
-   mid = length / 2;
+   
+   length = highBound - lowBound;
+   mid = length / 2;				// value
    midPoint = Math.round(highBound - mid);
    if(midPoint == 0){
     midPoint = 1;
    }
+   
    ChangeThing(midPoint, Centre);
    ChangeThing(startLeft, TLeft);
    ChangeThing(startRight, TRight);
@@ -129,11 +171,13 @@
      if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
-      if(newX >= (rightVal - 60)){
-       TLeft.setAttributeNS(null, 'y', 145);
+      if(newX >= (rightVal - 60) && (!alreadyThereR)){
+       TLeft.setAttributeNS(null, 'y', 160);
+       alreadyThereL = true;
       }
       else{
-       TLeft.setAttributeNS(null, 'y', 130);
+       TLeft.setAttributeNS(null, 'y', 145);
+       alreadyThereL = false;
       }
       ChangeWords(evt.clientX, TLeft);
       leftVal = newX;
@@ -143,11 +187,13 @@
      if(newX >= (leftVal + 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TRight.setAttributeNS(null, 'x', newX);
-      if(newX <= (leftVal + 60)){
-       TRight.setAttributeNS(null, 'y', 145);
+      if(newX <= (leftVal + 60) && (!alreadyThereL)){
+       TRight.setAttributeNS(null, 'y', 160);
+       alreadyThereR = true;
       }
       else{
-       TRight.setAttributeNS(null, 'y', 130);
+       TRight.setAttributeNS(null, 'y', 145);
+       alreadyThereR = false;
       }
       ChangeWords(evt.clientX, TRight);
       rightVal = newX;
@@ -210,25 +256,15 @@
  ]]></script>
 
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
-
- <g id = "Left">
-  <text id = "ChangeL" x = "440" y = "130" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
-  <circle id = "LeftSlider" cx="440" cy="20%" r="5" style="fill: blue;" stroke="black" stroke-width="2"/>
- </g>
-
- <g id = "Right">
-  <text id = "ChangeR" x = "830" y = "130" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
-  <circle id="RightSlider" cx="830" cy="20%" r="5" style="fill: red;" stroke="black" stroke-width="2"/>
- </g> 
  
- <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
-  <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
-  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
- </g>
-
  <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt"> >
   <text id = "RightBound" x = "1220" y = "60" text-anchor = "middle">Top Bound</text>
   <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
+ </g>
+
+ <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+  <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
+  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
  </g>
 
  <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
@@ -241,6 +277,20 @@
   <text id = "DoneText" x = "49%" y = "63%">Done</text>
  </g>
 
+ <g id = "TL" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
+  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "20%" x2 = "1220" y2 = "20%"/>
+  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "17%" x2 = "343" y2 = "23%"/>
+  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "17%" x2 = "928" y2 = "23%"/>
+ </g>
 
+ <g id = "Left">
+  <text id = "ChangeL" x = "440" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
+  <circle id = "LeftSlider" cx="440" cy="20%" r="5" style="fill: blue;" stroke="black" stroke-width="2"/>
+ </g>
+
+ <g id = "Right">
+  <text id = "ChangeR" x = "830" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
+  <circle id="RightSlider" cx="830" cy="20%" r="5" style="fill: red;" stroke="black" stroke-width="2"/>
+ </g>
 
 </svg>
