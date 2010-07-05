@@ -42,7 +42,7 @@
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 300, 1000);  // user input
+   StartTimeLine(-1500, 2010, 50, 1220);  // user input
   };
 
   function StartTimeLine(low, high, l, r){
@@ -129,6 +129,12 @@
      if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
+      if(newX >= (rightVal - 60)){
+       TLeft.setAttributeNS(null, 'y', 145);
+      }
+      else{
+       TLeft.setAttributeNS(null, 'y', 130);
+      }
       ChangeWords(evt.clientX, TLeft);
       leftVal = newX;
      }
@@ -137,6 +143,12 @@
      if(newX >= (leftVal + 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TRight.setAttributeNS(null, 'x', newX);
+      if(newX <= (leftVal + 60)){
+       TRight.setAttributeNS(null, 'y', 145);
+      }
+      else{
+       TRight.setAttributeNS(null, 'y', 130);
+      }
       ChangeWords(evt.clientX, TRight);
       rightVal = newX;
      }
@@ -200,13 +212,13 @@
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
 
  <g id = "Left">
-  <circle id = "LeftSlider" cx="440" cy="20%" r="10" style="fill: blue;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeL" x = "440" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
+  <text id = "ChangeL" x = "440" y = "130" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
+  <circle id = "LeftSlider" cx="440" cy="20%" r="5" style="fill: blue;" stroke="black" stroke-width="2"/>
  </g>
 
  <g id = "Right">
-  <circle id="RightSlider" cx="830" cy="20%" r="10" style="fill: red;" stroke="black" stroke-width="2"/>
-  <text id = "ChangeR" x = "830" y = "30%" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
+  <text id = "ChangeR" x = "830" y = "130" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
+  <circle id="RightSlider" cx="830" cy="20%" r="5" style="fill: red;" stroke="black" stroke-width="2"/>
  </g> 
  
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
@@ -228,5 +240,7 @@
   <rect id = "Done" x = "46%" y = "59%" width = "80" height = "40" fill = "aqua" stroke = "black" stroke-width = "2"/>
   <text id = "DoneText" x = "49%" y = "63%">Done</text>
  </g>
+
+
 
 </svg>
