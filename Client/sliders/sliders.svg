@@ -10,7 +10,7 @@
 
  <script><![CDATA[ 
   var SVGDocument = null;
-  var SVGRoot = null;
+  var SVGRoot = null; 
 
   var TrueCoords = null;
 
@@ -52,7 +52,7 @@
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 50, 500);  // user input
+   StartTimeLine(-1500, 2010, 50, 1220);  // user input
   };
 
   function StartTimeLine(low, high, l, r){
@@ -112,10 +112,13 @@
    Centre.setAttributeNS(null, 'x', mid);
 
    third = (RIGHT_X - LEFT_X) / 3; // pixels
-   oneThird = third + LEFT_X;
-   twoThird = RIGHT_X - third;
+   leftVal = third + LEFT_X;
+   rightVal = RIGHT_X - third;
 
-   Left.setAttributeNS(null, 'x', oneThird);
+   Left.setAttributeNS(null, 'cx', leftVal);
+   TLeft.setAttributeNS(null, 'x', leftVal);
+   Right.setAttributeNS(null, 'cx', rightVal);
+   TRight.setAttributeNS(null, 'x', rightVal);
 
    SetBounds();
    FindPoints();
@@ -127,12 +130,11 @@
   };
 
   function FindPoints(){
-   length = RIGHT_X - LEFT_X;
+   length = highBound - lowBound;
    temp = length / 3;
    startLeft = Math.round(lowBound + temp);
    startRight = Math.round(highBound - temp);
-   
-   length = highBound - lowBound;
+
    mid = length / 2;				// value
    midPoint = Math.round(highBound - mid);
    if(midPoint == 0){
@@ -171,7 +173,7 @@
      if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
-      if(newX >= (rightVal - 60) && (!alreadyThereR)){
+      if(newX >= (rightVal - 60) && (alreadyThereR == false)){
        TLeft.setAttributeNS(null, 'y', 160);
        alreadyThereL = true;
       }
@@ -187,7 +189,7 @@
      if(newX >= (leftVal + 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TRight.setAttributeNS(null, 'x', newX);
-      if(newX <= (leftVal + 60) && (!alreadyThereL)){
+      if(newX <= (leftVal + 60) && (alreadyThereL == false)){
        TRight.setAttributeNS(null, 'y', 160);
        alreadyThereR = true;
       }
