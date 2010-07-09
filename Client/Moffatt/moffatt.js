@@ -27,7 +27,7 @@
 var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels";
 
 function toConsole(text) {
-	var DEBUG = true;
+	var DEBUG = false; 
 	if (DEBUG) {
 		console.log(text);
 	}
@@ -38,22 +38,29 @@ function onHemlFailure(reply) {
     // do something more interesting, like putting an x through the map. or making
     // a popup
 }
+function labelStringFromJson(bindings, langString) {
+          for (row in bindings) {
+                if (row != 'remove') {
+            if (bindings[row].label["xml:lang"] == langString) return bindings[row].label["value"];
+}
+}
+return null;
+}
 
 function labelFromJson(bindings, langPrefs) {
 	toConsole(langPrefs);
+        if (!langPrefs || langPrefs == '') {// undefined
+           return labelStringFromJson(bindings, 'en');
+        }
 	var lang;
 	for (languageArrayRow in langPrefs) {
 		toConsole(langPrefs[languageArrayRow]);
 		lang = langPrefs[languageArrayRow][1]; 
 		toConsole("trying " + lang);
-        for (row in bindings) {
-	        if (row != 'remove') {
-            //toConsole(json.results.bindings[row]);
-            if (bindings[row].label["xml:lang"] == lang) return bindings[row].label["value"];
-}
-        }
+                var answer =  labelStringFromJson(bindings, lang);
+                if (answer) return answer;
     }
-    return null;
+    return labelStringFromJson(bindings, 'en'); 
 }
 
 var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) {
@@ -78,9 +85,9 @@ var callbackModelForTextLink = function(htmlNode, citationArray) {
     var perseusTextServer = 'http://heml.mta.ca/hopper/xmlchunk.jsp';
     this.htmlNode = htmlNode;
     var me = this;
-    console.log("citation array: " + citationArray); 
+    toConsole("citation array: " + citationArray); 
     this.makeTextLink = function(json) {
-	console.warn(json);
+	toConsole(json);
         var textLink = json.results.bindings[0].perseusText.value;
         textLink += ":" + json.results.bindings[0].firstChunking.value + "=";
         textLink += citationArray[0];
@@ -88,17 +95,26 @@ var callbackModelForTextLink = function(htmlNode, citationArray) {
           textLink += ":" + json.results.bindings[0].secondChunking.value + "=";
           textLink += citationArray[1];
         }
-        console.log("textLink so far: " + textLink);
-        console.log("textlink escaped: " + escape(textLink));
+        toConsole("textLink so far: " + textLink);
+        toConsole("textlink escaped: " + escape(textLink));
 	//give me 1) Perseus text 2) first Chunk, etc.
            // var urlBase = json.results.bindings[i].label.value;
             var source = perseusTextServer + "?doc=" + escape(textLink)+"&encoding=UnicodeC"; 
 //var source = 'http://heml.mta.ca/hopper/xmlchunk.jsp?doc=Perseus%3Atext%3A2009.01.0001%3Apage%3D5a';
             var xslt = 'http://heml.mta.ca/crossmantest/xslt/tei-fragment-to-xhtml-quotation.xsl';//json.results.bindings[i].xslAddress.value;
             htmlNode.className = 'referenceTitleClass';
-          //  alert("mode it here");
+            htmlNode.setAttribute('clicked', 'false');
 			htmlNode.onclick = function() {
+                              var clicked = htmlNode.attributes.getNamedItem("clicked").value;
+                          if (clicked == "false") {
+
 				doXMLHttp(xslt, source, htmlNode);
+                          htmlNode.setAttribute("clicked", "true");
+                          }
+                          else {
+                          var theDiv = htmlNode.lastChild;
+                          displayBlock(theDiv, "hey that's bad");
+                          }
             }
        
     }
@@ -182,4 +198,23 @@ function doXMLHttp(xslURL, documentURL, parentNode) {
 	parentNode.appendChild(newFragment);
 }
 
+function getTransLanguagesForURL(documentURL, htmlNode) {
+    this.documentURL = documentURL;
+    this.htmlNode = htmlNode;
+    var me = this;
+   }
 
+function displayBlock(theDiv, message){
+    //cursor_default();
+	if (theDiv!=null) {
+		if (theDiv.style.display == "none") {
+			theDiv.style.display = "block";
+		}
+		else {
+			theDiv.style.display = "none";
+		}
+	}
+	else {
+		alert(message);
+	}
+}

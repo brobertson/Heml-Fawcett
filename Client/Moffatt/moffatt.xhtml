@@ -10,11 +10,12 @@
 	/*	span { color:blue; text-decoration:underline; cursor:pointer; } */
 		.example { font-style:italic; }
 		.ctsurn_title {font-style:italic;}
+                .referenceTitleClass.quotation {color:black;}
 		/*]]>*/
 		</style>
 		<link rel="stylesheet" type="text/css" href="language-preferences/ext-all.css" />
 		<link rel="stylesheet" type="text/css" href="language-preferences/ext-heml.css" />
-		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
+		<link rel="stylesheet" type="text/css" href="../location-map/fragmentaryReferenceBuilder-test.css"/>
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript">
 </script>
 		<script type="text/javascript" language="javascript" src="moffatt.js">
@@ -37,10 +38,11 @@
 		</p>
 		
 		<!-- Using HTML-5 data attribute -->
-		<div data-ctsurn="urn:cts:greekLit:tlg0003:tlg001:2:10"/>
-                <div data-ctsurn="urn:cts:greekLit:tlg0032:tlg006:1:1"/>
+		<p>One of the first Athenian law-givers was Draco <span data-ctsurn="urn:cts:greekLit:tlg0086:tlg003:4:1"/>, who was said to have written his laws in blood.</p>
+                <p><span data-ctsurn="urn:cts:greekLit:tlg0019:tlg001:71-75"/> tells us of some of the hardships soldiers had to endure.</p>
                 <div data-ctsurn="urn:cts:greekLit:tlg0016:tlg001:1:1"/>
-                <div data-ctsurn="urn:cts:greekLit:tlg0016:tlg001:7:2"/>
+                <p> There is much to say about Herodotus book 7. For instance at <span data-ctsurn="urn:cts:greekLit:tlg0016:tlg001:7:2"/> we read of the domestic situation of Darius.
+</p>
 		<!--p>
 			<span data-ctsurn="urn:cts:greekLit:tlg0532:tlg001:1:10"/>
 		</p>
