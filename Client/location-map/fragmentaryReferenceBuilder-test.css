@@ -68,7 +68,7 @@ h1 {
     text-align:left;
 }
 
-div.quotation {
+.quotation {
 	font-weight:normal;
 	background:#c5d3ed;
 	width: 510px;
@@ -77,6 +77,7 @@ div.quotation {
 	padding-top:10px;
 	padding-bottom:10px;
 	font-size:13px;
+        color:black;
 }
 
 .eventTitle {
@@ -91,12 +92,12 @@ div.quotation {
 
 .referenceTypeClass {
 	width:10em;
-	display:block;
+	display:block; 
 	font-size:14px;
 	}
 
 .referenceTitleClass {
-	display:block;
+	/* display:block;*/
 	font-size:14px;
 	color:#6495ED;
 	cursor:pointer;
@@ -105,6 +106,10 @@ div.quotation {
 p.referenceTitleClass:hover {
 	cursor: pointer;
 	color: gray;
+}
+
+referenceTitleClass.quotation {
+     color:black;
 }
 
 .goodlink {
