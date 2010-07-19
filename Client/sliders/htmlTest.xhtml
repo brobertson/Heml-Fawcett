@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Done(evt)">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<html xmlns = "http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<head>
  <title>Drag And Drop</title>
 
- <desc>Sliders to indicate location on a timeline
-  Sarah Bell-Etkin for Heml-Fawcett, 2010
- </desc>
-
+<style>
+</style>
  <script><![CDATA[ 
   var SVGDocument = null;
   var SVGRoot = null; 
@@ -28,6 +30,8 @@
   var ThirdQuart;
   var ThirdLabel;
   var Line;
+  var AdjustButton;
+  var DoneButton;
   
   var lowBound;
   var highBound;
@@ -39,15 +43,17 @@
   var q3;
   var midPoint;
   
-  var leftVal = 440;
+  var leftVal = 440;	// pixel location
   var rightVal = 830;
-  var leftie = 330;
+
+  var leftie = 330;	// original "time"
   var rightie = 840;
+
   var alreadyThereL = false;
   var alreadyThereR = false;
 
-  var LEFT_X = 50;     // pixels
-  var RIGHT_X = 1220;  // pixels
+  var LEFT_X = 50;	// pixels
+  var RIGHT_X = 1200;
 
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
@@ -65,6 +71,14 @@
     lowBound = high;
     highBound = low;
    }
+   if(l <= r){
+    LEFT_X = l;
+    RIGHT_X = r;
+   }
+   else{
+    LEFT_X = r;
+    RIGHT_X = l;
+   }
 
    TrueCoords = SVGRoot.createSVGPoint();
    Left = SVGDocument.getElementById('LeftSlider');
@@ -81,9 +95,8 @@
    RPath = SVGDocument.getElementById('RPath');
    LPath = SVGDocument.getElementById('LPath');
    Line = SVGDocument.getElementById('TimeLine');
-
-   LEFT_X = l;
-   RIGHT_X = r;
+   AdjustButton = SVGDocument.getElementById('Adjust');
+   DoneButton = SVGDocument.getElementById('Done');
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
    LPath.setAttributeNS(null, 'x2', LEFT_X);
@@ -132,8 +145,8 @@
   function FindPoints(){
    length = highBound - lowBound;
    temp = length / 3;
-   startLeft = Math.round(lowBound + temp);
-   startRight = Math.round(highBound - temp);
+   leftie = Math.round(lowBound + temp);
+   rightie = Math.round(highBound - temp);
 
    mid = length / 2;				// value
    midPoint = Math.round(highBound - mid);
@@ -142,8 +155,8 @@
    }
    
    ChangeThing(midPoint, Centre);
-   ChangeThing(startLeft, TLeft);
-   ChangeThing(startRight, TRight);
+   ChangeThing(leftie, TLeft);
+   ChangeThing(rightie, TRight);
   };
 
   function ChangeThing(xVal, thing){
@@ -201,6 +214,8 @@
       rightVal = newX;
      }
     }
+    AdjustButton.setAttributeNS(null, 'fill-opacity', 0.0);
+    DoneButton.setAttributeNS(null, 'fill-opacity', 0.0);
    }
   };
 
@@ -209,6 +224,7 @@
     var targetElement = evt.target;
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
     DragTarget = null;
+    DoQuery(leftie, rightie);
    }
   };
 
@@ -247,52 +263,63 @@
    return x;
   };
 
-  function Done(evt){
+  function Adjust(evt){
    var targetElem = evt.target;
-   DoneButton = SVGDocument.getElementById('Done');
-   if(targetElem == DoneButton){
+   if(targetElem == AdjustButton){
     StartTimeLine(leftie, rightie, LEFT_X, RIGHT_X);
+    AdjustButton.setAttributeNS(null, 'fill-opacity', 1.0);
    }
   };
 
- ]]></script>
+  function DoQuery(left, right){
+   alert(left);
+   alert(right);
+  };
 
- <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"/>
+ ]]></script>
+</head>
+
+<body>
+<svg width="1260" height="1000" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Adjust(evt)">
+
+ <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"></rect>
  
- <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt"> >
-  <text id = "RightBound" x = "1220" y = "60" text-anchor = "middle">Top Bound</text>
-  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1220" y1 = "15%" x2 = "1220" y2 = "25%"/>
+ <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+  <text id = "RightBound" x = "1200" y = "60" text-anchor = "middle">Top Bound</text>
+  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1200" y1 = "63" x2 = "1200" y2 = "117"></line>
  </g>
 
  <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
   <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
-  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "15%" x2 = "50" y2 = "25%"/>
+  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "63" x2 = "50" y2 = "117"></line>
  </g>
 
  <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
   <text id = "TextBox" x = "635" y = "60" text-anchor = "middle">Centre</text>
-  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "16%" x2 = "635" y2 = "24%"/>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "70" x2 = "635" y2 = "110"></line>
  </g>
 
- <g id = "DB" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
-  <rect id = "Done" x = "46%" y = "59%" width = "80" height = "40" fill = "aqua" stroke = "black" stroke-width = "2"/>
-  <text id = "DoneText" x = "49%" y = "63%">Done</text>
+ <g id = "AB" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
+  <text id = "AText" x = "635" y = "190">Adjust</text>
+  <rect id = "Adjust" x = "594" y = "175" width = "80" height = "40" fill = "green" stroke = "black" stroke-width = "2" fill-opacity = "1.0"></rect>
  </g>
 
  <g id = "TL" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
-  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "20%" x2 = "1220" y2 = "20%"/>
-  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "17%" x2 = "343" y2 = "23%"/>
-  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "17%" x2 = "928" y2 = "23%"/>
+  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "90" x2 = "1200" y2 = "90"></line>
+  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "75" x2 = "343" y2 = "105"></line>
+  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "75" x2 = "928" y2 = "105"></line>
  </g>
 
  <g id = "Left">
   <text id = "ChangeL" x = "440" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
-  <circle id = "LeftSlider" cx="440" cy="20%" r="5" style="fill: blue;" stroke="black" stroke-width="2"/>
+  <circle id = "LeftSlider" cx="440" cy="90" r="5" style="fill: blue;" stroke="black" stroke-width="2"></circle>
  </g>
 
  <g id = "Right">
   <text id = "ChangeR" x = "830" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
-  <circle id="RightSlider" cx="830" cy="20%" r="5" style="fill: red;" stroke="black" stroke-width="2"/>
+  <circle id="RightSlider" cx="830" cy="90" r="5" style="fill: red;" stroke="black" stroke-width="2"></circle>
  </g>
 
 </svg>
+</body>
+</html>

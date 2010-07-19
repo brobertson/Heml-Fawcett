@@ -58,7 +58,7 @@ public class CsvToRdfEvent {
 	public static void main(String[] args) throws IOException {
 		//these variables must be specified depending on the spreadsheet
 		int numcols=6; // Number of columns 
-		String pathname = "/Users/ewilson/Documents/testsheet.csv"; // Path to file
+		String pathname = "/Users/ewilson/Documents/Battles.csv"; // Path to file
 		
 		int numrows=0;
 		File file = new File(pathname);
@@ -70,8 +70,9 @@ public class CsvToRdfEvent {
 		
 		String data[][] = new String[numrows][numcols];
 		String first, end; // variables to represent beginning and end of tlg number
+		int index;
 		data = parseFile(numrows, numcols, pathname);// parse csv into a 2d array
-		String evidence = "http://www.heml.org/rdf/2003-09-17/heml#Evidence";
+		String evidence = "<http://www.heml.org/rdf/2003-09-17/heml#Evidence>";
 		//Print out the header data in the file
 		System.out.println("@prefix heml_cidoc_texts: <http://heml.mta.ca/cidoc_crm_texts#> .");
 		System.out.println("@prefix crm: <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#> .");
@@ -83,14 +84,23 @@ public class CsvToRdfEvent {
 		for(int i = 1; i< numrows; i++) // Start at second line since first line will be titles
 		{	if(data[i][2] != null){
 				//break the tlg numbers into two different numbers (from column 3)
-				first = data[i][2].substring(0, 7);
+			index = data[i][2].indexOf("tlg");
+			if(index==-1)
+			{
+				index=17;
+			}
+				first = data[i][2].substring(index, (index+7));
 				if(data[i][2].length()> 9)
 				{
-					end = data[i][2].substring(8);
+					end = data[i][2].substring(index+8);
 					if(data[i][0].contains("(")){
-						System.out.println("<http://dbpedia.org/resource/"+data[i][0].substring(0,data[i][0].indexOf('('))+"%28"+data[i][0].substring((data[i][0].indexOf('(')+1),data[i][0].indexOf(')'))+"%29> http://www.heml.org/rdf/2003-09-17/heml#Evidence <http://heml.mta.ca/text/urn/"+first+"/"+end+"> .");
+						System.out.println("<http://dbpedia.org/resource/"+data[i][0].substring(0,data[i][0].indexOf('('))+"%28"+data[i][0].substring((data[i][0].indexOf('(')+1),data[i][0].indexOf(')'))+"%29> <http://www.heml.org/rdf/2003-09-17/heml#Evidence> <http://heml.mta.ca/text/urn/"+first+"/"+end+"> .");
 					
 					}// if "()" in name then print out entire URL
+					else if(data[i][0].contains("#") || data[i][0].contains("."))
+					{
+						System.out.println("<http://dbpedia.org/resource/"+data[i][0]+"> "+evidence+" <http://heml.mta.ca/text/urn/"+first+"/"+end+"> .");
+					}
 					else{
 						System.out.println("dbpedia:"+data[i][0]+" "+evidence+" <http://heml.mta.ca/text/urn/"+first+"/"+end+"> .");
 					}
