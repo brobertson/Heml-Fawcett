@@ -31,7 +31,6 @@
   var ThirdLabel;
   var Line;
   var AdjustButton;
-  var DoneButton;
   
   var lowBound;
   var highBound;
@@ -80,7 +79,7 @@
     RIGHT_X = l;
    }
 
-   TrueCoords = SVGRoot.createSVGPoint();
+ //  TrueCoords = SVGRoot.createSVGPoint();
    Left = SVGDocument.getElementById('LeftSlider');
    Right = SVGDocument.getElementById('RightSlider');
    TLeft = SVGDocument.getElementById('ChangeL');
@@ -96,7 +95,7 @@
    LPath = SVGDocument.getElementById('LPath');
    Line = SVGDocument.getElementById('TimeLine');
    AdjustButton = SVGDocument.getElementById('Adjust');
-   DoneButton = SVGDocument.getElementById('Done');
+
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
    LPath.setAttributeNS(null, 'x2', LEFT_X);
@@ -215,7 +214,7 @@
      }
     }
     AdjustButton.setAttributeNS(null, 'fill-opacity', 0.0);
-    DoneButton.setAttributeNS(null, 'fill-opacity', 0.0);
+ 
    }
   };
 
