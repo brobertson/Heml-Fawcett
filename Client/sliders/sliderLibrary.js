@@ -1,4 +1,3 @@
-<![CDATA[ 
   var SVGDocument = null;
   var SVGRoot = null; 
 
@@ -262,4 +261,3 @@
    alert(left);
    alert(right);
   };
-]]>  
