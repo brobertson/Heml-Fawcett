@@ -1,8 +1,6 @@
   var SVGDocument = null;
   var SVGRoot = null; 
 
-  var TrueCoords = null;
-
   var DragTarget = null;
   var Left;
   var Right;
@@ -66,7 +64,6 @@
     RIGHT_X = l;
    }
 
- //  TrueCoords = SVGRoot.createSVGPoint();
    Left = SVGDocument.getElementById('LeftSlider');
    Right = SVGDocument.getElementById('RightSlider');
    TLeft = SVGDocument.getElementById('ChangeL');
@@ -82,7 +79,6 @@
    LPath = SVGDocument.getElementById('LPath');
    Line = SVGDocument.getElementById('TimeLine');
    AdjustButton = SVGDocument.getElementById('Adjust');
-
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
    LPath.setAttributeNS(null, 'x2', LEFT_X);
