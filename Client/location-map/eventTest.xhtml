@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html 
+
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <style>
+  ul { font-size:18px; margin:0; }
+  span { color:blue; text-decoration:underline; cursor:pointer; }
+  .example { font-style:italic; }
+  </style>
+  		<title>Heml Locations Map Using OpenLayers</title>
+		<link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
+		
+		<link rel="stylesheet" type="text/css" href="language-preferences/ext-all.css" />
+		<link rel="stylesheet" type="text/css" href="language-preferences/ext-heml.css" />
+		<link rel="stylesheet" type="text/css" href="fragmentaryReferenceBuilder-test.css"/>
+
+		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+		<script type="text/javascript" language="javascript" src="../javascript/sparql.js"></script>
+		<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"></script>
+		<script type="text/javascript" language="javascript" src="../javascript/sparqlLangUtil.js"></script>
+		<script type="text/javascript" language="javascript" src="fragmentaryReferenceBuilder-test.js"></script>
+
+		  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"/>
+	<script type="text/javascript" language="javascript" src="../javascript/sparql.js"/>
+  <script>
+    var i;
+var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels";
+function onHemlFailure(reply) {
+    alert("The Heml SPARQL query failed. Perhaps you do not have an Internet connection:\n" + reply);
+    // do something more interesting, like putting an x through the map. or making
+    // a popup
+}
+
+
+function listEventsForTimeSpan(start, end) {
+	var startDate = start+"-01-01";
+    var endDate = end+"-01-01";
+	var listEventsFromJson = function(json) {
+		var theHeader = document.getElementById("locationLabel");
+		headerText = theHeader.childNodes[0];
+		if (headerText != null) {
+			theHeader.removeChild(headerText);
+		}
+		var theNewHeaderText = document.createTextNode("event");
+		var theDocs = document.getElementById("docs");
+		var theEventList = document.getElementById("eventList");
+		try {
+			if (theEventList != null) {
+				theDocs.removeChild(theEventList);
+			}
+		}
+		catch(error) {
+			alert("error: " + error);
+		}
+		var newEventList = document.createElement('div');
+		newEventList.id = "eventList";
+		var eventsLength = json.results.bindings.length;
+		for(var i = 0; i&lt;eventsLength; i++) {
+			try {
+				if (json.results.bindings[i].date.value != null) {
+					var prettyDate = formatDate(json.results.bindings[i].date.value);
+				} 
+				else {
+					var prettyDate = "BAD DATE";
+				}
+				var theTextOfTheParagraph = document.createTextNode(prettyDate + ": " + json.results.bindings[i].eventLabel.value);
+			} 
+			catch(anError) {
+				alert(anError);
+			}
+			if (i > 0) {
+				newEventList.appendChild(document.createElement('br'));
+			}
+			var eventDiv = document.createElement('div');
+			eventDiv.className = 'event';
+			var para = document.createElement('p');
+			para.className = 'eventTitle';
+			para.setAttribute("onclick", "getRefTypes(this, '" + json.results.bindings[i].event.value + "')");
+			para.setAttribute("clicked", "false");            
+			para.appendChild(theTextOfTheParagraph);
+			eventDiv.appendChild(para);
+			newEventList.appendChild(eventDiv);
+	}	
+	theHeader.appendChild(theNewHeaderText);
+	theDocs.appendChild(newEventList);
+}
+
+var AND = "&amp;&amp;";
+var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event &lt;http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event &lt;http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date &lt;\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
+var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, listEventsFromJson);
+
+function formatDate(dateIn) {
+	var dateRegex = new RegExp("(-?\\d+)-(\\d+)-(\\d+)");
+	var yearRegex = new RegExp("\s*(-?\\d+)\s*");
+	var match = dateRegex.exec(dateIn);
+	//alert(match);
+	if (yearRegex.exec(dateIn)) {
+		yearAsInt = parseInt(dateIn, 10);
+		if (yearAsInt > 0) {
+			return yearAsInt + " CE";
+		} 
+		else {
+			return yearAsInt * -1 + " BCE";
+		}
+	}
+	if (match) {
+		return dateIn;
+	}
+	else {
+		var string = "matched at position " + match.index + ":\n";
+		string = string + "string matched: " + match[0] + "\n";
+		if (match.length > 0) {
+			for (var i = 1; i &lt; match.length; i++) {
+				string = string + "(" + i + " " + match[i] + ")" + "\n";
+			}
+		}
+	}
+	yearAsInt = parseInt(match[1], 10);
+	if (yearAsInt > 0) {
+		return yearAsInt + " CE";
+	}
+	else {
+		return yearAsInt * -1 + " BCE";
+	}
+}
+
+eventsQuery.performQuery();
+}
+  </script>
+</head>
+<body>
+
+	<input type="button" onclick="listEventsForTimeSpan('-0405', '0400')" value="click" />
+	<div id="positioner">
+	
+	 <div id="container">		
+		    <div id="docs">
+			    <h3 id="locationLabel"></h3>
+			    <div id="eventList"></div>
+		    </div>
+		    <div id="languagePreferences"></div>
+	    </div>
+	</div>
+	<div id="loading" style="visibility: hidden">
+      
+    </div>
+	
+</body>
+</html>
