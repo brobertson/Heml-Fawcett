@@ -39,12 +39,6 @@
   var LEFT_X = 50;	// pixels
   var RIGHT_X = 1200;
 
-  function Init(evt){
-   SVGDocument = evt.target.ownerDocument;
-   SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 50, 1220);  // user input
-  };
-
   function StartTimeLine(low, high, l, r){
 
    if(low <= high){
