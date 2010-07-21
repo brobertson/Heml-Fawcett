@@ -17,6 +17,15 @@
    SVGRoot = SVGDocument.documentElement;
    StartTimeLine(-1500, 2010, 50, 600);  // user input
   };
+  
+  <style type="text/css">
+te
+{
+position:absolute;
+left:750px;
+top:50px;
+}
+</style>
 </script>
 <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
 		<link rel="stylesheet" href="style.css" type="text/css" />
@@ -33,6 +42,7 @@
 </head>
 
 <body>
+
 <svg width="1260" height="400" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Adjust(evt)">
 
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"></rect>
@@ -74,6 +84,8 @@
  </g>
 
 </svg>
+<te style="width: 190px;height: 250px;overflow:-moz-scrollbars-vertical;overflow-y:auto;">
+
 <div id="positioner">
 	
 	 <div id="container">		
@@ -87,6 +99,8 @@
 	<div id="loading" style="visibility: hidden">
       
     </div>
+</te>
+
 
 </body>
 </html>
