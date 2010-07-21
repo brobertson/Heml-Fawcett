@@ -11,6 +11,13 @@
 <style>
 </style>
 <script src = "sliderLibrary.js" type = "text/javascript">
+<script type = "text/javascript">
+  function Init(evt){
+   SVGDocument = evt.target.ownerDocument;
+   SVGRoot = SVGDocument.documentElement;
+   StartTimeLine(-1500, 2010, 50, 600);  // user input
+  };
+</script>
 <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
 		<link rel="stylesheet" href="style.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="http://heml.mta.ca/samples/blocks/heml/site/style/heml.css" />
