@@ -254,6 +254,47 @@
   };
 
   function DoQuery(left, right){
+  //Code to make the years 4 digits long
+  left = parseInt(left, 10);
+  right = parseInt(right, 10);
+  if(left<0){
+     var left = "" + left;
+    
+    if(left.length == 2)
+    {left = "-000"+(left*(-1))}
+    if(left.length==3)
+    {left = "-00"+(left*(-1))}
+    if(left.length==4)
+    {left = "-0"+(left*(-1))}
+    }
+  else{
+    var left = "" + left;
+    if(left.length == 1)
+    {left = "000"+(left)}
+    if(left.length==2)
+    {left = "00"+(left)}
+    if(left.length==3)
+    {left = "0"+(left)}
+    }
+  
+  if(right<0){
+    var right = "" + right;
+    if(right.length == 2)
+    {right = "-000"+(right*(-1))}
+    if(right.length==3)
+    {right = "-00"+(right*(-1))}
+    if(right.length==4)
+    {right = "-0"+(right*(-1))}
+    }
+  else{
+    var right = "" + right;
+    if(right.length == 1)
+    {right = "000"+(right)}
+    if(right.length==2)
+    {right = "00"+(right)}
+    if(right.length==3)
+    {right = "0"+(right)}
+    }
    listEventsForTimeSpan(left,right);
   };
   
