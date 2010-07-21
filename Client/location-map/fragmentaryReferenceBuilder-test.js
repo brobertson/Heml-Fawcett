@@ -26,11 +26,11 @@ var endpoint = "http://heml.mta.ca/joseki3/sparql/read";
 var allQueryStart = " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX hemlRDF: <http://www.heml.org/rdf/2003-09-17/heml#> ";
 
 /* var refQueryStart = allQueryStart + "SELECT ?node ?label   WHERE     { ?node rdfs:subPropertyOf <http://www.heml.org/rdf/2003-09-17/heml#referredToIn> . <"; */
-var refQueryStart = allQueryStart + "SELECT ?parent ?parentlabel ?child ?childlabel WHERE { ?child rdfs:subPropertyOf ?parent. <";
+var refQueryStart ="SELECT ?parent ?parentlabel ?child ?childlabel WHERE { ?child rdfs:subPropertyOf ?parent. <";
 var refQueryEnd = " ?child rdfs:label ?childlabel. ?parent rdfs:label ?parentlabel. }";
 /*var refQueryEnd = "> ?node ?reference . ?node rdfs:label ?label. }";*/
 
-var refTitleStart = allQueryStart + " SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?externalResource WHERE {";
+var refTitleStart =" SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?externalResource WHERE {";
 var refTitleEnd = "?evidence . OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?externalResource} } . }";
 
 //var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
