@@ -244,6 +244,8 @@
    if(targetElem == AdjustButton){
     StartTimeLine(leftie, rightie, LEFT_X, RIGHT_X);
     AdjustButton.setAttributeNS(null, 'fill-opacity', 1.0);
+    TLeft.setAttributeNS(null, 'y', 145);
+    TRight.setAttributeNS(null, 'y', 145);
    }
   };
 
