@@ -206,6 +206,9 @@
 
   function ChangeWords(xVal, slider){
    newVal = Scale(xVal);
+   if(newVal == 0){
+    newVal = 1;
+   }
    if(newVal < lowBound){	
     newVal = lowBound;
    }
