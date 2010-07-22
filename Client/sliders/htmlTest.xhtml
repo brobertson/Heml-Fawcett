@@ -15,7 +15,7 @@
   function Init(evt){
    SVGDocument = evt.target.ownerDocument;
    SVGRoot = SVGDocument.documentElement;
-   StartTimeLine(-1500, 2010, 50, 600);  // user input
+   StartTimeLine(-1500, 2010, 50, 500);  // user input
   };
   
   <style type="text/css">
@@ -43,44 +43,44 @@ top:50px;
 
 <body>
 
-<svg width="700" height="300" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Adjust(evt)">
+<svg width="550" height="200" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Adjust(evt)">
 
  <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"></rect>
  
- <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+ <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
   <text id = "RightBound" x = "1200" y = "60" text-anchor = "middle">Top Bound</text>
-  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1200" y1 = "63" x2 = "1200" y2 = "117"></line>
+  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1200" y1 = "64" x2 = "1200" y2 = "100"></line>
  </g>
 
- <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+ <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
   <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
-  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "63" x2 = "50" y2 = "117"></line>
+  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "64" x2 = "50" y2 = "100"></line>
  </g>
 
- <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt">
+ <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
   <text id = "TextBox" x = "635" y = "60" text-anchor = "middle">Centre</text>
-  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "70" x2 = "635" y2 = "110"></line>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "70" x2 = "635" y2 = "96"></line>
  </g>
 
- <g id = "AB" style = "font-family: sans-serif; font-weight: bold; font-size: 12pt; text-anchor: middle">
-  <text id = "AText" x = "325" y = "200">Adjust</text>
-  <rect id = "Adjust" x = "284" y = "175" width = "80" height = "40" fill = "green" stroke = "black" stroke-width = "2" fill-opacity = "1.0"></rect>
+ <g id = "AB" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
+  <text id = "AText" x = "275" y = "20">Refocus</text>
+  <rect id = "Adjust" x = "245" y = "6" width = "60" height = "20" fill = "green" stroke = "black" stroke-width = "2" fill-opacity = "1.0"></rect>
  </g>
 
  <g id = "TL" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
-  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "90" x2 = "1200" y2 = "90"></line>
-  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "75" x2 = "343" y2 = "105"></line>
-  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "75" x2 = "928" y2 = "105"></line>
+  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "83" x2 = "1200" y2 = "83"></line>
+  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "75" x2 = "343" y2 = "91"></line>
+  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "75" x2 = "928" y2 = "91"></line>
  </g>
 
  <g id = "Left">
-  <text id = "ChangeL" x = "440" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Left</text>
-  <circle id = "LeftSlider" cx="440" cy="90" r="5" style="fill: blue;" stroke="black" stroke-width="2"></circle>
+  <text id = "ChangeL" x = "440" y = "125" font-family = "sans-serif" font-weight = "bold" font-size = "10pt" text-anchor = "middle">Left</text>
+  <circle id = "LeftSlider" cx="440" cy="83" r="5" style="fill: blue;" stroke="black" stroke-width="2"></circle>
  </g>
 
  <g id = "Right">
-  <text id = "ChangeR" x = "830" y = "145" font-family = "sans-serif" font-weight = "bold" font-size = "12pt" text-anchor = "middle">Right</text>
-  <circle id="RightSlider" cx="830" cy="90" r="5" style="fill: red;" stroke="black" stroke-width="2"></circle>
+  <text id = "ChangeR" x = "830" y = "125" font-family = "sans-serif" font-weight = "bold" font-size = "10pt" text-anchor = "middle">Right</text>
+  <circle id="RightSlider" cx="830" cy="83" r="5" style="fill: red;" stroke="black" stroke-width="2"></circle>
  </g>
 
 </svg>
