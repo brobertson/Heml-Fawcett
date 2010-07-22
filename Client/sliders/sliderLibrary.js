@@ -162,12 +162,12 @@
      if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TLeft.setAttributeNS(null, 'x', newX);
-      if(newX >= (rightVal - 60) && (alreadyThereR == false)){
-       TLeft.setAttributeNS(null, 'y', 160);
+      if(newX >= (rightVal - 50) && (alreadyThereR == false)){
+       TLeft.setAttributeNS(null, 'y', 140);
        alreadyThereL = true;
       }
       else{
-       TLeft.setAttributeNS(null, 'y', 145);
+       TLeft.setAttributeNS(null, 'y', 125);
        alreadyThereL = false;
       }
       ChangeWords(evt.clientX, TLeft);
@@ -178,12 +178,12 @@
      if(newX >= (leftVal + 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
       TRight.setAttributeNS(null, 'x', newX);
-      if(newX <= (leftVal + 60) && (alreadyThereL == false)){
-       TRight.setAttributeNS(null, 'y', 160);
+      if(newX <= (leftVal + 50) && (alreadyThereL == false)){
+       TRight.setAttributeNS(null, 'y', 140);
        alreadyThereR = true;
       }
       else{
-       TRight.setAttributeNS(null, 'y', 145);
+       TRight.setAttributeNS(null, 'y', 125);
        alreadyThereR = false;
       }
       ChangeWords(evt.clientX, TRight);
@@ -244,8 +244,8 @@
    if(targetElem == AdjustButton){
     StartTimeLine(leftie, rightie, LEFT_X, RIGHT_X);
     AdjustButton.setAttributeNS(null, 'fill-opacity', 1.0);
-    TLeft.setAttributeNS(null, 'y', 145);
-    TRight.setAttributeNS(null, 'y', 145);
+    TLeft.setAttributeNS(null, 'y', 125);
+    TRight.setAttributeNS(null, 'y', 125);
    }
   };
 
