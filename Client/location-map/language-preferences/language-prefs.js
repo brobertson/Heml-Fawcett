@@ -32,7 +32,7 @@ Ext.onReady(function(){
 			generatePopup();
 		}
 	});
-
+/*
 	var testButton = new Ext.Button({
 		text: 'Perform test',
 		renderTo: 'languagePreferences',
@@ -48,6 +48,7 @@ Ext.onReady(function(){
 			); 
 		}
 	});
+*/
 });
 
 //2D array with ISO 639-1 codes, ISO 639-2 codes, and languages

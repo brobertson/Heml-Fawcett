@@ -22,7 +22,7 @@
 	SOFTWARE.
 **********************************************************/
 
-
+var Moffatt  = {}; // Moffatt namespace
 
 var endpoint = "http://heml.mta.ca/openrdf-sesame/repositories/labels";
 
@@ -63,7 +63,7 @@ function labelFromJson(bindings, langPrefs) {
     return labelStringFromJson(bindings, 'en'); 
 }
 
-var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) {
+Moffatt.successfulCallbackModelForTitlesorAuthors = function(className, htmlNode, langPrefs) {
     //use '' for root
     this.htmlNode = htmlNode;
     this.langPrefs = langPrefs;
@@ -81,7 +81,7 @@ var successfulCallbackModelForTitles = function(className, htmlNode, langPrefs) 
     }
 }
 
-var callbackModelForTextLink = function(htmlNode, citationArray) {
+Moffatt.callbackModelForTextLink = function(htmlNode, citationArray) {
     var perseusTextServer = 'http://heml.mta.ca/hopper/xmlchunk.jsp';
     this.htmlNode = htmlNode;
     var me = this;
@@ -108,7 +108,7 @@ var callbackModelForTextLink = function(htmlNode, citationArray) {
                               var clicked = htmlNode.attributes.getNamedItem("clicked").value;
                           if (clicked == "false") {
 
-				doXMLHttp(xslt, source, htmlNode);
+				Moffatt.doXMLHttp(xslt, source, htmlNode);
                           htmlNode.setAttribute("clicked", "true");
                           }
                           else {
@@ -164,10 +164,10 @@ $(document).ready(function() {
             var queryString2 = "select ?label where {" + author + " rdfs:label ?label. }"
             var langPrefs = getPreferencesFromCookie();
 
-            myTry = new successfulCallbackModelForTitles("author", x, langPrefs);
+            myTry = new Moffatt.successfulCallbackModelForTitlesorAuthors("author", x, langPrefs);
             hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, myTry.makeRefTitles);
             hq2.performQuery();
-            myTry = new successfulCallbackModelForTitles("title", y, langPrefs);
+            myTry = new Moffatt.successfulCallbackModelForTitlesorAuthors("title", y, langPrefs);
             var queryString = "select ?label where {" + work + " rdfs:label ?label. }"
             hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
             hq.performQuery();
@@ -176,14 +176,14 @@ $(document).ready(function() {
                             <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
                    OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }\
                    OPTIONAL {" + work + "       <http://heml.mta.ca/cidoc_crm_texts#thirdChunk> ?thirdChunking. } }";
-            myTry = new callbackModelForTextLink(a,splitBookline);
+            myTry = new Moffatt.callbackModelForTextLink(a,splitBookline);
             hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
             hq3.performQuery();
         }
     });
 });
 
-function doXMLHttp(xslURL, documentURL, parentNode) {
+Moffatt.doXMLHttp = function (xslURL, documentURL, parentNode) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", xslURL, false);
     xmlhttp.send(null);

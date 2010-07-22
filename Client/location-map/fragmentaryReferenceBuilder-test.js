@@ -30,8 +30,8 @@ var refQueryStart ="SELECT ?parent ?parentlabel ?child ?childlabel WHERE { ?chil
 var refQueryEnd = " ?child rdfs:label ?childlabel. ?parent rdfs:label ?parentlabel. }";
 /*var refQueryEnd = "> ?node ?reference . ?node rdfs:label ?label. }";*/
 
-var refTitleStart ="SELECT ?evidence ?fragmentUrl ?xslAddress ?label ?externalResource WHERE {";
-var refTitleEnd = "?evidence . OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?externalResource} } . }";
+var refTitleStart ="SELECT ?evidence ?rdfstype ?fragmentUrl ?xslAddress ?label ?externalResource WHERE {";
+var refTitleEnd = "?evidence . OPTIONAL {?evidence rdfs:type ?rdfstype.} OPTIONAL { {?evidence hemlRDF:url ?fragmentUrl . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri> ?xslAddress .  ?evidence rdfs:label ?label} UNION {?evidence hemlRDF:HasInstance ?externalResource} } . }";
 
 //var refTitleEnd = "?evidence . ?evidence hemlRDF:url ?url . ?evidence hemlRDF:xhtmlRenderingXSLT ?render . ?render <http://www.heml.org/rdf/2003-09-17/heml#uri>   ?xslAddress .  ?evidence rdfs:label ?label . }";
 
@@ -179,8 +179,9 @@ var successfulCallbackModelForTitles = function(htmlNode) {
 							var theDiv = y.nextSibling;
 							displayBlock(theDiv, "The quotation cannot be rendered.");						
 						}
-	    	        }
-				} else if (json.results.bindings[i].externalResource) {
+	    	        }//end onclick function
+				}//end if
+                               else if (json.results.bindings[i].externalResource) {
 					resource = json.results.bindings[i].externalResource.value;
 					if (resource.indexOf("<db:bibliomixed")!=-1) {
 					    /**
@@ -197,25 +198,67 @@ var successfulCallbackModelForTitles = function(htmlNode) {
 	                        alert("Error retrieving "+json.results.bindings[i].xslAddress.value);
                         }*/
                         resource = null;
-					} else {
+					}//end if (resource
+                                         else {
 						var x = document.createElement('div');
 						x.className = 'referenceTitle';
 						var y = document.createElement('a');
 						y.target = '_blank';
 						y.href = resource;
 						checkLink(y);
-					}
-				}
+					}//end else
+				}//end else if
+				else if (json.results.bindings[i].rdfstype) {
+                                    rdfstype = json.results.bindings[i].rdfstype.value;
+			            if (rdfstype == "http://www.heml.org/rdf/2003-09-17/heml#tlgFragment") {
+            var x = document.createElement('span');
+            x.className = 'ctsurn_author';
+            var y = document.createElement('span');
+            y.className = 'ctsurn_title';
+            var a = document.createElement('span');
+            a.appendChild(x);
+            a.appendChild(document.createTextNode(' '));
+            a.appendChild(y);
+			var langPrefs = getPreferencesFromCookie();
+alert(langPrefs);
+                       var evidenceURL = json.results.bindings[i].evidence.value;
+                        myregexp = /^(http:\/\/heml\.mta\.ca\/text\/urn\/[A-Z]*\d*\/[A-Z]*\d*)(.*)/i;
+ 			
+       			 mymatch = myregexp.exec(evidenceURL);
+alert(mymatch);
+			var work = "<" + mymatch[1] + ">";
+alert(work);
+var queryString2 = "select DISTINCT ?label where {?creationEvent <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#P94>" + work + ". ?creationEvent <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#P14> ?author. ?author rdfs:label ?label. }"
+            myTry = new Moffatt.successfulCallbackModelForTitlesorAuthors("author", x, langPrefs);
+            hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, myTry.makeRefTitles);
+            hq2.performQuery();
+			myTry = new Moffatt.successfulCallbackModelForTitlesorAuthors("title", y, langPrefs);
+            var queryString = "select ?label where {" + work + " rdfs:label ?label. }"
+            hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
+            hq.performQuery();
+
+splitBookline = mymatch[2].split('.');
+            queryString3 = "select ?perseusText  ?firstChunking ?secondChunking ?thirdChunking where {" + work + " \
+                            <http://heml.mta.ca/cidoc_crm_texts#PerseusText> ?perseusText;\
+                            <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
+                   OPTIONAL {" + work + "        <http://heml.mta.ca/cidoc_crm_texts#secondChunk> ?secondChunking. }\
+                   OPTIONAL {" + work + "       <http://heml.mta.ca/cidoc_crm_texts#thirdChunk> ?thirdChunking. } }";
+            myTry = new Moffatt.callbackModelForTextLink(a,splitBookline);
+            hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
+            hq3.performQuery();		
+
+                                }
+}
 				if(resource!=null) {
 					y.appendChild(document.createTextNode(resource));
 		 	        x.appendChild(y);
 					a.appendChild(x);
-				}
+				}// end if(resource!=
 			}
 			me.htmlNode.parentNode.appendChild(a);
-		}
-	}
-}
+		}//end else
+	}// end this.makeRefTitles = function(json)
+}//end function
 
 function getRefTitles(refTypeResource, eventResource, htmlNode) {
 	myTry = new successfulCallbackModelForTitles(htmlNode);
