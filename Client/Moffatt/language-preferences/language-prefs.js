@@ -799,7 +799,7 @@ function generatePopup(){
 						langsCookie += '; expires=' + cookieDate.toGMTString();
 						twoCodesCookie += '; expires=' + cookieDate.toGMTString();
 
-						alert(twoCodesCookie);
+						//alert(twoCodesCookie);
 
 						document.cookie = codesCookie;
 						document.cookie = langsCookie;
