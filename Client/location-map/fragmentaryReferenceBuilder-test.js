@@ -47,7 +47,12 @@ var successfulCallbackModel = function(htmlNode, eventNode) {
 	this.makeRefLinks = function(json) {
 		var numberOfEntries = json.results.bindings.length;
 		if (numberOfEntries == 0) {
-			alert("No sources are available");
+		
+			var a = document.createElement('div');
+		a.id = eventNode;
+		//a.style.display = "none";
+		me.htmlNode.parentNode.appendChild(a);
+		a.appendChild(document.createTextNode('[none]'));
 		}
 		else {
 		var a = document.createElement('div');
@@ -220,14 +225,14 @@ var successfulCallbackModelForTitles = function(htmlNode) {
             a.appendChild(document.createTextNode(' '));
             a.appendChild(y);
 			var langPrefs = getPreferencesFromCookie();
-alert(langPrefs);
+//alert(langPrefs);
                        var evidenceURL = json.results.bindings[i].evidence.value;
-                        myregexp = /^(http:\/\/heml\.mta\.ca\/text\/urn\/[A-Z]*\d*\/[A-Z]*\d*)(.*)/i;
+                        myregexp = /^(http:\/\/heml\.mta\.ca\/text\/urn\/[A-Z]*\d*\/[A-Z]*\d*)\/(.*)/i;
  			
        			 mymatch = myregexp.exec(evidenceURL);
-alert(mymatch);
+//alert(mymatch);
 			var work = "<" + mymatch[1] + ">";
-alert(work);
+//alert(work);
 var queryString2 = "select DISTINCT ?label where {?creationEvent <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#P94>" + work + ". ?creationEvent <http://cidoc.ics.forth.gr/rdfs/cidoc_v4.2.rdfs#P14> ?author. ?author rdfs:label ?label. }"
             myTry = new Moffatt.successfulCallbackModelForTitlesorAuthors("author", x, langPrefs);
             hq2 = new Heml.SparqlQuery(endpoint, queryString2, onHemlFailure, myTry.makeRefTitles);
@@ -236,8 +241,10 @@ var queryString2 = "select DISTINCT ?label where {?creationEvent <http://cidoc.i
             var queryString = "select ?label where {" + work + " rdfs:label ?label. }"
             hq = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, myTry.makeRefTitles);
             hq.performQuery();
-
-splitBookline = mymatch[2].split('.');
+//alert(mymatch[2]);
+splitBookline = mymatch[2].split('/');
+var joinBookline = splitBookline.join('.');
+//alert(joinBookline);
             queryString3 = "select ?perseusText  ?firstChunking ?secondChunking ?thirdChunking where {" + work + " \
                             <http://heml.mta.ca/cidoc_crm_texts#PerseusText> ?perseusText;\
                             <http://heml.mta.ca/cidoc_crm_texts#firstChunk> ?firstChunking.\
@@ -246,14 +253,23 @@ splitBookline = mymatch[2].split('.');
             myTry = new Moffatt.callbackModelForTextLink(a,splitBookline);
             hq3 = new Heml.SparqlQuery(endpoint, queryString3, onHemlFailure, myTry.makeTextLink);
             hq3.performQuery();		
+          //  if (joinBookline != '') {
+                alert(joinBookline);
+                var z = document.createElement('span');
+                z.className = 'ctsurn_ref';
+                z.appendChild(document.createTextNode(joinBookline));
+               a.appendChild(document.createTextNode(' '));
+                a.appendChild(z);
 
+          //  }
                                 }
 }
 				if(resource!=null) {
 					y.appendChild(document.createTextNode(resource));
 		 	        x.appendChild(y);
 					a.appendChild(x);
-				}// end if(resource!=
+
+			}// end if(resource!=
 			}
 			me.htmlNode.parentNode.appendChild(a);
 		}//end else
