@@ -1,0 +1,3 @@
+javac -classpath cocoon-heml-block.jar TimeBounds.java
+java -cp cocoon-heml-block.jar:./ TimeBounds > timeBoundData.nt
+
