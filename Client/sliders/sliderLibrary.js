@@ -157,7 +157,8 @@
 
   function Drag(evt){
    if(DragTarget){
-    newX = CheckBounds(evt.clientX);
+    temp = CheckX(evt);  // changed
+    newX = CheckBounds(temp);  // changed
     if(DragTarget == Left){
      if(newX <= (rightVal - 10)){
       DragTarget.setAttributeNS(null, 'cx', newX);
@@ -170,7 +171,7 @@
        TLeft.setAttributeNS(null, 'y', 125);
        alreadyThereL = false;
       }
-      ChangeWords(evt.clientX, TLeft);
+      ChangeWords(newX, TLeft);
       leftVal = newX;
      }
     }
@@ -186,13 +187,17 @@
        TRight.setAttributeNS(null, 'y', 125);
        alreadyThereR = false;
       }
-      ChangeWords(evt.clientX, TRight);
+      ChangeWords(newX, TRight);
       rightVal = newX;
      }
     }
     AdjustButton.setAttributeNS(null, 'fill-opacity', 0.0);
- 
    }
+  };
+
+  function CheckX(evt){
+   xVal = evt.clientX - 128;
+   return xVal;
   };
 
   function Drop(evt){
@@ -307,98 +312,113 @@ function onHemlFailure(reply) {
     // a popup
 }
 
+  function listEventsForTimeSpan(start, end) {
+   var startDate = start+"-01-01";
+   var endDate = end+"-01-01";
+   
+   var listEventsFromJson = function(json) {
+    var theHeader = document.getElementById("locationLabel");
+    headerText = theHeader.childNodes[0];
 
-function listEventsForTimeSpan(start, end) {
-	var startDate = start+"-01-01";
-    var endDate = end+"-01-01";
-	var listEventsFromJson = function(json) {
-		var theHeader = document.getElementById("locationLabel");
-		headerText = theHeader.childNodes[0];
-		if (headerText != null) {
-			theHeader.removeChild(headerText);
-		}
-		var theNewHeaderText = document.createTextNode("event");
-		var theDocs = document.getElementById("docs");
-		var theEventList = document.getElementById("eventList");
-		try {
-			if (theEventList != null) {
-				theDocs.removeChild(theEventList);
-			}
-		}
-		catch(error) {
-			alert("error: " + error);
-		}
-		var newEventList = document.createElement('div');
-		newEventList.id = "eventList";
-		var eventsLength = json.results.bindings.length;
-		for(var i = 0; i<eventsLength; i++) {
-			try {
-				if (json.results.bindings[i].date.value != null) {
-					var prettyDate = formatDate(json.results.bindings[i].date.value);
-				} 
-				else {
-					var prettyDate = "BAD DATE";
-				}
-				var theTextOfTheParagraph = document.createTextNode(prettyDate + ": " + json.results.bindings[i].eventLabel.value);
-			} 
-			catch(anError) {
-				alert(anError);
-			}
-			if (i > 0) {
-				newEventList.appendChild(document.createElement('br'));
-			}
-			var eventDiv = document.createElement('div');
-			eventDiv.className = 'event';
-			var para = document.createElement('p');
-			para.className = 'eventTitle';
-			para.setAttribute("onclick", "getRefTypes(this, '" + json.results.bindings[i].event.value + "')");
-			para.setAttribute("clicked", "false");            
-			para.appendChild(theTextOfTheParagraph);
-			eventDiv.appendChild(para);
-			newEventList.appendChild(eventDiv);
-	}	
-	theHeader.appendChild(theNewHeaderText);
-	theDocs.appendChild(newEventList);
-}
+    if(headerText != null){
+     theHeader.removeChild(headerText);
+    }
 
-var AND = "&&";
-var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event <http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
-var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, listEventsFromJson);
+    var theNewHeaderText = document.createTextNode("event");
+    var theDocs = document.getElementById("docs");
+    var theEventList = document.getElementById("eventList");
+    
+    try{
+     if(theEventList != null){
+      theDocs.removeChild(theEventList);
+     }
+    }
 
-function formatDate(dateIn) {
-	var dateRegex = new RegExp("(-?\\d+)-(\\d+)-(\\d+)");
-	var yearRegex = new RegExp("\s*(-?\\d+)\s*");
-	var match = dateRegex.exec(dateIn);
-	//alert(match);
-	if (yearRegex.exec(dateIn)) {
-		yearAsInt = parseInt(dateIn, 10);
-		if (yearAsInt > 0) {
-			return yearAsInt + " CE";
-		} 
-		else {
-			return yearAsInt * -1 + " BCE";
-		}
-	}
-	if (match) {
-		return dateIn;
-	}
-	else {
-		var string = "matched at position " + match.index + ":\n";
-		string = string + "string matched: " + match[0] + "\n";
-		if (match.length > 0) {
-			for (var i = 1; i<match.length; i++) {
-				string = string + "(" + i + " " + match[i] + ")" + "\n";
-			}
-		}
-	}
-	yearAsInt = parseInt(match[1], 10);
-	if (yearAsInt > 0) {
-		return yearAsInt + " CE";
-	}
-	else {
-		return yearAsInt * -1 + " BCE";
-	}
-}
+    catch(error){
+     alert("error: " + error);
+    }
 
-eventsQuery.performQuery();
-}
+   var newEventList = document.createElement('div');
+   newEventList.id = "eventList";
+   var eventsLength = json.results.bindings.length;
+   for(var i = 0; i<eventsLength; i++){
+    try{
+     if(json.results.bindings[i].date.value != null){
+      var prettyDate = formatDate(json.results.bindings[i].date.value);
+     } 
+     else{
+      var prettyDate = "BAD DATE";
+     }
+    
+     var theTextOfTheParagraph = document.createTextNode(prettyDate + ": " + json.results.bindings[i].eventLabel.value);
+    } 
+
+    catch(anError) {
+     alert(anError);
+    }
+
+    if (i > 0) {
+     newEventList.appendChild(document.createElement('br'));
+    }
+
+    var eventDiv = document.createElement('div');
+    eventDiv.className = 'event';
+    var para = document.createElement('p');
+    para.className = 'eventTitle';
+    para.setAttribute("onclick", "getRefTypes(this, '" + json.results.bindings[i].event.value + "')");
+    para.setAttribute("clicked", "false");            
+    para.appendChild(theTextOfTheParagraph);
+    eventDiv.appendChild(para);
+    newEventList.appendChild(eventDiv);
+   }	
+
+   theHeader.appendChild(theNewHeaderText);
+   theDocs.appendChild(newEventList);
+  }
+
+  var AND = "&&";
+  var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event <http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
+  var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, listEventsFromJson);
+
+  function formatDate(dateIn){
+   var dateRegex = new RegExp("(-?\\d+)-(\\d+)-(\\d+)");
+   var yearRegex = new RegExp("\s*(-?\\d+)\s*");
+   var match = dateRegex.exec(dateIn);
+   //alert(match);
+
+   if (yearRegex.exec(dateIn)){
+    yearAsInt = parseInt(dateIn, 10);
+
+    if(yearAsInt > 0){
+     return yearAsInt + " CE";
+    } 
+    else{
+     return yearAsInt * -1 + " BCE";
+    }
+   }
+
+   if(match){
+    return dateIn;
+   }
+   else{
+    var string = "matched at position " + match.index + ":\n";
+    string = string + "string matched: " + match[0] + "\n";
+
+    if(match.length > 0){
+     for(var i = 1; i<match.length; i++){
+      string = string + "(" + i + " " + match[i] + ")" + "\n";
+     }
+    }
+   }
+
+   yearAsInt = parseInt(match[1], 10);
+   if(yearAsInt > 0){
+    return yearAsInt + " CE";
+   }
+   else{
+    return yearAsInt * -1 + " BCE";
+   }
+  }
+
+  eventsQuery.performQuery();
+ }
