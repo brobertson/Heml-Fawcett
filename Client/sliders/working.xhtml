@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<head>
+ <title>Drag And Drop</title>
+                <link rel="stylesheet" type="text/css" href="../location-map/language-preferences/ext-all.css" />
+                <link rel="stylesheet" type="text/css" href="../location-map/language-preferences/ext-heml.css" />
+                <link rel="stylesheet" type="text/css" href="../location-map/fragmentaryReferenceBuilder-test.css"/>
+
+<style>
+</style>
+<script src = "sliderLibrary.js" type = "text/javascript">
+<script type = "text/javascript">
+  function Init(evt){
+   SVGDocument = evt.target.ownerDocument;
+   SVGRoot = SVGDocument.documentElement;
+   StartTimeLine(-1500, 2010, 50, 500);  // user input
+  };
+  
+  <style type="text/css">
+te
+{
+position:absolute;
+left:750px;
+top:50px;
+}
+</style>
+</script>
+
+		<script type="text/javascript" language="javascript" src="../javascript/sparql.js"></script>
+		<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"></script>
+		<script type="text/javascript" language="javascript" src="../javascript/sparqlLangUtil.js"></script>
+		<script type="text/javascript" language="javascript" src="../location-map/fragmentaryReferenceBuilder-test.js"></script>
+
+		  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="../javascript/hemlJsonQuery.js"/>
+	<script type="text/javascript" language="javascript" src="../javascript/sparql.js"/>
+         <script type="text/javascript" language="javascript" src="../Moffatt/moffatt.js"/>
+</script>
+</head>
+
+<body>
+
+<svg width="550" height="200" xmlns="http://www.w3.org/2000/svg" onload="Init(evt)" onmousedown="Grab(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)" onclick = "Adjust(evt)">
+
+ <rect id = "BackDrop" x = "-10%" y = "-10%" width = "110%" height = "110%" fill = "none" pointer-events = "all"></rect>
+ 
+ <g id = "RBound" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
+  <text id = "RightBound" x = "1200" y = "60" text-anchor = "middle">Top Bound</text>
+  <line id = "RPath" stroke-width = "5" stroke = "black" x1 = "1200" y1 = "64" x2 = "1200" y2 = "100"></line>
+ </g>
+
+ <g id = "LBound" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
+  <text id = "LeftBound" x = "50" y = "60" text-anchor = "middle">Low Bound</text>
+  <line id = "LPath" stroke-width = "5" stroke = "black" x1 = "50" y1 = "64" x2 = "50" y2 = "100"></line>
+ </g>
+
+ <g id = "1Year" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt">
+  <text id = "TextBox" x = "635" y = "60" text-anchor = "middle">Centre</text>
+  <line id = "MiddlePath" stroke-width = "5" stroke = "black" x1 = "635" y1 = "70" x2 = "635" y2 = "96"></line>
+ </g>
+
+ <g id = "AB" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
+  <text id = "AText" x = "275" y = "20">Refocus</text>
+  <rect id = "Adjust" x = "245" y = "6" width = "60" height = "20" fill = "green" stroke = "black" stroke-width = "2" fill-opacity = "1.0"></rect>
+ </g>
+
+ <g id = "TL" style = "font-family: sans-serif; font-weight: bold; font-size: 10pt; text-anchor: middle">
+  <line id = "TimeLine" stroke-width = "2" stroke = "black" x1 = "50" y1 = "83" x2 = "1200" y2 = "83"></line>
+  <line id = "Quarter1" stroke-width = "2" stroke = "black" x1 = "343" y1 = "75" x2 = "343" y2 = "91"></line>
+  <line id = "Quarter3" stroke-width = "2" stroke = "black" x1 = "928" y1 = "75" x2 = "928" y2 = "91"></line>
+ </g>
+
+ <g id = "Left">
+  <text id = "ChangeL" x = "440" y = "125" font-family = "sans-serif" font-weight = "bold" font-size = "10pt" text-anchor = "middle">Left</text>
+  <circle id = "LeftSlider" cx="440" cy="83" r="5" style="fill: blue;" stroke="black" stroke-width="2"></circle>
+ </g>
+
+ <g id = "Right">
+  <text id = "ChangeR" x = "830" y = "125" font-family = "sans-serif" font-weight = "bold" font-size = "10pt" text-anchor = "middle">Right</text>
+  <circle id="RightSlider" cx="830" cy="83" r="5" style="fill: red;" stroke="black" stroke-width="2"></circle>
+ </g>
+
+</svg>
+<div style="height: 700px;overflow:-moz-scrollbars-vertical;overflow-y:auto;">
+
+<div id="positioner">
+	
+	 <div id="container">		
+		    <div id="docs">
+			    <h3 id="locationLabel"></h3>
+			    <div id="eventList"></div>
+		    </div>
+		    <div id="languagePreferences"></div>
+	    </div>
+	</div>
+	<div id="loading" style="visibility: hidden">
+      
+    </div>
+</div>
+
+
+</body>
+</html>
