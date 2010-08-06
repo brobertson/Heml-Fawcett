@@ -260,7 +260,7 @@
   function ShowDensity(){
    for(var i = 1; i <= 20; i++){
     temp = SVGDocument.getElementById('i');
-    if(QUERY RESULT > 0){
+    if(temp > 0){
      visible = result * 10;
      temp.setAttributeNS(null, 'height', visible);
     }
