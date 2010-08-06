@@ -257,6 +257,18 @@
    }
   };
 
+  function ShowDensity(){
+   for(var i = 1; i <= 20; i++){
+    temp = SVGDocument.getElementById('i');
+    if(QUERY RESULT > 0){
+     visible = result * 10;
+     temp.setAttributeNS(null, 'height', visible);
+    }
+    opaque = result / 10;
+    temp.setAttribute(null, 'fill-opacity', opaque);
+   }
+  };
+
   function DoQuery(left, right){
   //Code to make the years 4 digits long
   left = parseInt(left, 10);
@@ -300,6 +312,7 @@
     {right = "0"+(right)}
     }
    listEventsForTimeSpan(left,right);
+   //ShowDensity();
   };
   
   //Event code
