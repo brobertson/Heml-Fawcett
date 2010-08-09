@@ -287,16 +287,15 @@
    for(var i = 0; i < 20; i++){
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
-    numQs = listEventsForTimeSpan(begin,stop);
-    alert(numQs);
-    name = 'graph' + i;
-    alert(name);
+    numQs = Math.round(Math.random()*51);
+ //   numQs = listEventsForTimeSpan(begin,stop);
+    graph = SVGDocument.getElementById(i);
     if(numQs > 0){
-     visible = numQs * 10;
+     visible = numQs * 3;
      graph.setAttributeNS(null, 'height', visible);
     }
-    opaque = numQs / 10;
-    graph.setAttribute(null, 'fill-opacity', opaque);
+    opaque = numQs / 30;
+    graph.setAttributeNS(null, 'fill-opacity', opaque);
    }
   };
 
