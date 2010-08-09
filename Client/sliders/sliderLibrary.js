@@ -287,7 +287,7 @@
    for(var i = 0; i < 20; i++){
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
-    numQs = getNumberOfQueries(begin, stop);
+    numQs = listEventsForTimeSpan(begin,stop);
     alert(numQs);
     name = 'graph' + i;
     alert(name);
@@ -365,7 +365,6 @@
     if(right.length==3)
     {right = "0"+(right)}
     }
-   listEventsForTimeSpan(left,right);
    ShowDensity(left, right);
   };
   
@@ -382,7 +381,7 @@ function onHemlFailure(reply) {
   function listEventsForTimeSpan(start, end) {
    var startDate = start+"-01-01";
    var endDate = end+"-01-01";
-   
+   return 1;
    var listEventsFromJson = function(json) {
     var theHeader = document.getElementById("locationLabel");
     headerText = theHeader.childNodes[0];
