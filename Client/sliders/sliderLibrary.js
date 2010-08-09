@@ -17,26 +17,26 @@
   var Line;
   var AdjustButton;
   
-  var temp0;
-  var temp1;
-  var temp2;
-  var temp3;
-  var temp4;
-  var temp5;
-  var temp6;
-  var temp7;
-  var temp8;
-  var temp9;
-  var temp10;
-  var temp11;
-  var temp12;
-  var temp13;
-  var temp14;
-  var temp15;
-  var temp16;
-  var temp17;
-  var temp18;
-  var temp19;
+  var graph0;
+  var graph1;
+  var graph2;
+  var graph3;
+  var graph4;
+  var graph5;
+  var graph6;
+  var graph7;
+  var graph8;
+  var graph9;
+  var graph10;
+  var graph11;
+  var graph12;
+  var graph13;
+  var graph14;
+  var graph15;
+  var graph16;
+  var graph17;
+  var graph18;
+  var graph19;
 
   var lowBound;
   var highBound;
@@ -289,8 +289,8 @@
     stop = start + ((i + 1) * splice);
     numQs = getNumberOfQueries(begin, stop);
     alert(numQs);
-    graph = temp + i;
-    alert(graph);
+    name = 'graph' + i;
+    alert(name);
     if(numQs > 0){
      visible = numQs * 10;
      graph.setAttributeNS(null, 'height', visible);
@@ -301,26 +301,26 @@
   };
 
   function InitGraphs(){
-   temp0 = SVGDocument.getElementById('0');
-   temp1 = SVGDocument.getElementById('1');
-   temp2 = SVGDocument.getElementById('2');
-   temp3 = SVGDocument.getElementById('3');
-   temp4 = SVGDocument.getElementById('4');
-   temp5 = SVGDocument.getElementById('5');
-   temp6 = SVGDocument.getElementById('6');
-   temp7 = SVGDocument.getElementById('7');
-   temp8 = SVGDocument.getElementById('8');
-   temp9 = SVGDocument.getElementById('9');
-   temp10 = SVGDocument.getElementById('10');
-   temp11 = SVGDocument.getElementById('11');
-   temp12 = SVGDocument.getElementById('12');
-   temp13 = SVGDocument.getElementById('13');
-   temp14 = SVGDocument.getElementById('14');
-   temp15 = SVGDocument.getElementById('15');
-   temp16 = SVGDocument.getElementById('16');
-   temp17 = SVGDocument.getElementById('17');
-   temp18 = SVGDocument.getElementById('18');
-   temp19 = SVGDocument.getElementById('19');
+   graph0 = SVGDocument.getElementById('0');
+   graph1 = SVGDocument.getElementById('1');
+   graph2 = SVGDocument.getElementById('2');
+   graph3 = SVGDocument.getElementById('3');
+   graph4 = SVGDocument.getElementById('4');
+   graph5 = SVGDocument.getElementById('5');
+   graph6 = SVGDocument.getElementById('6');
+   graph7 = SVGDocument.getElementById('7');
+   graph8 = SVGDocument.getElementById('8');
+   graph9 = SVGDocument.getElementById('9');
+   graph10 = SVGDocument.getElementById('10');
+   graph11 = SVGDocument.getElementById('11');
+   graph12 = SVGDocument.getElementById('12');
+   graph13 = SVGDocument.getElementById('13');
+   graph14 = SVGDocument.getElementById('14');
+   graph15 = SVGDocument.getElementById('15');
+   graph16 = SVGDocument.getElementById('16');
+   graph17 = SVGDocument.getElementById('17');
+   graph18 = SVGDocument.getElementById('18');
+   graph19 = SVGDocument.getElementById('19');
   }
 
   function DoQuery(left, right){
