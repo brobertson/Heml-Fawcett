@@ -301,7 +301,7 @@
      visible = numQs * 3;
      graph.setAttributeNS(null, 'height', visible);
     }
-    opaque = numQs / 30;
+    opaque = numQs / 50;
     graph.setAttributeNS(null, 'fill-opacity', opaque);
    }
   };
