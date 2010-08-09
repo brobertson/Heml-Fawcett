@@ -257,14 +257,19 @@
    }
   };
 
-  function ShowDensity(){
-   for(var i = 1; i <= 20; i++){
-    temp = SVGDocument.getElementById('i');
-    if(temp > 0){
-     visible = result * 10;
-     temp.setAttributeNS(null, 'height', visible);
+  function ShowDensity(start, end){
+   time = end - start;
+   splice = time / 20;
+   for(var i = 0; i < 20; i++){
+    numQs = getNumberOfQueries((start + (i * splice)), (start + ((i + 1) * splice)));
+    alert(start);
+    alert(splice);
+    one = SVGDocument.getElementById('1');
+    if(numQs > 0){
+     visible = numQs * 10;
+     one.setAttributeNS(null, 'height', visible);
     }
-    opaque = result / 10;
+    opaque = numQs / 10;
     temp.setAttribute(null, 'fill-opacity', opaque);
    }
   };
@@ -312,7 +317,7 @@
     {right = "0"+(right)}
     }
    listEventsForTimeSpan(left,right);
-   //ShowDensity();
+   ShowDensity(left, right);
   };
   
   //Event code
@@ -440,7 +445,7 @@ function getNumberOfQueries(start, end){
 var startDate = start+"-01-01";
    var endDate = end+"-01-01";
 var countEventsFromJson = function(json) {
-
+ alert(json.results.bindings.length);
 return json.results.bindings.length;
 }
 var AND = "&&";
