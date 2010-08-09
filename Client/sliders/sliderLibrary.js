@@ -16,6 +16,8 @@
   var ThirdLabel;
   var Line;
   var AdjustButton;
+  var BottomGraph;
+  var TopGraph;
   
   var graph0;
   var graph1;
@@ -94,6 +96,8 @@
    LPath = SVGDocument.getElementById('LPath');
    Line = SVGDocument.getElementById('TimeLine');
    AdjustButton = SVGDocument.getElementById('Adjust');
+   BottomGraph = SVGDocument.getElementById('BottomGraph');
+   TopGraph = SVGDocument.getElementById('TopGraph');
    InitGraphs();
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
@@ -194,6 +198,7 @@
        alreadyThereL = false;
       }
       ChangeWords(newX, TLeft);
+    //  ChangeWords(newX, BottomGraph);
       leftVal = newX;
      }
     }
@@ -228,6 +233,8 @@
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
     DragTarget = null;
     DoQuery(leftie, rightie);
+    ChangeWords(leftVal, BottomGraph);
+    ChangeWords(rightVal, TopGraph);
    }
   };
 
@@ -287,7 +294,7 @@
    for(var i = 0; i < 20; i++){
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
-    numQs = Math.round(Math.random()*51);
+    numQs = Math.round(Math.random()*51);  // running on random number generator while server down
  //   numQs = listEventsForTimeSpan(begin,stop);
     graph = SVGDocument.getElementById(i);
     if(numQs > 0){
