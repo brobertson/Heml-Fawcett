@@ -261,13 +261,19 @@
    time = end - start;
    splice = time / 20;
    for(var i = 0; i < 20; i++){
-    numQs = getNumberOfQueries((start + (i * splice)), (start + ((i + 1) * splice)));
-    alert(start);
-    alert(splice);
-    one = SVGDocument.getElementById('1');
+    begin = start + (i * splice);
+    stop = start + ((i + 1) * splice);
+    numQs = getNumberOfQueries(begin, stop);
+    alert("Start" + start);
+    alert("Splice" + splice);
+    alert("Begin" + begin);
+    alert("Stop" + stop);
+    alert(numQs);
+    ten = SVGDocument.getElementById('10');
+    alert(ten);
     if(numQs > 0){
      visible = numQs * 10;
-     one.setAttributeNS(null, 'height', visible);
+     ten.setAttributeNS(null, 'height', visible);
     }
     opaque = numQs / 10;
     temp.setAttribute(null, 'fill-opacity', opaque);
@@ -445,7 +451,6 @@ function getNumberOfQueries(start, end){
 var startDate = start+"-01-01";
    var endDate = end+"-01-01";
 var countEventsFromJson = function(json) {
- alert(json.results.bindings.length);
 return json.results.bindings.length;
 }
 var AND = "&&";
