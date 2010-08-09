@@ -435,3 +435,17 @@ function onHemlFailure(reply) {
 
   eventsQuery.performQuery();
  }
+ 
+function getNumberOfQueries(start, end){
+var startDate = start+"-01-01";
+   var endDate = end+"-01-01";
+var countEventsFromJson = function(json) {
+
+return json.results.bindings.length;
+}
+var AND = "&&";
+var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event <http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
+var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, countEventsFromJson);
+return countEventsFromJson;
+}
+
