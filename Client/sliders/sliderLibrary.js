@@ -17,6 +17,27 @@
   var Line;
   var AdjustButton;
   
+  var temp0;
+  var temp1;
+  var temp2;
+  var temp3;
+  var temp4;
+  var temp5;
+  var temp6;
+  var temp7;
+  var temp8;
+  var temp9;
+  var temp10;
+  var temp11;
+  var temp12;
+  var temp13;
+  var temp14;
+  var temp15;
+  var temp16;
+  var temp17;
+  var temp18;
+  var temp19;
+
   var lowBound;
   var highBound;
   var pixDistance;
@@ -73,6 +94,7 @@
    LPath = SVGDocument.getElementById('LPath');
    Line = SVGDocument.getElementById('TimeLine');
    AdjustButton = SVGDocument.getElementById('Adjust');
+   InitGraphs();
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
    LPath.setAttributeNS(null, 'x2', LEFT_X);
@@ -260,25 +282,46 @@
   function ShowDensity(start, end){
    time = end - start;
    splice = time / 20;
+   start = parseInt(start, 10);
+   end = parseInt(end, 10);
    for(var i = 0; i < 20; i++){
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
     numQs = getNumberOfQueries(begin, stop);
-    alert("Start" + start);
-    alert("Splice" + splice);
-    alert("Begin" + begin);
-    alert("Stop" + stop);
     alert(numQs);
-    ten = SVGDocument.getElementById('10');
-    alert(ten);
+    graph = temp + i;
+    alert(graph);
     if(numQs > 0){
      visible = numQs * 10;
-     ten.setAttributeNS(null, 'height', visible);
+     graph.setAttributeNS(null, 'height', visible);
     }
     opaque = numQs / 10;
-    temp.setAttribute(null, 'fill-opacity', opaque);
+    graph.setAttribute(null, 'fill-opacity', opaque);
    }
   };
+
+  function InitGraphs(){
+   temp0 = SVGDocument.getElementById('0');
+   temp1 = SVGDocument.getElementById('1');
+   temp2 = SVGDocument.getElementById('2');
+   temp3 = SVGDocument.getElementById('3');
+   temp4 = SVGDocument.getElementById('4');
+   temp5 = SVGDocument.getElementById('5');
+   temp6 = SVGDocument.getElementById('6');
+   temp7 = SVGDocument.getElementById('7');
+   temp8 = SVGDocument.getElementById('8');
+   temp9 = SVGDocument.getElementById('9');
+   temp10 = SVGDocument.getElementById('10');
+   temp11 = SVGDocument.getElementById('11');
+   temp12 = SVGDocument.getElementById('12');
+   temp13 = SVGDocument.getElementById('13');
+   temp14 = SVGDocument.getElementById('14');
+   temp15 = SVGDocument.getElementById('15');
+   temp16 = SVGDocument.getElementById('16');
+   temp17 = SVGDocument.getElementById('17');
+   temp18 = SVGDocument.getElementById('18');
+   temp19 = SVGDocument.getElementById('19');
+  }
 
   function DoQuery(left, right){
   //Code to make the years 4 digits long
