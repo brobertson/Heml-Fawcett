@@ -272,8 +272,8 @@
    for(var i = 0; i < 20; i++){
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
-    numQs = Math.round(Math.random()*51);  // running on random number generator while server down
- //   numQs = listEventsForTimeSpan(begin,stop);
+  //  numQs = Math.round(Math.random()*51);  // running on random number generator while server down
+   numQs = getNumberOfQueries(begin, stop);
     graph = SVGDocument.getElementById(i);
     if(numQs > 0){
      visible = numQs * 3;
@@ -327,6 +327,7 @@
     if(right.length==3)
     {right = "0"+(right)}
     }
+   listEventsForTimeSpan(left, right);
    ShowDensity(left, right);
   };
   
@@ -343,7 +344,7 @@ function onHemlFailure(reply) {
   function listEventsForTimeSpan(start, end) {
    var startDate = start+"-01-01";
    var endDate = end+"-01-01";
-   return 1;
+
    var listEventsFromJson = function(json) {
     var theHeader = document.getElementById("locationLabel");
     headerText = theHeader.childNodes[0];
@@ -450,16 +451,60 @@ function onHemlFailure(reply) {
 
   eventsQuery.performQuery();
  }
- 
-function getNumberOfQueries(start, end){
-var startDate = start+"-01-01";
-   var endDate = end+"-01-01";
+
+function getNumberOfQueries(left, right){
+left = parseInt(left, 10);
+  right = parseInt(right, 10);
+  if(left<0){
+     var left = "" + left;
+    
+    if(left.length == 2)
+    {left = "-000"+(left*(-1))}
+    if(left.length==3)
+    {left = "-00"+(left*(-1))}
+    if(left.length==4)
+    {left = "-0"+(left*(-1))}
+    }
+  else{
+    var left = "" + left;
+    if(left.length == 1)
+    {left = "000"+(left)}
+    if(left.length==2)
+    {left = "00"+(left)}
+    if(left.length==3)
+    {left = "0"+(left)}
+    }
+  
+  if(right<0){
+    var right = "" + right;
+    if(right.length == 2)
+    {right = "-000"+(right*(-1))}
+    if(right.length==3)
+    {right = "-00"+(right*(-1))}
+    if(right.length==4)
+    {right = "-0"+(right*(-1))}
+    }
+  else{
+    var right = "" + right;
+    if(right.length == 1)
+    {right = "000"+(right)}
+    if(right.length==2)
+    {right = "00"+(right)}
+    if(right.length==3)
+    {right = "0"+(right)}
+    }
+
+var startDate = left+"-01-01";
+   var endDate = right+"-01-01";
+   var count;
 var countEventsFromJson = function(json) {
-return json.results.bindings.length;
+count= json.results.bindings.length;
+console.warn(count);
 }
 var AND = "&&";
 var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event <http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
 var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, countEventsFromJson);
-return countEventsFromJson;
+eventsQuery.performQuery();
+
 }
 
