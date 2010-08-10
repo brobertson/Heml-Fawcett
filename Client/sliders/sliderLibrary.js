@@ -1,6 +1,8 @@
   var SVGDocument = null;
   var SVGRoot = null; 
 
+var b=0;
+
   var DragTarget = null;
   var Left;
   var Right;
@@ -273,14 +275,8 @@
     begin = start + (i * splice);
     stop = start + ((i + 1) * splice);
   //  numQs = Math.round(Math.random()*51);  // running on random number generator while server down
-   numQs = getNumberOfQueries(begin, stop);
-    graph = SVGDocument.getElementById(i);
-    if(numQs > 0){
-     visible = numQs * 3;
-     graph.setAttributeNS(null, 'height', visible);
-    }
-    opaque = numQs / 50;
-    graph.setAttributeNS(null, 'fill-opacity', opaque);
+   getNumberOfQueries(begin, stop);
+
    }
   };
 
@@ -499,12 +495,20 @@ var startDate = left+"-01-01";
    var count;
 var countEventsFromJson = function(json) {
 count= json.results.bindings.length;
-console.warn(count);
+
+numQs = count;
+    graph = SVGDocument.getElementById(b);
+    if(numQs > 0){
+     visible = numQs * 3;
+     graph.setAttributeNS(null, 'height', visible);
+    }
+    opaque = numQs / 50;
+    graph.setAttributeNS(null, 'fill-opacity', opaque);
+    b++
 }
 var AND = "&&";
-var queryString = "SELECT DISTINCT ?event ?eventLabel ?date ?refURI WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel. OPTIONAL { ?event <http://www.heml.org/rdf/2003-09-17/heml#Evidence> ?refURI.} FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
+var queryString = "SELECT DISTINCT ?event  WHERE { ?event <http://dbpedia.org/ontology/date> ?date. ?event rdfs:label ?eventLabel.  FILTER ((lang(?eventLabel) = 'en')"+AND+"(?date <\""+endDate+"\"^^xsd:date)"+AND+"(?date>\""+startDate+"\"^^xsd:date))} ORDER BY ?date";
 var eventsQuery = new Heml.SparqlQuery(endpoint, queryString, onHemlFailure, countEventsFromJson);
 eventsQuery.performQuery();
 
 }
-
