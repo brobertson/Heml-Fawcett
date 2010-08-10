@@ -18,27 +18,6 @@
   var AdjustButton;
   var BottomGraph;
   var TopGraph;
-  
-  var graph0;
-  var graph1;
-  var graph2;
-  var graph3;
-  var graph4;
-  var graph5;
-  var graph6;
-  var graph7;
-  var graph8;
-  var graph9;
-  var graph10;
-  var graph11;
-  var graph12;
-  var graph13;
-  var graph14;
-  var graph15;
-  var graph16;
-  var graph17;
-  var graph18;
-  var graph19;
 
   var lowBound;
   var highBound;
@@ -98,7 +77,6 @@
    AdjustButton = SVGDocument.getElementById('Adjust');
    BottomGraph = SVGDocument.getElementById('BottomGraph');
    TopGraph = SVGDocument.getElementById('TopGraph');
-   InitGraphs();
 
    LPath.setAttributeNS(null, 'x1', LEFT_X);
    LPath.setAttributeNS(null, 'x2', LEFT_X);
@@ -306,28 +284,6 @@
    }
   };
 
-  function InitGraphs(){
-   graph0 = SVGDocument.getElementById('0');
-   graph1 = SVGDocument.getElementById('1');
-   graph2 = SVGDocument.getElementById('2');
-   graph3 = SVGDocument.getElementById('3');
-   graph4 = SVGDocument.getElementById('4');
-   graph5 = SVGDocument.getElementById('5');
-   graph6 = SVGDocument.getElementById('6');
-   graph7 = SVGDocument.getElementById('7');
-   graph8 = SVGDocument.getElementById('8');
-   graph9 = SVGDocument.getElementById('9');
-   graph10 = SVGDocument.getElementById('10');
-   graph11 = SVGDocument.getElementById('11');
-   graph12 = SVGDocument.getElementById('12');
-   graph13 = SVGDocument.getElementById('13');
-   graph14 = SVGDocument.getElementById('14');
-   graph15 = SVGDocument.getElementById('15');
-   graph16 = SVGDocument.getElementById('16');
-   graph17 = SVGDocument.getElementById('17');
-   graph18 = SVGDocument.getElementById('18');
-   graph19 = SVGDocument.getElementById('19');
-  }
 
   function DoQuery(left, right){
   //Code to make the years 4 digits long
