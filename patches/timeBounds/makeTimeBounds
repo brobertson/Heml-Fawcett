@@ -1,0 +1,4 @@
+javac -classpath cocoon-heml-block.jar TimeBounds.java
+java -cp cocoon-heml-block.jar:./ TimeBounds finalDateData.nt > dataFiles/timeBoundData.nt
+javac fixRDF.java
+java fixRDF > dataFiles/editedTimeBounds.nt
