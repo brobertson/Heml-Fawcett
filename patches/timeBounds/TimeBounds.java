@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.heml.*;
 import org.heml.chronology.parse.Date;
 import org.heml.chronology.parse.DateTime;
 import org.heml.chronology.parse.Year;
@@ -12,7 +11,12 @@ import org.heml.chronology.parse.Year;
 
 public class TimeBounds {
 	
+	
 	private final static boolean debug = false;
+	
+	
+	
+	
 	/**
 		 * @param value The string to parse as a time
 		 * @param datatype The datatype URI of which we believe <code>time</code> is
@@ -177,7 +181,8 @@ public class TimeBounds {
 		}
 		
 		public static void main(String[] args) throws IOException{
-			String pathname = "/Users/ewilson/testfile.nt";
+			
+			String pathname = "/Users/ewilson/TimeBounds/src/dataFiles/".concat(args[0]);
 			createData(pathname);	
 		}
 	}
