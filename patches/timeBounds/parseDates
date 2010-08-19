@@ -1,0 +1,6 @@
+javac yearParser.java
+java yearParser > dataFiles/dateData.nt
+javac InfoParser1.java
+java InfoParser1 > dataFiles/dateData2.nt
+javac FixDoubles.java
+java FixDoubles >dataFiles/finalDateData.nt
